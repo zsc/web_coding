@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="zsc 的 GPU 实验索引：DDPG、Diffusion、MCMC、MNIST 与 PPO 的关键指标、报告与源码。">
+  <meta name="description" content="zsc 的 GPU 实验索引：DDPG/TD3、Diffusion、MCMC、MNIST、PPO 与 CelebA 的关键指标、报告与源码。">
   <meta name="theme-color" content="#102b32">
   <title>GPU Lab · 实验档案</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23102b32'/%3E%3Cpath d='M18 40 32 16l14 24-14 8z' fill='%23d5ed83'/%3E%3C/svg%3E">
@@ -294,6 +294,7 @@
     }
 
     .thumb {
+      position: relative;
       display: block;
       height: 86px;
       overflow: hidden;
@@ -315,6 +316,22 @@
     .lab:hover .thumb img { transform: scale(1.035); }
     .thumb.pixels img { background: #101516; object-fit: contain; padding: 12px; }
     .thumb.center img { object-position: center; }
+
+    .thumb-note {
+      position: absolute;
+      left: 5px;
+      bottom: 5px;
+      max-width: calc(100% - 10px);
+      overflow: hidden;
+      padding: 2px 5px;
+      color: #f7fbf7;
+      background: rgba(19, 43, 50, .84);
+      border-radius: 3px;
+      font: 8px/1.45 ui-monospace, SFMono-Regular, Consolas, monospace;
+      letter-spacing: .025em;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
 
     .kicker {
       margin: 0 0 4px;
@@ -561,14 +578,16 @@
         <p class="eyebrow">Experiment index · measured 2026-10-24</p>
         <h1>六组 GPU 实验，<span>关键结果一页看完。</span></h1>
         <p class="hero-copy">
-          从 DDPG、PPO、MNIST 与 CelebA 扩散模型，到 MCMC 图像拟合。每项记录同时保留
-          加速结果、精度检查、原始数据与不能混用的测量边界。
+          最新一轮：100 个 TD3 种子通过长时压力测试；WebGPU 让 MCMC 与 PPO 训练进入浏览器；
+          CelebA 四组 RGB 任务全部完成，U-Net 的 KID 明显低于 JiT。每项同时保留关键结果、
+          原始记录与不能混用的测量边界。
         </p>
         <div class="hero-meta" aria-label="实验环境">
           <span>RTX 2080 SUPER / 8 GiB</span>
-          <span>Ryzen 9 3900X</span>
+          <span>Apple M5 / WebGPU</span>
+          <span>16 卡训练节点</span>
+          <span>M5 CPU / Ryzen 9 3900X</span>
           <span>PyTorch 2.10 + CUDA 12.8</span>
-          <span>Apple M5 / JS + WebGPU</span>
         </div>
       </div>
 
@@ -579,8 +598,8 @@
         </div>
         <div class="panel-facts">
           <div><strong>06</strong><span>实验 / EXPERIMENTS</span></div>
-          <div><strong>10</strong><span>报告页面 / PAGES</span></div>
-          <div><strong>02</strong><span>硬件环境 / SETUPS</span></div>
+          <div><strong>11</strong><span>报告与交互页 / PAGES</span></div>
+          <div><strong>04</strong><span>运行环境 / SETUPS</span></div>
           <div><strong>100%</strong><span>离线 HTML / OFFLINE</span></div>
         </div>
         <div class="panel-foot">Reports · raw JSON · logs · source code<br>All measurements retained with caveats.</div>
@@ -601,7 +620,8 @@
       <li class="lab">
         <span class="lab-index">01</span>
         <a class="thumb" href="./ddpg_gpu_lab/report.html" aria-label="打开 DDPG 报告">
-          <img src="./ddpg_gpu_lab/results/report_cover.png" alt="" loading="eager">
+          <img src="./assets/home/ddpg_100seeds.jpg" alt="100 个 TD3 种子的压力测试结果页" loading="eager">
+          <span class="thumb-note">TD3 · 100 / 100</span>
         </a>
         <div class="lab-copy">
           <p class="kicker">TD3 · 100 independent seeds</p>
@@ -624,6 +644,7 @@
         <span class="lab-index">02</span>
         <a class="thumb pixels" href="./diffusion_gpu_lab/report.html" aria-label="打开 Diffusion 报告">
           <img src="./diffusion_gpu_lab/results/quality_v2/ema50_100.png" alt="" loading="lazy">
+          <span class="thumb-note">DDIM · quality / speed</span>
         </a>
         <div class="lab-copy">
           <p class="kicker">Diffusion · Quality + speed</p>
@@ -646,6 +667,7 @@
         <span class="lab-index">03</span>
         <a class="thumb center" href="./mcmc_splatting_gpu/report.html#webgpu-results" aria-label="打开 MCMC WebGPU 实测">
           <img src="./mcmc_splatting_gpu/assets/zhou_webgpu.png" alt="" loading="lazy">
+          <span class="thumb-note">WebGPU · 3.97 s</span>
         </a>
         <div class="lab-copy">
           <p class="kicker">MCMC + Adam · Splatting</p>
@@ -668,6 +690,7 @@
         <span class="lab-index">04</span>
         <a class="thumb" href="./mnist_gpu_lab/report.html" aria-label="打开 MNIST 报告">
           <img src="./mnist_gpu_lab/results/report_accuracy.png" alt="" loading="lazy">
+          <span class="thumb-note">test · 99.50%</span>
         </a>
         <div class="lab-copy">
           <p class="kicker">MNIST · CNN</p>
@@ -690,6 +713,7 @@
         <span class="lab-index">05</span>
         <a class="thumb center" href="./ppo_gpu_lab/report.html" aria-label="打开 PPO 报告">
           <img src="./ppo_gpu_lab/results/webgpu_training_preview.png" alt="" loading="lazy">
+          <span class="thumb-note">WebGPU · 3 seeds</span>
         </a>
         <div class="lab-copy">
           <p class="kicker">PPO · GPU + live lab</p>
@@ -713,18 +737,19 @@
       <li class="lab">
         <span class="lab-index">06</span>
         <a class="thumb" href="./celeba_diffusion_lab/report.html" aria-label="打开 CelebA 报告">
-          <img src="./celeba_diffusion_lab/results/gray_evaluation/gray5k_eta0_64.png" alt="" loading="lazy">
+          <img src="./assets/home/celeba_unet_final.jpg" alt="最终 U-Net 慢 EMA 的 64 张未筛选 RGB 人脸" loading="lazy">
+          <span class="thumb-note">RGB · U-Net 64 samples</span>
         </a>
         <div class="lab-copy">
-          <p class="kicker">CelebA · grayscale diffusion</p>
-          <h3><a href="./celeba_diffusion_lab/report.html">灰度训练 5,000 步，分布仍未对齐。</a></h3>
-          <p class="lab-description">同一 U-Net 改训单通道灰度，与 RGB 后转灰对照；亮度 Wasserstein 距离仍远高于真实-真实基线，保留为负结果。</p>
-          <div class="tags"><span>U-Net</span><span>grayscale</span><span>negative result</span></div>
+          <p class="kicker">CelebA · RGB 64×64 · 4 / 4 done</p>
+          <h3><a href="./celeba_diffusion_lab/report.html">四组 RGB 训练全部完成，U-Net 质量领先。</a></h3>
+          <p class="lab-description">四组 16 卡任务各累计 512 万张次；两档学习率取较低的最终慢 EMA KID。单训练种子、训练历史不同，不能当作只改变架构的严格消融。</p>
+          <div class="tags"><span>RGB 64×64</span><span>U-Net vs JiT</span><span>EMA flow</span></div>
         </div>
         <dl class="metrics">
-          <div class="metric"><dd>41.52</dd><dt>灰度亮度 W1</dt></div>
-          <div class="metric"><dd>1.16–3.59</dd><dt>真实-真实 W1 基线</dt></div>
-          <div class="metric"><dd>5,000</dd><dt>灰度训练步数</dt></div>
+          <div class="metric"><dd>13.02</dd><dt>U-Net 最低 KID×1,000 ↓</dt></div>
+          <div class="metric"><dd>20.41</dd><dt>JiT 最低 KID×1,000 ↓</dt></div>
+          <div class="metric"><dd>5.12M</dd><dt>每组累计图像张次</dt></div>
         </dl>
         <div class="actions">
           <a href="./celeba_diffusion_lab/report.html">REPORT →</a>
