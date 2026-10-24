@@ -3,22 +3,21 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="zsc 的 GPU 实验报告索引：DDPG、Diffusion、MCMC、MNIST 与 PPO。">
+  <meta name="description" content="zsc 的 GPU 实验索引：DDPG、Diffusion、MCMC、MNIST 与 PPO 的关键指标、报告与源码。">
   <meta name="theme-color" content="#102b32">
   <title>GPU Lab · 实验档案</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23102b32'/%3E%3Cpath d='M18 40 32 16l14 24-14 8z' fill='%23d5ed83'/%3E%3C/svg%3E">
   <style>
     :root {
       --ink: #132b32;
-      --ink-soft: #314850;
+      --ink-soft: #304951;
       --paper: #f3f4ed;
       --card: #fbfbf7;
-      --line: #d8dfd9;
+      --line: #d5ddd7;
       --muted: #687980;
       --teal: #087c6e;
       --lime: #d5ed83;
-      --orange: #c56f31;
-      --shadow: 0 18px 50px rgba(19, 43, 50, .09);
+      --shadow: 0 14px 36px rgba(19, 43, 50, .08);
     }
 
     * { box-sizing: border-box; }
@@ -32,14 +31,15 @@
       margin: 0;
       color: var(--ink);
       background:
-        radial-gradient(circle at 92% 4%, rgba(213, 237, 131, .28), transparent 24rem),
-        linear-gradient(90deg, rgba(19, 43, 50, .035) 1px, transparent 1px),
-        linear-gradient(rgba(19, 43, 50, .035) 1px, transparent 1px),
+        radial-gradient(circle at 92% 2%, rgba(213, 237, 131, .3), transparent 23rem),
+        linear-gradient(90deg, rgba(19, 43, 50, .032) 1px, transparent 1px),
+        linear-gradient(rgba(19, 43, 50, .032) 1px, transparent 1px),
         var(--paper);
-      background-size: auto, 44px 44px, 44px 44px, auto;
+      background-size: auto, 42px 42px, 42px 42px, auto;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
         "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
-      line-height: 1.65;
+      font-size: 14px;
+      line-height: 1.55;
       -webkit-font-smoothing: antialiased;
     }
 
@@ -47,8 +47,8 @@
 
     a:focus-visible {
       outline: 3px solid var(--teal);
-      outline-offset: 4px;
-      border-radius: 4px;
+      outline-offset: 3px;
+      border-radius: 3px;
     }
 
     .skip-link {
@@ -56,7 +56,7 @@
       left: 16px;
       top: -80px;
       z-index: 20;
-      padding: 10px 15px;
+      padding: 9px 14px;
       color: white;
       background: var(--ink);
       border-radius: 0 0 8px 8px;
@@ -66,7 +66,7 @@
     .skip-link:focus { top: 0; }
 
     .shell {
-      width: min(1180px, calc(100% - 48px));
+      width: min(1220px, calc(100% - 44px));
       margin: 0 auto;
     }
 
@@ -75,29 +75,29 @@
       align-items: center;
       justify-content: space-between;
       gap: 24px;
-      padding: 24px 0 18px;
+      padding: 18px 0 14px;
       border-bottom: 1px solid rgba(19, 43, 50, .14);
     }
 
     .brand {
       display: inline-flex;
       align-items: center;
-      gap: 11px;
-      font: 700 12px/1 ui-monospace, SFMono-Regular, Consolas, monospace;
-      letter-spacing: .16em;
+      gap: 10px;
+      font: 700 11px/1 ui-monospace, SFMono-Regular, Consolas, monospace;
+      letter-spacing: .15em;
       text-decoration: none;
       text-transform: uppercase;
     }
 
     .brand-mark {
       display: grid;
-      width: 34px;
-      height: 34px;
+      width: 30px;
+      height: 30px;
       place-items: center;
       color: var(--ink);
       background: var(--lime);
-      border-radius: 9px;
-      font-size: 15px;
+      border-radius: 8px;
+      font-size: 13px;
       letter-spacing: 0;
       transform: rotate(-3deg);
     }
@@ -105,129 +105,140 @@
     .topnav {
       display: flex;
       align-items: center;
-      gap: 22px;
+      gap: 20px;
       color: var(--muted);
-      font-size: 13px;
+      font-size: 12px;
     }
 
-    .topnav a {
-      text-decoration: none;
-      transition: color .18s ease;
-    }
-
+    .topnav a { text-decoration: none; }
     .topnav a:hover { color: var(--ink); }
 
     .hero {
       display: grid;
-      grid-template-columns: minmax(0, 1.45fr) minmax(280px, .55fr);
-      gap: 64px;
-      align-items: end;
-      padding: 78px 0 58px;
+      grid-template-columns: minmax(0, 1.65fr) minmax(310px, .65fr);
+      gap: 44px;
+      align-items: stretch;
+      padding: 34px 0 30px;
     }
 
     .eyebrow,
-    .card-kicker,
-    .meta-label,
+    .kicker,
+    .metric dt,
+    .panel-label,
     .footer {
       font-family: ui-monospace, SFMono-Regular, Consolas, monospace;
-      letter-spacing: .12em;
+      letter-spacing: .11em;
       text-transform: uppercase;
     }
 
     .eyebrow {
-      margin: 0 0 20px;
+      margin: 0 0 10px;
       color: var(--teal);
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 700;
     }
 
     h1 {
-      max-width: 800px;
+      max-width: 760px;
       margin: 0;
-      font-size: clamp(42px, 6.4vw, 84px);
+      font-size: clamp(38px, 5vw, 62px);
       font-weight: 680;
-      letter-spacing: -.055em;
+      letter-spacing: -.052em;
       line-height: 1.03;
     }
 
-    h1 span {
-      display: block;
-      color: var(--teal);
-    }
+    h1 span { color: var(--teal); }
 
     .hero-copy {
-      max-width: 690px;
-      margin: 26px 0 0;
+      max-width: 760px;
+      margin: 15px 0 0;
       color: var(--ink-soft);
-      font-size: 17px;
-      line-height: 1.85;
+      font-size: 14px;
+      line-height: 1.75;
     }
 
-    .hero-actions {
+    .hero-meta {
       display: flex;
       flex-wrap: wrap;
-      gap: 11px;
-      margin-top: 30px;
+      gap: 6px;
+      margin-top: 17px;
     }
 
-    .button {
-      display: inline-flex;
-      align-items: center;
-      gap: 9px;
-      min-height: 44px;
-      padding: 0 18px;
-      border: 1px solid var(--ink);
-      border-radius: 999px;
-      font-size: 13px;
-      font-weight: 650;
-      text-decoration: none;
-      transition: transform .18s ease, background .18s ease, color .18s ease;
+    .hero-meta span {
+      padding: 4px 8px;
+      color: #526662;
+      background: rgba(255, 255, 255, .58);
+      border: 1px solid var(--line);
+      border-radius: 4px;
+      font: 10px/1.5 ui-monospace, SFMono-Regular, Consolas, monospace;
     }
 
-    .button:hover { transform: translateY(-2px); }
-    .button.primary { color: white; background: var(--ink); }
-    .button.primary:hover { background: var(--teal); border-color: var(--teal); }
-    .button.quiet { background: rgba(255, 255, 255, .45); }
-    .button.quiet:hover { background: white; }
-
-    .hero-aside {
-      padding: 24px;
-      color: #dae6e3;
+    .panel {
+      display: flex;
+      flex-direction: column;
+      padding: 19px;
+      color: #dbe7e4;
       background: var(--ink);
-      border-radius: 18px;
+      border-radius: 15px;
       box-shadow: var(--shadow);
-      transform: rotate(1deg);
     }
 
-    .hero-aside .meta-label {
-      display: block;
-      color: var(--lime);
+    .panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      color: #b8cbc8;
       font-size: 10px;
     }
 
-    .hero-aside strong {
+    .panel-label { color: var(--lime); font-weight: 700; }
+
+    .live {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .live::before {
+      width: 6px;
+      height: 6px;
+      background: var(--lime);
+      border-radius: 50%;
+      content: "";
+      box-shadow: 0 0 0 4px rgba(213, 237, 131, .12);
+    }
+
+    .panel-facts {
+      display: grid;
+      flex: 1;
+      grid-template-columns: 1fr 1fr;
+      gap: 13px 18px;
+      align-content: center;
+      padding: 16px 0 18px;
+    }
+
+    .panel-facts strong {
       display: block;
-      margin: 10px 0 22px;
       color: white;
-      font-size: 23px;
-      font-weight: 560;
-      letter-spacing: -.025em;
-      line-height: 1.35;
+      font-size: 29px;
+      font-weight: 590;
+      letter-spacing: -.045em;
+      line-height: 1.1;
     }
 
-    .aside-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 18px;
-      padding: 11px 0;
+    .panel-facts span {
+      display: block;
+      margin-top: 3px;
+      color: #a9bfbd;
+      font-size: 10px;
+    }
+
+    .panel-foot {
+      padding-top: 12px;
+      color: #a9bfbd;
       border-top: 1px solid rgba(255, 255, 255, .14);
-      color: #b8cbc8;
-      font-size: 12px;
-    }
-
-    .aside-row b {
-      color: white;
-      font: 500 12px/1.65 ui-monospace, SFMono-Regular, Consolas, monospace;
+      font: 10px/1.6 ui-monospace, SFMono-Regular, Consolas, monospace;
     }
 
     .section-head {
@@ -235,63 +246,61 @@
       align-items: flex-end;
       justify-content: space-between;
       gap: 28px;
-      padding: 30px 0 24px;
+      padding: 18px 0 12px;
       border-top: 1px solid rgba(19, 43, 50, .14);
     }
 
     .section-head h2 {
       margin: 0;
-      font-size: clamp(28px, 3vw, 40px);
+      font-size: clamp(27px, 3vw, 36px);
       font-weight: 650;
       letter-spacing: -.04em;
-      line-height: 1.2;
+      line-height: 1.15;
     }
 
     .section-head p {
-      max-width: 440px;
+      max-width: 520px;
       margin: 0;
       color: var(--muted);
-      font-size: 13px;
+      font-size: 11px;
       text-align: right;
     }
 
-    .grid {
+    .ledger {
+      margin: 0;
+      padding: 0;
+      border-top: 1px solid var(--ink);
+      list-style: none;
+    }
+
+    .lab {
       display: grid;
-      grid-template-columns: repeat(12, minmax(0, 1fr));
-      gap: 20px;
-      padding-bottom: 76px;
+      grid-template-columns: 30px 142px minmax(220px, 1.5fr) minmax(252px, 1fr) 102px;
+      gap: 18px;
+      align-items: center;
+      padding: 13px 10px;
+      border-bottom: 1px solid var(--line);
+      transition: background .18s ease;
     }
 
-    .card {
-      grid-column: span 4;
-      display: flex;
-      min-width: 0;
-      flex-direction: column;
-      overflow: hidden;
-      background: var(--card);
-      border: 1px solid var(--line);
-      border-radius: 16px;
-      box-shadow: 0 8px 26px rgba(19, 43, 50, .045);
-      transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease;
-    }
+    .lab:hover { background: rgba(255, 255, 255, .55); }
 
-    .card:first-child { grid-column: span 7; }
-    .card:nth-child(2) { grid-column: span 5; }
-
-    .card:hover {
-      border-color: #b5c5bd;
-      box-shadow: var(--shadow);
-      transform: translateY(-5px);
+    .lab-index {
+      color: #93a29e;
+      font: 10px/1 ui-monospace, SFMono-Regular, Consolas, monospace;
+      letter-spacing: .08em;
+      align-self: start;
+      padding-top: 5px;
     }
 
     .thumb {
-      height: 190px;
+      display: block;
+      height: 86px;
       overflow: hidden;
-      background: #e8ebe5;
-      border-bottom: 1px solid var(--line);
+      background: #e7ebe5;
+      border: 1px solid var(--line);
+      border-radius: 8px;
     }
-
-    .card:first-child .thumb { height: 244px; }
 
     .thumb img {
       display: block;
@@ -300,183 +309,226 @@
       object-fit: cover;
       object-position: top center;
       filter: saturate(.92) contrast(.98);
-      transition: transform .6s cubic-bezier(.2, .7, .2, 1);
+      transition: transform .45s cubic-bezier(.2, .7, .2, 1);
     }
 
-    .card:hover .thumb img { transform: scale(1.025); }
+    .lab:hover .thumb img { transform: scale(1.035); }
+    .thumb.pixels img { background: #101516; object-fit: contain; padding: 12px; }
+    .thumb.center img { object-position: center; }
 
-    .thumb.pixels img {
-      image-rendering: pixelated;
-      object-fit: contain;
-      padding: 29px;
-      background: #101516;
-    }
-
-    .thumb.comparison img { object-position: center; }
-    .thumb.chart img { object-position: center; }
-
-    .card-body {
-      display: flex;
-      flex: 1;
-      flex-direction: column;
-      padding: 23px;
-    }
-
-    .card-topline {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-    }
-
-    .card-kicker {
+    .kicker {
+      margin: 0 0 4px;
       color: var(--teal);
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 700;
     }
 
-    .card-index {
-      color: #98a6a5;
-      font: 11px/1 ui-monospace, SFMono-Regular, Consolas, monospace;
+    .lab h3 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: 650;
+      letter-spacing: -.032em;
+      line-height: 1.25;
     }
 
-    .card h3 {
-      margin: 14px 0 10px;
-      font-size: 25px;
-      font-weight: 640;
-      letter-spacing: -.035em;
-      line-height: 1.24;
-    }
-
-    .card:first-child h3 { font-size: 31px; }
-
-    .card h3 a {
+    .lab h3 a {
       text-decoration: none;
       background-image: linear-gradient(var(--teal), var(--teal));
       background-position: 0 100%;
       background-repeat: no-repeat;
       background-size: 0 2px;
-      transition: background-size .22s ease;
+      transition: background-size .2s ease;
     }
 
-    .card h3 a:hover { background-size: 100% 2px; }
+    .lab h3 a:hover { background-size: 100% 2px; }
 
-    .card-description {
-      margin: 0;
-      color: var(--muted);
-      font-size: 13px;
-      line-height: 1.75;
-    }
-
-    .stat {
-      display: flex;
-      align-items: baseline;
-      gap: 12px;
-      margin-top: 22px;
-      padding-top: 17px;
-      border-top: 1px solid var(--line);
-    }
-
-    .stat strong {
-      color: var(--teal);
-      font-size: 36px;
-      font-weight: 650;
-      letter-spacing: -.055em;
-      line-height: 1;
-    }
-
-    .stat span {
-      max-width: 150px;
+    .lab-description {
+      display: -webkit-box;
+      overflow: hidden;
+      margin: 5px 0 0;
       color: var(--muted);
       font-size: 11px;
-      line-height: 1.45;
+      line-height: 1.55;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
     }
 
     .tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 20px;
+      gap: 4px;
+      margin-top: 7px;
     }
 
     .tags span {
-      padding: 4px 8px;
-      color: #50635f;
-      background: #edf1eb;
-      border-radius: 4px;
-      font: 10px/1.4 ui-monospace, SFMono-Regular, Consolas, monospace;
+      padding: 2px 6px;
+      color: #526662;
+      background: #e9eee8;
+      border-radius: 3px;
+      font: 9px/1.45 ui-monospace, SFMono-Regular, Consolas, monospace;
     }
 
-    .card-links {
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin: 0;
+    }
+
+    .metric {
+      min-width: 0;
+      padding-left: 10px;
+      border-left: 1px solid var(--line);
+    }
+
+    .metric dd {
+      margin: 0;
+      color: var(--teal);
+      font-size: clamp(15px, 1.5vw, 21px);
+      font-weight: 660;
+      letter-spacing: -.045em;
+      line-height: 1.15;
+      white-space: nowrap;
+    }
+
+    .metric dt {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 8px;
+      line-height: 1.35;
+      letter-spacing: .04em;
+      text-transform: none;
+    }
+
+    .actions {
       display: flex;
-      flex-wrap: wrap;
-      gap: 16px;
-      margin-top: auto;
-      padding-top: 22px;
-      font-size: 12px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 5px;
+      font-size: 10px;
       font-weight: 650;
     }
 
-    .card-links a {
-      color: var(--ink);
+    .actions a {
       text-decoration: none;
-      border-bottom: 1px solid #9eada7;
+      border-bottom: 1px solid transparent;
     }
 
-    .card-links a:hover {
+    .actions a:first-child {
       color: var(--teal);
-      border-color: var(--teal);
+      border-color: #95bbb3;
+    }
+
+    .actions a:hover {
+      color: var(--ink);
+      border-color: var(--ink);
+    }
+
+    .notes {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      margin: 28px 0 36px;
+      padding: 0;
+      overflow: hidden;
+      background: rgba(255, 255, 255, .55);
+      border: 1px solid var(--line);
+      border-radius: 11px;
+    }
+
+    .note {
+      padding: 16px 18px;
+      border-right: 1px solid var(--line);
+    }
+
+    .note:last-child { border-right: 0; }
+
+    .note b {
+      display: block;
+      margin-bottom: 5px;
+      font-size: 12px;
+    }
+
+    .note p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.55;
     }
 
     .footer {
       display: flex;
       justify-content: space-between;
       gap: 24px;
-      padding: 25px 0 42px;
+      padding: 18px 0 30px;
       color: var(--muted);
       border-top: 1px solid rgba(19, 43, 50, .14);
-      font-size: 10px;
+      font-size: 9px;
     }
 
-    .footer a { text-decoration: none; color: var(--ink); }
+    .footer a { color: var(--ink); text-decoration: none; }
     .footer a:hover { color: var(--teal); }
 
-    @media (max-width: 900px) {
-      .hero {
-        grid-template-columns: 1fr;
-        gap: 36px;
-        padding-top: 58px;
+    @media (max-width: 1020px) {
+      .hero { grid-template-columns: minmax(0, 1.4fr) minmax(280px, .6fr); gap: 28px; }
+      .lab {
+        grid-template-columns: 26px 118px minmax(0, 1fr) 92px;
+        gap: 9px 14px;
+        align-items: start;
       }
-
-      .hero-aside { max-width: 520px; }
-
-      .card,
-      .card:first-child,
-      .card:nth-child(2) { grid-column: span 6; }
-
-      .card:last-child { grid-column: span 12; }
-      .card:first-child .thumb { height: 210px; }
-      .card:last-child .thumb { height: 240px; }
+      .lab-index { grid-column: 1; grid-row: 1; }
+      .thumb { grid-column: 2; grid-row: 1; }
+      .lab-copy { grid-column: 3; grid-row: 1; }
+      .metrics { grid-column: 3 / 5; grid-row: 2; }
+      .actions { grid-column: 4; grid-row: 1; }
+      .thumb { height: 78px; }
+      .metric dd { font-size: 18px; }
+      .notes { grid-template-columns: 1fr 1fr; }
+      .note:nth-child(2) { border-right: 0; }
+      .note:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
     }
 
-    @media (max-width: 640px) {
-      .shell { width: min(100% - 30px, 1180px); }
-      .topbar { padding-top: 18px; }
-      .topnav a:first-child { display: none; }
-      .hero { padding: 46px 0 42px; }
-      .hero-copy { font-size: 15px; }
-      .section-head { align-items: flex-start; flex-direction: column; gap: 10px; }
+    @media (max-width: 760px) {
+      .shell { width: min(100% - 28px, 1220px); }
+      .hero { grid-template-columns: 1fr; gap: 20px; padding-top: 26px; }
+      .panel { max-width: 520px; }
+      .section-head { align-items: flex-start; flex-direction: column; gap: 5px; }
       .section-head p { text-align: left; }
-      .grid { gap: 14px; }
-      .card,
-      .card:first-child,
-      .card:nth-child(2),
-      .card:last-child { grid-column: span 12; }
-      .thumb,
-      .card:first-child .thumb,
-      .card:last-child .thumb { height: 205px; }
-      .card:first-child h3 { font-size: 26px; }
-      .footer { flex-direction: column; gap: 8px; }
+      .lab {
+        grid-template-columns: 24px minmax(0, 1fr) 90px;
+        gap: 10px 13px;
+        align-items: start;
+        padding: 14px 6px;
+      }
+      .thumb {
+        grid-column: 2 / 3;
+        grid-row: 1;
+        height: 140px;
+      }
+      .lab-copy { grid-column: 2 / 3; grid-row: 2; }
+      .metrics {
+        grid-column: 2 / 4;
+        grid-row: 3;
+        padding-top: 5px;
+      }
+      .actions {
+        grid-column: 3 / 4;
+        grid-row: 2;
+        align-items: flex-end;
+      }
+      .lab-index { grid-column: 1; grid-row: 1; }
+      .notes { grid-template-columns: 1fr; }
+      .note { border-right: 0; border-bottom: 1px solid var(--line); }
+      .note:last-child { border-bottom: 0; }
+      .footer { flex-direction: column; gap: 6px; }
+    }
+
+    @media (max-width: 440px) {
+      .topnav a:first-child { display: none; }
+      .metric dd { font-size: 17px; }
+      .metric { padding-left: 7px; }
+      .metric dt { font-size: 7px; }
+      .thumb { height: 120px; }
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -489,7 +541,7 @@
   </style>
 </head>
 <body>
-  <a class="skip-link" href="#experiments">跳到实验列表</a>
+  <a class="skip-link" href="#experiments">跳到实验索引</a>
 
   <header class="shell">
     <div class="topbar">
@@ -498,146 +550,187 @@
         GPU Lab / web_coding
       </a>
       <nav class="topnav" aria-label="页面导航">
-        <a href="#experiments">实验</a>
+        <a href="#experiments">实验索引</a>
+        <a href="#method">测量口径</a>
         <a href="https://github.com/zsc/web_coding">GitHub ↗</a>
       </nav>
     </div>
 
     <div class="hero">
       <div>
-        <p class="eyebrow">Experiment index · 2026</p>
-        <h1>五组实验，<span>一个入口。</span></h1>
+        <p class="eyebrow">Experiment index · measured 2026-10-24</p>
+        <h1>五组 GPU 实验，<span>关键结果一页看完。</span></h1>
         <p class="hero-copy">
-          从强化学习、扩散模型到图像拟合与 CNN，记录每一次改写、每一轮测量，
-          以及速度之外必须一起交代的算法边界。
+          从 DDPG、PPO、扩散模型，到 MCMC 图像拟合与 MNIST CNN。每项记录同时保留
+          加速结果、精度检查、原始数据与不能混用的测量边界。
         </p>
-        <div class="hero-actions">
-          <a class="button primary" href="#experiments">查看全部报告 <span aria-hidden="true">↓</span></a>
-          <a class="button quiet" href="https://github.com/zsc/web_coding">浏览源码 <span aria-hidden="true">↗</span></a>
+        <div class="hero-meta" aria-label="实验环境">
+          <span>RTX 2080 SUPER / 8 GiB</span>
+          <span>Ryzen 9 3900X</span>
+          <span>PyTorch 2.10 + CUDA 12.8</span>
+          <span>Apple M5 / JS + WebGPU</span>
         </div>
       </div>
 
-      <aside class="hero-aside" aria-label="实验概览">
-        <span class="meta-label">Desk machine</span>
-        <strong>RTX 2080 SUPER<br>Ryzen 9 3900X</strong>
-        <div class="aside-row"><span>实验</span><b>05</b></div>
-        <div class="aside-row"><span>独立报告</span><b>05</b></div>
-        <div class="aside-row"><span>脚本与原始数据</span><b>已保留</b></div>
+      <aside class="panel" aria-label="索引状态">
+        <div class="panel-head">
+          <span class="panel-label">Index status</span>
+          <span class="live">Live</span>
+        </div>
+        <div class="panel-facts">
+          <div><strong>05</strong><span>实验 / EXPERIMENTS</span></div>
+          <div><strong>07</strong><span>报告页面 / PAGES</span></div>
+          <div><strong>02</strong><span>硬件环境 / SETUPS</span></div>
+          <div><strong>100%</strong><span>离线 HTML / OFFLINE</span></div>
+        </div>
+        <div class="panel-foot">Reports · raw JSON · logs · source code<br>All measurements retained with caveats.</div>
       </aside>
     </div>
   </header>
 
   <main class="shell" id="experiments">
     <div class="section-head">
-      <h2>实验档案</h2>
-      <p>每张卡片直达完整中文报告；报告均为自包含页面，保留测量方法、限制与可复现命令。</p>
+      <div>
+        <p class="eyebrow">Experiment ledger · 01—05</p>
+        <h2>实验索引</h2>
+      </div>
+      <p>关键指标直接摘自主报告；点击标题或 REPORT 进入完整测量过程。</p>
     </div>
 
-    <div class="grid">
-      <article class="card">
-        <div class="thumb">
-          <img src="./ddpg_gpu_lab/results/report_cover.png" alt="DDPG 倒立摆实验报告封面" loading="eager">
-        </div>
-        <div class="card-body">
-          <div class="card-topline">
-            <span class="card-kicker">Reinforcement learning</span>
-            <span class="card-index">01 / 05</span>
-          </div>
+    <ol class="ledger">
+      <li class="lab">
+        <span class="lab-index">01</span>
+        <a class="thumb" href="./ddpg_gpu_lab/report.html" aria-label="打开 DDPG 报告">
+          <img src="./ddpg_gpu_lab/results/report_cover.png" alt="" loading="eager">
+        </a>
+        <div class="lab-copy">
+          <p class="kicker">DDPG · Reinforcement learning</p>
           <h3><a href="./ddpg_gpu_lab/report.html">倒立摆，在 GPU 上快起来。</a></h3>
-          <p class="card-description">保留小网络与原始物理模型，把样本计算改成批处理，再将完整训练循环留在 GPU 上。</p>
-          <div class="stat"><strong>13.4×</strong><span>同配置 GPU 执行路径加速</span></div>
+          <p class="lab-description">保留小网络与原始物理模型，把采集、回放、Adam 更新和 Polyak 软更新压进 CUDA Graph。</p>
           <div class="tags"><span>DDPG</span><span>CUDA Graph</span><span>3 seeds</span></div>
-          <div class="card-links">
-            <a href="./ddpg_gpu_lab/report.html">阅读报告 →</a>
-            <a href="https://github.com/zsc/web_coding/tree/main/ddpg_gpu_lab">源码</a>
-          </div>
         </div>
-      </article>
+        <dl class="metrics">
+          <div class="metric"><dd>13.4×</dd><dt>同配置执行路径加速</dt></div>
+          <div class="metric"><dd>0.323 ms</dd><dt>1 env / B64 更新步时</dt></div>
+          <div class="metric"><dd>159.7k</dd><dt>32 env 每秒采样</dt></div>
+        </dl>
+        <div class="actions">
+          <a href="./ddpg_gpu_lab/report.html">REPORT →</a>
+          <a href="https://github.com/zsc/web_coding/tree/main/ddpg_gpu_lab">SOURCE ↗</a>
+        </div>
+      </li>
 
-      <article class="card">
-        <div class="thumb pixels">
-          <img src="./diffusion_gpu_lab/results/ddim20_amp.png" alt="Diffusion 模型生成的数字样本" loading="lazy">
-        </div>
-        <div class="card-body">
-          <div class="card-topline">
-            <span class="card-kicker">Diffusion / DDIM</span>
-            <span class="card-index">02 / 05</span>
-          </div>
+      <li class="lab">
+        <span class="lab-index">02</span>
+        <a class="thumb pixels" href="./diffusion_gpu_lab/report.html" aria-label="打开 Diffusion 报告">
+          <img src="./diffusion_gpu_lab/results/ddim20_amp.png" alt="" loading="lazy">
+        </a>
+        <div class="lab-copy">
+          <p class="kicker">Diffusion · DDPM / DDIM</p>
           <h3><a href="./diffusion_gpu_lab/report.html">Diffusion Demo GPU 优化实测</a></h3>
-          <p class="card-description">对照 FP32、AMP 与 CUDA Graph 的训练和采样路径，并检查精度与生成质量。</p>
-          <div class="stat"><strong>18.0 ms</strong><span>AMP 中位训练步时</span></div>
+          <p class="lab-description">对照 FP32、AMP、channels-last 与 CUDA Graph 的训练和采样路径，并检查生成质量是否偏离。</p>
           <div class="tags"><span>DDPM</span><span>AMP</span><span>DDIM</span></div>
-          <div class="card-links">
-            <a href="./diffusion_gpu_lab/report.html">阅读报告 →</a>
-            <a href="https://github.com/zsc/web_coding/tree/main/diffusion_gpu_lab">源码</a>
-          </div>
         </div>
-      </article>
+        <dl class="metrics">
+          <div class="metric"><dd>22.9→18.0</dd><dt>ms / step，FP32→AMP</dt></div>
+          <div class="metric"><dd>1.27×</dd><dt>中位训练步加速</dt></div>
+          <div class="metric"><dd>0.0650</dd><dt>held-out ε MSE</dt></div>
+        </dl>
+        <div class="actions">
+          <a href="./diffusion_gpu_lab/report.html">REPORT →</a>
+          <a href="https://github.com/zsc/web_coding/tree/main/diffusion_gpu_lab">SOURCE ↗</a>
+        </div>
+      </li>
 
-      <article class="card">
-        <div class="thumb comparison">
-          <img src="./mcmc_splatting_gpu/assets/zhou_comparison.png" alt="MCMC splatting 图像拟合对比" loading="lazy">
-        </div>
-        <div class="card-body">
-          <div class="card-topline">
-            <span class="card-kicker">Stochastic splatting</span>
-            <span class="card-index">03 / 05</span>
-          </div>
+      <li class="lab">
+        <span class="lab-index">03</span>
+        <a class="thumb center" href="./mcmc_splatting_gpu/report.html" aria-label="打开 MCMC Splatting 报告">
+          <img src="./mcmc_splatting_gpu/assets/zhou_comparison.png" alt="" loading="lazy">
+        </a>
+        <div class="lab-copy">
+          <p class="kicker">MCMC · Splatting</p>
           <h3><a href="./mcmc_splatting_gpu/report.html">一次只改一颗，何必重画全部。</a></h3>
-          <p class="card-description">只计算单颗高斯的增量并复用缓存；附 CPU 交互演示、WebGPU 实验与 CUDA 原型。</p>
-          <div class="stat"><strong>63.1×</strong><span>缓存 JS 核心加速</span></div>
+          <p class="lab-description">只计算单颗高斯的增量并复用缓存；包含浏览器交互实验、FP64/FP32 CUDA 原型与多链对照。</p>
           <div class="tags"><span>MCMC</span><span>WebGPU</span><span>FP64 / FP32</span></div>
-          <div class="card-links">
-            <a href="./mcmc_splatting_gpu/report.html">阅读报告 →</a>
-            <a href="./mcmc_splatting_gpu/webgpu_lab.html">WebGPU 实验</a>
-          </div>
         </div>
-      </article>
+        <dl class="metrics">
+          <div class="metric"><dd>63.1×</dd><dt>缓存 JS 核心加速</dt></div>
+          <div class="metric"><dd>20.2×</dd><dt>GPU / 32 链 / FP64</dt></div>
+          <div class="metric"><dd>1.54M</dd><dt>FP32 proposals / s</dt></div>
+        </dl>
+        <div class="actions">
+          <a href="./mcmc_splatting_gpu/report.html">REPORT →</a>
+          <a href="./mcmc_splatting_gpu/webgpu_lab.html">WEBGPU →</a>
+        </div>
+      </li>
 
-      <article class="card">
-        <div class="thumb chart">
-          <img src="./mnist_gpu_lab/results/report_samples.png" alt="MNIST 模型预测与混淆矩阵" loading="lazy">
-        </div>
-        <div class="card-body">
-          <div class="card-topline">
-            <span class="card-kicker">CNN / MNIST</span>
-            <span class="card-index">04 / 05</span>
-          </div>
+      <li class="lab">
+        <span class="lab-index">04</span>
+        <a class="thumb" href="./mnist_gpu_lab/report.html" aria-label="打开 MNIST 报告">
+          <img src="./mnist_gpu_lab/results/report_samples.png" alt="" loading="lazy">
+        </a>
+        <div class="lab-copy">
+          <p class="kicker">MNIST · CNN</p>
           <h3><a href="./mnist_gpu_lab/report.html">同一个小 CNN，把训练压到秒级。</a></h3>
-          <p class="card-description">完整数据上比较 eager、CUDA Graph 与 AMP，并核对 PyTorch 和 TF.js 导出。</p>
-          <div class="stat"><strong>2.58 s</strong><span>5 epochs 训练 + 测试</span></div>
-          <div class="tags"><span>CNN</span><span>MNIST</span><span>TF.js</span></div>
-          <div class="card-links">
-            <a href="./mnist_gpu_lab/report.html">阅读报告 →</a>
-            <a href="https://github.com/zsc/web_coding/tree/main/mnist_gpu_lab">源码</a>
-          </div>
+          <p class="lab-description">完整数据上比较 eager、CUDA Graph 与 AMP，并核对 PyTorch、checkpoint 和 TF.js 导出的一致性。</p>
+          <div class="tags"><span>CNN</span><span>MNIST</span><span>TF.js parity</span></div>
         </div>
-      </article>
+        <dl class="metrics">
+          <div class="metric"><dd>2.58 s</dd><dt>5 epochs 训练 + 测试</dt></div>
+          <div class="metric"><dd>2.93×</dd><dt>相对同卡 eager</dt></div>
+          <div class="metric"><dd>98.36%</dd><dt>10,000 张测试准确率</dt></div>
+        </dl>
+        <div class="actions">
+          <a href="./mnist_gpu_lab/report.html">REPORT →</a>
+          <a href="https://github.com/zsc/web_coding/tree/main/mnist_gpu_lab">SOURCE ↗</a>
+        </div>
+      </li>
 
-      <article class="card">
-        <div class="thumb chart">
-          <img src="./ppo_gpu_lab/results/report_preview.png" alt="PPO 训练曲线与策略评估轨迹" loading="lazy">
-        </div>
-        <div class="card-body">
-          <div class="card-topline">
-            <span class="card-kicker">Reinforcement learning</span>
-            <span class="card-index">05 / 05</span>
-          </div>
+      <li class="lab">
+        <span class="lab-index">05</span>
+        <a class="thumb center" href="./ppo_gpu_lab/report.html" aria-label="打开 PPO 报告">
+          <img src="./ppo_gpu_lab/results/report_preview.png" alt="" loading="lazy">
+        </a>
+        <div class="lab-copy">
+          <p class="kicker">PPO · Reinforcement learning</p>
           <h3><a href="./ppo_gpu_lab/report.html">同样的 PPO，再快 2.1 倍。</a></h3>
-          <p class="card-description">从浏览器 JS 到 GPU PPO；V2 重整 rollout、critic 批评估与融合 Adam，并验证策略质量。</p>
-          <div class="stat"><strong>2.10×</strong><span>V2 端到端训练加速</span></div>
-          <div class="tags"><span>PPO</span><span>V2</span><span>CUDA Graph</span></div>
-          <div class="card-links">
-            <a href="./ppo_gpu_lab/report.html">阅读 V2 报告 →</a>
-            <a href="./ppo_gpu_lab/report_v1.html">V1 报告</a>
-          </div>
+          <p class="lab-description">从浏览器 JS 到 GPU PPO；V2 重整 rollout、critic 批评估与融合 Adam，并用 3 个物理模型种子验证。</p>
+          <div class="tags"><span>PPO</span><span>V2</span><span>3 seeds</span></div>
         </div>
-      </article>
-    </div>
+        <dl class="metrics">
+          <div class="metric"><dd>2.10×</dd><dt>V1 → V2 训练加速</dt></div>
+          <div class="metric"><dd>962k</dd><dt>环境步 / 秒</dt></div>
+          <div class="metric"><dd>35.8→17.0</dd><dt>ms / iteration</dt></div>
+        </dl>
+        <div class="actions">
+          <a href="./ppo_gpu_lab/report.html">V2 →</a>
+          <a href="./ppo_gpu_lab/report_v1.html">V1 →</a>
+        </div>
+      </li>
+    </ol>
+
+    <section class="notes" id="method" aria-label="测量口径">
+      <div class="note">
+        <b>报告是静态证据</b>
+        <p>自包含 HTML，不依赖 CDN。图表、表格与数字可直接打开和归档。</p>
+      </div>
+      <div class="note">
+        <b>原始记录一并保留</b>
+        <p>JSON、日志、验证脚本和报告生成器都在对应实验目录中。</p>
+      </div>
+      <div class="note">
+        <b>加速比不混口径</b>
+        <p>不同基线、dtype、链预算与是否计入 setup 的测量不相互相乘。</p>
+      </div>
+      <div class="note">
+        <b>共享设备有波动</b>
+        <p>desk 上仍有其他 GPU 任务；结果记录波动与机器上下文，而非独占上限。</p>
+      </div>
+    </section>
   </main>
 
   <footer class="shell footer">
-    <span>GPU LAB · EXPERIMENT NOTES · 2026</span>
+    <span>GPU LAB · EXPERIMENT NOTES · 2026-10-24</span>
     <span><a href="https://github.com/zsc/web_coding">github.com/zsc/web_coding ↗</a></span>
   </footer>
 </body>
