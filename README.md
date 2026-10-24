@@ -6,6 +6,18 @@
 
 > 这里的实验任务并不相同，指标不能跨项目直接比较。计时来自各报告记录的硬件与运行环境；共享 GPU、驱动、编译器和浏览器版本都可能改变绝对结果。
 
+## 运行环境
+
+结果来自三类相互独立的运行环境，而不是在同一台机器上替换 API 的严格对照：
+
+| 环境 | 实测配置 | 主要承担的实验 | 解读边界 |
+| --- | --- | --- | --- |
+| 网页 WebGPU（Apple M5） | Apple M5、10 个 GPU 核心、Chrome 155；网页 WebGPU/WGSL，MNIST 网页基线使用 WebGL / ANGLE Metal | PPO 的 WebGPU 训练与实时交互、MCMC 的 ROI + Adam WebGPU 页面、浏览器端吞吐与首载测量 | 计时可能包含浏览器、驱动、管线编译、回读和验证等页面开销；M5 与独立显卡是不同硬件，不能把 WebGPU/CUDA 的比值解释成 API 单项收益。 |
+| 家用 GPU（desk） | NVIDIA RTX 2080 SUPER 8 GiB、AMD Ryzen 9 3900X、Ubuntu 22.04、PyTorch 2.10.0+cu128 | 主要 CUDA 实验：MNIST、Diffusion、MCMC、DDPG/TD3、PPO 与 CelebA 的训练、基准和验证 | 桌面同时运行图形程序或其他后台任务；绝对耗时会波动，不应视为独占硬件或理论性能上限。 |
+| CPU（客户端或家用台式机） | 客户端 Apple M5 CPU，使用 Python 3.10 / PyTorch 2.8 CPU 做数值复核；家用台式机 Ryzen 9 3900X 承担 PPO CPU 基线、单线程 C++ MCMC 基线及部分数据与评估任务 | 正确性交叉检查、CPU 对照、报告生成、测试夹具和脚本编排 | CPU 基线通常没有做多核优化，线程数和精度也可能不同（例如 JavaScript Float64 对 PyTorch Float32）；不能仅凭一次 CPU/GPU 比值推断算法收益。 |
+
+这些环境记录用于解释结果来源，不构成跨硬件排行榜。只有报告明确说明任务、配置、精度和计时范围一致时，跨环境数字才适合作定性参考。
+
 ## 实验索引
 
 | 实验 | 关注点 | 报告 |
