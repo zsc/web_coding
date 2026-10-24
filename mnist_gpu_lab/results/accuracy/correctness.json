@@ -1,0 +1,11 @@
+{
+  "changing_lr_weight_max_errors": [
+    3.762543201446533e-07,
+    3.762543201446533e-07,
+    3.762543201446533e-07,
+    3.762543201446533e-07
+  ],
+  "zero_lr_parameter_delta": 0.0,
+  "augmentation_replay_mean_pixel_difference": 0.11068982630968094,
+  "passed": true
+}

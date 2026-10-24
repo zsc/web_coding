@@ -1,0 +1,11 @@
+{"decoded": 256, "seconds": 3.700155858998187}
+{"decoded": 25856, "seconds": 6.37285416200757}
+{"decoded": 51456, "seconds": 8.84738039097283}
+{"decoded": 77056, "seconds": 11.329048211919144}
+{"decoded": 102656, "seconds": 13.789058006950654}
+{"decoded": 128256, "seconds": 16.313582984963432}
+{"decoded": 153856, "seconds": 18.85281273489818}
+{"decoded": 179456, "seconds": 21.323007876984775}
+/home/zsc/miniconda3/envs/py312/lib/python3.12/site-packages/diffusers/models/transformers/transformer_2d.py:34: FutureWarning: `Transformer2DModelOutput` is deprecated and will be removed in version 1.0.0. Importing `Transformer2DModelOutput` from `diffusers.models.transformer_2d` is deprecated and this will be removed in a future version. Please use `from diffusers.models.modeling_outputs import Transformer2DModelOutput`, instead.
+  deprecate("Transformer2DModelOutput", "1.0.0", deprecation_message)
+{"archive": "data/Dataset.zip", "archive_sha256": "9464985fa6cfc84d0fe6b87a6e4f07a275c8bd3dfc8abd713218765de7d62306", "archive_md5": "bd87976d046a333c8dff44d51cbdd9f9", "partition_md5": "d32c9cbf5e040fd4025c592c306e6668", "counts": {"train": 162770, "valid": 19867, "test": 19962}, "preprocessing": "RGB, original 178x218 -> center crop 178x178 at (0,20) -> Lanczos 64x64; stored uint8 NHWC", "filename_coverage": "all 202599 official filenames, no missing or extra JPGs", "source": "https://huggingface.co/datasets/student/celebA/tree/2d31e6555722815c74ea7c845b07c1063dd705e9", "official_archive_md5": "00d2c5bc6d35e252742224ab0c1e8fcb", "seconds": 40.93028159090318}

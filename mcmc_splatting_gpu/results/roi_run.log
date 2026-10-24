@@ -1,0 +1,4 @@
+ROI 500000 steps x 8 chains: GPU 12001.3 ms, end-to-end 12998.1 ms, full FP64 MSE 98.1133, ROI 913.088 pixels
+ROI 1000000 steps x 8 chains: GPU 25484.7 ms, end-to-end 26457.4 ms, full FP64 MSE 50.992, ROI 972.019 pixels
+ROI 2000000 steps x 8 chains: GPU 54002.8 ms, end-to-end 55075.3 ms, full FP64 MSE 30.6438, ROI 1094.35 pixels
+DONE

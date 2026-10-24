@@ -1,0 +1,28 @@
+/home/zsc/miniconda3/envs/py312/lib/python3.12/site-packages/diffusers/models/transformers/transformer_2d.py:34: FutureWarning: `Transformer2DModelOutput` is deprecated and will be removed in version 1.0.0. Importing `Transformer2DModelOutput` from `diffusers.models.transformer_2d` is deprecated and this will be removed in a future version. Please use `from diffusers.models.modeling_outputs import Transformer2DModelOutput`, instead.
+  deprecate("Transformer2DModelOutput", "1.0.0", deprecation_message)
+{"event": "start", "step": 0, "target": 10000, "config": {"steps": 10000, "batch": 32, "lr": 0.0002, "resume": false, "out": "results/run1"}, "gpu": "name, memory.used [MiB], utilization.gpu [%], power.draw [W]\nNVIDIA GeForce RTX 2080 SUPER, 2990 MiB, 100 %, 149.44 W"}
+{"step": 100, "loss": 0.865013837814331, "elapsed_seconds": 30.477556771948002, "successful_updates": 100, "skipped": 0, "grad_scale": 65536.0}
+{"step": 200, "loss": 0.5759856104850769, "elapsed_seconds": 48.5763938910095, "successful_updates": 200, "skipped": 0, "grad_scale": 65536.0}
+{"step": 300, "loss": 0.4274846613407135, "elapsed_seconds": 67.79510176600888, "successful_updates": 300, "skipped": 0, "grad_scale": 65536.0}
+{"step": 400, "loss": 0.3434493839740753, "elapsed_seconds": 86.90691361494828, "successful_updates": 400, "skipped": 0, "grad_scale": 65536.0}
+{"step": 500, "loss": 0.2888268232345581, "elapsed_seconds": 104.84541755099781, "successful_updates": 500, "skipped": 0, "grad_scale": 65536.0}
+{"step": 600, "loss": 0.2502632737159729, "elapsed_seconds": 123.94758324394934, "successful_updates": 600, "skipped": 0, "grad_scale": 65536.0}
+{"step": 700, "loss": 0.22188366949558258, "elapsed_seconds": 142.00581346603576, "successful_updates": 700, "skipped": 0, "grad_scale": 65536.0}
+{"step": 800, "loss": 0.1999519318342209, "elapsed_seconds": 160.97881494602188, "successful_updates": 800, "skipped": 0, "grad_scale": 65536.0}
+{"step": 900, "loss": 0.18255755305290222, "elapsed_seconds": 180.08721298596356, "successful_updates": 900, "skipped": 0, "grad_scale": 65536.0}
+{"step": 1000, "loss": 0.16850554943084717, "elapsed_seconds": 198.07660021993797, "successful_updates": 1000, "skipped": 0, "grad_scale": 65536.0}
+{"event": "checkpoint", "step": 1000, "train_loss": 0.16850554943084717, "validation_raw": {"mse": 0.04076066613197327, "bins": [0.2289755940437317, 0.06175858527421951, 0.03374705836176872, 0.022614745423197746, 0.015435606241226196, 0.011114873923361301, 0.008756970055401325, 0.007579314988106489, 0.007282257545739412, 0.007232456002384424]}, "validation_ema": {"mse": 0.041339483112096786, "bins": [0.22814634442329407, 0.060963019728660583, 0.03378481790423393, 0.023360958322882652, 0.016319582238793373, 0.01216527447104454, 0.009932579472661018, 0.008747116662561893, 0.008473151363432407, 0.008411171846091747]}, "elapsed_seconds": 201.42075477098115, "successful_updates": 1000, "skipped": 0}
+{"step": 1100, "loss": 0.039240412414073944, "elapsed_seconds": 227.05443874699995, "successful_updates": 1100, "skipped": 0, "grad_scale": 65536.0}
+{"step": 1200, "loss": 0.03960657864809036, "elapsed_seconds": 245.1703999809688, "successful_updates": 1200, "skipped": 0, "grad_scale": 65536.0}
+{"step": 1300, "loss": 0.03781747817993164, "elapsed_seconds": 263.4914686899865, "successful_updates": 1300, "skipped": 0, "grad_scale": 65536.0}
+{"step": 1400, "loss": 0.036570604890584946, "elapsed_seconds": 273.97904239897616, "successful_updates": 1400, "skipped": 0, "grad_scale": 65536.0}
+{"step": 1500, "loss": 0.03580133616924286, "elapsed_seconds": 284.5151866079541, "successful_updates": 1500, "skipped": 0, "grad_scale": 65536.0}
+{"step": 1600, "loss": 0.035452354699373245, "elapsed_seconds": 295.44287631998304, "successful_updates": 1600, "skipped": 0, "grad_scale": 65536.0}
+{"step": 1700, "loss": 0.034899115562438965, "elapsed_seconds": 306.29642815701663, "successful_updates": 1700, "skipped": 0, "grad_scale": 65536.0}
+{"step": 1800, "loss": 0.034873116761446, "elapsed_seconds": 317.8570627879817, "successful_updates": 1800, "skipped": 0, "grad_scale": 65536.0}
+{"step": 1900, "loss": 0.03446294367313385, "elapsed_seconds": 330.3439141539857, "successful_updates": 1900, "skipped": 0, "grad_scale": 65536.0}
+{"step": 2000, "loss": 0.034054987132549286, "elapsed_seconds": 341.83118128194474, "successful_updates": 2000, "skipped": 0, "grad_scale": 131072.0}
+{"event": "checkpoint", "step": 2000, "train_loss": 0.034054987132549286, "validation_raw": {"mse": 0.03159773349761963, "bins": [0.19066475331783295, 0.04895840585231781, 0.025838039815425873, 0.01697409525513649, 0.010684184730052948, 0.0066456664353609085, 0.004388350527733564, 0.0033182527404278517, 0.002967007225379348, 0.0029088754672557116]}, "validation_ema": {"mse": 0.030973942950367928, "bins": [0.1874188333749771, 0.04763052612543106, 0.025389300659298897, 0.016630830243229866, 0.010423311963677406, 0.006450982764363289, 0.004344555549323559, 0.003204141976311803, 0.00287266937084496, 0.002787578385323286]}, "elapsed_seconds": 343.78574028098956, "successful_updates": 2000, "skipped": 0}
+{"step": 2100, "loss": 0.02939065359532833, "elapsed_seconds": 360.072410705965, "successful_updates": 2100, "skipped": 0, "grad_scale": 131072.0}
+{"step": 2200, "loss": 0.029478544369339943, "elapsed_seconds": 372.8365109859733, "successful_updates": 2200, "skipped": 0, "grad_scale": 131072.0}
+{"step": 2300, "loss": 0.02995379827916622, "elapsed_seconds": 387.5363228500355, "successful_updates": 2300, "skipped": 0, "grad_scale": 131072.0}

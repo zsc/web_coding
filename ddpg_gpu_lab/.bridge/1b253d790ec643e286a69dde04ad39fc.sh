@@ -1,3 +1,0 @@
-#!/bin/sh
-ssh -o BatchMode=yes -o ConnectTimeout=15 desk 'cd /home/zsc/ddpg_gpu_lab_20261024/ddpg_gpu_lab && /home/zsc/miniconda3/envs/py312/bin/python bench_full.py > results/bench_full.log 2>&1 && /home/zsc/miniconda3/envs/py312/bin/python validate.py --cuda > results/validate_final.log 2>&1 && for seed in 1 2 3; do /home/zsc/miniconda3/envs/py312/bin/python ddpg.py train --device cuda --compile-full --graph --envs 32 --batch 256 --updates 20000 --seed "$seed" --out "results/train_gpu_seed${seed}.json" > "results/train_gpu_seed${seed}.log" 2>&1 || exit; done' > /Users/zsc/Downloads/web_coding/ddpg_gpu_lab/.bridge/1b253d790ec643e286a69dde04ad39fc.log 2>&1
-echo $? > /Users/zsc/Downloads/web_coding/ddpg_gpu_lab/.bridge/1b253d790ec643e286a69dde04ad39fc.exit

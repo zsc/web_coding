@@ -114,5 +114,5 @@ $('memory').textContent=`AMP 训练峰值 allocated ${n(tr.peak_allocated_mib)} 
 </script></body></html>'''
 template=template.replace('__EPOCH5__',data['epoch5']).replace('__EPOCH20__',data['images']['graph_fp32']['first']).replace('__EQUIVALENCE__',data['equivalence'])
 template=template.replace('__DATA__',json.dumps(data,ensure_ascii=False).replace('</','<\/'))
-(ROOT/'report.html').write_text(template)
-print(ROOT/'report.html')
+(ROOT/'report_speed.html').write_text(template)
+print(ROOT/'report_speed.html')

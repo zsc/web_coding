@@ -1,0 +1,24 @@
+{
+  "tfjs": "4.22.0",
+  "backend": "cpu",
+  "samples": 14,
+  "max_probability_absolute_error": 1.1920928955078125e-7,
+  "prediction_agreement": 1,
+  "passed": true,
+  "indices": [
+    0,
+    1,
+    2,
+    3,
+    99,
+    100,
+    101,
+    998,
+    999,
+    1000,
+    1234,
+    4321,
+    9000,
+    9999
+  ]
+}

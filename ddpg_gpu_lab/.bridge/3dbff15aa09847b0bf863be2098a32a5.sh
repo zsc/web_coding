@@ -1,3 +1,0 @@
-#!/bin/sh
-ssh -o BatchMode=yes -o ConnectTimeout=15 desk 'cd /home/zsc/ddpg_gpu_lab_20261024/ddpg_gpu_lab && /home/zsc/miniconda3/envs/py312/bin/python validate.py --cuda > results/validate.log 2>&1 && /home/zsc/.nvm/versions/node/v24.13.1/bin/node baseline.cjs --mode=bench --out=results/desk_baseline.json && /home/zsc/miniconda3/envs/py312/bin/python ddpg.py bench --updates 300 --out results/desk_benchmark.json > results/bench.log 2>&1' > /Users/zsc/Downloads/web_coding/ddpg_gpu_lab/.bridge/3dbff15aa09847b0bf863be2098a32a5.log 2>&1
-echo $? > /Users/zsc/Downloads/web_coding/ddpg_gpu_lab/.bridge/3dbff15aa09847b0bf863be2098a32a5.exit

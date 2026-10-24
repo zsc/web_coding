@@ -1,7 +1,0 @@
-Linux-5.15.0-185-generic-x86_64-with-glibc2.35
-2.10.0+cu128
-3.6.0
-_CudaDeviceProperties(name='NVIDIA GeForce RTX 2080 SUPER', major=7, minor=5, total_memory=7783MB, multi_processor_count=48, uuid=daab9c12-9d15-635f-9c93-067bec30ec50, pci_bus_id=8, pci_device_id=0, pci_domain_id=0, L2_cache_size=4MB)
-pid, process_name, used_gpu_memory [MiB]
-96486, R:\GenshinImpact.exe, 1608 MiB
-531020, python3, 116 MiB

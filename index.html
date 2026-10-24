@@ -559,9 +559,9 @@
     <div class="hero">
       <div>
         <p class="eyebrow">Experiment index · measured 2026-10-24</p>
-        <h1>五组 GPU 实验，<span>关键结果一页看完。</span></h1>
+        <h1>六组 GPU 实验，<span>关键结果一页看完。</span></h1>
         <p class="hero-copy">
-          从 DDPG、PPO、扩散模型，到 MCMC 图像拟合与 MNIST CNN。每项记录同时保留
+          从 DDPG、PPO、MNIST 与 CelebA 扩散模型，到 MCMC 图像拟合。每项记录同时保留
           加速结果、精度检查、原始数据与不能混用的测量边界。
         </p>
         <div class="hero-meta" aria-label="实验环境">
@@ -578,8 +578,8 @@
           <span class="live">Live</span>
         </div>
         <div class="panel-facts">
-          <div><strong>05</strong><span>实验 / EXPERIMENTS</span></div>
-          <div><strong>07</strong><span>报告页面 / PAGES</span></div>
+          <div><strong>06</strong><span>实验 / EXPERIMENTS</span></div>
+          <div><strong>10</strong><span>报告页面 / PAGES</span></div>
           <div><strong>02</strong><span>硬件环境 / SETUPS</span></div>
           <div><strong>100%</strong><span>离线 HTML / OFFLINE</span></div>
         </div>
@@ -591,7 +591,7 @@
   <main class="shell" id="experiments">
     <div class="section-head">
       <div>
-        <p class="eyebrow">Experiment ledger · 01—05</p>
+        <p class="eyebrow">Experiment ledger · 01—06</p>
         <h2>实验索引</h2>
       </div>
       <p>关键指标直接摘自主报告；点击标题或 REPORT 进入完整测量过程。</p>
@@ -623,40 +623,40 @@
       <li class="lab">
         <span class="lab-index">02</span>
         <a class="thumb pixels" href="./diffusion_gpu_lab/report.html" aria-label="打开 Diffusion 报告">
-          <img src="./diffusion_gpu_lab/results/ddim20_amp.png" alt="" loading="lazy">
+          <img src="./diffusion_gpu_lab/results/quality_v2/ema50_100.png" alt="" loading="lazy">
         </a>
         <div class="lab-copy">
-          <p class="kicker">Diffusion · DDPM / DDIM</p>
-          <h3><a href="./diffusion_gpu_lab/report.html">Diffusion Demo GPU 优化实测</a></h3>
-          <p class="lab-description">对照 FP32、AMP、channels-last 与 CUDA Graph 的训练和采样路径，并检查生成质量是否偏离。</p>
-          <div class="tags"><span>DDPM</span><span>AMP</span><span>DDIM</span></div>
+          <p class="kicker">Diffusion · Quality + speed</p>
+          <h3><a href="./diffusion_gpu_lab/report.html">先修生成质量，再选择采样速度。</a></h3>
+          <p class="lab-description">修正训练终点噪声日程，增加训练量与 EMA，并约束 DDIM 的 x₀；质量与速度报告分开呈现。</p>
+          <div class="tags"><span>DDPM</span><span>EMA</span><span>DDIM clip</span></div>
         </div>
         <dl class="metrics">
-          <div class="metric"><dd>22.9→18.0</dd><dt>ms / step，FP32→AMP</dt></div>
-          <div class="metric"><dd>1.27×</dd><dt>中位训练步加速</dt></div>
-          <div class="metric"><dd>0.0650</dd><dt>held-out ε MSE</dt></div>
+          <div class="metric"><dd>0.0234</dd><dt>验证集 ε-MSE / EMA</dt></div>
+          <div class="metric"><dd>101 ms</dd><dt>100 步 DDIM / 5 图</dt></div>
+          <div class="metric"><dd>21.4 ms</dd><dt>20 步 DDIM / 5 图</dt></div>
         </dl>
         <div class="actions">
-          <a href="./diffusion_gpu_lab/report.html">REPORT →</a>
-          <a href="https://github.com/zsc/web_coding/tree/main/diffusion_gpu_lab">SOURCE ↗</a>
+          <a href="./diffusion_gpu_lab/report.html">QUALITY →</a>
+          <a href="./diffusion_gpu_lab/report_speed.html">SPEED →</a>
         </div>
       </li>
 
       <li class="lab">
         <span class="lab-index">03</span>
         <a class="thumb center" href="./mcmc_splatting_gpu/report.html" aria-label="打开 MCMC Splatting 报告">
-          <img src="./mcmc_splatting_gpu/assets/zhou_comparison.png" alt="" loading="lazy">
+          <img src="./mcmc_splatting_gpu/assets/zhou_final.png" alt="" loading="lazy">
         </a>
         <div class="lab-copy">
-          <p class="kicker">MCMC · Splatting</p>
-          <h3><a href="./mcmc_splatting_gpu/report.html">一次只改一颗，何必重画全部。</a></h3>
-          <p class="lab-description">只计算单颗高斯的增量并复用缓存；包含浏览器交互实验、FP64/FP32 CUDA 原型与多链对照。</p>
-          <div class="tags"><span>MCMC</span><span>WebGPU</span><span>FP64 / FP32</span></div>
+          <p class="kicker">MCMC + Adam · Splatting</p>
+          <h3><a href="./mcmc_splatting_gpu/report.html">1.340 MSE，完整进程 8.13 秒。</a></h3>
+          <p class="lab-description">6σ 支持区内做局部 MCMC，再用并行 Adam 细化；附浏览器交互实验与 WebGPU FP16 精度实验室。</p>
+          <div class="tags"><span>ROI 6σ</span><span>1,600 Gaussians</span><span>WebGPU</span></div>
         </div>
         <dl class="metrics">
-          <div class="metric"><dd>63.1×</dd><dt>缓存 JS 核心加速</dt></div>
-          <div class="metric"><dd>20.2×</dd><dt>GPU / 32 链 / FP64</dt></div>
-          <div class="metric"><dd>1.54M</dd><dt>FP32 proposals / s</dt></div>
+          <div class="metric"><dd>1.340</dd><dt>全图取整 MSE</dt></div>
+          <div class="metric"><dd>8.13 s</dd><dt>完整进程中位数</dt></div>
+          <div class="metric"><dd>46.86 dB</dd><dt>峰值信噪比</dt></div>
         </dl>
         <div class="actions">
           <a href="./mcmc_splatting_gpu/report.html">REPORT →</a>
@@ -667,18 +667,18 @@
       <li class="lab">
         <span class="lab-index">04</span>
         <a class="thumb" href="./mnist_gpu_lab/report.html" aria-label="打开 MNIST 报告">
-          <img src="./mnist_gpu_lab/results/report_samples.png" alt="" loading="lazy">
+          <img src="./mnist_gpu_lab/results/report_accuracy.png" alt="" loading="lazy">
         </a>
         <div class="lab-copy">
           <p class="kicker">MNIST · CNN</p>
           <h3><a href="./mnist_gpu_lab/report.html">同一个小 CNN，把训练压到秒级。</a></h3>
-          <p class="lab-description">完整数据上比较 eager、CUDA Graph 与 AMP，并核对 PyTorch、checkpoint 和 TF.js 导出的一致性。</p>
-          <div class="tags"><span>CNN</span><span>MNIST</span><span>TF.js parity</span></div>
+          <p class="lab-description">比较 eager、CUDA Graph 与 AMP；再用独立验证集选型，检查余弦衰减、容量、增强与 TF.js 导出。</p>
+          <div class="tags"><span>CNN</span><span>cosine + aug</span><span>TF.js parity</span></div>
         </div>
         <dl class="metrics">
           <div class="metric"><dd>2.58 s</dd><dt>5 epochs 训练 + 测试</dt></div>
           <div class="metric"><dd>2.93×</dd><dt>相对同卡 eager</dt></div>
-          <div class="metric"><dd>98.36%</dd><dt>10,000 张测试准确率</dt></div>
+          <div class="metric"><dd>99.53%</dd><dt>双模型集成测试准确率</dt></div>
         </dl>
         <div class="actions">
           <a href="./mnist_gpu_lab/report.html">REPORT →</a>
@@ -689,13 +689,13 @@
       <li class="lab">
         <span class="lab-index">05</span>
         <a class="thumb center" href="./ppo_gpu_lab/report.html" aria-label="打开 PPO 报告">
-          <img src="./ppo_gpu_lab/results/report_preview.png" alt="" loading="lazy">
+          <img src="./ppo_gpu_lab/results/interactive_preview.png" alt="" loading="lazy">
         </a>
         <div class="lab-copy">
-          <p class="kicker">PPO · Reinforcement learning</p>
+          <p class="kicker">PPO · GPU + live lab</p>
           <h3><a href="./ppo_gpu_lab/report.html">同样的 PPO，再快 2.1 倍。</a></h3>
-          <p class="lab-description">从浏览器 JS 到 GPU PPO；V2 重整 rollout、critic 批评估与融合 Adam，并用 3 个物理模型种子验证。</p>
-          <div class="tags"><span>PPO</span><span>V2</span><span>3 seeds</span></div>
+          <p class="lab-description">V2 重整 rollout、critic 批评估与融合 Adam；另附可直接拖拽双倒立摆的浏览器实时实验。</p>
+          <div class="tags"><span>PPO</span><span>Live lab</span><span>3 seeds</span></div>
         </div>
         <dl class="metrics">
           <div class="metric"><dd>2.10×</dd><dt>V1 → V2 训练加速</dt></div>
@@ -704,7 +704,30 @@
         </dl>
         <div class="actions">
           <a href="./ppo_gpu_lab/report.html">V2 →</a>
+          <a href="./ppo_gpu_lab/play.html">PLAY →</a>
           <a href="./ppo_gpu_lab/report_v1.html">V1 →</a>
+        </div>
+      </li>
+
+      <li class="lab">
+        <span class="lab-index">06</span>
+        <a class="thumb" href="./celeba_diffusion_lab/report.html" aria-label="打开 CelebA 报告">
+          <img src="./celeba_diffusion_lab/results/run1/ema_step1000.png" alt="" loading="lazy">
+        </a>
+        <div class="lab-copy">
+          <p class="kicker">CelebA · 64 × 64 RGB diffusion</p>
+          <h3><a href="./celeba_diffusion_lab/report.html">从数字，到人脸。</a></h3>
+          <p class="lab-description">从随机权重训练四级 U-Net，沿用 EMA、DDIM 与固定噪声对照；当前为单种子、小预算先导实验。</p>
+          <div class="tags"><span>U-Net</span><span>EMA + DDIM</span><span>AMP + Graph</span></div>
+        </div>
+        <dl class="metrics">
+          <div class="metric"><dd>6.34M</dd><dt>生成器参数</dt></div>
+          <div class="metric"><dd>162,770</dd><dt>官方训练图像</dt></div>
+          <div class="metric"><dd>64×64</dd><dt>RGB 输出尺寸</dt></div>
+        </dl>
+        <div class="actions">
+          <a href="./celeba_diffusion_lab/report.html">REPORT →</a>
+          <a href="https://github.com/zsc/web_coding/tree/main/celeba_diffusion_lab">SOURCE ↗</a>
         </div>
       </li>
     </ol>

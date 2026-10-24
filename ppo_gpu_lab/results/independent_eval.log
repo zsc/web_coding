@@ -1,0 +1,65 @@
+[
+  {
+    "name": "graph_scaled_seed7",
+    "independent_engine": "scalar Float64 JavaScript, pivoted Gaussian solve",
+    "reset_rng": "LCG seed 811 (independent of PyTorch)",
+    "episodes": 128,
+    "mean_return": 993.3492714225603,
+    "mean_length": 1000,
+    "survival_1000": 1
+  },
+  {
+    "name": "graph_scaled_seed11",
+    "independent_engine": "scalar Float64 JavaScript, pivoted Gaussian solve",
+    "reset_rng": "LCG seed 811 (independent of PyTorch)",
+    "episodes": 128,
+    "mean_return": 985.7732771666609,
+    "mean_length": 1000,
+    "survival_1000": 1
+  },
+  {
+    "name": "graph_scaled_seed23",
+    "independent_engine": "scalar Float64 JavaScript, pivoted Gaussian solve",
+    "reset_rng": "LCG seed 811 (independent of PyTorch)",
+    "episodes": 128,
+    "mean_return": 999.7553005360322,
+    "mean_length": 1000,
+    "survival_1000": 1
+  },
+  {
+    "name": "physical_seed7",
+    "independent_engine": "scalar Float64 JavaScript, pivoted Gaussian solve",
+    "reset_rng": "LCG seed 811 (independent of PyTorch)",
+    "episodes": 128,
+    "mean_return": 996.7751140061272,
+    "mean_length": 1000,
+    "survival_1000": 1
+  },
+  {
+    "name": "v2_physical_seed7",
+    "independent_engine": "scalar Float64 JavaScript, pivoted Gaussian solve",
+    "reset_rng": "LCG seed 811 (independent of PyTorch)",
+    "episodes": 128,
+    "mean_return": 997.9508997981483,
+    "mean_length": 1000,
+    "survival_1000": 1
+  },
+  {
+    "name": "v2_physical_seed11",
+    "independent_engine": "scalar Float64 JavaScript, pivoted Gaussian solve",
+    "reset_rng": "LCG seed 811 (independent of PyTorch)",
+    "episodes": 128,
+    "mean_return": 994.7690750272188,
+    "mean_length": 1000,
+    "survival_1000": 1
+  },
+  {
+    "name": "v2_physical_seed23",
+    "independent_engine": "scalar Float64 JavaScript, pivoted Gaussian solve",
+    "reset_rng": "LCG seed 811 (independent of PyTorch)",
+    "episodes": 128,
+    "mean_return": 999.8696441761167,
+    "mean_length": 1000,
+    "survival_1000": 1
+  }
+]

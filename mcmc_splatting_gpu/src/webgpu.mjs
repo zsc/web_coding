@@ -11,7 +11,7 @@ struct Config { W:u32,H:u32,N:u32,C:u32,batch:u32,total:u32,pad0:u32,pad1:u32,T0
 @group(0) @binding(3) var<storage,read_write> cache:array<__CACHE__>;
 @group(0) @binding(4) var<storage,read_write> candidates:array<__CACHE__>;
 @group(0) @binding(5) var<storage,read_write> states:array<State>;
-@group(0) @binding(6) var<storage,read> target:array<u32>;
+@group(0) @binding(6) var<storage,read> targetImage:array<u32>;
 var<workgroup> g:G;
 var<workgroup> changed:u32;
 var<workgroup> decision:u32;
@@ -19,7 +19,7 @@ var<workgroup> acceptU:f32;
 var<workgroup> temperature:f32;
 var<workgroup> reduce:array<u32,256>;
 fn next(s:u32)->u32 {var v=s;v=v^(v<<13u);v=v^(v>>17u);v=v^(v<<5u);return v;}
-fn uniform(s:u32)->f32 {return f32(s>>8u)*(1.0/16777216.0);}
+fn randomUnit(s:u32)->f32 {return f32(s>>8u)*(1.0/16777216.0);}
 fn quantize(s:f32)->i32{return i32(clamp(floor(s+0.5),0.0,255.0));}
 fn value(p:u32,a:G)->f32 {
  let dx=f32(p%cfg.W)-a.x;let dy=f32(p/cfg.W)-a.y;
@@ -38,7 +38,7 @@ fn init_pixels(@builtin(global_invocation_id) id:vec3<u32>){
 @compute @workgroup_size(256)
 fn init_loss(@builtin(local_invocation_index) tid:u32,@builtin(workgroup_id) bid:vec3<u32>){
  let chain=bid.x;let P=cfg.W*cfg.H;var s=0u;
- for(var p=tid;p<P;p+=256u){let d=quantize(sums[chain*P+p])-i32(target[p]);s+=u32(d*d);}
+ for(var p=tid;p<P;p+=256u){let d=quantize(sums[chain*P+p])-i32(targetImage[p]);s+=u32(d*d);}
  reduce[tid]=s;workgroupBarrier();
  for(var stride=128u;stride>0u;stride/=2u){if(tid<stride){reduce[tid]+=reduce[tid+stride];}workgroupBarrier();}
  if(tid==0u){states[chain].sse=reduce[0];}
@@ -48,8 +48,8 @@ fn iterate(@builtin(local_invocation_index) tid:u32,@builtin(workgroup_id) bid:v
  let chain=bid.x;let P=cfg.W*cfg.H;let base=chain*P;
  for(var it=0u;it<cfg.batch;it++){
    if(tid==0u){
-     var s=next(states[chain].rng);changed=min(u32(uniform(s)*f32(cfg.N)),cfg.N-1u);
-     s=next(s);let param=min(u32(uniform(s)*6.0),5u);s=next(s);let delta=(uniform(s)-0.5)*2.0;s=next(s);acceptU=uniform(s);states[chain].rng=s;
+     var s=next(states[chain].rng);changed=min(u32(randomUnit(s)*f32(cfg.N)),cfg.N-1u);
+     s=next(s);let param=min(u32(randomUnit(s)*6.0),5u);s=next(s);let delta=(randomUnit(s)-0.5)*2.0;s=next(s);acceptU=randomUnit(s);states[chain].rng=s;
      let ratio=f32(states[chain].iteration)/f32(max(cfg.total-1u,1u));
      temperature=cfg.T0*pow(cfg.T1/cfg.T0,ratio);
      var scale=1.0;if(cfg.shrink!=0u){scale=0.15+0.85*pow(cfg.T1/cfg.T0,ratio*0.25);}
@@ -67,7 +67,7 @@ fn iterate(@builtin(local_invocation_index) tid:u32,@builtin(workgroup_id) bid:v
    for(var p=tid;p<P;p+=256u){
      let fresh=__CACHE__(value(p,g));candidates[base+p]=fresh;
      let total=sums[base+p]-f32(cache[old+p])+f32(fresh);
-     let d=quantize(total)-i32(target[p]);sse+=u32(d*d);
+     let d=quantize(total)-i32(targetImage[p]);sse+=u32(d*d);
    }
    reduce[tid]=sse;workgroupBarrier();
    for(var stride=128u;stride>0u;stride/=2u){if(tid<stride){reduce[tid]+=reduce[tid+stride];}workgroupBarrier();}

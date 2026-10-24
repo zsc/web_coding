@@ -1,0 +1,17 @@
+W1024 15:59:50.055000 546185 site-packages/torch/_inductor/utils.py:1679] [0/0] Not enough SMs to use max_autotune_gemm mode
+{"event": "ready", "setup_seconds": 52.4469680970069, "hardware": {"host": "zsc-X570-UD", "platform": "Linux-5.15.0-185-generic-x86_64-with-glibc2.35", "torch": "2.10.0+cu128", "cuda": "12.8", "gpu": "NVIDIA GeForce RTX 2080 SUPER", "cpu_threads": 1}, "seeds": 100}
+{"updates": 25000, "train_seconds": 94.061974170967, "block_seconds": 94.061974170967, "eval_seconds": 0.3131458630086854, "passed": 5, "seeds": 100, "worst_steps": 105}
+{"updates": 50000, "train_seconds": 214.48451688000932, "block_seconds": 120.42254270904232, "eval_seconds": 2.272014010930434, "passed": 26, "seeds": 100, "worst_steps": 11}
+Traceback (most recent call last):
+  File "/home/zsc/ddpg_gpu_lab_20261024/ddpg_gpu_lab/multiseed.py", line 207, in <module>
+    if not bool(torch.isfinite(r.last_loss).all()):raise RuntimeError('nonfinite loss')
+                                                                                        
+  File "/home/zsc/miniconda3/envs/py312/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zsc/ddpg_gpu_lab_20261024/ddpg_gpu_lab/multiseed.py", line 187, in main
+    def f():
+             
+  File "/home/zsc/miniconda3/envs/py312/lib/python3.12/site-packages/torch/cuda/graphs.py", line 143, in replay
+    super().replay()
+KeyboardInterrupt

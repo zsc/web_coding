@@ -1,0 +1,25 @@
+W1024 16:02:29.299000 548867 site-packages/torch/_inductor/utils.py:1679] [0/2] Not enough SMs to use max_autotune_gemm mode
+/home/zsc/miniconda3/envs/py312/lib/python3.12/site-packages/torch/profiler/profiler.py:217: UserWarning: Warning: Profiler clears events at the end of each cycle.Only events from the current cycle will be reported.To keep events across cycles, set acc_events=True.
+  _warn_once(
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+                                                   Name    Self CPU %      Self CPU   CPU total %     CPU total  CPU time avg     Self CUDA   Self CUDA %    CUDA total  CUDA time avg    # of Calls  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+triton_red_fused_add_addmm_clamp_div_eq_exp_ge_gt_in...         0.00%       0.000us         0.00%       0.000us       0.000us       7.533ms        25.79%       7.533ms      94.158us            80  
+                         volta_sgemm_32x32_sliced1x4_tn         0.00%       0.000us         0.00%       0.000us       0.000us       4.255ms        14.57%       4.255ms      10.638us           400  
+                                triton_per_fused_sum_12         0.00%       0.000us         0.00%       0.000us       0.000us       4.000ms        13.70%       4.000ms      12.501us           320  
+             triton_red_fused_sum_threshold_backward_13         0.00%       0.000us         0.00%       0.000us       0.000us       3.906ms        13.37%       3.906ms      24.410us           160  
+                         volta_sgemm_32x32_sliced1x4_nt         0.00%       0.000us         0.00%       0.000us       0.000us       2.852ms         9.77%       2.852ms       7.130us           400  
+                         volta_sgemm_32x32_sliced1x4_nn         0.00%       0.000us         0.00%       0.000us       0.000us       1.086ms         3.72%       1.086ms       4.526us           240  
+void cublasLt::splitKreduce_kernel<32, 16, int, floa...         0.00%       0.000us         0.00%       0.000us       0.000us     871.195us         2.98%     871.195us       1.815us           480  
+                                  volta_sgemm_128x32_tn         0.00%       0.000us         0.00%       0.000us       0.000us     633.733us         2.17%     633.733us       3.301us           192  
+                 triton_poi_fused_threshold_backward_10         0.00%       0.000us         0.00%       0.000us       0.000us     497.693us         1.70%     497.693us       1.555us           320  
+                                triton_red_fused_sum_11         0.00%       0.000us         0.00%       0.000us       0.000us     308.192us         1.06%     308.192us       1.926us           160  
+void at_cuda_detail::cub::DeviceRadixSortOnesweepKer...         0.00%       0.000us         0.00%       0.000us       0.000us     295.169us         1.01%     295.169us       7.379us            40  
+                    triton_poi_fused_addmm_relu_slice_1         0.00%       0.000us         0.00%       0.000us       0.000us     221.762us         0.76%     221.762us       1.519us           146  
+std::enable_if<!(false), void>::type internal::gemvx...         0.00%       0.000us         0.00%       0.000us       0.000us     191.292us         0.66%     191.292us       2.333us            82  
+std::enable_if<!(false), void>::type internal::gemvx...         0.00%       0.000us         0.00%       0.000us       0.000us     191.106us         0.65%     191.106us       2.389us            80  
+                               triton_poi_fused_index_0         0.00%       0.000us         0.00%       0.000us       0.000us     154.463us         0.53%     154.463us       1.931us            80  
+-------------------------------------------------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  ------------  
+Self CPU time total: 37.804ms
+Self CUDA time total: 29.203ms
+

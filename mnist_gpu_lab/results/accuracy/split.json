@@ -1,0 +1,19 @@
+{
+  "train_count": 55000,
+  "validation_count": 5000,
+  "per_class_validation": [
+    500,
+    500,
+    500,
+    500,
+    500,
+    500,
+    500,
+    500,
+    500,
+    500
+  ],
+  "seed": 20261024,
+  "validation_indices_sha256": "e67bff1b3ff61f401eda53722d9937938efb591fb148ab2498fdc08bdea98616",
+  "test_used_in_search": false
+}

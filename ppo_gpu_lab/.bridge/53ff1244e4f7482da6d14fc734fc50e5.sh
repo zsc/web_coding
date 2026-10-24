@@ -1,3 +1,0 @@
-#!/bin/sh
-ssh -o BatchMode=yes -o ConnectTimeout=15 desk 'mkdir -p ~/ppo_gpu_lab/src ~/ppo_gpu_lab/results ~/ppo_gpu_lab/source; /home/zsc/miniconda3/envs/py312/bin/python -c "import torch,triton,platform; print(platform.platform()); print(torch.__version__); print(triton.__version__); print(torch.cuda.get_device_properties(0))"; nvidia-smi --query-compute-apps=pid,process_name,used_memory --format=csv' > /Users/zsc/Downloads/web_coding/ppo_gpu_lab/.bridge/53ff1244e4f7482da6d14fc734fc50e5.log 2>&1
-echo $? > /Users/zsc/Downloads/web_coding/ppo_gpu_lab/.bridge/53ff1244e4f7482da6d14fc734fc50e5.exit

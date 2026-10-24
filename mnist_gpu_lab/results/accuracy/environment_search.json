@@ -1,0 +1,12 @@
+{
+  "platform": "Linux-5.15.0-185-generic-x86_64-with-glibc2.35",
+  "python": "3.12.12",
+  "torch": "2.10.0+cu128",
+  "cuda": "12.8",
+  "cudnn": 91002,
+  "gpu": "NVIDIA GeForce RTX 2080 SUPER",
+  "cpu": "AMD Ryzen 9 3900X 12-Core Processor",
+  "cpu_threads": 4,
+  "nvidia_smi": "Sat Oct 24 16:16:28 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 580.178.04             Driver Version: 580.178.04     CUDA Version: 13.0     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA GeForce RTX 2080 ...    Off |   00000000:08:00.0 Off |                  N/A |\n| 48%   45C    P2             67W /  250W |    2058MiB /   8192MiB |     30%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|    0   N/A  N/A            1593      G   /usr/lib/xorg/Xorg                        9MiB |\n|    0   N/A  N/A            1792      G   /usr/bin/gnome-shell                      3MiB |\n|    0   N/A  N/A           96486    C+G   R:\\GenshinImpact.exe                   1608MiB |\n|    0   N/A  N/A          555663      C   ...iconda3/envs/py312/bin/python        306MiB |\n+-----------------------------------------------------------------------------------------+\n",
+  "time_utc": "2026-10-24T08:16:28Z"
+}

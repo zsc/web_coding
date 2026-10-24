@@ -1,0 +1,198 @@
+{
+  "config": {
+    "steps": 10000,
+    "batch": 32,
+    "lr": 0.0002,
+    "resume": false,
+    "out": "results/run1"
+  },
+  "parameters": 6338499,
+  "seed": 20261024,
+  "data_manifest": {
+    "archive": "data/Dataset.zip",
+    "archive_sha256": "9464985fa6cfc84d0fe6b87a6e4f07a275c8bd3dfc8abd713218765de7d62306",
+    "archive_md5": "bd87976d046a333c8dff44d51cbdd9f9",
+    "partition_md5": "d32c9cbf5e040fd4025c592c306e6668",
+    "counts": {
+      "train": 162770,
+      "valid": 19867,
+      "test": 19962
+    },
+    "preprocessing": "RGB, original 178x218 -> center crop 178x178 at (0,20) -> Lanczos 64x64; stored uint8 NHWC",
+    "filename_coverage": "all 202599 official filenames, no missing or extra JPGs",
+    "source": "https://huggingface.co/datasets/student/celebA/tree/2d31e6555722815c74ea7c845b07c1063dd705e9",
+    "official_archive_md5": "00d2c5bc6d35e252742224ab0c1e8fcb",
+    "seconds": 40.93028159090318
+  },
+  "torch": "2.10.0+cu128",
+  "model": {
+    "sample_size": 64,
+    "in_channels": 3,
+    "out_channels": 3,
+    "center_input_sample": false,
+    "time_embedding_type": "positional",
+    "freq_shift": 0,
+    "flip_sin_to_cos": true,
+    "down_block_types": [
+      "DownBlock2D",
+      "DownBlock2D",
+      "AttnDownBlock2D",
+      "DownBlock2D"
+    ],
+    "up_block_types": [
+      "UpBlock2D",
+      "AttnUpBlock2D",
+      "UpBlock2D",
+      "UpBlock2D"
+    ],
+    "block_out_channels": [
+      32,
+      64,
+      128,
+      128
+    ],
+    "layers_per_block": 2,
+    "mid_block_scale_factor": 1,
+    "downsample_padding": 1,
+    "downsample_type": "conv",
+    "upsample_type": "conv",
+    "dropout": 0.0,
+    "act_fn": "silu",
+    "attention_head_dim": 32,
+    "norm_num_groups": 8,
+    "attn_norm_num_groups": null,
+    "norm_eps": 1e-05,
+    "resnet_time_scale_shift": "default",
+    "add_attention": true,
+    "class_embed_type": null,
+    "num_class_embeds": null,
+    "num_train_timesteps": null,
+    "_use_default_values": [
+      "time_embedding_type",
+      "act_fn",
+      "norm_eps",
+      "add_attention",
+      "num_class_embeds",
+      "center_input_sample",
+      "downsample_type",
+      "resnet_time_scale_shift",
+      "dropout",
+      "num_train_timesteps",
+      "flip_sin_to_cos",
+      "mid_block_scale_factor",
+      "upsample_type",
+      "class_embed_type",
+      "downsample_padding",
+      "freq_shift",
+      "attn_norm_num_groups"
+    ]
+  },
+  "schedule": "linear beta 0.0001..0.02, T=1000, epsilon MSE",
+  "terminal_alpha_bar": 4.035829260828905e-05,
+  "ema": "min(0.999, (1+successful_updates)/(10+successful_updates))",
+  "augmentation": "independent random horizontal flip, p=0.5",
+  "sampling": "uniform training examples with replacement; no validation/test training",
+  "validation": "512 fixed evenly spaced validation examples; fixed Gaussian noise; stratified t=0..998; FP32 evaluation",
+  "before": "name, memory.used [MiB], utilization.gpu [%], power.draw [W]\nNVIDIA GeForce RTX 2080 SUPER, 2622 MiB, 100 %, 165.54 W",
+  "curve": [
+    {
+      "step": 1000,
+      "train_loss": 0.16850554943084717,
+      "validation_raw": {
+        "mse": 0.04076066613197327,
+        "bins": [
+          0.2289755940437317,
+          0.06175858527421951,
+          0.03374705836176872,
+          0.022614745423197746,
+          0.015435606241226196,
+          0.011114873923361301,
+          0.008756970055401325,
+          0.007579314988106489,
+          0.007282257545739412,
+          0.007232456002384424
+        ]
+      },
+      "validation_ema": {
+        "mse": 0.041339483112096786,
+        "bins": [
+          0.22814634442329407,
+          0.060963019728660583,
+          0.03378481790423393,
+          0.023360958322882652,
+          0.016319582238793373,
+          0.01216527447104454,
+          0.009932579472661018,
+          0.008747116662561893,
+          0.008473151363432407,
+          0.008411171846091747
+        ]
+      },
+      "elapsed_seconds": 201.42075477098115,
+      "successful_updates": 1000,
+      "skipped": 0
+    },
+    {
+      "step": 2000,
+      "train_loss": 0.034054987132549286,
+      "validation_raw": {
+        "mse": 0.03159773349761963,
+        "bins": [
+          0.19066475331783295,
+          0.04895840585231781,
+          0.025838039815425873,
+          0.01697409525513649,
+          0.010684184730052948,
+          0.0066456664353609085,
+          0.004388350527733564,
+          0.0033182527404278517,
+          0.002967007225379348,
+          0.0029088754672557116
+        ]
+      },
+      "validation_ema": {
+        "mse": 0.030973942950367928,
+        "bins": [
+          0.1874188333749771,
+          0.04763052612543106,
+          0.025389300659298897,
+          0.016630830243229866,
+          0.010423311963677406,
+          0.006450982764363289,
+          0.004344555549323559,
+          0.003204141976311803,
+          0.00287266937084496,
+          0.002787578385323286
+        ]
+      },
+      "elapsed_seconds": 343.78574028098956,
+      "successful_updates": 2000,
+      "skipped": 0
+    }
+  ],
+  "initial_validation": {
+    "mse": 1.1055560111999512,
+    "bins": [
+      1.146393060684204,
+      1.1121894121170044,
+      1.1022233963012695,
+      1.1015675067901611,
+      1.1001170873641968,
+      1.1044031381607056,
+      1.0962090492248535,
+      1.0971994400024414,
+      1.097166895866394,
+      1.0973132848739624
+    ]
+  },
+  "step": 2000,
+  "elapsed_seconds": 346.43302636092994,
+  "train_seconds": 331.8794285603799,
+  "peak_allocated_mib": 3537.80419921875,
+  "peak_reserved_mib": 3776.0,
+  "successful_updates": 2000,
+  "skipped": 0,
+  "status": "training",
+  "current_gpu": "name, memory.used [MiB], utilization.gpu [%], power.draw [W]\nNVIDIA GeForce RTX 2080 SUPER, 3204 MiB, 40 %, 98.55 W",
+  "training_image_draws": 64000
+}

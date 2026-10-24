@@ -1,0 +1,9 @@
+{
+  "graph_vs_eager_max_abs_fp32": 0.0,
+  "tolerance": 0.0003,
+  "library_ddim_first_step_max_abs": 4.76837158203125e-07,
+  "library_tolerance": 2e-05,
+  "repeat_seed_max_abs": 0.0,
+  "different_seed_mean_abs": 0.9923751950263977,
+  "stochastic_graph_finite": true
+}

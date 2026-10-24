@@ -1,2 +1,0 @@
-{"updates": 90000, "transitions": 2881024, "train_seconds": 18.044038943131454, "wall_seconds": 24.17163104203064, "loss": [1.2337878843027283e-06, -98.98139953613281], "mean_length": 200.0, "success200": 1.0, "mean_return": 199.76077270507812, "horizon": 200}
-{"updates": 100000, "transitions": 3201024, "train_seconds": 20.048351268051192, "wall_seconds": 26.33356320601888, "loss": [0.00017925025895237923, -99.30354309082031], "mean_length": 200.0, "success200": 1.0, "mean_return": 199.77235412597656, "horizon": 200}

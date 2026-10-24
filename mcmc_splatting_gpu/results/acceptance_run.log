@@ -1,0 +1,4 @@
+ROI 10000 + Adam 8000 steps x 8 chains: GPU 6060.27 ms, end-to-end 7517.68 ms, full FP64 MSE 1.34331, ROI 636.113 pixels
+ROI 10000 + Adam 8000 steps x 8 chains: GPU 6450.64 ms, end-to-end 8038.09 ms, full FP64 MSE 1.33965, ROI 636.113 pixels
+ROI 10000 + Adam 8000 steps x 8 chains: GPU 6539.58 ms, end-to-end 8098.36 ms, full FP64 MSE 1.35791, ROI 636.113 pixels
+DONE

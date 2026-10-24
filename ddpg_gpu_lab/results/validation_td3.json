@@ -1,0 +1,15 @@
+[
+  {
+    "name": "TD3 4 updates vs independent autograd Adam reference, 2 seeds",
+    "passed": true
+  },
+  {
+    "name": "all frozen learner weights remain unchanged",
+    "passed": true
+  },
+  {
+    "name": "CUDA compiled graph vs eager TD3, 4 updates including actor delay",
+    "passed": true,
+    "max_abs_error": 1.7881393432617188e-07
+  }
+]

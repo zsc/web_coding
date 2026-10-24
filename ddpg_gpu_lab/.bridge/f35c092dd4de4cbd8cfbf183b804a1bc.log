@@ -1,9 +1,0 @@
-results/train_extended_seed1.log
-{"updates": 90000, "transitions": 2881024, "train_seconds": 37.092374670901336, "wall_seconds": 44.72826806397643, "loss": [0.0014826550614088774, -109.48464965820312], "mean_length": 200.0, "success200": 1.0, "mean_return": 185.32144165039062, "horizon": 200}
-{"updates": 100000, "transitions": 3201024, "train_seconds": 39.90559262491297, "wall_seconds": 47.70311624801252, "loss": [0.001792609691619873, -104.98271942138672], "mean_length": 200.0, "success200": 1.0, "mean_return": 199.68258666992188, "horizon": 200}
-results/train_extended_seed2.log
-{"updates": 90000, "transitions": 2881024, "train_seconds": 21.912303100223653, "wall_seconds": 29.271672715083696, "loss": [0.0003716407809406519, -100.8173828125], "mean_length": 200.0, "success200": 1.0, "mean_return": 193.3760986328125, "horizon": 200}
-{"updates": 100000, "transitions": 3201024, "train_seconds": 23.923080674256198, "wall_seconds": 31.442408736096695, "loss": [0.002748800441622734, -65.04629516601562], "mean_length": 200.0, "success200": 1.0, "mean_return": 188.06478881835938, "horizon": 200}
-results/train_extended_seed3.log
-{"updates": 30000, "transitions": 961024, "train_seconds": 6.01443499699235, "wall_seconds": 11.21521612093784, "loss": [0.06866626441478729, -68.38102722167969], "mean_length": 200.0, "success200": 1.0, "mean_return": 182.63665771484375, "horizon": 200}
-{"updates": 40000, "transitions": 1281024, "train_seconds": 8.016990627977066, "wall_seconds": 13.365174563950859, "loss": [0.05003194510936737, -79.65243530273438], "mean_length": 200.0, "success200": 1.0, "mean_return": 184.74127197265625, "horizon": 200}

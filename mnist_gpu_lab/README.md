@@ -2,6 +2,31 @@
 
 本地入口：`report.html`，可直接双击，图表和测试图片均内嵌。需要原网页训练 UI 时，在本目录运行 `python3 -m http.server 8767 --bind 127.0.0.1`，访问 `http://127.0.0.1:8767/original_local.html`。
 
+## 准确率升级（追加实验）
+
+`src/accuracy_train.py` 保留 CUDA Graph，加上可原位更新的 GPU 学习率 tensor、余弦衰减和逐图随机仿射增强。先从训练集分出每类 500 张、共 5,000 张验证集，以剩余 55,000 张比较四个预先指定的方案；全部训练 20 轮，按最后一轮验证准确率选配置，平局时按验证交叉熵。选定后才加载本轮测试数据，使用全部 60,000 张分别以预先指定的 seed 42、43 重训。
+
+| 20 轮方案 | 验证集准确率 |
+| --- | ---: |
+| 原宽度，固定 lr=0.001 | 98.78% |
+| 原宽度，余弦 lr 衰减 | 99.22% |
+| 16/32/64 + Dense128，余弦衰减 | 99.36% |
+| 加宽 + 余弦衰减 + 轻量仿射增强 | 99.56% |
+
+选中最后一个方案。lr 从 0.001 衰减至 0.00005；训练增强为 ±10° 旋转、约 ±2px 平移、0.9–1.1 缩放，不翻转。验证与测试不增强。新模型参数 98,442，原模型 25,034。
+
+完整测试集结果：seed 42 **99.50%（50 个错误）**，seed 43 **99.54%（46 个错误）**；训练分别约 20.46 / 20.70 秒。首轮交付模型为 98.36%（164 个错误）。两模型等权集成 99.53%，没有超过 seed 43，因此推荐单模型；默认交付预先指定的 seed 42，没有按测试分数挑选 seed。
+
+```sh
+cd /home/zsc/mnist_gpu_lab_20261024
+/home/zsc/miniconda3/envs/py312/bin/python src/accuracy_train.py search --epochs 20
+/home/zsc/miniconda3/envs/py312/bin/python src/accuracy_train.py final
+```
+
+结果在 `results/accuracy/`，新模型在 `results/accuracy/final_seed42/model.pt`；兼容浏览器的导出在 `exports/tfjs_accuracy/`。原有模型未覆盖。验证了 Graph 中学习率改变、lr=0 不更新参数、增强随机数在不同回放间变化、小尾 batch 后继续回放、全部测试概率的 checkpoint 复读一致性及 TF.js 权重转换一致性。
+
+本轮选型不用测试集，但本项目此前已展示过测试结果，不能声称它在整个项目历史中从未被查看。准确率收益与训练成本都按实际结果报告；GPU 仍为共享负载。
+
 ## 文件
 
 - `original/train.html`：固定上游版本，`provenance.json` 记录 commit 和 SHA256。

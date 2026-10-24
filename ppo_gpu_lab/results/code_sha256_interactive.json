@@ -1,0 +1,15 @@
+{
+  "src/live_model.js": "59242c7b046e392bd2b0bbca9409a646f39f9faa37b1f89baa9cb98ad306117a",
+  "src/live_ui.js": "555c69912d939b2e0b7a81b347e6bbcf8dee3397e7a05af9b0327bec4a817e4a",
+  "src/live_style.css": "fe9eaef45890ada60473b63a648cce40e77e7e4f50d1cf5ca08602ac735d0f45",
+  "src/live_section.html": "516924c6d054eecf69719c904a43a5b72806d7503630481aa564cedd09e089ce",
+  "src/design_lqr.py": "c3a2770be5a64cbc38f57f844cb655680b079c9829fb75f1910ad1d8ed1ab4b8",
+  "src/recovery_eval.cjs": "c20556b68618b3934b6bee4296d1eb63242244685194f1e004704b91694c7b61",
+  "src/build_report.py": "41d4a8e3fb5d755db2d3a5b305341e76c2abed1a346843e63d2ae3e067a85645",
+  "src/report.template.html": "066ce3f0db9a73ea2476072f5e37c5cd0668493a7a90fa0bab1d6b9eeec196c3",
+  "results/lqr_design.json": "67f64cc9eaedfc47e528ccdf79102c4834957924b4278a5b4a130762b0cc7ca4",
+  "results/recovery_eval.json": "690fd433276d93df499c9bc30137db5404bf18ea4eae4c32c912a863294a1261",
+  "results/desk/v2_physical_seed7.json": "0071ad00357127191c42e0c831042f226b10a26d77db018e7fcc2e657ed7bac2",
+  "play.html": "99fe91026c8a1b1f3557e1f487a2ef7703c92d706a8c1367c507bdf0d75c0c34",
+  "report.html": "8187a6668a0f93d5cd43bc3fde3947e379087efd5a0cd3b7c1cce6c01e72337b"
+}

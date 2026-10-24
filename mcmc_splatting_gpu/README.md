@@ -1,6 +1,43 @@
-# MCMC splatting: extracted CPU core and CUDA prototype
+# MCMC splatting: extraction, fast Chinese fitting, and WebGPU precision lab
 
-Open `report.html` for the self-contained Chinese report and interactive **CPU JavaScript** demo. No WebGPU implementation is included.
+Open `report.html` for the self-contained final report. Open `webgpu_lab.html` for the real **WebGPU / FP16** experiment (localhost recommended). The interactive area embedded in the main report uses CPU JavaScript in a background Worker. It accepts 1–10,000 Gaussians and 1–10,000,000 iterations, with live progress, stop, snapshot export, and a cache-size estimate. Defaults remain 100 Gaussians / 50,000 steps. At 10,000 Gaussians its FP64 contribution cache uses about 381.5 MiB; the 100×50 target size is unchanged. The Worker source is embedded, so the report remains self-contained.
+
+## Final acceptance: 周舒畅 in under 10 seconds
+
+The fixed 320×128 target, 1,600 Gaussians, 8 chains, 10,000 local MCMC steps per chain plus 8,000 parallel Adam steps passes three separate process runs:
+
+| Run | Full process seconds (`/usr/bin/time`) | Full FP64 rerender MSE |
+| --- | ---: | ---: |
+| 1 | 7.62 | 1.34331 |
+| 2 | 8.13 | 1.33965 |
+| 3 | 8.19 | 1.35791 |
+
+This improves the earlier 77.26-second GPU-only MCMC result (MSE 95.89). Compilation, transfer, font rasterization and report construction are excluded; initialization, fitting, readback, validation, output and process teardown are included in the final process timer. Concurrent GPU graphics load remained present.
+
+```sh
+./run_fast.sh
+# On desk, after compilation:
+./hybrid_fit --input zhou_target.pgm --gaussians 1600 --chains 8 \
+  --steps 10000 --adam-steps 8000 --output results/fast
+```
+
+`src/roi_fit.cu` implements 6-sigma local support, delta-SSE updates, warp reductions, sparse splatting and analytic Adam gradients. It includes the shared definitions from `desk_benchmark.cu`. Adam optimizes a smooth, unquantized/unclamped intensity objective; this is an optimizer change, not an equivalent MCMC trajectory. Final exported pixels and MSE are independently computed from the chosen parameters with the original full, untruncated FP64 Gaussian renderer and round/clip objective. The selected chain is chosen using GPU cached loss before full validation. `results/gradient_check.json` records a finite-difference check of all six derivatives.
+
+`run_acceptance.sh` reproduces three final runs and samples the renderer/gradient kernels with Nsight Compute. `results/final_summary.json` includes raw run metadata, final source hashes and browser precision measurements. `assets/zhou_final.png` is the representative median-time output; `assets/zhou_error_x16.png` shows absolute error magnified 16×.
+
+The final sampled render+gradient pair has about 14.97% executed FP32 arithmetic utilization, with SM throughput 73.23% / 66.33% and occupancy 83.97% / 83.07%. These are kernel samples, not model MFU or whole-process averages. The earlier 3.85% number below describes the first full-image MCMC kernel only.
+
+## WebGPU / FP16
+
+`src/webgpu.mjs` and self-contained `webgpu_lab.html` implement real device-resident MCMC in WGSL. On the local Apple M5 adapter, FP32 vs FP16-cache vs FP16-exp GPU medians were 116.33 / 101.84 / 101.97 ms for 160×64, 128 Gaussians, 4 chains, 8,192 steps; each has 3 interleaved repetitions after warmup. FP16 cache halves contribution memory (20 → 10 MiB), increasing throughput ~14.2%; FP16 exp adds no clear benefit. All modes use FP32 parameters/sums and integer SSE. Different arithmetic produces different trajectories; final loss and image error are recorded in `results/webgpu_precision.json`.
+
+WGSL has optional f16 but no standard native bf16 scalar. BF16 emulation is not claimed as hardware acceleration. The final CUDA Adam pipeline is not yet ported to WebGPU; the 8.13-second quality result must not be represented as browser performance.
+
+```sh
+python3 src/build_webgpu_lab.py
+python3 -m http.server 8766 --bind 127.0.0.1
+# Open http://127.0.0.1:8766/webgpu_lab.html
+```
 
 Upstream HTML is pinned in `source/provenance.json`. It fits a 2D grayscale image with additive rotated Gaussians, quantizes/clamps the total intensity, and uses single-parameter random proposals with a Metropolis-style acceptance rule. Clamped boundary proposals lack a Hastings correction; this is evaluated as a stochastic optimizer, not a guaranteed exact sampler.
 
@@ -9,13 +46,14 @@ Upstream HTML is pinned in `source/provenance.json`. It fits a 2D grayscale imag
 ```sh
 node src/benchmark.mjs
 node src/quality.mjs
-python3 src/build_report.py
+python3 src/summarize_final.py
+python3 src/finalize_report.py
 open report.html
 ```
 
 Node 26 and system Python 3, no npm or pip dependencies. `core.mjs` exports `CachedChain`, `initialize`, `propose`, and deterministic fixture generation. The cache stores unquantized sums and per-Gaussian contributions, preserving final quantization. It reduces each proposal from O(PN) to O(P), with O(PN) storage. Floating-point accumulation can still affect rounding thresholds; equality claims are limited to tested cases.
 
-## Run on desk
+## Earlier full-image MCMC benchmark on desk
 
 ```sh
 ./run_desk.sh

@@ -1,0 +1,4 @@
+{"step": 500, "loss": 0.1068389043211937, "validation_raw_mse": 0.05352934586758516, "validation_ema_mse": 0.05529138810780584, "elapsed_seconds": 33.02294894005172}
+{"step": 1000, "loss": 0.0467495359480381, "validation_raw_mse": 0.04133609606295216, "validation_ema_mse": 0.04232350204672132, "elapsed_seconds": 56.98250383499544}
+{"step": 1500, "loss": 0.03850087895989418, "validation_raw_mse": 0.03584884380807682, "validation_ema_mse": 0.03635133498785447, "elapsed_seconds": 81.39107502799015}
+{"step": 1560, "loss": 0.03421492874622345, "validation_raw_mse": 0.035004952428292255, "validation_ema_mse": 0.0358643607825649, "elapsed_seconds": 84.76195865205955}

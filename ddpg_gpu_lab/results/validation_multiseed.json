@@ -1,84 +1,84 @@
 [
   {
     "name": "seed 1 actor vs separate learner",
-    "max_abs_error": 0.0,
+    "max_abs_error": 2.7755575615628914e-17,
     "passed": true,
     "atol": 1e-10,
     "rtol": 1e-09
   },
   {
     "name": "seed 1 critic vs separate learner",
-    "max_abs_error": 0.0,
+    "max_abs_error": 5.551115123125783e-17,
     "passed": true,
     "atol": 1e-10,
     "rtol": 1e-09
   },
   {
     "name": "seed 1 target_actor vs separate learner",
-    "max_abs_error": 0.0,
+    "max_abs_error": 1.1102230246251565e-16,
     "passed": true,
     "atol": 1e-10,
     "rtol": 1e-09
   },
   {
     "name": "seed 1 target_critic vs separate learner",
-    "max_abs_error": 0.0,
+    "max_abs_error": 1.1102230246251565e-16,
     "passed": true,
     "atol": 1e-10,
     "rtol": 1e-09
   },
   {
     "name": "seed 2 actor vs separate learner",
-    "max_abs_error": 0.0,
+    "max_abs_error": 8.673617379884035e-19,
     "passed": true,
     "atol": 1e-10,
     "rtol": 1e-09
   },
   {
     "name": "seed 2 critic vs separate learner",
-    "max_abs_error": 0.0,
+    "max_abs_error": 2.7755575615628914e-17,
     "passed": true,
     "atol": 1e-10,
     "rtol": 1e-09
   },
   {
     "name": "seed 2 target_actor vs separate learner",
-    "max_abs_error": 0.0,
+    "max_abs_error": 1.1102230246251565e-16,
     "passed": true,
     "atol": 1e-10,
     "rtol": 1e-09
   },
   {
     "name": "seed 2 target_critic vs separate learner",
-    "max_abs_error": 0.0,
+    "max_abs_error": 1.1102230246251565e-16,
     "passed": true,
     "atol": 1e-10,
     "rtol": 1e-09
   },
   {
     "name": "seed 3 actor vs separate learner",
-    "max_abs_error": 0.0,
+    "max_abs_error": 2.7755575615628914e-17,
     "passed": true,
     "atol": 1e-10,
     "rtol": 1e-09
   },
   {
     "name": "seed 3 critic vs separate learner",
-    "max_abs_error": 0.0,
+    "max_abs_error": 1.1102230246251565e-16,
     "passed": true,
     "atol": 1e-10,
     "rtol": 1e-09
   },
   {
     "name": "seed 3 target_actor vs separate learner",
-    "max_abs_error": 0.0,
+    "max_abs_error": 1.1102230246251565e-16,
     "passed": true,
     "atol": 1e-10,
     "rtol": 1e-09
   },
   {
     "name": "seed 3 target_critic vs separate learner",
-    "max_abs_error": 0.0,
+    "max_abs_error": 1.1102230246251565e-16,
     "passed": true,
     "atol": 1e-10,
     "rtol": 1e-09
@@ -100,5 +100,47 @@
   {
     "name": "time limit remains nonterminal",
     "passed": true
+  },
+  {
+    "name": "packed compiled graph single update",
+    "max_abs_error": 5.960464477539063e-08,
+    "passed": true,
+    "atol": 2e-06,
+    "rtol": 2e-05
+  },
+  {
+    "name": "packed compiled graph vs eager 10 updates",
+    "max_abs_error": 0.00012123584747314453,
+    "passed": true,
+    "atol": 0.0002,
+    "rtol": 0.001
+  },
+  {
+    "name": "10-update actor action agreement",
+    "max_abs_error": 6.182491779327393e-05,
+    "passed": true,
+    "atol": 0.002,
+    "rtol": 0.001
+  },
+  {
+    "name": "staged packed graph state vs eager",
+    "max_abs_error": 1.1920928955078125e-07,
+    "passed": true,
+    "atol": 3e-05,
+    "rtol": 0.0003
+  },
+  {
+    "name": "staged packed graph replay vs eager",
+    "max_abs_error": 7.152557373046875e-07,
+    "passed": true,
+    "atol": 3e-05,
+    "rtol": 0.0003
+  },
+  {
+    "name": "staged packed graph actor vs eager",
+    "max_abs_error": 5.960464477539063e-08,
+    "passed": true,
+    "atol": 3e-05,
+    "rtol": 0.0003
   }
 ]

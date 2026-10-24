@@ -1,10 +1,12 @@
 // Round-trip PyTorch weights into the exact upstream TensorFlow.js layer layout.
 const fs=require('node:fs');
 const tf=require('../vendor/tf-4.22.0.min.js');
+const [modelPath='results/remote/cuda_graph/model.json',fixturePath='results/parity_fixture.json',
+  exportDir='exports/tfjs',resultPath='results/tfjs_parity.json']=process.argv.slice(2);
 (async()=>{
   await tf.setBackend('cpu');await tf.ready();
-  const raw=JSON.parse(fs.readFileSync('results/remote/cuda_graph/model.json'));
-  const fixture=JSON.parse(fs.readFileSync('results/parity_fixture.json'));
+  const raw=JSON.parse(fs.readFileSync(modelPath));
+  const fixture=JSON.parse(fs.readFileSync(fixturePath));
   const a=raw.architecture;const model=tf.sequential();
   model.add(tf.layers.inputLayer({inputShape:[28,28,1]}));
   for(const filters of a.filters){
@@ -26,14 +28,14 @@ const tf=require('../vendor/tf-4.22.0.min.js');
   const result={tfjs:tf.version.tfjs,backend:tf.getBackend(),samples:fixture.indices.length,
     max_probability_absolute_error:max_abs,prediction_agreement:agreement/probabilities.length,
     passed:max_abs<2e-5&&agreement===probabilities.length,indices:fixture.indices};
-  fs.mkdirSync('exports/tfjs',{recursive:true});
+  fs.mkdirSync(exportDir,{recursive:true});
   await model.save(tf.io.withSaveHandler(async artifacts=>{
-    fs.writeFileSync('exports/tfjs/weights.bin',Buffer.from(artifacts.weightData));
-    fs.writeFileSync('exports/tfjs/model.json',JSON.stringify({format:'layers-model',generatedBy:`TensorFlow.js ${tf.version.tfjs}`,
+    fs.writeFileSync(exportDir+'/weights.bin',Buffer.from(artifacts.weightData));
+    fs.writeFileSync(exportDir+'/model.json',JSON.stringify({format:'layers-model',generatedBy:`TensorFlow.js ${tf.version.tfjs}`,
       convertedBy:'mnist_gpu_lab: OIHW→HWIO; Dense transpose; NHWC flatten',modelTopology:artifacts.modelTopology,
       weightsManifest:[{paths:['weights.bin'],weights:artifacts.weightSpecs}]},null,2));
     return {modelArtifactsInfo:{dateSaved:new Date(),modelTopologyType:'JSON'}};
   }));
-  fs.writeFileSync('results/tfjs_parity.json',JSON.stringify(result,null,2));console.log(result);
+  fs.writeFileSync(resultPath,JSON.stringify(result,null,2));console.log(result);
   if(!result.passed)process.exit(1);
 })().catch(e=>{console.error(e);process.exit(1)});

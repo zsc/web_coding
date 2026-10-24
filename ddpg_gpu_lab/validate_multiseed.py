@@ -44,11 +44,14 @@ if args.cuda:
     # Full loop uses deterministic keyed RNG, allowing exact-path comparisons.
     rr=PackedRunner(Packed([1,2,3]),n=8,batch=16,capacity=128);ref=copy.deepcopy(rr)
     for _ in range(5):rr.collect(True);ref.collect(True)
-    fn=torch.compile(rr.step,fullgraph=True,mode='max-autotune-no-cudagraphs');saved=[(t,t.clone()) for t in state_tensors(rr)];fn();torch.cuda.synchronize();g=capture(fn)
+    prepare=torch.compile(rr.prepare,fullgraph=True,mode='max-autotune-no-cudagraphs');learn=torch.compile(rr.learn,fullgraph=True,mode='max-autotune-no-cudagraphs')
+    def fn():
+        index,packed=prepare();rr.replay.scatter_(1,index,packed);learn()
+    saved=[(t,t.clone()) for t in state_tensors(rr)];fn();torch.cuda.synchronize();g=capture(fn)
     for t,v in saved:t.copy_(v)
     for _ in range(5):g.replay();ref.step()
     torch.cuda.synchronize()
-    check('full packed graph state vs eager',rr.state,ref.state,3e-5,3e-4)
-    check('full packed graph replay vs eager',rr.replay,ref.replay,3e-5,3e-4)
-    check('full packed graph actor vs eager',torch.cat([t.flatten() for t in rr.agent.actor]),torch.cat([t.flatten() for t in ref.agent.actor]),3e-5,3e-4)
+    check('staged packed graph state vs eager',rr.state,ref.state,3e-5,3e-4)
+    check('staged packed graph replay vs eager',rr.replay,ref.replay,3e-5,3e-4)
+    check('staged packed graph actor vs eager',torch.cat([t.flatten() for t in rr.agent.actor]),torch.cat([t.flatten() for t in ref.agent.actor]),3e-5,3e-4)
 Path('results/validation_multiseed.json').write_text(json.dumps(checks,indent=2));print(json.dumps(checks,indent=2))

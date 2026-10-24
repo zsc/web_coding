@@ -1,3 +1,0 @@
-#!/bin/sh
-ssh -o BatchMode=yes -o ConnectTimeout=15 desk 'cd ~/ppo_gpu_lab && /home/zsc/miniconda3/envs/py312/bin/python -u src/run.py --mode v2 --iterations 300 --seed 7 --physical --evaluate --out v2_physical_seed7 && /home/zsc/miniconda3/envs/py312/bin/python -u src/run.py --mode v2 --iterations 300 --seed 11 --physical --evaluate --out v2_physical_seed11 && /home/zsc/miniconda3/envs/py312/bin/python -u src/run.py --mode v2 --iterations 300 --seed 23 --physical --evaluate --out v2_physical_seed23' > /Users/zsc/Downloads/web_coding/ppo_gpu_lab/.bridge/70deccf1c57d47e689780a1de98993bc.log 2>&1
-echo $? > /Users/zsc/Downloads/web_coding/ppo_gpu_lab/.bridge/70deccf1c57d47e689780a1de98993bc.exit

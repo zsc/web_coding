@@ -17,7 +17,25 @@ def main():
              'tfjs':read('results/tfjs_parity.json'),'manifest':read('data/manifest.json'),
              'provenance':read('original/provenance.json'),'labels':labels.tolist(),'predictions':pred.tolist(),
              'probabilities':np.round(probs.astype(float),7).tolist(),'confusion':confusion.tolist()}
+    accuracy_dir=ROOT/'results/accuracy'
+    if (accuracy_dir/'final_results.json').exists():
+        improved=np.load(accuracy_dir/'final_seed42/test_probabilities.npy')
+        improved_pred=improved.argmax(1); improved_confusion=np.zeros((10,10),int)
+        np.add.at(improved_confusion,(labels,improved_pred),1)
+        payload['accuracy']={'search':read('results/accuracy/search_results.json'),
+                             'final':read('results/accuracy/final_results.json'),
+                             'split':read('results/accuracy/split.json'),
+                             'correctness':read('results/accuracy/correctness.json'),
+                             'tfjs':read('results/accuracy/tfjs_parity.json'),
+                             'predictions':improved_pred.tolist(),
+                             'probabilities':np.round(improved.astype(float),7).tolist(),
+                             'confusion':improved_confusion.tolist()}
     template=(ROOT/'src/report_template.html').read_text()
+    if 'accuracy' in payload:
+        template=template.replace('<section class="section" id="evidence">',
+            (ROOT/'src/accuracy_section.html').read_text()+'\n<section class="section" id="evidence">',1)
+        template=template.replace('</script></body></html>',
+            (ROOT/'src/accuracy_report.js').read_text()+'\n</script></body></html>',1)
     encoded=json.dumps(payload,ensure_ascii=False,separators=(',',':')).replace('</','<\\/')
     png=base64.b64encode((ROOT/'data/mnist_test_stitched.png').read_bytes()).decode()
     report=template.replace('__REPORT_DATA__',encoded).replace('__TEST_PNG__',png)

@@ -42,5 +42,11 @@
   "used_train_count": 5000,
   "used_test_count": 1000,
   "note": "Local lossless MNIST tiles; PNG git blob hashes verified identical at requested revision.",
-  "subset_sha256": "2f98b63be6e881b08d5b9cbb83ae899eb9a9da7d499b45a72d4114883af22781"
+  "subset_sha256": "2f98b63be6e881b08d5b9cbb83ae899eb9a9da7d499b45a72d4114883af22781",
+  "quality_v2": {
+    "train_count": 60000,
+    "test_count": 1000,
+    "file": "mnist_full.npz",
+    "sha256": "7be78ef8aec70e4c4aa86c7491190a8023ccd726beb38255fc8f85529b0767e8"
+  }
 }

@@ -1,0 +1,57 @@
+{
+  "candidates": [
+    {
+      "name": "small_constant",
+      "filters": [
+        8,
+        16,
+        32
+      ],
+      "dense": 64,
+      "schedule": "constant",
+      "augment": false
+    },
+    {
+      "name": "small_cosine",
+      "filters": [
+        8,
+        16,
+        32
+      ],
+      "dense": 64,
+      "schedule": "cosine",
+      "augment": false
+    },
+    {
+      "name": "wide_cosine",
+      "filters": [
+        16,
+        32,
+        64
+      ],
+      "dense": 128,
+      "schedule": "cosine",
+      "augment": false
+    },
+    {
+      "name": "wide_aug_cosine",
+      "filters": [
+        16,
+        32,
+        64
+      ],
+      "dense": 128,
+      "schedule": "cosine",
+      "augment": true
+    }
+  ],
+  "epochs": 20,
+  "search_seed": 42,
+  "final_seeds": [
+    42,
+    43
+  ],
+  "selection": "highest last-epoch validation accuracy; tie: lowest validation CE",
+  "ensemble": "predeclared average of the two final seeds, no test-based weights or selection",
+  "test_policy": "No test images/labels loaded during search; configuration frozen before final runs."
+}

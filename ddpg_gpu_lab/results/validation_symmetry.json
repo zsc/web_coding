@@ -1,0 +1,14 @@
+[
+  {
+    "name": "odd actor gradient vs autograd; exact physics/reward mirror symmetry",
+    "passed": true
+  },
+  {
+    "name": "symmetric TD3 4 CUDA graph updates vs eager incl mirrored minibatch",
+    "passed": true,
+    "max_abs_error": 4.629051545634866e-06,
+    "atol": 1e-05,
+    "rtol": 3e-05,
+    "max_action_error": 5.364418029785156e-07
+  }
+]

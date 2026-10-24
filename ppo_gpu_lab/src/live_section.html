@@ -1,0 +1,22 @@
+<section class="live" id="interactive" aria-labelledby="liveTitle">
+  <div class="live-heading"><div><span class="live-eyebrow">LIVE LAB / 双倒立摆</span><h2 id="liveTitle">拽一下，看它找回平衡。</h2><p>拖动两个圆形关节或小车，松手后交给控制器。每一步都在浏览器里实时计算。</p></div><a class="live-report-link" href="#recovery-evidence">查看恢复测试 ↓</a></div>
+  <div class="live-grid">
+    <div class="live-stage">
+      <div class="live-stage-top"><span class="live-badge" id="liveStatus" role="status">正在恢复</span><span id="liveModeTag">LQR · ±40 N</span></div>
+      <canvas id="liveCanvas" width="1000" height="560" tabindex="0" aria-label="可拖动的双倒立摆。拖动关节调整角度，拖动小车调整位置。也可使用右侧倾斜预设；画布聚焦后方向键推动，空格暂停，R重置。"></canvas>
+      <div class="live-stage-bottom"><span id="liveHint">抓住圆形关节，轻轻向旁边拖动</span><span id="liveClock">0.00 s</span></div>
+      <div class="live-actions"><button id="pushLeft" title="给小车增加向左 0.35 m/s 的速度">← 推一下</button><button id="livePause">暂停</button><button id="liveReset">重置</button><button id="pushRight" title="给小车增加向右 0.35 m/s 的速度">推一下 →</button></div>
+    </div>
+    <aside class="live-controls" aria-label="实时控制">
+      <div class="live-control-heading"><h3>平衡控制</h3><button id="liveAuto" class="live-switch" aria-pressed="true">自动 · 开</button></div>
+      <label for="liveController">控制器</label><select id="liveController"><option value="lqr">LQR 反馈 · 无需训练</option><option value="ppo">PPO 策略 · 已训练 seed 7</option></select>
+      <label for="livePower">电机力度</label><select id="livePower"><option value="40">交互增强 · ±40 N</option><option value="10">原任务 · ±10 N</option></select>
+      <p class="live-note" id="liveControllerNote">根据当前姿态实时计算推力。40 N 是交互增强设置，不属于原 PPO 基准。</p>
+      <div class="live-preset"><label for="liveAngle">倾斜预设 <output id="liveAngleValue">8°</output></label><input id="liveAngle" type="range" min="2" max="30" step="1" value="8"><button id="liveApply">应用倾斜</button><p class="live-note">两杆同向倾斜，从轨道中点静止释放。</p></div>
+      <div class="live-readouts"><div><span>下杆 θ₁</span><output id="liveTheta1">0.0°</output></div><div><span>上杆 θ₂</span><output id="liveTheta2">0.0°</output></div><div><span>小车位置</span><output id="liveX">0.00 m</output></div><div><span>电机推力</span><output id="liveForce">0.0 N</output></div></div>
+      <div class="live-force-track" aria-hidden="true"><i id="liveForceBar"></i></div><p class="live-note" id="liveRecovery">保持稳定 1 秒后，标记为已稳定。</p>
+    </aside>
+  </div>
+  <div class="live-footnotes"><p><b>拖拽的含义：</b>按住时暂停物理演化、直接设定姿态；松开后速度归零，从静止释放。不是甩动，也不是轨迹回放。拖杆最多 ±55°，小车最多 ±2.2 m。</p><p><b>接不住也会如实显示：</b>超过 ±60° 或轨道 ±2.4 m 就停止本次尝试，需要手动重置。控制器只向小车施力，不会把摆杆偷偷拉回竖直。</p></div>
+  <details class="live-evidence" id="recovery-evidence"><summary>需要训练吗？各模式能接住多大的扰动？</summary><div class="live-evidence-body"><p><b>默认 LQR 不需要训练。</b>它使用物理模型计算反馈增益，浏览器每 20 ms 算一次电机推力。PPO 使用之前在 desk GPU 上训练的神经网络，打开网页即可推理，无需连接 GPU。这次没有额外训练 PPO。</p><p>现有 PPO 的训练初始角度仅 ±0.57°，没有专门练习鼠标造成的大扰动。要让 PPO 本身更抗拖拽，需要扩大初始状态分布、加入随机推力 / 速度扰动，再用独立状态评估；单纯提高训练吞吐不等于扩大恢复范围。</p><div class="live-table-wrap"><table><thead><tr><th>初始角度幅度</th><th>PPO · 10 N</th><th>LQR · 10 N</th><th>LQR · 40 N</th></tr></thead><tbody id="liveEvidenceRows"></tbody></table></div><p class="live-note" id="liveEvidenceNote"></p><p>表中每档测试 θ₁、θ₂ ∈ {−a, 0, +a} 的 8 种非零组合，初始位置与速度为零，观察 10 秒。成功要求最后 1 秒持续满足 |θ₁,₂| &lt; 2°、角速度 &lt; 0.15 rad/s、小车速度 &lt; 0.15 m/s，且未越界。不是任意姿态或从倒下位置起摆的保证；交互终止角度 60° 与原 PPO 训练的 12° 不同。</p><p><a href="src/live_model.js">实时物理与控制源码 ↗</a> · <a href="results/recovery_eval.json">完整恢复测试 ↗</a> · <a href="src/design_lqr.py">LQR 增益推导脚本 ↗</a></p></div></details>
+</section>

@@ -1,0 +1,19 @@
+{
+  "packages": {
+    "torch": "2.10.0",
+    "torchvision": "0.25.0",
+    "diffusers": "0.29.0",
+    "numpy": "2.4.2",
+    "Pillow": "12.1.1",
+    "pytorch-fid": "0.3.0"
+  },
+  "python": "3.12.12",
+  "source_sha256": {
+    "src/perf_probe.py": "5e2930bba95a6583e8e93b08082295d73eb730248650dda33607b182ee72c463",
+    "src/model.py": "50df835a9611d827cd2df29a9b13f22fda12cd3bd6f4485f77e0faa43bb4a581",
+    "src/validate.py": "dde8e86e7e742a6950f8b04ca1a3dfab247ba40fd109fa17bc4d1476805f2390",
+    "src/evaluate.py": "ab28789d3113c6eca13e3b2b04c2a86549530fe1790c9bc25e56d5ba03f21278",
+    "src/prepare_data.py": "b250910f0e9848cc62bf1478bc014bf9fe6d408b97e51c460ac8f89daa469e3a",
+    "src/train.py": "b111556b8060405080a211c343243b8e959e73cd91bb5a0fc4651f220d310607"
+  }
+}

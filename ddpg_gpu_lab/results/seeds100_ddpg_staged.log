@@ -1,0 +1,8 @@
+{"event": "ready", "setup_seconds": 13.104810217977501, "hardware": {"host": "zsc-X570-UD", "platform": "Linux-5.15.0-185-generic-x86_64-with-glibc2.35", "torch": "2.10.0+cu128", "cuda": "12.8", "gpu": "NVIDIA GeForce RTX 2080 SUPER", "cpu_threads": 1}, "seeds": 100}
+{"updates": 75000, "execution": "staged", "train_seconds": 260.31756303599104, "block_seconds": 45.83304615598172, "eval_seconds": 0.3421975700184703, "passed": 62, "seeds": 100, "worst_steps": 10}
+{"updates": 100000, "execution": "staged", "train_seconds": 286.5613167389529, "block_seconds": 26.24375370296184, "eval_seconds": 0.3387318989261985, "passed": 74, "seeds": 100, "worst_steps": 139}
+{"updates": 125000, "execution": "staged", "train_seconds": 312.7729227099335, "block_seconds": 26.2116059709806, "eval_seconds": 0.3344180820276961, "passed": 89, "seeds": 100, "worst_steps": 107}
+{"updates": 150000, "execution": "staged", "train_seconds": 341.980319132912, "block_seconds": 29.20739642297849, "eval_seconds": 0.3384634490357712, "passed": 92, "seeds": 100, "worst_steps": 162}
+{"updates": 175000, "execution": "staged", "train_seconds": 368.4251132009085, "block_seconds": 26.444794067996554, "eval_seconds": 0.3410124270012602, "passed": 97, "seeds": 100, "worst_steps": 103}
+{"updates": 200000, "execution": "staged", "train_seconds": 395.21724250284024, "block_seconds": 26.79212930193171, "eval_seconds": 0.33493430190719664, "passed": 98, "seeds": 100, "worst_steps": 182}
+{"event": "complete", "passed": 96, "seeds": 100, "train_seconds": 395.21724250284024, "wall_seconds": 202.1805045249639}

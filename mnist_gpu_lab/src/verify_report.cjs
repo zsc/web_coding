@@ -8,6 +8,17 @@ const {chromium}=require('/Users/zsc/.cache/codex-runtimes/codex-primary-runtime
   page.on('request',r=>{if(/^https?:/.test(r.url()))external.push(r.url())});
   await page.goto('file://'+process.cwd()+'/report.html');
   await page.waitForFunction(()=>document.querySelectorAll('.sample').length===12);
+  const hasAccuracy=await page.locator('#accuracy').count();
+  if(hasAccuracy){
+    if(await page.locator('#newAccuracy').textContent()!=='99.50%')throw Error('Accuracy follow-up not populated');
+    if(await page.locator('#testModel').inputValue()!=='improved')throw Error('New model not selected');
+    if(!(await page.locator('#exportPrimary').getAttribute('href')).includes('accuracy/final_seed42'))throw Error('Incorrect new model export');
+    await page.locator('#accuracy').screenshot({path:'results/report_accuracy.png'});
+    await page.selectOption('#testModel','baseline');
+    if(!(await page.locator('#checkList').textContent()).includes('164'))throw Error('Baseline model did not restore');
+    await page.selectOption('#testModel','improved');
+    if(!(await page.locator('#checkList').textContent()).includes('50'))throw Error('Improved model output did not restore');
+  }
   const initial=await page.evaluate(()=>({time:document.querySelector('#heroTime').textContent,speed:document.querySelector('#heroSpeed').textContent,
     browser:document.querySelector('#browserSpeed').textContent,accuracy:document.querySelector('#heroAcc').textContent,
     width:document.documentElement.scrollWidth,viewport:innerWidth}));

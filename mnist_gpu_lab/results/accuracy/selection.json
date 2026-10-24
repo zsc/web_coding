@@ -1,0 +1,19 @@
+{
+  "config": {
+    "name": "wide_aug_cosine",
+    "filters": [
+      16,
+      32,
+      64
+    ],
+    "dense": 128,
+    "schedule": "cosine",
+    "augment": true
+  },
+  "epochs": 20,
+  "validation": {
+    "accuracy": 0.9956,
+    "loss": 0.016393853759765625
+  },
+  "test_seen": false
+}

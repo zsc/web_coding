@@ -1,0 +1,16 @@
+{
+  "archive": "data/Dataset.zip",
+  "archive_sha256": "9464985fa6cfc84d0fe6b87a6e4f07a275c8bd3dfc8abd713218765de7d62306",
+  "archive_md5": "bd87976d046a333c8dff44d51cbdd9f9",
+  "partition_md5": "d32c9cbf5e040fd4025c592c306e6668",
+  "counts": {
+    "train": 162770,
+    "valid": 19867,
+    "test": 19962
+  },
+  "preprocessing": "RGB, original 178x218 -> center crop 178x178 at (0,20) -> Lanczos 64x64; stored uint8 NHWC",
+  "filename_coverage": "all 202599 official filenames, no missing or extra JPGs",
+  "source": "https://huggingface.co/datasets/student/celebA/tree/2d31e6555722815c74ea7c845b07c1063dd705e9",
+  "official_archive_md5": "00d2c5bc6d35e252742224ab0c1e8fcb",
+  "seconds": 40.93028159090318
+}

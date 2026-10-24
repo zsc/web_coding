@@ -1,0 +1,134 @@
+{
+  "config": {
+    "action": "train",
+    "steps": 8000,
+    "batch": 128,
+    "images": 60000,
+    "lr": 0.0002,
+    "out": "results/quality_v2",
+    "checkpoint": "results/quality_v2/checkpoint.pt"
+  },
+  "parameters": 660129,
+  "initial_mse": 1.039056310848314,
+  "terminal_alpha_bar": 4.035829260828905e-05,
+  "curve": [
+    {
+      "step": 500,
+      "loss": 0.07939367741346359,
+      "validation_raw_mse": 0.04161079805724475,
+      "validation_ema_mse": 0.042815329468980125,
+      "elapsed_seconds": 31.113509001093917
+    },
+    {
+      "step": 1000,
+      "loss": 0.036384835839271545,
+      "validation_raw_mse": 0.03301376864618184,
+      "validation_ema_mse": 0.0332577651252552,
+      "elapsed_seconds": 62.97546492400579
+    },
+    {
+      "step": 1500,
+      "loss": 0.03144056722521782,
+      "validation_raw_mse": 0.03033219156216602,
+      "validation_ema_mse": 0.029771068266459873,
+      "elapsed_seconds": 105.19840250199195
+    },
+    {
+      "step": 2000,
+      "loss": 0.029289178550243378,
+      "validation_raw_mse": 0.02837266179980064,
+      "validation_ema_mse": 0.02794418468767283,
+      "elapsed_seconds": 141.66272394708358
+    },
+    {
+      "step": 2500,
+      "loss": 0.02768596075475216,
+      "validation_raw_mse": 0.027175739103434036,
+      "validation_ema_mse": 0.02681346541764785,
+      "elapsed_seconds": 164.0614258410642
+    },
+    {
+      "step": 3000,
+      "loss": 0.027183175086975098,
+      "validation_raw_mse": 0.02635652161374384,
+      "validation_ema_mse": 0.02607253589192215,
+      "elapsed_seconds": 176.24206170602702
+    },
+    {
+      "step": 3500,
+      "loss": 0.026503797620534897,
+      "validation_raw_mse": 0.026138524011689788,
+      "validation_ema_mse": 0.025517327748999303,
+      "elapsed_seconds": 190.25318318104837
+    },
+    {
+      "step": 4000,
+      "loss": 0.02608223631978035,
+      "validation_raw_mse": 0.02526582382163223,
+      "validation_ema_mse": 0.02510072230076303,
+      "elapsed_seconds": 205.38274765200913
+    },
+    {
+      "step": 4500,
+      "loss": 0.025410665199160576,
+      "validation_raw_mse": 0.025231817243050556,
+      "validation_ema_mse": 0.024752571570629975,
+      "elapsed_seconds": 218.86468268802855
+    },
+    {
+      "step": 5000,
+      "loss": 0.025489915162324905,
+      "validation_raw_mse": 0.025783768721989224,
+      "validation_ema_mse": 0.024469776117071813,
+      "elapsed_seconds": 231.0459499610588
+    },
+    {
+      "step": 5500,
+      "loss": 0.024806544184684753,
+      "validation_raw_mse": 0.02509226056994224,
+      "validation_ema_mse": 0.024231737821686024,
+      "elapsed_seconds": 244.09727404406294
+    },
+    {
+      "step": 6000,
+      "loss": 0.024985162541270256,
+      "validation_raw_mse": 0.024708387194847574,
+      "validation_ema_mse": 0.02399925644300422,
+      "elapsed_seconds": 261.1677077700151
+    },
+    {
+      "step": 6500,
+      "loss": 0.024302003905177116,
+      "validation_raw_mse": 0.024360982130984872,
+      "validation_ema_mse": 0.023832957659448897,
+      "elapsed_seconds": 273.0970748390537
+    },
+    {
+      "step": 7000,
+      "loss": 0.024561353027820587,
+      "validation_raw_mse": 0.024488766582644716,
+      "validation_ema_mse": 0.023691845031417146,
+      "elapsed_seconds": 284.65187216806225
+    },
+    {
+      "step": 7500,
+      "loss": 0.023951029404997826,
+      "validation_raw_mse": 0.023883603817346145,
+      "validation_ema_mse": 0.023538727237253775,
+      "elapsed_seconds": 296.21666705806274
+    },
+    {
+      "step": 8000,
+      "loss": 0.024254517629742622,
+      "validation_raw_mse": 0.024263251496821035,
+      "validation_ema_mse": 0.023397716180402404,
+      "elapsed_seconds": 308.2179835169809
+    }
+  ],
+  "before": "Sat Oct 24 16:03:17 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 580.178.04             Driver Version: 580.178.04     CUDA Version: 13.0     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA GeForce RTX 2080 ...    Off |   00000000:08:00.0 Off |                  N/A |\n| 48%   63C    P2            167W /  250W |    2904MiB /   8192MiB |    100%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|    0   N/A  N/A            1593      G   /usr/lib/xorg/Xorg                        9MiB |\n|    0   N/A  N/A            1792      G   /usr/bin/gnome-shell                      3MiB |\n|    0   N/A  N/A           96486    C+G   R:\\GenshinImpact.exe                   1608MiB |\n|    0   N/A  N/A          546185      C   ...iconda3/envs/py312/bin/python        680MiB |\n|    0   N/A  N/A          549163      C   ...iconda3/envs/py312/bin/python        470MiB |\n+-----------------------------------------------------------------------------------------+\n",
+  "peak_allocated_mib": 800.9736328125,
+  "peak_reserved_mib": 1126.0,
+  "seed": 20261024,
+  "schedule": "linear beta 0.0001..0.02, T=1000",
+  "ema": "min(0.999,(1+step)/(10+step))"
+}

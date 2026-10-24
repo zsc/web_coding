@@ -1,0 +1,50 @@
+{
+  "config": {
+    "action": "train",
+    "steps": 1560,
+    "batch": 64,
+    "images": 5000,
+    "lr": 0.0001,
+    "out": "results/schedule_only",
+    "checkpoint": "results/quality_v2/checkpoint.pt"
+  },
+  "parameters": 660129,
+  "initial_mse": 1.0390562913855728,
+  "terminal_alpha_bar": 4.035829260828905e-05,
+  "curve": [
+    {
+      "step": 500,
+      "loss": 0.1068389043211937,
+      "validation_raw_mse": 0.05352934586758516,
+      "validation_ema_mse": 0.05529138810780584,
+      "elapsed_seconds": 33.02294894005172
+    },
+    {
+      "step": 1000,
+      "loss": 0.0467495359480381,
+      "validation_raw_mse": 0.04133609606295216,
+      "validation_ema_mse": 0.04232350204672132,
+      "elapsed_seconds": 56.98250383499544
+    },
+    {
+      "step": 1500,
+      "loss": 0.03850087895989418,
+      "validation_raw_mse": 0.03584884380807682,
+      "validation_ema_mse": 0.03635133498785447,
+      "elapsed_seconds": 81.39107502799015
+    },
+    {
+      "step": 1560,
+      "loss": 0.03421492874622345,
+      "validation_raw_mse": 0.035004952428292255,
+      "validation_ema_mse": 0.0358643607825649,
+      "elapsed_seconds": 84.76195865205955
+    }
+  ],
+  "before": "Sat Oct 24 16:03:52 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 580.178.04             Driver Version: 580.178.04     CUDA Version: 13.0     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA GeForce RTX 2080 ...    Off |   00000000:08:00.0 Off |                  N/A |\n| 48%   64C    P2            179W /  250W |    3912MiB /   8192MiB |    100%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|    0   N/A  N/A            1593      G   /usr/lib/xorg/Xorg                        9MiB |\n|    0   N/A  N/A            1792      G   /usr/bin/gnome-shell                      3MiB |\n|    0   N/A  N/A           96486    C+G   R:\\GenshinImpact.exe                   1608MiB |\n|    0   N/A  N/A          546185      C   ...iconda3/envs/py312/bin/python        680MiB |\n|    0   N/A  N/A          549163      C   ...iconda3/envs/py312/bin/python       1126MiB |\n|    0   N/A  N/A          549459      C   ...iconda3/envs/py312/bin/python        352MiB |\n+-----------------------------------------------------------------------------------------+\n",
+  "peak_allocated_mib": 323.5986328125,
+  "peak_reserved_mib": 434.0,
+  "seed": 20261024,
+  "schedule": "linear beta 0.0001..0.02, T=1000",
+  "ema": "min(0.999,(1+step)/(10+step))"
+}

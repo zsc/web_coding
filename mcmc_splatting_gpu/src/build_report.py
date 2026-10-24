@@ -14,6 +14,8 @@ fit['image']=list(pgm[header:])
 cpu_rows=''.join('<tr><td>{W} × {H}<small>{N} 高斯 · {iterations:,} 步</small></td><td>{reference_ms:.1f} ms</td><td>{cached_ms:.1f} ms</td><td class="green">{speedup:.1f}×</td><td>{cache_MiB:.2f} MiB</td></tr>'.format(**c) for c in local['cases'])
 gpu_rows=''.join('<tr><td>{dtype} · {chains} 链</td><td>{cpu_cached_all_ms:.1f} ms</td><td>{gpu_all_ms:.1f} ms</td><td class="green">{gpu_vs_cpu_cached_same_work:.2f}×</td><td>{gpu_total_steps_s:,.0f}</td></tr>'.format(**g) for g in gpu.values())
 core=(ROOT/'src/core.mjs').read_text().replace('export ','')
+worker=core+'\n'+re.sub(r'^import .*?;\n', '', (ROOT/'src/playground_worker.mjs').read_text(), count=1)
+playground='const PLAYGROUND_WORKER_SOURCE='+json.dumps(worker,ensure_ascii=False).replace('<',r'\u003c')+';\n'+(ROOT/'src/playground.mjs').read_text()
 data=json.dumps(dict(local=local,quality=quality,gpu=gpu,fit=fit),separators=(',',':')).replace('<',r'\u003c')
 page=r'''<!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -95,13 +97,13 @@ Host launches 256-step chunks; no per-step readback.</pre><p class="note">一条
 <div class="notice">下一步：大图可以研究单链跨多个 block + CUDA Graph；大量小图 / 独立初始化适合更多链。ROI 裁剪、快速 exp、Adam、FP32 边界回退和多核 CPU 均需要单独做精度 / 性能消融，当前未声称实现。</div></section>
 
 <section class="section" id="playground"><div class="section-head"><div><div class="index">05 / TRY IT LOCALLY · CPU BACKEND</div><h2>这份报告里，也能直接跑。</h2></div><p>完全离线、无上传的 JS 缓存核心。改文字或载入图片，下载当前拟合与参数；目标可以导出为 CUDA 支持的 PGM。</p></div>
-<div class="panel live"><div class="controls"><label>目标文字<input id="demo-text" value="MCMC" maxlength="20"></label><label>高斯数量<select id="demo-N"><option value="25">25 · 原版规模</option><option value="100" selected>100 · 更多细节</option><option value="200">200</option></select></label>
-<label>迭代数<select id="demo-steps"><option value="10000">10,000</option><option value="50000" selected>50,000</option><option value="100000">100,000</option></select></label>
+<div class="panel live"><div class="controls"><label>目标文字<input id="demo-text" value="MCMC" maxlength="20"></label><label>高斯数量 · 上限 10,000<input type="number" id="demo-N" min="1" max="10000" step="1" value="100" list="gaussian-presets" required></label><datalist id="gaussian-presets"><option value="25"><option value="100"><option value="800"><option value="1600"><option value="3200"><option value="5000"><option value="10000"></datalist>
+<label>迭代数 · 上限 10,000,000<input type="number" id="demo-steps" min="1" max="10000000" step="1" value="50000" list="iteration-presets" required></label><datalist id="iteration-presets"><option value="10000"><option value="100000"><option value="500000"><option value="1000000"><option value="5000000"><option value="10000000"></datalist><p class="note" id="demo-budget" style="margin-top:10px"></p>
 <label>温度<select id="demo-mode"><option value="annealed">降温 50 → 0.05</option><option value="fixed">固定 50 · 原设置</option></select></label><label>或载入图片<input type="file" id="demo-file" accept="image/*"></label>
 <button class="primary" id="demo-start">初始化并运行</button><button class="secondary" id="demo-stop" disabled>停止</button><button class="secondary" id="demo-export" disabled>下载当前图像与参数</button><button class="secondary" id="target-export">下载目标 PGM</button></div>
 <div><div class="live-pair"><div><p>TARGET / 100 × 50</p><canvas id="live-target" width="100" height="50"></canvas></div><div><p>INCREMENTAL FIT / JS CPU</p><canvas id="live-image" width="100" height="50"></canvas></div></div>
 <div class="live-stats"><span>迭代<b id="live-iter">0</b></span><span>MSE<b id="live-loss">—</b></span><span>接受率<b id="live-accept">—</b></span><span>计算耗时<b id="live-time">—</b></span></div>
-<p id="live-status">准备就绪。默认目标与基准位图相同。</p><p class="note">seed 固定为 42 / 101。每帧最多计算约 12 ms；计算时间不含帧间等待。每 5,000 步重建缓存。图片缩放到 100 × 50 并转灰度；修改文字后使用浏览器字体，所以不与原基准位图直接比较。</p><p class="note" style="margin-top:15px">下载的是点击时的当前状态；点击“初始化并运行”会重新开始。本区不连接 desk，不调用 WebGPU。</p></div></div></section>
+<p id="live-status">准备就绪。默认目标与基准位图相同。</p><p class="note">seed 固定为 42 / 101。初始化、迭代与缓存重建均在后台 Worker 中执行；每约 100 ms 更新进度。计算时间不含初始化、消息传输和调度等待。每 5,000 步重建缓存。图片缩放到 100 × 50 并转灰度；修改文字后使用浏览器字体，所以不与原基准位图直接比较。</p><p class="note" style="margin-top:15px">下载的是点击时的当前状态；点击“初始化并运行”会重新开始。本区不连接 desk，不调用 WebGPU。</p></div></div></section>
 
 <section class="section" id="reproduce"><div class="section-head"><div><div class="index">06 / REPRODUCE & INSPECT</div><h2>所有结果，都留有来路。</h2></div><p>本地：mcmc_splatting_gpu<br>desk：~/mcmc_splatting_gpu_20261024</p></div>
 <div class="two"><div class="panel"><h3>本地基准与报告</h3><pre class="code">cd /Users/zsc/Downloads/web_coding/mcmc_splatting_gpu
@@ -139,19 +141,8 @@ for(let v=0;v<=10000;v+=2000)ctx.fillText(v/1000+'k',L+v/10000*(1040-L-R)-5,250)
 ctx.fillText('MSE',10,12);
 DATA.quality.runs.slice(0,2).forEach((run,i)=>{ctx.strokeStyle=['#ffb77f','#c4ef89'][i];ctx.lineWidth=2;ctx.beginPath();run.curve.forEach((p,j)=>{const x=L+p.iteration/10000*(1040-L-R),y=T+(1-p.loss/20000)*(260-T-B);j?ctx.lineTo(x,y):ctx.moveTo(x,y);});ctx.stroke();});
 document.querySelectorAll('[data-panel]').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('[data-panel]').forEach(b=>b.classList.toggle('active',b===button));document.querySelectorAll('.result-panel').forEach(p=>p.hidden=p.id!==button.dataset.panel);}));
-let liveTarget=Uint8Array.from(DATA.local.demo.target),chain=null,random=null,running=false,frame=0,current=0,limit=0,computeMs=0,mode='annealed';
-paint('live-target',liveTarget);paint('live-image',new Uint8Array(5000));
-function stop(){running=false;cancelAnimationFrame(frame);el('demo-start').disabled=false;el('demo-stop').disabled=true;el('demo-text').disabled=false;el('demo-file').disabled=false;}
-function refresh(){if(!chain)return;paint('live-image',chain.image());el('live-iter').textContent=current.toLocaleString();el('live-loss').textContent=chain.loss.toFixed(1);el('live-accept').textContent=(100*chain.accepted/Math.max(1,current)).toFixed(1)+'%';el('live-time').textContent=(computeMs/1000).toFixed(2)+' s';}
-function tick(){if(!running)return;const begin=performance.now();while(current<limit&&performance.now()-begin<12){const temp=mode==='fixed'?50:50*Math.pow(.05/50,current/Math.max(1,limit-1));chain.step(propose(chain.gs,100,50,random),temp);current++;if(current%5000===0)chain.rebuild();}computeMs+=performance.now()-begin;refresh();if(current<limit){frame=requestAnimationFrame(tick);}else{stop();el('live-status').textContent='运行完成，可下载当前结果或重新初始化。';}}
-el('demo-start').addEventListener('click',()=>{stop();limit=Number(el('demo-steps').value);mode=el('demo-mode').value;chain=new CachedChain(initialize(100,50,Number(el('demo-N').value),rng(42)),100,50,liveTarget);random=rng(101);current=0;computeMs=0;running=true;el('demo-start').disabled=true;el('demo-stop').disabled=false;el('demo-export').disabled=false;el('demo-text').disabled=true;el('demo-file').disabled=true;el('live-status').textContent='正在本机 CPU 计算，逐帧更新…';refresh();frame=requestAnimationFrame(tick);});
-el('demo-stop').addEventListener('click',()=>{stop();el('live-status').textContent='已停止，可下载当前状态；再次运行会重新初始化。';});
-function resetTarget(a){stop();liveTarget=a;chain=null;current=0;paint('live-target',a);paint('live-image',new Uint8Array(5000));el('demo-export').disabled=true;el('live-iter').textContent='0';['live-loss','live-accept','live-time'].forEach(id=>el(id).textContent='—');el('live-status').textContent='目标已更新，点击初始化并运行。';}
-el('demo-text').addEventListener('change',()=>{el('demo-file').value='';if(el('demo-text').value==='MCMC'){resetTarget(Uint8Array.from(DATA.local.demo.target));return;}const c=document.createElement('canvas');c.width=100;c.height=50;const x=c.getContext('2d');x.fillStyle='black';x.fillRect(0,0,100,50);x.fillStyle='white';x.font='bold 25px sans-serif';x.textAlign='center';x.textBaseline='middle';x.fillText(el('demo-text').value,50,25,96);const a=x.getImageData(0,0,100,50).data;resetTarget(Uint8Array.from({length:5000},(_,i)=>a[i*4]));});
-el('demo-file').addEventListener('change',async e=>{const file=e.target.files[0];if(!file)return;el('demo-start').disabled=true;try{const bm=await createImageBitmap(file),c=document.createElement('canvas');c.width=100;c.height=50;const x=c.getContext('2d');x.fillStyle='black';x.fillRect(0,0,100,50);x.drawImage(bm,0,0,100,50);bm.close();const a=x.getImageData(0,0,100,50).data;resetTarget(Uint8Array.from({length:5000},(_,i)=>Math.round(.2126*a[4*i]+.7152*a[4*i+1]+.0722*a[4*i+2])));}catch(err){el('live-status').textContent='无法读取图片：'+err.message;}finally{el('demo-start').disabled=false;}});
 function download(blob,name){const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),2000);}
-el('target-export').addEventListener('click',()=>download(new Blob(['P5\n100 50\n255\n',liveTarget],{type:'image/x-portable-graymap'}),'target.pgm'));
-el('demo-export').addEventListener('click',()=>{if(!chain)return;const snapshot={width:100,height:50,iterations:current,loss:chain.loss,mode,gaussians:chain.gs};download(new Blob([JSON.stringify(snapshot,null,2)],{type:'application/json'}),'splats.json');el('live-image').toBlob(blob=>download(blob,'splats.png'));});
+{{playground}}
 </script></body></html>'''
 mfu_path=ROOT/'results/mfu.json'
 mfu_html='<p class="note">正在补充 profiler 数据。当前不把 GPU Util 或加速倍数冒充 MFU。</p>'
@@ -161,7 +152,7 @@ replace={
 'cpu_gain':f"{local['cases'][0]['speedup']:.1f}",'gpu64_gain':f"{gpu['batch_fp64']['gpu_vs_cpu_cached_same_work']:.1f}",'gpu32_gain':f"{gpu['batch_fp32']['gpu_vs_cpu_cached_same_work']:.1f}",
 'fixed_loss':f"{quality['runs'][0]['loss']:.1f}",'quality_loss':f"{quality['runs'][2]['loss']:.1f}",'annealed_loss':f"{quality['runs'][1]['loss']:.1f}",'quality_sec':f"{quality['runs'][2]['ms_including_checkpoints']/1000:.2f}",'fit_loss':f"{fit['loss']:.1f}",'fit_sec':f"{fit['gpu_ms']/1000:.2f}",
 'fit_drift':f"{fit['max_final_rerender_mse_drift']:.4f}",'single64_gain':f"{gpu['single_fp64']['gpu_vs_cpu_cached_same_work']:.2f}",'fp32_mismatches':str(gpu['single_fp32']['verification']['canonical_fp64_loss_mismatch']),'fp32_error':f"{gpu['single_fp32']['verification']['canonical_fp64_max_mse_error']:.4f}",'fp32_final_mismatches':str(gpu['batch_fp32']['verification']['final_chain_mismatch']),
-'fit_memory':f"{fit['workspace_bytes']/1048576:.1f}",'source_url':'https://github.com/zsc/widgets/blob/'+prov['commit']+'/mcmc_splatting.html','commit_short':prov['commit'][:12],'sha256':prov['sha256'],'cpu_rows':cpu_rows,'gpu_rows':gpu_rows,'mfu_html':mfu_html,'core':core,'data':data}
+'fit_memory':f"{fit['workspace_bytes']/1048576:.1f}",'source_url':'https://github.com/zsc/widgets/blob/'+prov['commit']+'/mcmc_splatting.html','commit_short':prov['commit'][:12],'sha256':prov['sha256'],'cpu_rows':cpu_rows,'gpu_rows':gpu_rows,'mfu_html':mfu_html,'core':core,'data':data,'playground':playground}
 for k,v in replace.items():page=page.replace('{{'+k+'}}',v)
 assert not re.search(r'\{\{[a-z_]+\}\}',page)
 (ROOT/'report.html').write_text(page)
