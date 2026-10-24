@@ -1,0 +1,1259 @@
+{
+  "nsys": {
+    "adam_eager": {
+      "interval_ms": 2361.351308,
+      "covered_interval_pct": 94.60714940768992,
+      "gaps_ms": 127.344148,
+      "cuda_api_sum": [
+        {
+          "Time (%)": "61.2",
+          "Total Time (ns)": "1537450496",
+          "Num Calls": "16003",
+          "Avg (ns)": "96072.6",
+          "Med (ns)": "6462.0",
+          "Min (ns)": "2745",
+          "Max (ns)": "1878325",
+          "StdDev (ns)": "200599.4",
+          "Name": "cudaLaunchKernel"
+        },
+        {
+          "Time (%)": "28.8",
+          "Total Time (ns)": "722177940",
+          "Num Calls": "8001",
+          "Avg (ns)": "90261.0",
+          "Med (ns)": "64833.0",
+          "Min (ns)": "2976",
+          "Max (ns)": "1521238",
+          "StdDev (ns)": "181289.3",
+          "Name": "cudaMemsetAsync"
+        },
+        {
+          "Time (%)": "6.2",
+          "Total Time (ns)": "154505685",
+          "Num Calls": "1",
+          "Avg (ns)": "154505685.0",
+          "Med (ns)": "154505685.0",
+          "Min (ns)": "154505685",
+          "Max (ns)": "154505685",
+          "StdDev (ns)": "0.0",
+          "Name": "cudaMemGetInfo"
+        },
+        {
+          "Time (%)": "3.8",
+          "Total Time (ns)": "95568233",
+          "Num Calls": "1",
+          "Avg (ns)": "95568233.0",
+          "Med (ns)": "95568233.0",
+          "Min (ns)": "95568233",
+          "Max (ns)": "95568233",
+          "StdDev (ns)": "0.0",
+          "Name": "cudaEventSynchronize"
+        },
+        {
+          "Time (%)": "0.0",
+          "Total Time (ns)": "731118",
+          "Num Calls": "5",
+          "Avg (ns)": "146223.6",
+          "Med (ns)": "136148.0",
+          "Min (ns)": "34546",
+          "Max (ns)": "298096",
+          "StdDev (ns)": "101907.6",
+          "Name": "cudaMemcpy"
+        },
+        {
+          "Time (%)": "0.0",
+          "Total Time (ns)": "264242",
+          "Num Calls": "6",
+          "Avg (ns)": "44040.3",
+          "Med (ns)": "4504.0",
+          "Min (ns)": "1804",
+          "Max (ns)": "182095",
+          "StdDev (ns)": "72399.3",
+          "Name": "cudaMalloc"
+        },
+        {
+          "Time (%)": "0.0",
+          "Total Time (ns)": "263428",
+          "Num Calls": "6",
+          "Avg (ns)": "43904.7",
+          "Med (ns)": "18104.0",
+          "Min (ns)": "3096",
+          "Max (ns)": "142069",
+          "StdDev (ns)": "56342.0",
+          "Name": "cudaFree"
+        },
+        {
+          "Time (%)": "0.0",
+          "Total Time (ns)": "93678",
+          "Num Calls": "1",
+          "Avg (ns)": "93678.0",
+          "Med (ns)": "93678.0",
+          "Min (ns)": "93678",
+          "Max (ns)": "93678",
+          "StdDev (ns)": "0.0",
+          "Name": "cudaDeviceSynchronize"
+        },
+        {
+          "Time (%)": "0.0",
+          "Total Time (ns)": "55005",
+          "Num Calls": "2",
+          "Avg (ns)": "27502.5",
+          "Med (ns)": "27502.5",
+          "Min (ns)": "5391",
+          "Max (ns)": "49614",
+          "StdDev (ns)": "31270.4",
+          "Name": "cudaEventRecord"
+        },
+        {
+          "Time (%)": "0.0",
+          "Total Time (ns)": "36429",
+          "Num Calls": "2",
+          "Avg (ns)": "18214.5",
+          "Med (ns)": "18214.5",
+          "Min (ns)": "4108",
+          "Max (ns)": "32321",
+          "StdDev (ns)": "19949.6",
+          "Name": "cudaMemset"
+        },
+        {
+          "Time (%)": "0.0",
+          "Total Time (ns)": "14648",
+          "Num Calls": "2",
+          "Avg (ns)": "7324.0",
+          "Med (ns)": "7324.0",
+          "Min (ns)": "501",
+          "Max (ns)": "14147",
+          "StdDev (ns)": "9649.2",
+          "Name": "cudaEventCreate"
+        },
+        {
+          "Time (%)": "0.0",
+          "Total Time (ns)": "5881",
+          "Num Calls": "1",
+          "Avg (ns)": "5881.0",
+          "Med (ns)": "5881.0",
+          "Min (ns)": "5881",
+          "Max (ns)": "5881",
+          "StdDev (ns)": "0.0",
+          "Name": "cuModuleGetLoadingMode"
+        },
+        {
+          "Time (%)": "0.0",
+          "Total Time (ns)": "3056",
+          "Num Calls": "2",
+          "Avg (ns)": "1528.0",
+          "Med (ns)": "1528.0",
+          "Min (ns)": "371",
+          "Max (ns)": "2685",
+          "StdDev (ns)": "1636.2",
+          "Name": "cudaEventDestroy"
+        }
+      ],
+      "cuda_gpu_kern_sum": [
+        {
+          "Time (%)": "67.2",
+          "Total Time (ns)": "1490529417",
+          "Instances": "8000",
+          "Avg (ns)": "186316.2",
+          "Med (ns)": "140544.0",
+          "Min (ns)": "136640",
+          "Max (ns)": "1873056",
+          "StdDev (ns)": "233185.2",
+          "Name": "refineAdamScaled(Packed *, const float *, const unsigned char *, float *, float *, int, int, int, int, int, float)"
+        },
+        {
+          "Time (%)": "32.8",
+          "Total Time (ns)": "727476822",
+          "Instances": "8002",
+          "Avg (ns)": "90911.9",
+          "Med (ns)": "65888.0",
+          "Min (ns)": "63136",
+          "Max (ns)": "1723648",
+          "StdDev (ns)": "170253.2",
+          "Name": "renderSparse(Packed *, float *, int, int, int)"
+        },
+        {
+          "Time (%)": "0.0",
+          "Total Time (ns)": "19136",
+          "Instances": "1",
+          "Avg (ns)": "19136.0",
+          "Med (ns)": "19136.0",
+          "Min (ns)": "19136",
+          "Max (ns)": "19136",
+          "StdDev (ns)": "0.0",
+          "Name": "sparseLoss(float *, long long *, const unsigned char *, int)"
+        }
+      ],
+      "cuda_gpu_mem_time_sum": [
+        {
+          "Time (%)": "97.4",
+          "Total Time (ns)": "15981785",
+          "Count": "8003",
+          "Avg (ns)": "1997.0",
+          "Med (ns)": "1984.0",
+          "Min (ns)": "1919",
+          "Max (ns)": "3104",
+          "StdDev (ns)": "100.0",
+          "Operation": "[CUDA memset]"
+        },
+        {
+          "Time (%)": "1.4",
+          "Total Time (ns)": "234560",
+          "Count": "3",
+          "Avg (ns)": "78186.7",
+          "Med (ns)": "48800.0",
+          "Min (ns)": "2368",
+          "Max (ns)": "183392",
+          "StdDev (ns)": "94021.8",
+          "Operation": "[CUDA memcpy Device-to-Host]"
+        },
+        {
+          "Time (%)": "1.2",
+          "Total Time (ns)": "190656",
+          "Count": "2",
+          "Avg (ns)": "95328.0",
+          "Med (ns)": "95328.0",
+          "Min (ns)": "5440",
+          "Max (ns)": "185216",
+          "StdDev (ns)": "127120.8",
+          "Operation": "[CUDA memcpy Host-to-Device]"
+        }
+      ]
+    },
+    "muon_eager": {
+      "interval_ms": 2270.489621,
+      "covered_interval_pct": 93.08730925046585,
+      "gaps_ms": 156.951926,
+      "cuda_api_sum": [
+        {
+          "Time (%)": "79.8",
+          "Total Time (ns)": "1937660599",
+          "Num Calls": "27651",
+          "Avg (ns)": "70075.6",
+          "Med (ns)": "8516.0",
+          "Min (ns)": "2535",
+          "Max (ns)": "1861384",
+          "StdDev (ns)": "169086.3",
+          "Name": "cudaLaunchKernel"
+        },
+        {
+          "Time (%)": "10.5",
+          "Total Time (ns)": "254371891",
+          "Num Calls": "6913",
+          "Avg (ns)": "36796.2",
+          "Med (ns)": "27663.0",
+          "Min (ns)": "2835",
+          "Max (ns)": "1622730",
+          "StdDev (ns)": "107492.8",
+          "Name": "cudaMemsetAsync"
+        },
+        {
+          "Time (%)": "6.8",
+          "Total Time (ns)": "163959470",
+          "Num Calls": "1",
+          "Avg (ns)": "163959470.0",
+          "Med (ns)": "163959470.0",
+          "Min (ns)": "163959470",
+          "Max (ns)": "163959470",
+          "StdDev (ns)": "0.0",
+          "Name": "cudaMemGetInfo"
+        },
+        {
+          "Time (%)": "2.9",
+          "Total Time (ns)": "69527193",
+          "Num Calls": "1",
+          "Avg (ns)": "69527193.0",
+          "Med (ns)": "69527193.0",
+          "Min (ns)": "69527193",
+          "Max (ns)": "69527193",
+          "StdDev (ns)": "0.0",
+          "Name": "cudaEventSynchronize"
+        },
+        {
+          "Time (%)": "0.0",
+          "Total Time (ns)": "907762",
+          "Num Calls": "5",
+          "Avg (ns)": "181552.4",
+          "Med (ns)": "159723.0",
+          "Min (ns)": "44936",
+          "Max (ns)": "353761",
+          "StdDev (ns)": "111312.6",
+          "Name": "cudaMemcpy"
+        },
+        {
+          "Time (%)": "0.0",
+          "Total Time (ns)": "248120",
+          "Num Calls": "6",
+          "Avg (ns)": "41353.3",
+          "Med (ns)": "13655.5",
+          "Min (ns)": "2414",
+          "Max (ns)": "136780",
+          "StdDev (ns)": "55285.0",
+          "Name": "cudaFree"
+        },
+        {
+          "Time (%)": "0.0",
+          "Total Time (ns)": "194821",
+          "Num Calls": "6",
+          "Avg (ns)": "32470.2",
+          "Med (ns)": "4979.5",
+          "Min (ns)": "1764",
+          "Max (ns)": "103727",
+          "StdDev (ns)": "45224.8",
+          "Name": "cudaMalloc"
+        },
+        {
+          "Time (%)": "0.0",
+          "Total Time (ns)": "93367",
+          "Num Calls": "1",
+          "Avg (ns)": "93367.0",
+          "Med (ns)": "93367.0",
+          "Min (ns)": "93367",
+          "Max (ns)": "93367",
+          "StdDev (ns)": "0.0",
+          "Name": "cudaDeviceSynchronize"
+        },
+        {
+          "Time (%)": "0.0",
+          "Total Time (ns)": "41899",
+          "Num Calls": "2",
+          "Avg (ns)": "20949.5",
+          "Med (ns)": "20949.5",
+          "Min (ns)": "4228",
+          "Max (ns)": "37671",
+          "StdDev (ns)": "23647.8",
+          "Name": "cudaMemset"
+        },
+        {
+          "Time (%)": "0.0",
+          "Total Time (ns)": "22423",
+          "Num Calls": "2",
+          "Avg (ns)": "11211.5",
+          "Med (ns)": "11211.5",
+          "Min (ns)": "6282",
+          "Max (ns)": "16141",
+          "StdDev (ns)": "6971.4",
+          "Name": "cudaEventRecord"
+        },
+        {
+          "Time (%)": "0.0",
+          "Total Time (ns)": "15640",
+          "Num Calls": "2",
+          "Avg (ns)": "7820.0",
+          "Med (ns)": "7820.0",
+          "Min (ns)": "431",
+          "Max (ns)": "15209",
+          "StdDev (ns)": "10449.6",
+          "Name": "cudaEventCreate"
+        },
+        {
+          "Time (%)": "0.0",
+          "Total Time (ns)": "3156",
+          "Num Calls": "1",
+          "Avg (ns)": "3156.0",
+          "Med (ns)": "3156.0",
+          "Min (ns)": "3156",
+          "Max (ns)": "3156",
+          "StdDev (ns)": "0.0",
+          "Name": "cuModuleGetLoadingMode"
+        },
+        {
+          "Time (%)": "0.0",
+          "Total Time (ns)": "3096",
+          "Num Calls": "2",
+          "Avg (ns)": "1548.0",
+          "Med (ns)": "1548.0",
+          "Min (ns)": "371",
+          "Max (ns)": "2725",
+          "StdDev (ns)": "1664.5",
+          "Name": "cudaEventDestroy"
+        }
+      ],
+      "cuda_gpu_kern_sum": [
+        {
+          "Time (%)": "55.2",
+          "Total Time (ns)": "1159018432",
+          "Instances": "6912",
+          "Avg (ns)": "167682.1",
+          "Med (ns)": "121408.0",
+          "Min (ns)": "111072",
+          "Max (ns)": "1859776",
+          "StdDev (ns)": "235593.8",
+          "Name": "muonGradient(Packed *, const float *, const unsigned char *, float *, float *, int, int, int, int, int, float *, float *)"
+        },
+        {
+          "Time (%)": "31.1",
+          "Total Time (ns)": "652493309",
+          "Instances": "6914",
+          "Avg (ns)": "94372.8",
+          "Med (ns)": "75200.0",
+          "Min (ns)": "65952",
+          "Max (ns)": "1732897",
+          "StdDev (ns)": "151757.5",
+          "Name": "renderSparse(Packed *, float *, int, int, int)"
+        },
+        {
+          "Time (%)": "11.4",
+          "Total Time (ns)": "239508147",
+          "Instances": "6912",
+          "Avg (ns)": "34651.1",
+          "Med (ns)": "27552.0",
+          "Min (ns)": "27200",
+          "Max (ns)": "1406816",
+          "StdDev (ns)": "89265.4",
+          "Name": "void orthogonalize<(int)6>(float *, int)"
+        },
+        {
+          "Time (%)": "2.3",
+          "Total Time (ns)": "48739018",
+          "Instances": "6912",
+          "Avg (ns)": "7051.4",
+          "Med (ns)": "6784.0",
+          "Min (ns)": "6048",
+          "Max (ns)": "1265152",
+          "StdDev (ns)": "15141.0",
+          "Name": "applyMuon(Packed *, const float *, int, int, int, int, int, int, int, float, float)"
+        },
+        {
+          "Time (%)": "0.0",
+          "Total Time (ns)": "33536",
+          "Instances": "1",
+          "Avg (ns)": "33536.0",
+          "Med (ns)": "33536.0",
+          "Min (ns)": "33536",
+          "Max (ns)": "33536",
+          "StdDev (ns)": "0.0",
+          "Name": "sparseLoss(float *, long long *, const unsigned char *, int)"
+        }
+      ],
+      "cuda_gpu_mem_time_sum": [
+        {
+          "Time (%)": "96.6",
+          "Total Time (ns)": "13745253",
+          "Count": "6915",
+          "Avg (ns)": "1987.7",
+          "Med (ns)": "1983.0",
+          "Min (ns)": "1919",
+          "Max (ns)": "2912",
+          "StdDev (ns)": "81.7",
+          "Operation": "[CUDA memset]"
+        },
+        {
+          "Time (%)": "2.1",
+          "Total Time (ns)": "295618",
+          "Count": "3",
+          "Avg (ns)": "98539.3",
+          "Med (ns)": "59616.0",
+          "Min (ns)": "1793",
+          "Max (ns)": "234209",
+          "StdDev (ns)": "120998.2",
+          "Operation": "[CUDA memcpy Device-to-Host]"
+        },
+        {
+          "Time (%)": "1.4",
+          "Total Time (ns)": "192448",
+          "Count": "2",
+          "Avg (ns)": "96224.0",
+          "Med (ns)": "96224.0",
+          "Min (ns)": "7552",
+          "Max (ns)": "184896",
+          "StdDev (ns)": "125401.1",
+          "Operation": "[CUDA memcpy Host-to-Device]"
+        }
+      ]
+    },
+    "adam_optimized": {
+      "interval_ms": 2180.350281,
+      "covered_interval_pct": 94.65067237056485,
+      "gaps_ms": 116.63408,
+      "cuda_api_sum": [
+        {
+          "Time (%)": "59.9",
+          "Total Time (ns)": "1302199507",
+          "Num Calls": "16002",
+          "Avg (ns)": "81377.3",
+          "Med (ns)": "6262.0",
+          "Min (ns)": "2736",
+          "Max (ns)": "1828952",
+          "StdDev (ns)": "176883.7",
+          "Name": "cudaLaunchKernel"
+        },
+        {
+          "Time (%)": "35.8",
+          "Total Time (ns)": "777834055",
+          "Num Calls": "8001",
+          "Avg (ns)": "97217.1",
+          "Med (ns)": "69822.0",
+          "Min (ns)": "2945",
+          "Max (ns)": "1783014",
+          "StdDev (ns)": "185571.2",
+          "Name": "cudaMemsetAsync"
+        },
+        {
+          "Time (%)": "4.3",
+          "Total Time (ns)": "94108202",
+          "Num Calls": "1",
+          "Avg (ns)": "94108202.0",
+          "Med (ns)": "94108202.0",
+          "Min (ns)": "94108202",
+          "Max (ns)": "94108202",
+          "StdDev (ns)": "0.0",
+          "Name": "cudaEventSynchronize"
+        },
+        {
+          "Time (%)": "0.0",
+          "Total Time (ns)": "66676",
+          "Num Calls": "2",
+          "Avg (ns)": "33338.0",
+          "Med (ns)": "33338.0",
+          "Min (ns)": "15750",
+          "Max (ns)": "50926",
+          "StdDev (ns)": "24873.2",
+          "Name": "cudaEventRecord"
+        },
+        {
+          "Time (%)": "0.0",
+          "Total Time (ns)": "18625",
+          "Num Calls": "1",
+          "Avg (ns)": "18625.0",
+          "Med (ns)": "18625.0",
+          "Min (ns)": "18625",
+          "Max (ns)": "18625",
+          "StdDev (ns)": "0.0",
+          "Name": "cuProfilerStart"
+        }
+      ],
+      "cuda_gpu_kern_sum": [
+        {
+          "Time (%)": "61.6",
+          "Total Time (ns)": "1261028817",
+          "Instances": "8000",
+          "Avg (ns)": "157628.6",
+          "Med (ns)": "120160.0",
+          "Min (ns)": "112801",
+          "Max (ns)": "1827328",
+          "StdDev (ns)": "206576.9",
+          "Name": "refineAdamScaledWarp(Packed *, const float *, const unsigned char *, float *, float *, int, int, int, int, int, float, const int *)"
+        },
+        {
+          "Time (%)": "38.4",
+          "Total Time (ns)": "786507566",
+          "Instances": "8000",
+          "Avg (ns)": "98313.4",
+          "Med (ns)": "70880.0",
+          "Min (ns)": "64800",
+          "Max (ns)": "1783328",
+          "StdDev (ns)": "175271.9",
+          "Name": "renderWarp(Packed *, float *, int, int, int)"
+        },
+        {
+          "Time (%)": "0.0",
+          "Total Time (ns)": "63296",
+          "Instances": "1",
+          "Avg (ns)": "63296.0",
+          "Med (ns)": "63296.0",
+          "Min (ns)": "63296",
+          "Max (ns)": "63296",
+          "StdDev (ns)": "0.0",
+          "Name": "renderSparse(Packed *, float *, int, int, int)"
+        },
+        {
+          "Time (%)": "0.0",
+          "Total Time (ns)": "19264",
+          "Instances": "1",
+          "Avg (ns)": "19264.0",
+          "Med (ns)": "19264.0",
+          "Min (ns)": "19264",
+          "Max (ns)": "19264",
+          "StdDev (ns)": "0.0",
+          "Name": "sparseLoss(float *, long long *, const unsigned char *, int)"
+        }
+      ],
+      "cuda_gpu_mem_time_sum": [
+        {
+          "Time (%)": "100.0",
+          "Total Time (ns)": "16097258",
+          "Count": "8001",
+          "Avg (ns)": "2011.9",
+          "Med (ns)": "1984.0",
+          "Min (ns)": "1920",
+          "Max (ns)": "2720",
+          "StdDev (ns)": "98.2",
+          "Operation": "[CUDA memset]"
+        }
+      ]
+    },
+    "adam_graph32": {
+      "interval_ms": 2177.283097,
+      "covered_interval_pct": 98.19355176852319,
+      "gaps_ms": 39.331492,
+      "cuda_api_sum": [
+        {
+          "Time (%)": "70.0",
+          "Total Time (ns)": "1523921715",
+          "Num Calls": "250",
+          "Avg (ns)": "6095686.9",
+          "Med (ns)": "8079781.5",
+          "Min (ns)": "66777",
+          "Max (ns)": "13619041",
+          "StdDev (ns)": "4236793.0",
+          "Name": "cudaGraphLaunch_v10000"
+        },
+        {
+          "Time (%)": "29.9",
+          "Total Time (ns)": "650129925",
+          "Num Calls": "1",
+          "Avg (ns)": "650129925.0",
+          "Med (ns)": "650129925.0",
+          "Min (ns)": "650129925",
+          "Max (ns)": "650129925",
+          "StdDev (ns)": "0.0",
+          "Name": "cudaEventSynchronize"
+        },
+        {
+          "Time (%)": "0.1",
+          "Total Time (ns)": "1712421",
+          "Num Calls": "1",
+          "Avg (ns)": "1712421.0",
+          "Med (ns)": "1712421.0",
+          "Min (ns)": "1712421",
+          "Max (ns)": "1712421",
+          "StdDev (ns)": "0.0",
+          "Name": "cudaMemsetAsync"
+        },
+        {
+          "Time (%)": "0.0",
+          "Total Time (ns)": "944322",
+          "Num Calls": "2",
+          "Avg (ns)": "472161.0",
+          "Med (ns)": "472161.0",
+          "Min (ns)": "442680",
+          "Max (ns)": "501642",
+          "StdDev (ns)": "41692.4",
+          "Name": "cudaLaunchKernel"
+        },
+        {
+          "Time (%)": "0.0",
+          "Total Time (ns)": "599017",
+          "Num Calls": "2",
+          "Avg (ns)": "299508.5",
+          "Med (ns)": "299508.5",
+          "Min (ns)": "35267",
+          "Max (ns)": "563750",
+          "StdDev (ns)": "373693.9",
+          "Name": "cudaEventRecord"
+        },
+        {
+          "Time (%)": "0.0",
+          "Total Time (ns)": "18856",
+          "Num Calls": "1",
+          "Avg (ns)": "18856.0",
+          "Med (ns)": "18856.0",
+          "Min (ns)": "18856",
+          "Max (ns)": "18856",
+          "StdDev (ns)": "0.0",
+          "Name": "cuProfilerStart"
+        }
+      ],
+      "cuda_gpu_kern_sum": [
+        {
+          "Time (%)": "63.2",
+          "Total Time (ns)": "1334285245",
+          "Instances": "8000",
+          "Avg (ns)": "166785.7",
+          "Med (ns)": "120352.5",
+          "Min (ns)": "113760",
+          "Max (ns)": "1857377",
+          "StdDev (ns)": "231175.9",
+          "Name": "refineAdamScaledWarp(Packed *, const float *, const unsigned char *, float *, float *, int, int, int, int, int, float, const int *)"
+        },
+        {
+          "Time (%)": "36.8",
+          "Total Time (ns)": "776517799",
+          "Instances": "8000",
+          "Avg (ns)": "97064.7",
+          "Med (ns)": "71008.0",
+          "Min (ns)": "65728",
+          "Max (ns)": "1512608",
+          "StdDev (ns)": "168248.0",
+          "Name": "renderWarp(Packed *, float *, int, int, int)"
+        },
+        {
+          "Time (%)": "0.0",
+          "Total Time (ns)": "697255",
+          "Instances": "250",
+          "Avg (ns)": "2789.0",
+          "Med (ns)": "2608.5",
+          "Min (ns)": "992",
+          "Max (ns)": "7264",
+          "StdDev (ns)": "864.5",
+          "Name": "advanceGraph(int *, int)"
+        },
+        {
+          "Time (%)": "0.0",
+          "Total Time (ns)": "62400",
+          "Instances": "1",
+          "Avg (ns)": "62400.0",
+          "Med (ns)": "62400.0",
+          "Min (ns)": "62400",
+          "Max (ns)": "62400",
+          "StdDev (ns)": "0.0",
+          "Name": "renderSparse(Packed *, float *, int, int, int)"
+        },
+        {
+          "Time (%)": "0.0",
+          "Total Time (ns)": "19168",
+          "Instances": "1",
+          "Avg (ns)": "19168.0",
+          "Med (ns)": "19168.0",
+          "Min (ns)": "19168",
+          "Max (ns)": "19168",
+          "StdDev (ns)": "0.0",
+          "Name": "sparseLoss(float *, long long *, const unsigned char *, int)"
+        }
+      ],
+      "cuda_gpu_mem_time_sum": [
+        {
+          "Time (%)": "100.0",
+          "Total Time (ns)": "26369738",
+          "Count": "8001",
+          "Avg (ns)": "3295.8",
+          "Med (ns)": "2336.0",
+          "Min (ns)": "1951",
+          "Max (ns)": "1361057",
+          "StdDev (ns)": "32642.1",
+          "Operation": "[CUDA memset]"
+        }
+      ]
+    }
+  },
+  "ncu": {
+    "adam_ncu": {
+      "refineAdamScaled": {
+        "metrics": {
+          "DRAM Frequency": {
+            "value": "7,522,895,769.73",
+            "unit": "cycle/second"
+          },
+          "SM Frequency": {
+            "value": "1,853,670,364.52",
+            "unit": "cycle/second"
+          },
+          "Elapsed Cycles": {
+            "value": "274,147",
+            "unit": "cycle"
+          },
+          "Memory Throughput": {
+            "value": "25,523,331,879.63",
+            "unit": "byte/second"
+          },
+          "DRAM Throughput": {
+            "value": "5.30",
+            "unit": "%"
+          },
+          "Duration": {
+            "value": "146,752",
+            "unit": "nsecond"
+          },
+          "L1/TEX Cache Throughput": {
+            "value": "62.71",
+            "unit": "%"
+          },
+          "L2 Cache Throughput": {
+            "value": "11.67",
+            "unit": "%"
+          },
+          "SM Active Cycles": {
+            "value": "264,879.48",
+            "unit": "cycle"
+          },
+          "Compute (SM) Throughput": {
+            "value": "65.95",
+            "unit": "%"
+          },
+          "Executed Ipc Active": {
+            "value": "2.68",
+            "unit": "inst/cycle"
+          },
+          "Executed Ipc Elapsed": {
+            "value": "2.62",
+            "unit": "inst/cycle"
+          },
+          "Issue Slots Busy": {
+            "value": "67.05",
+            "unit": "%"
+          },
+          "Issued Ipc Active": {
+            "value": "2.68",
+            "unit": "inst/cycle"
+          },
+          "SM Busy": {
+            "value": "67.39",
+            "unit": "%"
+          },
+          "Mem Busy": {
+            "value": "31.37",
+            "unit": "%"
+          },
+          "Max Bandwidth": {
+            "value": "56.43",
+            "unit": "%"
+          },
+          "L1/TEX Hit Rate": {
+            "value": "68.35",
+            "unit": "%"
+          },
+          "L2 Hit Rate": {
+            "value": "95.48",
+            "unit": "%"
+          },
+          "Mem Pipes Busy": {
+            "value": "56.43",
+            "unit": "%"
+          },
+          "Warp Cycles Per Issued Instruction": {
+            "value": "9.40",
+            "unit": "cycle"
+          },
+          "Warp Cycles Per Executed Instruction": {
+            "value": "9.41",
+            "unit": "cycle"
+          },
+          "Avg. Active Threads Per Warp": {
+            "value": "19.15",
+            "unit": ""
+          },
+          "Avg. Not Predicated Off Threads Per Warp": {
+            "value": "17.96",
+            "unit": ""
+          },
+          "Avg. Executed Instructions Per Scheduler": {
+            "value": "177,534.01",
+            "unit": "inst"
+          },
+          "Executed Instructions": {
+            "value": "34,086,530",
+            "unit": "inst"
+          },
+          "Avg. Issued Instructions Per Scheduler": {
+            "value": "177,596.11",
+            "unit": "inst"
+          },
+          "Issued Instructions": {
+            "value": "34,098,453",
+            "unit": "inst"
+          }
+        },
+        "rules": [
+          "Compute and Memory are well-balanced: To reduce runtime, both computation and memory traffic must be reduced. Check both the Compute Workload Analysis and Memory Workload Analysis sections.",
+          "FMA is the highest-utilized pipeline (67.4%) based on active cycles, taking into account the rates of its different instructions. It executes 32-bit floating point (FADD, FMUL, FMAD, ...) and integer (IMUL, IMAD) operations. The pipeline is well-utilized, but might become a bottleneck if more work is added. Based on the number of executed instructions, the highest utilized pipeline (67.4%) is FMA. It executes 32-bit floating point (FADD, FMUL, FMAD, ...) and integer (IMUL, IMAD) operations. Comparing the two, the overall pipeline utilization appears to be caused by frequent, low-latency instructions. See the Kernel Profiling Guide (https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html#metrics-decoder) or hover over the pipeline name to understand the workloads handled by each pipeline. The Instruction Statistics section shows the mix of executed instructions in this kernel. Check the Warp State Statistics section for which reasons cause warps to stall.",
+          "The optional metric smsp__pcsamp_sample_count could not be found. Collecting it as an additional metric could enable the rule to provide more guidance.",
+          "Instructions are executed in warps, which are groups of 32 threads. Optimal instruction throughput is achieved if all 32 threads of a warp execute the same instruction. The chosen launch configuration, early thread completion, and divergent flow control can significantly lower the number of active threads in a warp per cycle. This kernel achieves an average of 19.2 threads being active per cycle. This is further reduced to 18.0 threads per warp due to predication. The compiler may use predication to avoid an actual branch. Instead, all instructions are scheduled, but a per-thread condition code or predicate controls which threads execute the instructions. Try to avoid different execution paths within a warp when possible.",
+          "This kernel executes 3346645 fused and 12118694 non-fused FP32 instructions. By converting pairs of non-fused instructions to their fused (https://docs.nvidia.com/cuda/floating-point/#cuda-and-floating-point), higher-throughput equivalent, the achieved FP32 performance could be increased by up to 39% (relative to its current performance). Check the Source page to identify where this kernel executes FP32 instructions."
+        ]
+      },
+      "renderSparse": {
+        "metrics": {
+          "DRAM Frequency": {
+            "value": "7,562,737,642.59",
+            "unit": "cycle/second"
+          },
+          "SM Frequency": {
+            "value": "1,850,507,961.03",
+            "unit": "cycle/second"
+          },
+          "Elapsed Cycles": {
+            "value": "125,527",
+            "unit": "cycle"
+          },
+          "Memory Throughput": {
+            "value": "44,101,711,026.62",
+            "unit": "byte/second"
+          },
+          "DRAM Throughput": {
+            "value": "9.11",
+            "unit": "%"
+          },
+          "Duration": {
+            "value": "67,328",
+            "unit": "nsecond"
+          },
+          "L1/TEX Cache Throughput": {
+            "value": "36.04",
+            "unit": "%"
+          },
+          "L2 Cache Throughput": {
+            "value": "28.26",
+            "unit": "%"
+          },
+          "SM Active Cycles": {
+            "value": "117,528.10",
+            "unit": "cycle"
+          },
+          "Compute (SM) Throughput": {
+            "value": "71.63",
+            "unit": "%"
+          },
+          "Executed Ipc Active": {
+            "value": "3.03",
+            "unit": "inst/cycle"
+          },
+          "Executed Ipc Elapsed": {
+            "value": "2.85",
+            "unit": "inst/cycle"
+          },
+          "Issue Slots Busy": {
+            "value": "76.17",
+            "unit": "%"
+          },
+          "Issued Ipc Active": {
+            "value": "3.05",
+            "unit": "inst/cycle"
+          },
+          "SM Busy": {
+            "value": "76.17",
+            "unit": "%"
+          },
+          "Mem Busy": {
+            "value": "23.72",
+            "unit": "%"
+          },
+          "Max Bandwidth": {
+            "value": "28.26",
+            "unit": "%"
+          },
+          "L1/TEX Hit Rate": {
+            "value": "39.39",
+            "unit": "%"
+          },
+          "L2 Hit Rate": {
+            "value": "95.52",
+            "unit": "%"
+          },
+          "Mem Pipes Busy": {
+            "value": "22.60",
+            "unit": "%"
+          },
+          "Warp Cycles Per Issued Instruction": {
+            "value": "8.64",
+            "unit": "cycle"
+          },
+          "Warp Cycles Per Executed Instruction": {
+            "value": "8.68",
+            "unit": "cycle"
+          },
+          "Avg. Active Threads Per Warp": {
+            "value": "26.73",
+            "unit": ""
+          },
+          "Avg. Not Predicated Off Threads Per Warp": {
+            "value": "24.78",
+            "unit": ""
+          },
+          "Avg. Executed Instructions Per Scheduler": {
+            "value": "89,052.21",
+            "unit": "inst"
+          },
+          "Executed Instructions": {
+            "value": "17,098,025",
+            "unit": "inst"
+          },
+          "Avg. Issued Instructions Per Scheduler": {
+            "value": "89,518.78",
+            "unit": "inst"
+          },
+          "Issued Instructions": {
+            "value": "17,187,605",
+            "unit": "inst"
+          }
+        },
+        "rules": [
+          "Compute is more heavily utilized than Memory: Look at the Compute Workload Analysis section to see what the compute pipelines are spending their time doing. Also, consider whether any computation is redundant and could be reduced or moved to look-up tables.",
+          "ALU is the highest-utilized pipeline (54.6%) based on active cycles, taking into account the rates of its different instructions. It executes integer and logic operations. It is well-utilized, but should not be a bottleneck.",
+          "The optional metric smsp__pcsamp_sample_count could not be found. Collecting it as an additional metric could enable the rule to provide more guidance.",
+          "This kernel executes 684212 fused and 3386026 non-fused FP32 instructions. By converting pairs of non-fused instructions to their fused (https://docs.nvidia.com/cuda/floating-point/#cuda-and-floating-point), higher-throughput equivalent, the achieved FP32 performance could be increased by up to 42% (relative to its current performance). Check the Source page to identify where this kernel executes FP32 instructions."
+        ]
+      }
+    },
+    "optimized_ncu": {
+      "renderWarp": {
+        "metrics": {
+          "DRAM Frequency": {
+            "value": "7,487,870,619.95",
+            "unit": "cycle/second"
+          },
+          "SM Frequency": {
+            "value": "1,861,892,595.09",
+            "unit": "cycle/second"
+          },
+          "Elapsed Cycles": {
+            "value": "133,467",
+            "unit": "cycle"
+          },
+          "Memory Throughput": {
+            "value": "27.54",
+            "unit": "%"
+          },
+          "DRAM Throughput": {
+            "value": "8.74",
+            "unit": "%"
+          },
+          "Duration": {
+            "value": "71,232",
+            "unit": "nsecond"
+          },
+          "L1/TEX Cache Throughput": {
+            "value": "34.92",
+            "unit": "%"
+          },
+          "L2 Cache Throughput": {
+            "value": "27.54",
+            "unit": "%"
+          },
+          "SM Active Cycles": {
+            "value": "114,671.77",
+            "unit": "cycle"
+          },
+          "Compute (SM) Throughput": {
+            "value": "56.55",
+            "unit": "%"
+          },
+          "Executed Ipc Active": {
+            "value": "2.61",
+            "unit": "inst/cycle"
+          },
+          "Executed Ipc Elapsed": {
+            "value": "2.24",
+            "unit": "inst/cycle"
+          },
+          "Issue Slots Busy": {
+            "value": "65.90",
+            "unit": "%"
+          },
+          "Issued Ipc Active": {
+            "value": "2.64",
+            "unit": "inst/cycle"
+          },
+          "SM Busy": {
+            "value": "65.90",
+            "unit": "%"
+          },
+          "Warp Cycles Per Issued Instruction": {
+            "value": "7.75",
+            "unit": "cycle"
+          },
+          "Warp Cycles Per Executed Instruction": {
+            "value": "7.84",
+            "unit": "cycle"
+          },
+          "Avg. Active Threads Per Warp": {
+            "value": "26.02",
+            "unit": ""
+          },
+          "Avg. Not Predicated Off Threads Per Warp": {
+            "value": "23.82",
+            "unit": ""
+          },
+          "Avg. Executed Instructions Per Scheduler": {
+            "value": "74,726.28",
+            "unit": "inst"
+          },
+          "Executed Instructions": {
+            "value": "14,347,446",
+            "unit": "inst"
+          },
+          "Avg. Issued Instructions Per Scheduler": {
+            "value": "75,563.40",
+            "unit": "inst"
+          },
+          "Issued Instructions": {
+            "value": "14,508,173",
+            "unit": "inst"
+          },
+          "Block Limit SM": {
+            "value": "16",
+            "unit": "block"
+          },
+          "Block Limit Registers": {
+            "value": "16",
+            "unit": "block"
+          },
+          "Block Limit Shared Mem": {
+            "value": "16",
+            "unit": "block"
+          },
+          "Block Limit Warps": {
+            "value": "8",
+            "unit": "block"
+          },
+          "Theoretical Active Warps per SM": {
+            "value": "32",
+            "unit": "warp"
+          },
+          "Theoretical Occupancy": {
+            "value": "100",
+            "unit": "%"
+          },
+          "Achieved Occupancy": {
+            "value": "63.88",
+            "unit": "%"
+          },
+          "Achieved Active Warps Per SM": {
+            "value": "20.44",
+            "unit": "warp"
+          }
+        },
+        "rules": [
+          "This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.",
+          "FMA is the highest-utilized pipeline (49.9%) based on active cycles, taking into account the rates of its different instructions. It executes 32-bit floating point (FADD, FMUL, FMAD, ...) and integer (IMUL, IMAD) operations. It is well-utilized, but should not be a bottleneck.",
+          "The optional metric smsp__pcsamp_sample_count could not be found. Collecting it as an additional metric could enable the rule to provide more guidance.",
+          "Instructions are executed in warps, which are groups of 32 threads. Optimal instruction throughput is achieved if all 32 threads of a warp execute the same instruction. The chosen launch configuration, early thread completion, and divergent flow control can significantly lower the number of active threads in a warp per cycle. This kernel achieves an average of 26.0 threads being active per cycle. This is further reduced to 23.8 threads per warp due to predication. The compiler may use predication to avoid an actual branch. Instead, all instructions are scheduled, but a per-thread condition code or predicate controls which threads execute the instructions. Try to avoid different execution paths within a warp when possible.",
+          "This kernel executes 1246023 fused and 2064891 non-fused FP32 instructions. By converting pairs of non-fused instructions to their fused (https://docs.nvidia.com/cuda/floating-point/#cuda-and-floating-point), higher-throughput equivalent, the achieved FP32 performance could be increased by up to 31% (relative to its current performance). Check the Source page to identify where this kernel executes FP32 instructions.",
+          "The difference between calculated theoretical (100.0%) and measured achieved occupancy (63.9%) can be the result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on optimizing occupancy."
+        ]
+      },
+      "refineAdamScaledWarp": {
+        "metrics": {
+          "DRAM Frequency": {
+            "value": "7,491,542,798.56",
+            "unit": "cycle/second"
+          },
+          "SM Frequency": {
+            "value": "1,865,748,601.14",
+            "unit": "cycle/second"
+          },
+          "Elapsed Cycles": {
+            "value": "234,499",
+            "unit": "cycle"
+          },
+          "Memory Throughput": {
+            "value": "24.71",
+            "unit": "%"
+          },
+          "DRAM Throughput": {
+            "value": "6.01",
+            "unit": "%"
+          },
+          "Duration": {
+            "value": "124,864",
+            "unit": "nsecond"
+          },
+          "L1/TEX Cache Throughput": {
+            "value": "32.31",
+            "unit": "%"
+          },
+          "L2 Cache Throughput": {
+            "value": "12.95",
+            "unit": "%"
+          },
+          "SM Active Cycles": {
+            "value": "205,489.02",
+            "unit": "cycle"
+          },
+          "Compute (SM) Throughput": {
+            "value": "59.64",
+            "unit": "%"
+          },
+          "Executed Ipc Active": {
+            "value": "2.68",
+            "unit": "inst/cycle"
+          },
+          "Executed Ipc Elapsed": {
+            "value": "2.38",
+            "unit": "inst/cycle"
+          },
+          "Issue Slots Busy": {
+            "value": "67.13",
+            "unit": "%"
+          },
+          "Issued Ipc Active": {
+            "value": "2.69",
+            "unit": "inst/cycle"
+          },
+          "SM Busy": {
+            "value": "67.13",
+            "unit": "%"
+          },
+          "Warp Cycles Per Issued Instruction": {
+            "value": "8.94",
+            "unit": "cycle"
+          },
+          "Warp Cycles Per Executed Instruction": {
+            "value": "8.95",
+            "unit": "cycle"
+          },
+          "Avg. Active Threads Per Warp": {
+            "value": "16.14",
+            "unit": ""
+          },
+          "Avg. Not Predicated Off Threads Per Warp": {
+            "value": "15.05",
+            "unit": ""
+          },
+          "Avg. Executed Instructions Per Scheduler": {
+            "value": "137,891.80",
+            "unit": "inst"
+          },
+          "Executed Instructions": {
+            "value": "26,475,226",
+            "unit": "inst"
+          },
+          "Avg. Issued Instructions Per Scheduler": {
+            "value": "137,940.03",
+            "unit": "inst"
+          },
+          "Issued Instructions": {
+            "value": "26,484,486",
+            "unit": "inst"
+          },
+          "Block Limit SM": {
+            "value": "16",
+            "unit": "block"
+          },
+          "Block Limit Registers": {
+            "value": "9",
+            "unit": "block"
+          },
+          "Block Limit Shared Mem": {
+            "value": "16",
+            "unit": "block"
+          },
+          "Block Limit Warps": {
+            "value": "8",
+            "unit": "block"
+          },
+          "Theoretical Active Warps per SM": {
+            "value": "32",
+            "unit": "warp"
+          },
+          "Theoretical Occupancy": {
+            "value": "100",
+            "unit": "%"
+          },
+          "Achieved Occupancy": {
+            "value": "74.99",
+            "unit": "%"
+          },
+          "Achieved Active Warps Per SM": {
+            "value": "24.00",
+            "unit": "warp"
+          }
+        },
+        "rules": [
+          "This kernel exhibits low compute throughput and memory bandwidth utilization relative to the peak performance of this device. Achieved compute throughput and/or memory bandwidth below 60.0% of peak typically indicate latency issues. Look at Scheduler Statistics and Warp State Statistics for potential reasons.",
+          "FMA is the highest-utilized pipeline (66.0%) based on active cycles, taking into account the rates of its different instructions. It executes 32-bit floating point (FADD, FMUL, FMAD, ...) and integer (IMUL, IMAD) operations. The pipeline is well-utilized, but might become a bottleneck if more work is added. Based on the number of executed instructions, the highest utilized pipeline (66.0%) is FMA. It executes 32-bit floating point (FADD, FMUL, FMAD, ...) and integer (IMUL, IMAD) operations. Comparing the two, the overall pipeline utilization appears to be caused by frequent, low-latency instructions. See the Kernel Profiling Guide (https://docs.nvidia.com/nsight-compute/ProfilingGuide/index.html#metrics-decoder) or hover over the pipeline name to understand the workloads handled by each pipeline. The Instruction Statistics section shows the mix of executed instructions in this kernel. Check the Warp State Statistics section for which reasons cause warps to stall.",
+          "The optional metric smsp__pcsamp_sample_count could not be found. Collecting it as an additional metric could enable the rule to provide more guidance.",
+          "Instructions are executed in warps, which are groups of 32 threads. Optimal instruction throughput is achieved if all 32 threads of a warp execute the same instruction. The chosen launch configuration, early thread completion, and divergent flow control can significantly lower the number of active threads in a warp per cycle. This kernel achieves an average of 16.1 threads being active per cycle. This is further reduced to 15.0 threads per warp due to predication. The compiler may use predication to avoid an actual branch. Instead, all instructions are scheduled, but a per-thread condition code or predicate controls which threads execute the instructions. Try to avoid different execution paths within a warp when possible.",
+          "This kernel executes 5441048 fused and 6137683 non-fused FP32 instructions. By converting pairs of non-fused instructions to their fused (https://docs.nvidia.com/cuda/floating-point/#cuda-and-floating-point), higher-throughput equivalent, the achieved FP32 performance could be increased by up to 27% (relative to its current performance). Check the Source page to identify where this kernel executes FP32 instructions.",
+          "The difference between calculated theoretical (100.0%) and measured achieved occupancy (75.0%) can be the result of warp scheduling overheads or workload imbalances during the kernel execution. Load imbalances can occur between warps within a block as well as across blocks of the same kernel. See the CUDA Best Practices Guide (https://docs.nvidia.com/cuda/cuda-c-best-practices-guide/index.html#occupancy) for more details on optimizing occupancy."
+        ]
+      }
+    }
+  },
+  "notes": [
+    "Profiler runs are diagnostic, not acceptance timings.",
+    "Kernel/memset interval coverage is not SM occupancy or MFU. Runtime API duration includes queue backpressure.",
+    "GPU clocks and caches left uncontrolled; other display workloads retained."
+  ],
+  "versions": "NVIDIA Nsight Systems version 2023.4.4.54-234433681190v0\nNVIDIA (R) Nsight Compute Command Line Profiler\nCopyright (c) 2018-2024 NVIDIA Corporation\nVersion 2024.1.1.0 (build 33998838) (public-release)\n"
+}

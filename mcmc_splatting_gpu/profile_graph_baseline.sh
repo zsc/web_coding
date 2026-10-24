@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+set -euo pipefail
+cd "$(dirname "$0")"
+ssh desk 'cd mcmc_splatting_gpu_20261024 && mkdir -p results/graph_profile && nsys profile --force-overwrite=true --sample=none --cpuctxsw=none --trace=cuda,nvtx -o results/graph_profile/adam_eager ./muon_fit --mode 0 --lr 1 --steps 8000 --output results/graph_profile/adam_eager > results/graph_profile/adam_nsys.log 2>&1 && nsys stats --report cuda_api_sum,cuda_gpu_kern_sum,cuda_gpu_mem_time_sum --format csv --output results/graph_profile/adam_eager results/graph_profile/adam_eager.nsys-rep > results/graph_profile/adam_stats.log 2>&1'
+ssh desk 'cd mcmc_splatting_gpu_20261024 && nsys profile --force-overwrite=true --sample=none --cpuctxsw=none --trace=cuda,nvtx -o results/graph_profile/muon_eager ./muon_fit --mode 1 --lr 0.25 --steps 6912 --output results/graph_profile/muon_eager > results/graph_profile/muon_nsys.log 2>&1 && nsys stats --report cuda_api_sum,cuda_gpu_kern_sum,cuda_gpu_mem_time_sum --format csv --output results/graph_profile/muon_eager results/graph_profile/muon_eager.nsys-rep > results/graph_profile/muon_stats.log 2>&1'
+ssh desk 'cd mcmc_splatting_gpu_20261024 && sudo -n /opt/nvidia/nsight-compute/2024.1.1/ncu --target-processes all --kernel-name "regex:renderSparse|refineAdamScaled" --launch-skip 8000 --launch-count 2 --section SpeedOfLight --section ComputeWorkloadAnalysis --section InstructionStats --section WarpStateStats --section MemoryWorkloadAnalysis --clock-control none --cache-control none --csv ./muon_fit --mode 0 --steps 8000 --output results/graph_profile/adam_ncu > results/graph_profile/adam_ncu.csv 2> results/graph_profile/adam_ncu.log'
+scp -q 'desk:mcmc_splatting_gpu_20261024/results/graph_profile/*' results/desk_graph/
+echo COPIED

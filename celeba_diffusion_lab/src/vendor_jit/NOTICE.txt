@@ -1,0 +1,7 @@
+Exact local-source copies for the user's requested comparison, 2026-10-24:
+  /Users/zsc/d/cstft_jit_arc2face/src/jit_audio/config.py
+  /Users/zsc/d/cstft_jit_arc2face/src/jit_audio/models/jit_stft.py
+Original module headers and implementation retained without edits.
+The original files cite JiT (https://github.com/LTH14/JiT).
+These copies are used in a local experiment; no external publication is performed.
+Source hashes are recorded in source/jit_vendor_manifest.json.

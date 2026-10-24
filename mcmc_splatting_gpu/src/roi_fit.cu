@@ -3,9 +3,12 @@
 #include "desk_benchmark.cu"
 #undef main
 #include <cstdio>
+#ifndef ADAM_ROI_SIGMA
+#define ADAM_ROI_SIGMA 6.0f
+#endif
 struct Packed {float x,y,sx,sy,angle,a,co,si,ix,iy,rx,ry;};
-HD Packed packed(Gaussian<float> a){Packed g;g.x=a.v[0];g.y=a.v[1];g.sx=a.v[2];g.sy=a.v[3];g.angle=a.v[4];g.a=a.v[5];g.co=cosf(-g.angle);g.si=sinf(-g.angle);g.ix=1/g.sx;g.iy=1/g.sy;g.rx=6*sqrtf(g.sx*g.sx*g.co*g.co+g.sy*g.sy*g.si*g.si);g.ry=6*sqrtf(g.sx*g.sx*g.si*g.si+g.sy*g.sy*g.co*g.co);return g;}
-HD float sparseValue(Packed g,int x,int y){float dx=x-g.x,dy=y-g.y,u=(dx*g.co-dy*g.si)*g.ix,v=(dx*g.si+dy*g.co)*g.iy,q=u*u+v*v;return q>36?0:g.a*expf(-.5f*q);}
+HD Packed packed(Gaussian<float> a){Packed g;g.x=a.v[0];g.y=a.v[1];g.sx=a.v[2];g.sy=a.v[3];g.angle=a.v[4];g.a=a.v[5];g.co=cosf(-g.angle);g.si=sinf(-g.angle);g.ix=1/g.sx;g.iy=1/g.sy;g.rx=ADAM_ROI_SIGMA*sqrtf(g.sx*g.sx*g.co*g.co+g.sy*g.sy*g.si*g.si);g.ry=ADAM_ROI_SIGMA*sqrtf(g.sx*g.sx*g.si*g.si+g.sy*g.sy*g.co*g.co);return g;}
+HD float sparseValue(Packed g,int x,int y){float dx=x-g.x,dy=y-g.y,u=(dx*g.co-dy*g.si)*g.ix,v=(dx*g.si+dy*g.co)*g.iy,q=u*u+v*v;return q>ADAM_ROI_SIGMA*ADAM_ROI_SIGMA?0:g.a*expf(-.5f*q);}
 constexpr int THREADS=128;
 __global__ void sparseInit(Packed* gs,float* sum,const unsigned char* target,int W,int H,int N){
  int p=blockIdx.x*blockDim.x+threadIdx.x,c=blockIdx.y,P=W*H;if(p>=P)return;float s=0;
@@ -47,7 +50,7 @@ __global__ void refineAdam(Packed* gs,const float* sum,const unsigned char* targ
  float grad[6]={0,0,0,0,0,0};
  for(int q=tid;q<rw*rh;q+=THREADS){
   int x=x0+q%rw,y=y0+q/rw,p=y*W+x;float dx=x-g.x,dy=y-g.y,u=dx*g.co-dy*g.si,w=dx*g.si+dy*g.co,ux=u*g.ix,wy=w*g.iy,qq=ux*ux+wy*wy;
-  if(qq<=36){float e=expf(-.5f*qq),f=g.a*e,residual=sum[c*W*H+p]-target[p],d=2*residual*f,ix2=g.ix*g.ix,iy2=g.iy*g.iy;
+  if(qq<=ADAM_ROI_SIGMA*ADAM_ROI_SIGMA){float e=expf(-.5f*qq),f=g.a*e,residual=sum[c*W*H+p]-target[p],d=2*residual*f,ix2=g.ix*g.ix,iy2=g.iy*g.iy;
    grad[0]+=d*(u*g.co*ix2+w*g.si*iy2);grad[1]+=d*(-u*g.si*ix2+w*g.co*iy2);grad[2]+=d*ux*ux;grad[3]+=d*wy*wy;grad[4]+=d*u*w*(iy2-ix2);grad[5]+=2*residual*e;
   }
  }
@@ -60,6 +63,7 @@ __global__ void refineAdam(Packed* gs,const float* sum,const unsigned char* targ
   Gaussian<float> a{{bound(p[0],0.f,float(W)),bound(p[1],0.f,float(H)),bound(expf(p[2]),.1f,32.f),bound(expf(p[3]),.1f,32.f),p[4],bound(p[5],0.f,255.f)}};gs[index]=packed(a);
  }
 }
+#ifndef ROI_LIBRARY_ONLY
 int main(int argc,char** argv){try{
  auto entire=Clock::now();std::string input="zhou_target.pgm",out="results/roi";int N=800,C=8,steps=1000000,adamSteps=0;float T0=2,T1=.0005;
  for(int i=1;i<argc;i++){std::string a=argv[i];if(i+1>=argc)throw std::runtime_error("missing value");std::string v=argv[++i];if(a=="--input")input=v;else if(a=="--output")out=v;else if(a=="--gaussians")N=std::stoi(v);else if(a=="--chains")C=std::stoi(v);else if(a=="--steps")steps=std::stoi(v);else if(a=="--adam-steps")adamSteps=std::stoi(v);else if(a=="--initial-temperature")T0=std::stof(v);else if(a=="--final-temperature")T1=std::stof(v);else throw std::runtime_error("unknown option");}
@@ -87,9 +91,10 @@ int main(int argc,char** argv){try{
  if(cachedSse!=losses[winner])throw std::runtime_error("ROI delta-SSE invariant failed");
  std::ofstream pgm(out+".pgm",std::ios::binary);if(!pgm)throw std::runtime_error("cannot write PGM");pgm<<"P5\n"<<W<<" "<<H<<"\n255\n";pgm.write((char*)image.data(),P);pgm.close();
  unsigned long long visits=0;for(auto v:visited)visits+=v;double endToEnd=elapsed(entire),loss=double(fullSse)/P;
- std::ofstream json(out+".json");if(!json)throw std::runtime_error("cannot write JSON");json<<std::setprecision(12)<<"{\"W\":"<<W<<",\"H\":"<<H<<",\"N\":"<<N<<",\"chains\":"<<C<<",\"steps\":"<<steps<<",\"adam_steps\":"<<adamSteps<<",\"dtype\":\"fp32\",\"roi_sigma\":6,\"initial_T\":"<<T0<<",\"final_T\":"<<T1<<",\"setup_ms\":"<<setup<<",\"gpu_ms\":"<<ms<<",\"end_to_end_ms\":"<<endToEnd<<",\"loss\":"<<loss<<",\"psnr\":"<<10*log10(255.*255/loss)<<",\"cached_loss\":"<<double(losses[winner])/P<<",\"sse_invariant\":true,\"max_sum_drift\":"<<maxDrift<<",\"pixel_mae\":"<<pixelMae/P<<",\"pixel_max_diff\":"<<pixelMax<<",\"workspace_bytes\":"<<bytes<<",\"avg_roi_pixels\":"<<double(visits)/(C*std::max(1,steps))<<",\"winner\":"<<winner<<",\"accepted\":"<<counts[winner]<<",\"gaussians\":[";
+ std::ofstream json(out+".json");if(!json)throw std::runtime_error("cannot write JSON");json<<std::setprecision(12)<<"{\"W\":"<<W<<",\"H\":"<<H<<",\"N\":"<<N<<",\"chains\":"<<C<<",\"steps\":"<<steps<<",\"adam_steps\":"<<adamSteps<<",\"dtype\":\"fp32\",\"roi_sigma\":"<<ADAM_ROI_SIGMA<<",\"initial_T\":"<<T0<<",\"final_T\":"<<T1<<",\"setup_ms\":"<<setup<<",\"gpu_ms\":"<<ms<<",\"end_to_end_ms\":"<<endToEnd<<",\"loss\":"<<loss<<",\"psnr\":"<<10*log10(255.*255/loss)<<",\"cached_loss\":"<<double(losses[winner])/P<<",\"sse_invariant\":true,\"max_sum_drift\":"<<maxDrift<<",\"pixel_mae\":"<<pixelMae/P<<",\"pixel_max_diff\":"<<pixelMax<<",\"workspace_bytes\":"<<bytes<<",\"avg_roi_pixels\":"<<double(visits)/(C*std::max(1,steps))<<",\"winner\":"<<winner<<",\"accepted\":"<<counts[winner]<<",\"gaussians\":[";
  for(int j=0;j<N;j++){if(j)json<<",";auto g=gs[winner*N+j];json<<"["<<g.x<<","<<g.y<<","<<g.sx<<","<<g.sy<<","<<g.angle<<","<<g.a<<"]";}json<<"]}\n";
  std::cout<<"ROI "<<steps<<" + Adam "<<adamSteps<<" steps x "<<C<<" chains: GPU "<<ms<<" ms, end-to-end "<<endToEnd<<" ms, full FP64 MSE "<<loss<<", ROI "<<double(visits)/(C*std::max(1,steps))<<" pixels\n";
  for(void* p:{(void*)dg,(void*)sum,(void*)delta,(void*)dt,(void*)dsse,(void*)drng,(void*)da,(void*)dp,(void*)moments})CK(cudaFree(p));CK(cudaEventDestroy(begin));CK(cudaEventDestroy(end));return 0;
  }catch(const std::exception& e){std::cerr<<e.what()<<"\n";return 1;}}
+#endif
 

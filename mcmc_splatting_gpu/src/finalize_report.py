@@ -59,6 +59,12 @@ from hybrid_report import update_hybrid_report
 page=update_hybrid_report(page,root)
 from ablation_report import update_ablation_report
 page=update_ablation_report(page,root)
+from lm_report import update_lm_report
+page=update_lm_report(page,root)
+from muon_report import update_muon_report
+page=update_muon_report(page,root)
+from graph_report import update_graph_report
+page=update_graph_report(page,root)
 (root/'report.html').write_text(page)
 print('Final report:',len(page.encode()),'bytes')
 

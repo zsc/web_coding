@@ -1,0 +1,287 @@
+{
+  "passed": true,
+  "checked": 34,
+  "pilot_checks": [
+    {
+      "mode": 0,
+      "graph_max_parameter_difference": 0,
+      "expected_graph_iterations": 6,
+      "warp_max_parameter_difference": 0.000015259000008427392,
+      "passed": true
+    }
+  ],
+  "checks": [
+    {
+      "file": "warmup_0_adam_eager_seed42.json",
+      "original_mse": 5.9037841796875,
+      "reported_mse": 5.90378417969,
+      "differing_pixels": 0,
+      "graph_iterations": 0,
+      "passed": true
+    },
+    {
+      "file": "calibrate_0_adam_eager_seed42.json",
+      "original_mse": 1.3380859375,
+      "reported_mse": 1.3380859375,
+      "differing_pixels": 0,
+      "graph_iterations": 0,
+      "passed": true
+    },
+    {
+      "file": "calibrate_0_adam_warp_seed42.json",
+      "original_mse": 1.34765625,
+      "reported_mse": 1.34765625,
+      "differing_pixels": 0,
+      "graph_iterations": 0,
+      "passed": true
+    },
+    {
+      "file": "calibrate_1_adam_warp_seed42.json",
+      "original_mse": 1.1828369140625,
+      "reported_mse": 1.18283691406,
+      "differing_pixels": 0,
+      "graph_iterations": 0,
+      "passed": true
+    },
+    {
+      "file": "repeat_0_adam_eager_seed42.json",
+      "original_mse": 1.333349609375,
+      "reported_mse": 1.33334960937,
+      "differing_pixels": 0,
+      "graph_iterations": 0,
+      "passed": true
+    },
+    {
+      "file": "repeat_0_adam_graph_seed42.json",
+      "original_mse": 1.3260498046875,
+      "reported_mse": 1.32604980469,
+      "differing_pixels": 0,
+      "graph_iterations": 8000,
+      "passed": true
+    },
+    {
+      "file": "repeat_0_adam_fma_seed42.json",
+      "original_mse": 1.3197509765625,
+      "reported_mse": 1.31975097656,
+      "differing_pixels": 0,
+      "graph_iterations": 0,
+      "passed": true
+    },
+    {
+      "file": "repeat_0_adam_parallel_seed42.json",
+      "original_mse": 1.3470703125,
+      "reported_mse": 1.3470703125,
+      "differing_pixels": 0,
+      "graph_iterations": 0,
+      "passed": true
+    },
+    {
+      "file": "repeat_0_adam_warp_seed42.json",
+      "original_mse": 1.3126953125,
+      "reported_mse": 1.3126953125,
+      "differing_pixels": 0,
+      "graph_iterations": 0,
+      "passed": true
+    },
+    {
+      "file": "repeat_0_adam_warp_graph_seed42.json",
+      "original_mse": 1.3186279296875,
+      "reported_mse": 1.31862792969,
+      "differing_pixels": 0,
+      "graph_iterations": 8000,
+      "passed": true
+    },
+    {
+      "file": "repeat_0_adam_equal_time_seed42.json",
+      "original_mse": 1.189599609375,
+      "reported_mse": 1.18959960938,
+      "differing_pixels": 0,
+      "graph_iterations": 0,
+      "passed": true
+    },
+    {
+      "file": "repeat_1_adam_parallel_seed42.json",
+      "original_mse": 1.3238037109375,
+      "reported_mse": 1.32380371094,
+      "differing_pixels": 0,
+      "graph_iterations": 0,
+      "passed": true
+    },
+    {
+      "file": "repeat_1_adam_warp_seed42.json",
+      "original_mse": 1.3277587890625,
+      "reported_mse": 1.32775878906,
+      "differing_pixels": 0,
+      "graph_iterations": 0,
+      "passed": true
+    },
+    {
+      "file": "repeat_1_adam_warp_graph_seed42.json",
+      "original_mse": 1.3349853515625,
+      "reported_mse": 1.33498535156,
+      "differing_pixels": 0,
+      "graph_iterations": 8000,
+      "passed": true
+    },
+    {
+      "file": "repeat_1_adam_equal_time_seed42.json",
+      "original_mse": 1.1831298828125,
+      "reported_mse": 1.18312988281,
+      "differing_pixels": 0,
+      "graph_iterations": 0,
+      "passed": true
+    },
+    {
+      "file": "repeat_1_adam_eager_seed42.json",
+      "original_mse": 1.3449951171875,
+      "reported_mse": 1.34499511719,
+      "differing_pixels": 0,
+      "graph_iterations": 0,
+      "passed": true
+    },
+    {
+      "file": "repeat_1_adam_graph_seed42.json",
+      "original_mse": 1.3243896484375,
+      "reported_mse": 1.32438964844,
+      "differing_pixels": 0,
+      "graph_iterations": 8000,
+      "passed": true
+    },
+    {
+      "file": "repeat_1_adam_fma_seed42.json",
+      "original_mse": 1.312841796875,
+      "reported_mse": 1.31284179687,
+      "differing_pixels": 0,
+      "graph_iterations": 0,
+      "passed": true
+    },
+    {
+      "file": "repeat_2_adam_equal_time_seed42.json",
+      "original_mse": 1.1770263671875,
+      "reported_mse": 1.17702636719,
+      "differing_pixels": 0,
+      "graph_iterations": 0,
+      "passed": true
+    },
+    {
+      "file": "repeat_2_adam_eager_seed42.json",
+      "original_mse": 1.3333740234375,
+      "reported_mse": 1.33337402344,
+      "differing_pixels": 0,
+      "graph_iterations": 0,
+      "passed": true
+    },
+    {
+      "file": "repeat_2_adam_graph_seed42.json",
+      "original_mse": 1.3211181640625,
+      "reported_mse": 1.32111816406,
+      "differing_pixels": 0,
+      "graph_iterations": 8000,
+      "passed": true
+    },
+    {
+      "file": "repeat_2_adam_fma_seed42.json",
+      "original_mse": 1.3350830078125,
+      "reported_mse": 1.33508300781,
+      "differing_pixels": 0,
+      "graph_iterations": 0,
+      "passed": true
+    },
+    {
+      "file": "repeat_2_adam_parallel_seed42.json",
+      "original_mse": 1.3350830078125,
+      "reported_mse": 1.33508300781,
+      "differing_pixels": 0,
+      "graph_iterations": 0,
+      "passed": true
+    },
+    {
+      "file": "repeat_2_adam_warp_seed42.json",
+      "original_mse": 1.332958984375,
+      "reported_mse": 1.33295898438,
+      "differing_pixels": 0,
+      "graph_iterations": 0,
+      "passed": true
+    },
+    {
+      "file": "repeat_2_adam_warp_graph_seed42.json",
+      "original_mse": 1.3274169921875,
+      "reported_mse": 1.32741699219,
+      "differing_pixels": 0,
+      "graph_iterations": 8000,
+      "passed": true
+    },
+    {
+      "file": "holdout_0_adam_eager_seed1042.json",
+      "original_mse": 1.38564453125,
+      "reported_mse": 1.38564453125,
+      "differing_pixels": 0,
+      "graph_iterations": 0,
+      "passed": true
+    },
+    {
+      "file": "holdout_0_adam_warp_seed1042.json",
+      "original_mse": 1.3727783203125,
+      "reported_mse": 1.37277832031,
+      "differing_pixels": 0,
+      "graph_iterations": 0,
+      "passed": true
+    },
+    {
+      "file": "holdout_0_adam_equal_time_seed1042.json",
+      "original_mse": 1.2177490234375,
+      "reported_mse": 1.21774902344,
+      "differing_pixels": 0,
+      "graph_iterations": 0,
+      "passed": true
+    },
+    {
+      "file": "holdout_1_adam_equal_time_seed2042.json",
+      "original_mse": 1.2306640625,
+      "reported_mse": 1.2306640625,
+      "differing_pixels": 0,
+      "graph_iterations": 0,
+      "passed": true
+    },
+    {
+      "file": "holdout_1_adam_eager_seed2042.json",
+      "original_mse": 1.3916748046875,
+      "reported_mse": 1.39167480469,
+      "differing_pixels": 0,
+      "graph_iterations": 0,
+      "passed": true
+    },
+    {
+      "file": "holdout_1_adam_warp_seed2042.json",
+      "original_mse": 1.3758056640625,
+      "reported_mse": 1.37580566406,
+      "differing_pixels": 0,
+      "graph_iterations": 0,
+      "passed": true
+    },
+    {
+      "file": "holdout_2_adam_equal_time_seed3042.json",
+      "original_mse": 1.2039794921875,
+      "reported_mse": 1.20397949219,
+      "differing_pixels": 0,
+      "graph_iterations": 0,
+      "passed": true
+    },
+    {
+      "file": "holdout_2_adam_eager_seed3042.json",
+      "original_mse": 1.341796875,
+      "reported_mse": 1.341796875,
+      "differing_pixels": 0,
+      "graph_iterations": 0,
+      "passed": true
+    },
+    {
+      "file": "holdout_2_adam_warp_seed3042.json",
+      "original_mse": 1.345166015625,
+      "reported_mse": 1.34516601563,
+      "differing_pixels": 0,
+      "graph_iterations": 0,
+      "passed": true
+    }
+  ]
+}

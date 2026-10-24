@@ -1,10 +1,24 @@
 .DS_Store
 __pycache__/
 *.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
 .bridge/
 .venv/
 venv/
 node_modules/
+*.log
+*.tmp
+*.partial.txt
+*.truncated.txt
+*.pgm
+*.sqlite
+*.time
+*.nsys-rep
+*.ncu-rep
+*.asysrep
+*.acurep
 *.npz
 *.npy
 *.pt
@@ -40,3 +54,12 @@ mcmc_splatting_gpu/results/webgpu_ablation_pilot_*.json
 ppo_gpu_lab/results/*.partial.txt
 ppo_gpu_lab/results/summary.json
 ppo_gpu_lab/results/webgpu_train_seed*.json
+
+# Generated experiment output. Keep only reviewed evidence with `git add -f`.
+**/results/
+
+# Machine-local jump hosts and sync helpers.
+celeba_diffusion_lab/air4_ssh.sh
+celeba_diffusion_lab/remote_sofy.py
+celeba_diffusion_lab/gpu3_rsync_transport.py
+celeba_diffusion_lab/watch_*_local.sh

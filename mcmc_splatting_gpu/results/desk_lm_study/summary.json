@@ -1,0 +1,1143 @@
+{
+  "groups": {
+    "repeat": {
+      "adam": {
+        "adam": 8000,
+        "lm": 0,
+        "wall_median_ms": 3745.6859559752047,
+        "wall_range_ms": [
+          3733.1428710604087,
+          3748.128963052295
+        ],
+        "gpu_median_ms": 2343.83789062,
+        "mse_median": 1.32797851562,
+        "mse_range": [
+          1.31083984375,
+          1.33093261719
+        ]
+      },
+      "block_lm": {
+        "adam": 0,
+        "lm": 3456,
+        "wall_median_ms": 3712.414023000747,
+        "wall_range_ms": [
+          3704.27477103658,
+          3765.9720509545878
+        ],
+        "gpu_median_ms": 2351.18164062,
+        "mse_median": 5.15427246094,
+        "mse_range": [
+          5.14631347656,
+          5.18620605469
+        ]
+      },
+      "adam_then_lm": {
+        "adam": 1000,
+        "lm": 3120,
+        "wall_median_ms": 3812.5818280968815,
+        "wall_range_ms": [
+          3767.849566997029,
+          3898.007411044091
+        ],
+        "gpu_median_ms": 2412.07299805,
+        "mse_median": 3.41396484375,
+        "mse_range": [
+          3.24943847656,
+          3.42778320313
+        ]
+      }
+    },
+    "holdout": {
+      "adam": {
+        "adam": 8000,
+        "lm": 0,
+        "wall_median_ms": 3717.232743045315,
+        "wall_range_ms": [
+          3703.906883019954,
+          3725.6280729779974
+        ],
+        "gpu_median_ms": 2361.81030273,
+        "mse_median": 1.37917480469,
+        "mse_range": [
+          1.35773925781,
+          1.38850097656
+        ]
+      },
+      "block_lm": {
+        "adam": 0,
+        "lm": 3456,
+        "wall_median_ms": 3718.7016429379582,
+        "wall_range_ms": [
+          3698.607296915725,
+          3749.514084076509
+        ],
+        "gpu_median_ms": 2325.85205078,
+        "mse_median": 4.97353515625,
+        "mse_range": [
+          4.78845214844,
+          5.03142089844
+        ]
+      },
+      "adam_then_lm": {
+        "adam": 1000,
+        "lm": 3120,
+        "wall_median_ms": 3793.137541040778,
+        "wall_range_ms": [
+          3773.3692040201277,
+          3820.287447073497
+        ],
+        "gpu_median_ms": 2421.54541016,
+        "mse_median": 3.32905273437,
+        "mse_range": [
+          3.23918457031,
+          3.3333984375
+        ]
+      }
+    }
+  },
+  "paired_holdout": [
+    {
+      "seed_base": 1042,
+      "mse": {
+        "adam": 1.37917480469,
+        "block_lm": 4.78845214844,
+        "adam_then_lm": 3.32905273437
+      },
+      "wall_ms": {
+        "adam": 3703.906883019954,
+        "block_lm": 3718.7016429379582,
+        "adam_then_lm": 3773.3692040201277
+      },
+      "adam_best": true
+    },
+    {
+      "seed_base": 2042,
+      "mse": {
+        "adam": 1.38850097656,
+        "block_lm": 4.97353515625,
+        "adam_then_lm": 3.23918457031
+      },
+      "wall_ms": {
+        "adam": 3725.6280729779974,
+        "block_lm": 3749.514084076509,
+        "adam_then_lm": 3793.137541040778
+      },
+      "adam_best": true
+    },
+    {
+      "seed_base": 3042,
+      "mse": {
+        "adam": 1.35773925781,
+        "block_lm": 5.03142089844,
+        "adam_then_lm": 3.3333984375
+      },
+      "wall_ms": {
+        "adam": 3717.232743045315,
+        "block_lm": 3698.607296915725,
+        "adam_then_lm": 3820.287447073497
+      },
+      "adam_best": true
+    }
+  ],
+  "representatives": {
+    "adam": "repeat_2_adam_seed42.json",
+    "block_lm": "repeat_2_block_lm_seed42.json",
+    "adam_then_lm": "repeat_2_adam_then_lm_seed42.json"
+  },
+  "study": {
+    "variants": [
+      [
+        "adam",
+        8000,
+        0
+      ],
+      [
+        "block_lm",
+        0,
+        3456
+      ],
+      [
+        "adam_then_lm",
+        1000,
+        3120
+      ]
+    ],
+    "time_calibration": {
+      "baseline_process_ms": 3720,
+      "pure_lm_1000_ms": 2070,
+      "pure_lm_3400_ms": 3680,
+      "warm1000_lm2900_ms": 3570,
+      "estimated_lm_ms_per_step": 0.6708333333333333,
+      "rule": "Interpolate total wall time to baseline, round LM steps to nearest 32. For warm start use the measured pure-LM marginal slope. Freeze budgets before repeats and holdout seeds. No MSE enters calibration."
+    },
+    "sources": {
+      "src/lm_fit.cu": "5f87acc5262bd4322bcecff77dfe0aeb021d7bf92e257213dd86b3d89d6d69c7",
+      "src/roi_fit.cu": "2bcee9eb144b96d25b9d4a507d7905a38d112234b3a2ce947f3624984057663e",
+      "src/desk_benchmark.cu": "7b06cb149f944c9a658deeee67198c9e892ca6527552ddb6a3ecb5904c8dc73b",
+      "src/desk_lm_study.py": "ae9c49838e2744f81db83bf852e1328464de50a77327320abaf75fb1e20b9f8f"
+    },
+    "target_sha256": "b8af5e3466b9cf4ec406c8ea3648bbc843c0ebd5409fd6822ef11a5f38a1ca64",
+    "timing": "Python perf_counter around subprocess.run; includes launch, CUDA context, initialization, optimization, readback, full FP64 rendering, file output, cleanup and process exit. Excludes compilation, SSH and this harness setup.",
+    "runs": [
+      {
+        "file": "warmup_0_adam_seed42.json",
+        "group": "adam",
+        "phase": "warmup",
+        "repeat": 0,
+        "seed": 42,
+        "wall_ms": 3759.4837229698896,
+        "gpu_ms": 2344.390625,
+        "loss": 1.34909667969,
+        "smooth_loss": 1.40693750894,
+        "adam_steps": 8000,
+        "lm_steps": 0,
+        "stdout": "Adam 8000 + block LM 0: GPU 2344.39 ms, end 3670.59 ms, MSE 1.3491, accepted 0/0",
+        "command": [
+          "./lm_fit",
+          "--input",
+          "zhou_target.pgm",
+          "--gaussians",
+          "1600",
+          "--chains",
+          "8",
+          "--adam-steps",
+          "8000",
+          "--lm-steps",
+          "0",
+          "--seed",
+          "42",
+          "--output",
+          "/home/zsc/mcmc_splatting_gpu_20261024/results/lm_study/warmup_0_adam_seed42"
+        ]
+      },
+      {
+        "file": "repeat_0_adam_seed42.json",
+        "group": "adam",
+        "phase": "repeat",
+        "repeat": 0,
+        "seed": 42,
+        "wall_ms": 3733.1428710604087,
+        "gpu_ms": 2338.97924805,
+        "loss": 1.31083984375,
+        "smooth_loss": 1.36102813122,
+        "adam_steps": 8000,
+        "lm_steps": 0,
+        "stdout": "Adam 8000 + block LM 0: GPU 2338.98 ms, end 3652.17 ms, MSE 1.31084, accepted 0/0",
+        "command": [
+          "./lm_fit",
+          "--input",
+          "zhou_target.pgm",
+          "--gaussians",
+          "1600",
+          "--chains",
+          "8",
+          "--adam-steps",
+          "8000",
+          "--lm-steps",
+          "0",
+          "--seed",
+          "42",
+          "--output",
+          "/home/zsc/mcmc_splatting_gpu_20261024/results/lm_study/repeat_0_adam_seed42"
+        ]
+      },
+      {
+        "file": "repeat_0_block_lm_seed42.json",
+        "group": "block_lm",
+        "phase": "repeat",
+        "repeat": 0,
+        "seed": 42,
+        "wall_ms": 3765.9720509545878,
+        "gpu_ms": 2349.03979492,
+        "loss": 5.18620605469,
+        "smooth_loss": 5.75168302239,
+        "adam_steps": 0,
+        "lm_steps": 3456,
+        "stdout": "Adam 0 + block LM 3456: GPU 2349.04 ms, end 3685.2 ms, MSE 5.18621, accepted 2747/3456",
+        "command": [
+          "./lm_fit",
+          "--input",
+          "zhou_target.pgm",
+          "--gaussians",
+          "1600",
+          "--chains",
+          "8",
+          "--adam-steps",
+          "0",
+          "--lm-steps",
+          "3456",
+          "--seed",
+          "42",
+          "--output",
+          "/home/zsc/mcmc_splatting_gpu_20261024/results/lm_study/repeat_0_block_lm_seed42"
+        ]
+      },
+      {
+        "file": "repeat_0_adam_then_lm_seed42.json",
+        "group": "adam_then_lm",
+        "phase": "repeat",
+        "repeat": 0,
+        "seed": 42,
+        "wall_ms": 3812.5818280968815,
+        "gpu_ms": 2412.07299805,
+        "loss": 3.24943847656,
+        "smooth_loss": 3.54621351196,
+        "adam_steps": 1000,
+        "lm_steps": 3120,
+        "stdout": "Adam 1000 + block LM 3120: GPU 2412.07 ms, end 3731.48 ms, MSE 3.24944, accepted 2262/3120",
+        "command": [
+          "./lm_fit",
+          "--input",
+          "zhou_target.pgm",
+          "--gaussians",
+          "1600",
+          "--chains",
+          "8",
+          "--adam-steps",
+          "1000",
+          "--lm-steps",
+          "3120",
+          "--seed",
+          "42",
+          "--output",
+          "/home/zsc/mcmc_splatting_gpu_20261024/results/lm_study/repeat_0_adam_then_lm_seed42"
+        ]
+      },
+      {
+        "file": "repeat_1_block_lm_seed42.json",
+        "group": "block_lm",
+        "phase": "repeat",
+        "repeat": 1,
+        "seed": 42,
+        "wall_ms": 3704.27477103658,
+        "gpu_ms": 2351.18164062,
+        "loss": 5.14631347656,
+        "smooth_loss": 5.70279265211,
+        "adam_steps": 0,
+        "lm_steps": 3456,
+        "stdout": "Adam 0 + block LM 3456: GPU 2351.18 ms, end 3626.49 ms, MSE 5.14631, accepted 2747/3456",
+        "command": [
+          "./lm_fit",
+          "--input",
+          "zhou_target.pgm",
+          "--gaussians",
+          "1600",
+          "--chains",
+          "8",
+          "--adam-steps",
+          "0",
+          "--lm-steps",
+          "3456",
+          "--seed",
+          "42",
+          "--output",
+          "/home/zsc/mcmc_splatting_gpu_20261024/results/lm_study/repeat_1_block_lm_seed42"
+        ]
+      },
+      {
+        "file": "repeat_1_adam_then_lm_seed42.json",
+        "group": "adam_then_lm",
+        "phase": "repeat",
+        "repeat": 1,
+        "seed": 42,
+        "wall_ms": 3767.849566997029,
+        "gpu_ms": 2401.87915039,
+        "loss": 3.42778320313,
+        "smooth_loss": 3.76689147955,
+        "adam_steps": 1000,
+        "lm_steps": 3120,
+        "stdout": "Adam 1000 + block LM 3120: GPU 2401.88 ms, end 3688.4 ms, MSE 3.42778, accepted 2480/3120",
+        "command": [
+          "./lm_fit",
+          "--input",
+          "zhou_target.pgm",
+          "--gaussians",
+          "1600",
+          "--chains",
+          "8",
+          "--adam-steps",
+          "1000",
+          "--lm-steps",
+          "3120",
+          "--seed",
+          "42",
+          "--output",
+          "/home/zsc/mcmc_splatting_gpu_20261024/results/lm_study/repeat_1_adam_then_lm_seed42"
+        ]
+      },
+      {
+        "file": "repeat_1_adam_seed42.json",
+        "group": "adam",
+        "phase": "repeat",
+        "repeat": 1,
+        "seed": 42,
+        "wall_ms": 3748.128963052295,
+        "gpu_ms": 2343.83789062,
+        "loss": 1.33093261719,
+        "smooth_loss": 1.38403257178,
+        "adam_steps": 8000,
+        "lm_steps": 0,
+        "stdout": "Adam 8000 + block LM 0: GPU 2343.84 ms, end 3627.1 ms, MSE 1.33093, accepted 0/0",
+        "command": [
+          "./lm_fit",
+          "--input",
+          "zhou_target.pgm",
+          "--gaussians",
+          "1600",
+          "--chains",
+          "8",
+          "--adam-steps",
+          "8000",
+          "--lm-steps",
+          "0",
+          "--seed",
+          "42",
+          "--output",
+          "/home/zsc/mcmc_splatting_gpu_20261024/results/lm_study/repeat_1_adam_seed42"
+        ]
+      },
+      {
+        "file": "repeat_2_adam_then_lm_seed42.json",
+        "group": "adam_then_lm",
+        "phase": "repeat",
+        "repeat": 2,
+        "seed": 42,
+        "wall_ms": 3898.007411044091,
+        "gpu_ms": 2425.5847168,
+        "loss": 3.41396484375,
+        "smooth_loss": 3.72859540373,
+        "adam_steps": 1000,
+        "lm_steps": 3120,
+        "stdout": "Adam 1000 + block LM 3120: GPU 2425.58 ms, end 3818.61 ms, MSE 3.41396, accepted 2480/3120",
+        "command": [
+          "./lm_fit",
+          "--input",
+          "zhou_target.pgm",
+          "--gaussians",
+          "1600",
+          "--chains",
+          "8",
+          "--adam-steps",
+          "1000",
+          "--lm-steps",
+          "3120",
+          "--seed",
+          "42",
+          "--output",
+          "/home/zsc/mcmc_splatting_gpu_20261024/results/lm_study/repeat_2_adam_then_lm_seed42"
+        ]
+      },
+      {
+        "file": "repeat_2_adam_seed42.json",
+        "group": "adam",
+        "phase": "repeat",
+        "repeat": 2,
+        "seed": 42,
+        "wall_ms": 3745.6859559752047,
+        "gpu_ms": 2360.09667969,
+        "loss": 1.32797851562,
+        "smooth_loss": 1.3845366685,
+        "adam_steps": 8000,
+        "lm_steps": 0,
+        "stdout": "Adam 8000 + block LM 0: GPU 2360.1 ms, end 3665.39 ms, MSE 1.32798, accepted 0/0",
+        "command": [
+          "./lm_fit",
+          "--input",
+          "zhou_target.pgm",
+          "--gaussians",
+          "1600",
+          "--chains",
+          "8",
+          "--adam-steps",
+          "8000",
+          "--lm-steps",
+          "0",
+          "--seed",
+          "42",
+          "--output",
+          "/home/zsc/mcmc_splatting_gpu_20261024/results/lm_study/repeat_2_adam_seed42"
+        ]
+      },
+      {
+        "file": "repeat_2_block_lm_seed42.json",
+        "group": "block_lm",
+        "phase": "repeat",
+        "repeat": 2,
+        "seed": 42,
+        "wall_ms": 3712.414023000747,
+        "gpu_ms": 2372.6159668,
+        "loss": 5.15427246094,
+        "smooth_loss": 5.72160946858,
+        "adam_steps": 0,
+        "lm_steps": 3456,
+        "stdout": "Adam 0 + block LM 3456: GPU 2372.62 ms, end 3633.49 ms, MSE 5.15427, accepted 2747/3456",
+        "command": [
+          "./lm_fit",
+          "--input",
+          "zhou_target.pgm",
+          "--gaussians",
+          "1600",
+          "--chains",
+          "8",
+          "--adam-steps",
+          "0",
+          "--lm-steps",
+          "3456",
+          "--seed",
+          "42",
+          "--output",
+          "/home/zsc/mcmc_splatting_gpu_20261024/results/lm_study/repeat_2_block_lm_seed42"
+        ]
+      },
+      {
+        "file": "holdout_0_adam_seed1042.json",
+        "group": "adam",
+        "phase": "holdout",
+        "repeat": 0,
+        "seed": 1042,
+        "wall_ms": 3703.906883019954,
+        "gpu_ms": 2335.30761719,
+        "loss": 1.37917480469,
+        "smooth_loss": 1.43147035162,
+        "adam_steps": 8000,
+        "lm_steps": 0,
+        "stdout": "Adam 8000 + block LM 0: GPU 2335.31 ms, end 3626.49 ms, MSE 1.37917, accepted 0/0",
+        "command": [
+          "./lm_fit",
+          "--input",
+          "zhou_target.pgm",
+          "--gaussians",
+          "1600",
+          "--chains",
+          "8",
+          "--adam-steps",
+          "8000",
+          "--lm-steps",
+          "0",
+          "--seed",
+          "1042",
+          "--output",
+          "/home/zsc/mcmc_splatting_gpu_20261024/results/lm_study/holdout_0_adam_seed1042"
+        ]
+      },
+      {
+        "file": "holdout_0_block_lm_seed1042.json",
+        "group": "block_lm",
+        "phase": "holdout",
+        "repeat": 0,
+        "seed": 1042,
+        "wall_ms": 3718.7016429379582,
+        "gpu_ms": 2344.43579102,
+        "loss": 4.78845214844,
+        "smooth_loss": 5.26332735771,
+        "adam_steps": 0,
+        "lm_steps": 3456,
+        "stdout": "Adam 0 + block LM 3456: GPU 2344.44 ms, end 3640.06 ms, MSE 4.78845, accepted 2748/3456",
+        "command": [
+          "./lm_fit",
+          "--input",
+          "zhou_target.pgm",
+          "--gaussians",
+          "1600",
+          "--chains",
+          "8",
+          "--adam-steps",
+          "0",
+          "--lm-steps",
+          "3456",
+          "--seed",
+          "1042",
+          "--output",
+          "/home/zsc/mcmc_splatting_gpu_20261024/results/lm_study/holdout_0_block_lm_seed1042"
+        ]
+      },
+      {
+        "file": "holdout_0_adam_then_lm_seed1042.json",
+        "group": "adam_then_lm",
+        "phase": "holdout",
+        "repeat": 0,
+        "seed": 1042,
+        "wall_ms": 3773.3692040201277,
+        "gpu_ms": 2421.54541016,
+        "loss": 3.32905273437,
+        "smooth_loss": 3.68035745668,
+        "adam_steps": 1000,
+        "lm_steps": 3120,
+        "stdout": "Adam 1000 + block LM 3120: GPU 2421.55 ms, end 3694.04 ms, MSE 3.32905, accepted 2480/3120",
+        "command": [
+          "./lm_fit",
+          "--input",
+          "zhou_target.pgm",
+          "--gaussians",
+          "1600",
+          "--chains",
+          "8",
+          "--adam-steps",
+          "1000",
+          "--lm-steps",
+          "3120",
+          "--seed",
+          "1042",
+          "--output",
+          "/home/zsc/mcmc_splatting_gpu_20261024/results/lm_study/holdout_0_adam_then_lm_seed1042"
+        ]
+      },
+      {
+        "file": "holdout_1_block_lm_seed2042.json",
+        "group": "block_lm",
+        "phase": "holdout",
+        "repeat": 1,
+        "seed": 2042,
+        "wall_ms": 3749.514084076509,
+        "gpu_ms": 2325.85205078,
+        "loss": 4.97353515625,
+        "smooth_loss": 5.50165458247,
+        "adam_steps": 0,
+        "lm_steps": 3456,
+        "stdout": "Adam 0 + block LM 3456: GPU 2325.85 ms, end 3671.84 ms, MSE 4.97354, accepted 2748/3456",
+        "command": [
+          "./lm_fit",
+          "--input",
+          "zhou_target.pgm",
+          "--gaussians",
+          "1600",
+          "--chains",
+          "8",
+          "--adam-steps",
+          "0",
+          "--lm-steps",
+          "3456",
+          "--seed",
+          "2042",
+          "--output",
+          "/home/zsc/mcmc_splatting_gpu_20261024/results/lm_study/holdout_1_block_lm_seed2042"
+        ]
+      },
+      {
+        "file": "holdout_1_adam_then_lm_seed2042.json",
+        "group": "adam_then_lm",
+        "phase": "holdout",
+        "repeat": 1,
+        "seed": 2042,
+        "wall_ms": 3793.137541040778,
+        "gpu_ms": 2418.86450195,
+        "loss": 3.23918457031,
+        "smooth_loss": 3.5360528784,
+        "adam_steps": 1000,
+        "lm_steps": 3120,
+        "stdout": "Adam 1000 + block LM 3120: GPU 2418.86 ms, end 3713.93 ms, MSE 3.23918, accepted 2481/3120",
+        "command": [
+          "./lm_fit",
+          "--input",
+          "zhou_target.pgm",
+          "--gaussians",
+          "1600",
+          "--chains",
+          "8",
+          "--adam-steps",
+          "1000",
+          "--lm-steps",
+          "3120",
+          "--seed",
+          "2042",
+          "--output",
+          "/home/zsc/mcmc_splatting_gpu_20261024/results/lm_study/holdout_1_adam_then_lm_seed2042"
+        ]
+      },
+      {
+        "file": "holdout_1_adam_seed2042.json",
+        "group": "adam",
+        "phase": "holdout",
+        "repeat": 1,
+        "seed": 2042,
+        "wall_ms": 3725.6280729779974,
+        "gpu_ms": 2383.02636719,
+        "loss": 1.38850097656,
+        "smooth_loss": 1.43979363273,
+        "adam_steps": 8000,
+        "lm_steps": 0,
+        "stdout": "Adam 8000 + block LM 0: GPU 2383.03 ms, end 3647.92 ms, MSE 1.3885, accepted 0/0",
+        "command": [
+          "./lm_fit",
+          "--input",
+          "zhou_target.pgm",
+          "--gaussians",
+          "1600",
+          "--chains",
+          "8",
+          "--adam-steps",
+          "8000",
+          "--lm-steps",
+          "0",
+          "--seed",
+          "2042",
+          "--output",
+          "/home/zsc/mcmc_splatting_gpu_20261024/results/lm_study/holdout_1_adam_seed2042"
+        ]
+      },
+      {
+        "file": "holdout_2_adam_then_lm_seed3042.json",
+        "group": "adam_then_lm",
+        "phase": "holdout",
+        "repeat": 2,
+        "seed": 3042,
+        "wall_ms": 3820.287447073497,
+        "gpu_ms": 2431.99731445,
+        "loss": 3.3333984375,
+        "smooth_loss": 3.65636936089,
+        "adam_steps": 1000,
+        "lm_steps": 3120,
+        "stdout": "Adam 1000 + block LM 3120: GPU 2432 ms, end 3739.27 ms, MSE 3.3334, accepted 2481/3120",
+        "command": [
+          "./lm_fit",
+          "--input",
+          "zhou_target.pgm",
+          "--gaussians",
+          "1600",
+          "--chains",
+          "8",
+          "--adam-steps",
+          "1000",
+          "--lm-steps",
+          "3120",
+          "--seed",
+          "3042",
+          "--output",
+          "/home/zsc/mcmc_splatting_gpu_20261024/results/lm_study/holdout_2_adam_then_lm_seed3042"
+        ]
+      },
+      {
+        "file": "holdout_2_adam_seed3042.json",
+        "group": "adam",
+        "phase": "holdout",
+        "repeat": 2,
+        "seed": 3042,
+        "wall_ms": 3717.232743045315,
+        "gpu_ms": 2361.81030273,
+        "loss": 1.35773925781,
+        "smooth_loss": 1.41375127494,
+        "adam_steps": 8000,
+        "lm_steps": 0,
+        "stdout": "Adam 8000 + block LM 0: GPU 2361.81 ms, end 3639.43 ms, MSE 1.35774, accepted 0/0",
+        "command": [
+          "./lm_fit",
+          "--input",
+          "zhou_target.pgm",
+          "--gaussians",
+          "1600",
+          "--chains",
+          "8",
+          "--adam-steps",
+          "8000",
+          "--lm-steps",
+          "0",
+          "--seed",
+          "3042",
+          "--output",
+          "/home/zsc/mcmc_splatting_gpu_20261024/results/lm_study/holdout_2_adam_seed3042"
+        ]
+      },
+      {
+        "file": "holdout_2_block_lm_seed3042.json",
+        "group": "block_lm",
+        "phase": "holdout",
+        "repeat": 2,
+        "seed": 3042,
+        "wall_ms": 3698.607296915725,
+        "gpu_ms": 2301.14526367,
+        "loss": 5.03142089844,
+        "smooth_loss": 5.52785542676,
+        "adam_steps": 0,
+        "lm_steps": 3456,
+        "stdout": "Adam 0 + block LM 3456: GPU 2301.15 ms, end 3618.9 ms, MSE 5.03142, accepted 2748/3456",
+        "command": [
+          "./lm_fit",
+          "--input",
+          "zhou_target.pgm",
+          "--gaussians",
+          "1600",
+          "--chains",
+          "8",
+          "--adam-steps",
+          "0",
+          "--lm-steps",
+          "3456",
+          "--seed",
+          "3042",
+          "--output",
+          "/home/zsc/mcmc_splatting_gpu_20261024/results/lm_study/holdout_2_block_lm_seed3042"
+        ]
+      }
+    ],
+    "complete": true,
+    "hardware_before": "NVIDIA GeForce RTX 2080 SUPER, 8192 MiB, 1553 MiB, 38 %, 580.178.04",
+    "hardware_after": "NVIDIA GeForce RTX 2080 SUPER, 8192 MiB, 1553 MiB, 41 %, 580.178.04"
+  },
+  "linearization_check": {
+    "epsilon": 0.0001,
+    "reference": "Float64 full-image central differences, no ROI truncation; normalized 6x6 Cholesky solve and identical step caps",
+    "blocks": [
+      {
+        "gaussian": 0,
+        "gradient_relative_l2": 6.986521319584462e-07,
+        "hessian_relative_l2": 8.098230616666527e-08,
+        "step_max_abs": 2.0913039122660848e-07
+      },
+      {
+        "gaussian": 1,
+        "gradient_relative_l2": 3.968717373785937e-07,
+        "hessian_relative_l2": 6.67207512795275e-08,
+        "step_max_abs": 8.696045388644977e-06
+      },
+      {
+        "gaussian": 2,
+        "gradient_relative_l2": 1.0164857181150168e-07,
+        "hessian_relative_l2": 7.903221434251986e-08,
+        "step_max_abs": 3.02272257357572e-06
+      },
+      {
+        "gaussian": 3,
+        "gradient_relative_l2": 1.4577525457387238e-07,
+        "hessian_relative_l2": 3.4981081751709874e-08,
+        "step_max_abs": 3.926462552428234e-06
+      },
+      {
+        "gaussian": 4,
+        "gradient_relative_l2": 1.8066185342375804e-07,
+        "hessian_relative_l2": 1.0135381938213966e-07,
+        "step_max_abs": 6.363551557697633e-06
+      },
+      {
+        "gaussian": 5,
+        "gradient_relative_l2": 3.5099900123677296e-07,
+        "hessian_relative_l2": 6.45595358071165e-08,
+        "step_max_abs": 3.346054454241021e-07
+      },
+      {
+        "gaussian": 6,
+        "gradient_relative_l2": 5.325488273989224e-07,
+        "hessian_relative_l2": 1.0942738699513212e-07,
+        "step_max_abs": 1.6380623684142392e-06
+      },
+      {
+        "gaussian": 7,
+        "gradient_relative_l2": 2.2447399285491348e-07,
+        "hessian_relative_l2": 4.7681286019923856e-08,
+        "step_max_abs": 5.321259743062967e-06
+      },
+      {
+        "gaussian": 8,
+        "gradient_relative_l2": 1.95734799326893e-07,
+        "hessian_relative_l2": 8.765145124568912e-08,
+        "step_max_abs": 2.1576232356324e-07
+      },
+      {
+        "gaussian": 9,
+        "gradient_relative_l2": 1.5518057850136422e-07,
+        "hessian_relative_l2": 1.1493707138962948e-07,
+        "step_max_abs": 7.558424776732409e-06
+      },
+      {
+        "gaussian": 10,
+        "gradient_relative_l2": 5.3921521801221376e-08,
+        "hessian_relative_l2": 1.0721611155942575e-07,
+        "step_max_abs": 9.361812608466025e-07
+      },
+      {
+        "gaussian": 11,
+        "gradient_relative_l2": 2.107560321695539e-07,
+        "hessian_relative_l2": 5.998451384988886e-08,
+        "step_max_abs": 7.421555592301843e-07
+      },
+      {
+        "gaussian": 12,
+        "gradient_relative_l2": 3.3595139546155065e-07,
+        "hessian_relative_l2": 1.2840580794182724e-07,
+        "step_max_abs": 1.3376285817656708e-05
+      },
+      {
+        "gaussian": 13,
+        "gradient_relative_l2": 1.3843933092364053e-07,
+        "hessian_relative_l2": 5.7909351532672076e-08,
+        "step_max_abs": 4.325954762407491e-06
+      },
+      {
+        "gaussian": 14,
+        "gradient_relative_l2": 2.114674073606872e-07,
+        "hessian_relative_l2": 6.678193720858152e-08,
+        "step_max_abs": 9.013730254636698e-06
+      },
+      {
+        "gaussian": 15,
+        "gradient_relative_l2": 3.0799986979369084e-07,
+        "hessian_relative_l2": 8.420950556969729e-08,
+        "step_max_abs": 7.46413359387077e-06
+      },
+      {
+        "gaussian": 16,
+        "gradient_relative_l2": 3.4538650703250466e-07,
+        "hessian_relative_l2": 8.421934769237766e-08,
+        "step_max_abs": 8.519716949706435e-06
+      },
+      {
+        "gaussian": 17,
+        "gradient_relative_l2": 5.961255987919162e-07,
+        "hessian_relative_l2": 1.2927574858614837e-07,
+        "step_max_abs": 8.86711745096136e-06
+      },
+      {
+        "gaussian": 18,
+        "gradient_relative_l2": 8.076453513823844e-08,
+        "hessian_relative_l2": 5.899502326387013e-08,
+        "step_max_abs": 3.055362606474432e-06
+      },
+      {
+        "gaussian": 19,
+        "gradient_relative_l2": 6.036308337649622e-07,
+        "hessian_relative_l2": 8.323924999326542e-08,
+        "step_max_abs": 1.4786872418515173e-05
+      },
+      {
+        "gaussian": 20,
+        "gradient_relative_l2": 2.2108899931881934e-07,
+        "hessian_relative_l2": 6.236703229563998e-08,
+        "step_max_abs": 7.4017503592926914e-06
+      },
+      {
+        "gaussian": 21,
+        "gradient_relative_l2": 2.0948440247823197e-07,
+        "hessian_relative_l2": 4.610473393026178e-08,
+        "step_max_abs": 1.2077501043705752e-06
+      },
+      {
+        "gaussian": 22,
+        "gradient_relative_l2": 2.1706456493278953e-07,
+        "hessian_relative_l2": 4.4977753628597515e-08,
+        "step_max_abs": 1.6410881196193827e-06
+      },
+      {
+        "gaussian": 23,
+        "gradient_relative_l2": 8.828092390263246e-08,
+        "hessian_relative_l2": 1.7622330870366596e-07,
+        "step_max_abs": 9.767888243139566e-06
+      },
+      {
+        "gaussian": 24,
+        "gradient_relative_l2": 2.9085713135478665e-07,
+        "hessian_relative_l2": 2.7035755420143227e-08,
+        "step_max_abs": 8.710803205858042e-06
+      },
+      {
+        "gaussian": 25,
+        "gradient_relative_l2": 2.1974697407914575e-07,
+        "hessian_relative_l2": 4.994377521904146e-08,
+        "step_max_abs": 9.12219020143823e-06
+      },
+      {
+        "gaussian": 26,
+        "gradient_relative_l2": 2.2975925294439886e-07,
+        "hessian_relative_l2": 1.246945421171884e-07,
+        "step_max_abs": 9.275904243821742e-06
+      },
+      {
+        "gaussian": 27,
+        "gradient_relative_l2": 9.822313267801568e-08,
+        "hessian_relative_l2": 1.503039780911131e-07,
+        "step_max_abs": 8.216722667597764e-06
+      },
+      {
+        "gaussian": 28,
+        "gradient_relative_l2": 1.0472119711469761e-07,
+        "hessian_relative_l2": 3.3361133162716845e-08,
+        "step_max_abs": 3.5944865945936044e-06
+      },
+      {
+        "gaussian": 29,
+        "gradient_relative_l2": 1.3174123037811442e-07,
+        "hessian_relative_l2": 7.617066825208394e-08,
+        "step_max_abs": 2.930118029098594e-06
+      },
+      {
+        "gaussian": 30,
+        "gradient_relative_l2": 2.719272919197632e-07,
+        "hessian_relative_l2": 5.6876687238468246e-08,
+        "step_max_abs": 1.5043797665370562e-06
+      },
+      {
+        "gaussian": 31,
+        "gradient_relative_l2": 7.179826449899464e-08,
+        "hessian_relative_l2": 1.4740222438034104e-07,
+        "step_max_abs": 2.859623341677775e-06
+      }
+    ],
+    "max_gradient_relative_l2": 6.986521319584462e-07,
+    "max_hessian_relative_l2": 1.7622330870366596e-07,
+    "max_step_abs": 1.4786872418515173e-05,
+    "tolerance": {
+      "gradient_relative_l2": 0.0001,
+      "hessian_relative_l2": 0.0001,
+      "step_max_abs": 0.001
+    },
+    "passed": true
+  },
+  "renderer_checks": {
+    "checked": 19,
+    "passed": true,
+    "checks": [
+      {
+        "file": "warmup_0_adam_seed42.json",
+        "upstream_mse": 1.3490966796875,
+        "reported_mse": 1.34909667969,
+        "differing_pixels": 0,
+        "monotonic_curve": true,
+        "passed": true
+      },
+      {
+        "file": "repeat_0_adam_seed42.json",
+        "upstream_mse": 1.31083984375,
+        "reported_mse": 1.31083984375,
+        "differing_pixels": 0,
+        "monotonic_curve": true,
+        "passed": true
+      },
+      {
+        "file": "repeat_0_block_lm_seed42.json",
+        "upstream_mse": 5.1862060546875,
+        "reported_mse": 5.18620605469,
+        "differing_pixels": 0,
+        "monotonic_curve": true,
+        "passed": true
+      },
+      {
+        "file": "repeat_0_adam_then_lm_seed42.json",
+        "upstream_mse": 3.2494384765625,
+        "reported_mse": 3.24943847656,
+        "differing_pixels": 0,
+        "monotonic_curve": true,
+        "passed": true
+      },
+      {
+        "file": "repeat_1_block_lm_seed42.json",
+        "upstream_mse": 5.1463134765625,
+        "reported_mse": 5.14631347656,
+        "differing_pixels": 0,
+        "monotonic_curve": true,
+        "passed": true
+      },
+      {
+        "file": "repeat_1_adam_then_lm_seed42.json",
+        "upstream_mse": 3.427783203125,
+        "reported_mse": 3.42778320313,
+        "differing_pixels": 0,
+        "monotonic_curve": true,
+        "passed": true
+      },
+      {
+        "file": "repeat_1_adam_seed42.json",
+        "upstream_mse": 1.3309326171875,
+        "reported_mse": 1.33093261719,
+        "differing_pixels": 0,
+        "monotonic_curve": true,
+        "passed": true
+      },
+      {
+        "file": "repeat_2_adam_then_lm_seed42.json",
+        "upstream_mse": 3.41396484375,
+        "reported_mse": 3.41396484375,
+        "differing_pixels": 0,
+        "monotonic_curve": true,
+        "passed": true
+      },
+      {
+        "file": "repeat_2_adam_seed42.json",
+        "upstream_mse": 1.327978515625,
+        "reported_mse": 1.32797851562,
+        "differing_pixels": 0,
+        "monotonic_curve": true,
+        "passed": true
+      },
+      {
+        "file": "repeat_2_block_lm_seed42.json",
+        "upstream_mse": 5.1542724609375,
+        "reported_mse": 5.15427246094,
+        "differing_pixels": 0,
+        "monotonic_curve": true,
+        "passed": true
+      },
+      {
+        "file": "holdout_0_adam_seed1042.json",
+        "upstream_mse": 1.3791748046875,
+        "reported_mse": 1.37917480469,
+        "differing_pixels": 0,
+        "monotonic_curve": true,
+        "passed": true
+      },
+      {
+        "file": "holdout_0_block_lm_seed1042.json",
+        "upstream_mse": 4.7884521484375,
+        "reported_mse": 4.78845214844,
+        "differing_pixels": 0,
+        "monotonic_curve": true,
+        "passed": true
+      },
+      {
+        "file": "holdout_0_adam_then_lm_seed1042.json",
+        "upstream_mse": 3.329052734375,
+        "reported_mse": 3.32905273437,
+        "differing_pixels": 0,
+        "monotonic_curve": true,
+        "passed": true
+      },
+      {
+        "file": "holdout_1_block_lm_seed2042.json",
+        "upstream_mse": 4.97353515625,
+        "reported_mse": 4.97353515625,
+        "differing_pixels": 0,
+        "monotonic_curve": true,
+        "passed": true
+      },
+      {
+        "file": "holdout_1_adam_then_lm_seed2042.json",
+        "upstream_mse": 3.2391845703125,
+        "reported_mse": 3.23918457031,
+        "differing_pixels": 0,
+        "monotonic_curve": true,
+        "passed": true
+      },
+      {
+        "file": "holdout_1_adam_seed2042.json",
+        "upstream_mse": 1.3885009765625,
+        "reported_mse": 1.38850097656,
+        "differing_pixels": 0,
+        "monotonic_curve": true,
+        "passed": true
+      },
+      {
+        "file": "holdout_2_adam_then_lm_seed3042.json",
+        "upstream_mse": 3.3333984375,
+        "reported_mse": 3.3333984375,
+        "differing_pixels": 0,
+        "monotonic_curve": true,
+        "passed": true
+      },
+      {
+        "file": "holdout_2_adam_seed3042.json",
+        "upstream_mse": 1.3577392578125,
+        "reported_mse": 1.35773925781,
+        "differing_pixels": 0,
+        "monotonic_curve": true,
+        "passed": true
+      },
+      {
+        "file": "holdout_2_block_lm_seed3042.json",
+        "upstream_mse": 5.0314208984375,
+        "reported_mse": 5.03142089844,
+        "differing_pixels": 0,
+        "monotonic_curve": true,
+        "passed": true
+      }
+    ]
+  },
+  "calibration_note": "Frozen budgets 3456 and 3120 match rounding the time-only estimates to multiples of 16. The original study.json rule string says 32, a documentation typo; raw measurements and actual settings are preserved. The current reproduction script corrects that description.",
+  "conclusion": "The tested block-diagonal damped Gauss-Newton implementation loses to pure Adam at similar total process time on this target. This does not rule out coupled or matrix-free global Gauss-Newton, nor an amplitude-only convex subproblem."
+}
