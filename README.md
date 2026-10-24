@@ -1,6 +1,6 @@
 # Web Coding · GPU 实验档案
 
-这是一个记录 GPU 与浏览器实验的静态站点仓库。每个实验都保留报告、核心源码和足以复核结论的原始记录，并在首页汇总入口。
+这是一个记录 GPU 与浏览器实验的静态站点仓库。当前收录 **6 组主实验**和 **9 个专题／交互页面**；每个实验都保留报告、核心源码和足以复核结论的原始记录，并在首页汇总入口。
 
 **在线浏览：<https://zsc.github.io/web_coding/>**
 
@@ -27,13 +27,30 @@
 | MCMC Splatting GPU | 高斯 splatting 拟合、ROI MCMC、CUDA 与 WebGPU 实现 | [打开报告](https://zsc.github.io/web_coding/mcmc_splatting_gpu/report.html#webgpu-results) |
 | DDPG GPU Lab | 倒立摆强化学习、TD3、多随机种子验收与批量更新 | [打开报告](https://zsc.github.io/web_coding/ddpg_gpu_lab/report.html) |
 | PPO GPU Lab | 双倒立摆 PPO、CUDA 训练优化、WebGPU 训练与实时演示 | [完整报告](https://zsc.github.io/web_coding/ppo_gpu_lab/report.html) · [WebGPU](https://zsc.github.io/web_coding/ppo_gpu_lab/webgpu.html) · [实时实验](https://zsc.github.io/web_coding/ppo_gpu_lab/play.html) |
-| CelebA Diffusion Lab | 64×64 人脸扩散、RGB/灰度分布诊断与负结果 | [打开报告](https://zsc.github.io/web_coding/celeba_diffusion_lab/report.html) |
+| CelebA Diffusion Lab | RGB64 像素空间 U-Net / JiT；四组 16 卡训练各完成 512 万张次；质量、EMA、引导与训练加速 | [汇总报告](celeba_diffusion_lab/report.html) · [加速分析](celeba_diffusion_lab/profiling.html) |
+
+## 专题页面
+
+主报告之外还保留速度、交互、精度与失败路径的独立页面。它们是主实验的补充，不把不同基线或计时边界合并成一个排行榜。
+
+| 页面 | 关注点 | 入口 |
+| --- | --- | --- |
+| Diffusion 速度 | 保留 200 步 DDPM，比较五图合批与 CUDA Graph；DDIM 20／50 步仅作质量折中 | [速度报告](https://zsc.github.io/web_coding/diffusion_gpu_lab/report_speed.html) |
+| MCMC WebGPU 精度实验室 | FP32、FP16 缓存与 FP16 exp 的轨迹、内存和全图误差，可在浏览器交互复测 | [精度实验室](https://zsc.github.io/web_coding/mcmc_splatting_gpu/webgpu_lab.html) |
+| MCMC Adam ROI 工作台 | 6σ／4.5σ／4σ 裁剪与单／四 Worker 全图验收的现场对照 | [ROI 工作台](https://zsc.github.io/web_coding/mcmc_splatting_gpu/adam_roi_lab.html) |
+| MNIST 浏览器原版 | 固定上游 TF.js 版本和资源地址，保留跨框架、跨硬件迁移的原始训练页 | [原版训练页](https://zsc.github.io/web_coding/mnist_gpu_lab/original_local.html) |
+| PPO WebGPU | WGSL 训练、暂停与继续、策略导出；三个训练种子在新测试集上验证 | [WebGPU 报告](https://zsc.github.io/web_coding/ppo_gpu_lab/webgpu.html) |
+| PPO 实时实验 | 在浏览器中拖拽双摆扰动，实时运行导出的策略 | [实时实验](https://zsc.github.io/web_coding/ppo_gpu_lab/play.html) |
+| PPO V1 | 从可运行 JS 基线到 CUDA Graph／融合 Adam 的首轮优化与数值检查 | [V1 报告](https://zsc.github.io/web_coding/ppo_gpu_lab/report_v1.html) |
+| CelebA 训练加速 | ASight 时间线、Graph／Triton 五轮配对复测和续训一致性检查 | [加速分析](https://zsc.github.io/web_coding/celeba_diffusion_lab/profiling.html) |
+| CelebA 灰度与分布归档 | 灰度、affine、颜色加权和早期 RGB 分布诊断；保留未解决问题与负结果 | [实验归档](https://zsc.github.io/web_coding/celeba_diffusion_lab/report_grayscale_archive.html) |
 
 ## 目录结构
 
 ```text
 .
 ├── index.html                 # GitHub Pages 首页
+├── assets/                    # 首页精选缩略图
 ├── mnist_gpu_lab/
 ├── diffusion_gpu_lab/
 ├── mcmc_splatting_gpu/

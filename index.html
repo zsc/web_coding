@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="zsc 的 GPU 实验索引：DDPG/TD3、Diffusion、MCMC、MNIST、PPO 与 CelebA 的关键指标、报告与源码。">
+  <meta name="description" content="zsc 的 GPU 实验索引：DDPG/TD3、Diffusion、MCMC、MNIST、PPO 与 CelebA 的 6 组主实验、15 个报告与交互页。">
   <meta name="theme-color" content="#102b32">
   <title>GPU Lab · 实验档案</title>
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23102b32'/%3E%3Cpath d='M18 40 32 16l14 24-14 8z' fill='%23d5ed83'/%3E%3C/svg%3E">
@@ -441,6 +441,87 @@
       border-color: var(--ink);
     }
 
+    .extensions { margin: 32px 0 10px; }
+
+    .extension-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .extension-card {
+      display: flex;
+      min-height: 176px;
+      flex-direction: column;
+      padding: 16px 17px 14px;
+      background: rgba(255, 255, 255, .64);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      transition: background .18s ease, border-color .18s ease, transform .18s ease;
+    }
+
+    .extension-card:hover {
+      background: var(--card);
+      border-color: #b7c9c1;
+      transform: translateY(-2px);
+    }
+
+    .extension-card h3 {
+      margin: 0;
+      font-size: 15px;
+      font-weight: 650;
+      letter-spacing: -.02em;
+      line-height: 1.35;
+    }
+
+    .extension-card h3 a { text-decoration: none; }
+    .extension-card h3 a:hover { color: var(--teal); }
+
+    .extension-copy {
+      margin: 6px 0 12px;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1.6;
+    }
+
+    .extension-result {
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 9px;
+      border-top: 1px solid var(--line);
+    }
+
+    .extension-result b {
+      color: var(--teal);
+      font-size: 20px;
+      font-weight: 650;
+      letter-spacing: -.04em;
+      white-space: nowrap;
+    }
+
+    .extension-result span {
+      color: var(--muted);
+      font: 8px/1.35 ui-monospace, SFMono-Regular, Consolas, monospace;
+    }
+
+    .extension-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px 12px;
+      margin-top: 9px;
+      font: 9px/1.4 ui-monospace, SFMono-Regular, Consolas, monospace;
+    }
+
+    .extension-links a {
+      color: var(--teal);
+      text-decoration: none;
+      border-bottom: 1px solid #b8d3cc;
+    }
+
+    .extension-links a:hover { color: var(--ink); border-color: var(--ink); }
+
     .notes {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -500,6 +581,7 @@
       .actions { grid-column: 4; grid-row: 1; }
       .thumb { height: 78px; }
       .metric dd { font-size: 18px; }
+      .extension-grid { grid-template-columns: 1fr 1fr; }
       .notes { grid-template-columns: 1fr 1fr; }
       .note:nth-child(2) { border-right: 0; }
       .note:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
@@ -534,6 +616,8 @@
         align-items: flex-end;
       }
       .lab-index { grid-column: 1; grid-row: 1; }
+      .extension-grid { grid-template-columns: 1fr; }
+      .extension-card { min-height: 0; }
       .notes { grid-template-columns: 1fr; }
       .note { border-right: 0; border-bottom: 1px solid var(--line); }
       .note:last-child { border-bottom: 0; }
@@ -575,12 +659,13 @@
 
     <div class="hero">
       <div>
-        <p class="eyebrow">Experiment index · measured 2026-10-24</p>
+        <p class="eyebrow">Experiment index · 6 labs / 15 pages · measured 2026-10-24</p>
         <h1>六组 GPU 实验，<span>关键结果一页看完。</span></h1>
         <p class="hero-copy">
           最新一轮：100 个 TD3 种子通过长时压力测试；WebGPU 让 MCMC 与 PPO 训练进入浏览器；
           CelebA 四组 RGB 任务全部完成，U-Net 的 KID 明显低于 JiT。每项同时保留关键结果、
-          原始记录与不能混用的测量边界。
+          原始记录与不能混用的测量边界。下方专题区继续收录采样速度、精度工作台、初版对照、
+          实时实验与灰度归档，避免把补充实验埋在长报告里。
         </p>
         <div class="hero-meta" aria-label="实验环境">
           <span>RTX 2080 SUPER / 8 GiB</span>
@@ -598,11 +683,11 @@
         </div>
         <div class="panel-facts">
           <div><strong>06</strong><span>实验 / EXPERIMENTS</span></div>
-          <div><strong>11</strong><span>报告与交互页 / PAGES</span></div>
+          <div><strong>15</strong><span>报告与交互页 / PAGES</span></div>
           <div><strong>04</strong><span>运行环境 / SETUPS</span></div>
           <div><strong>100%</strong><span>离线 HTML / OFFLINE</span></div>
         </div>
-        <div class="panel-foot">Reports · raw JSON · logs · source code<br>All measurements retained with caveats.</div>
+        <div class="panel-foot">06 lab groups · 15 reports / interactive pages<br>All measurements retained with caveats.</div>
       </aside>
     </div>
   </header>
@@ -610,7 +695,7 @@
   <main class="shell" id="experiments">
     <div class="section-head">
       <div>
-        <p class="eyebrow">Experiment ledger · 01—06</p>
+        <p class="eyebrow">Core experiments · 01—06</p>
         <h2>实验索引</h2>
       </div>
       <p>关键指标直接摘自主报告；点击标题或 REPORT 进入完整测量过程。</p>
@@ -757,6 +842,90 @@
         </div>
       </li>
     </ol>
+
+    <section class="extensions" id="deep-dives" aria-labelledby="deep-dives-title">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Supplementary experiments · 09 pages</p>
+          <h2 id="deep-dives-title">专题实验与交互页</h2>
+        </div>
+        <p>与主报告共用原始记录，但各自保留基线、计时和交互边界；不把不同任务的数字强行相乘。</p>
+      </div>
+
+      <div class="extension-grid">
+        <article class="extension-card">
+          <p class="kicker">Diffusion / Speed</p>
+          <h3><a href="./diffusion_gpu_lab/report_speed.html">保留 200 步，把采样和训练提交开销拆开。</a></h3>
+          <p class="extension-copy">五图合批与 CUDA Graph 保持原 DDPM 过程；DDIM 20／50 步单独标成改变采样过程的质量折中。</p>
+          <div class="extension-result"><b>101 → 21.4 ms</b><span>100 步 → 20 步 · 5 图</span></div>
+          <div class="extension-links"><a href="./diffusion_gpu_lab/report_speed.html">SPEED REPORT →</a></div>
+        </article>
+
+        <article class="extension-card">
+          <p class="kicker">MCMC / Precision lab</p>
+          <h3><a href="./mcmc_splatting_gpu/webgpu_lab.html">同一目标，在浏览器里比较三种精度。</a></h3>
+          <p class="extension-copy">FP32、FP16 缓存与 FP16 exp 的实际轨迹、内存、缓存误差和独立 Float64 全图验收都可现场复测。</p>
+          <div class="extension-result"><b>FP32 / FP16</b><span>精度与缓存对照</span></div>
+          <div class="extension-links"><a href="./mcmc_splatting_gpu/webgpu_lab.html">PRECISION LAB →</a></div>
+        </article>
+
+        <article class="extension-card">
+          <p class="kicker">MCMC / Adam ROI</p>
+          <h3><a href="./mcmc_splatting_gpu/adam_roi_lab.html">把时间花在笔画附近，验收仍看全图。</a></h3>
+          <p class="extension-copy">固定 1,600 高斯 × 8 链，对照 6σ／4.5σ／4σ 裁剪与单／四 Worker 完整 Float64 验收。</p>
+          <div class="extension-result"><b>4 × Worker</b><span>ROI 计算 · 全图评分</span></div>
+          <div class="extension-links"><a href="./mcmc_splatting_gpu/adam_roi_lab.html">ROI WORKBENCH →</a></div>
+        </article>
+
+        <article class="extension-card">
+          <p class="kicker">MNIST / Browser origin</p>
+          <h3><a href="./mnist_gpu_lab/original_local.html">保留原版 TF.js 训练页作为迁移基线。</a></h3>
+          <p class="extension-copy">仅固定上游版本与资源地址；网络结构和训练回调不变，用于解释浏览器与 desk 的跨框架对比。</p>
+          <div class="extension-result"><b>TF.js 4.22</b><span>Chrome / WebGL 原版</span></div>
+          <div class="extension-links"><a href="./mnist_gpu_lab/original_local.html">ORIGINAL PAGE →</a></div>
+        </article>
+
+        <article class="extension-card">
+          <p class="kicker">PPO / WebGPU training</p>
+          <h3><a href="./ppo_gpu_lab/webgpu.html">在浏览器里训练，松手就能测试。</a></h3>
+          <p class="extension-copy">采样、物理仿真、GAE、反向传播和 Adam 全部在 WGSL；训练可在 Worker 中暂停、继续和导出。</p>
+          <div class="extension-result"><b>99.1%</b><span>±10° 新测试集恢复</span></div>
+          <div class="extension-links"><a href="./ppo_gpu_lab/webgpu.html">TRAIN IN BROWSER →</a><a href="./ppo_gpu_lab/report.html#webgpu-results">MEASUREMENTS →</a></div>
+        </article>
+
+        <article class="extension-card">
+          <p class="kicker">PPO / Live playground</p>
+          <h3><a href="./ppo_gpu_lab/play.html">拽一下，看策略实时找回平衡。</a></h3>
+          <p class="extension-copy">页面载入固定 seed 71 模型；拖拽和冲量可以复现强扰动边界，但尚未训练从完全倒下姿态起摆。</p>
+          <div class="extension-result"><b>LIVE</b><span>WebGPU 双倒立摆</span></div>
+          <div class="extension-links"><a href="./ppo_gpu_lab/play.html">PLAYGROUND →</a></div>
+        </article>
+
+        <article class="extension-card">
+          <p class="kicker">PPO / V1 archive</p>
+          <h3><a href="./ppo_gpu_lab/report_v1.html">首版 CUDA Graph + fused Adam 基线。</a></h3>
+          <p class="extension-copy">保留与 V2 对照的完整训练吞吐、数值检查和策略测试，方便复查每一步加速究竟来自哪里。</p>
+          <div class="extension-result"><b>2.10×</b><span>V2 相对 V1 GPU Graph</span></div>
+          <div class="extension-links"><a href="./ppo_gpu_lab/report_v1.html">V1 REPORT →</a></div>
+        </article>
+
+        <article class="extension-card">
+          <p class="kicker">CelebA / Profiling</p>
+          <h3><a href="./celeba_diffusion_lab/profiling.html">把启动空隙和训练热点逐项拆开。</a></h3>
+          <p class="extension-copy">五轮同卡交错复测；Graph 与 Triton 先通过梯度、参数和续训门槛，再进入正式训练入口。</p>
+          <div class="extension-result"><b>1.31× / 1.15×</b><span>U-Net / JiT 配对吞吐</span></div>
+          <div class="extension-links"><a href="./celeba_diffusion_lab/profiling.html">PROFILE REPORT →</a></div>
+        </article>
+
+        <article class="extension-card">
+          <p class="kicker">CelebA / Negative archive</p>
+          <h3><a href="./celeba_diffusion_lab/report_grayscale_archive.html">灰度、affine 与颜色诊断的负结果。</a></h3>
+          <p class="extension-copy">保留亮度／对比度 W₁、颜色统计和权重消融；单种子指标靠近不代表完整人脸分布已经匹配。</p>
+          <div class="extension-result"><b>W₁ 41.5 → 26.6</b><span>灰度确定性 → 随机采样 · 真实 1.2–3.6</span></div>
+          <div class="extension-links"><a href="./celeba_diffusion_lab/report_grayscale_archive.html">ARCHIVE →</a></div>
+        </article>
+      </div>
+    </section>
 
     <section class="notes" id="method" aria-label="测量口径">
       <div class="note">
