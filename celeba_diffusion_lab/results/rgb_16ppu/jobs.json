@@ -1,0 +1,89 @@
+{
+  "submitted_utc": "2026-10-24T12:59:46.851319+00:00",
+  "resource_policy": "Each experiment:1node x16PPU;global batch512;local32;no changes to unrelated tasks",
+  "runs": [
+    {
+      "name": "unet_lr5e5",
+      "kind": "unet",
+      "lr": 5e-05,
+      "source": "results/rgb_round2/unet_ft_lr5e5/checkpoint.pt",
+      "out": "results/rgb_16ppu/unet_lr5e5",
+      "task_id": 59156,
+      "ppus": 16,
+      "nodes": 1,
+      "global_batch": 512,
+      "local_batch": 32,
+      "target_images": 5120000,
+      "command": "cd /dataset-cpfs5/vtm-foundation-pretrain/temp/zhousc6/celeba_diffusion_lab_20261024 && mkdir -p results/rgb_16ppu && export PYTHONFAULTHANDLER=1 PYTHONPATH=\"$PWD/overlay\" TORCH_HOME=\"$PWD/cache/torch\" OMP_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4 MKL_NUM_THREADS=4 && timeout 7200 /usr/local/bin/python3 -u src/run_16ppu.py --kind unet --source results/rgb_round2/unet_ft_lr5e5/checkpoint.pt --out results/rgb_16ppu/unet_lr5e5 --lr 5e-05 > results/rgb_16ppu/unet_lr5e5_retry2.log 2>&1",
+      "submission": "Submitted task 59156: celeba-16ppu-unet-low-oraclefix [QUEUED]\n",
+      "previous_attempts": [
+        {
+          "task_id": 59150,
+          "out": "results/rgb_16ppu/unet_lr5e5_attempt1",
+          "submission": "Submitted task 59150: celeba-16ppu-unet_lr5e5 [QUEUED]\n",
+          "failure": "FP32 full-batch gradient tolerance probe"
+        },
+        {
+          "task_id": 59154,
+          "out": "results/rgb_16ppu/unet_lr5e5_attempt2",
+          "failure": "FP64 reducer check passed; FP32 cross-device oracle relative6.06e-4,absolute4.30e-6; now testing deterministic noTF32 oracle with original2e-5 threshold"
+        }
+      ],
+      "retry_utc": "2026-10-24T13:06:23.198798+00:00"
+    },
+    {
+      "name": "jit_lr5e5",
+      "kind": "scaled",
+      "lr": 5e-05,
+      "source": "results/rgb_round2/jit_b128_lr2e4/checkpoint_20000/state.pt",
+      "out": "results/rgb_16ppu/jit_lr5e5",
+      "task_id": 59155,
+      "ppus": 16,
+      "nodes": 1,
+      "global_batch": 512,
+      "local_batch": 32,
+      "target_images": 5120000,
+      "command": "cd /dataset-cpfs5/vtm-foundation-pretrain/temp/zhousc6/celeba_diffusion_lab_20261024 && mkdir -p results/rgb_16ppu && export PYTHONFAULTHANDLER=1 PYTHONPATH=\"$PWD/overlay\" TORCH_HOME=\"$PWD/cache/torch\" OMP_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4 MKL_NUM_THREADS=4 && timeout 7200 /usr/local/bin/python3 -u src/run_16ppu.py --kind scaled --source results/rgb_round2/jit_b128_lr2e4/checkpoint_20000/state.pt --out results/rgb_16ppu/jit_lr5e5 --lr 5e-05 > results/rgb_16ppu/jit_lr5e5_retry.log 2>&1",
+      "submission": "Submitted task 59155: celeba-16ppu-jit_lr5e5-retry [QUEUED]\n",
+      "previous_attempts": [
+        {
+          "task_id": 59151,
+          "out": "results/rgb_16ppu/jit_lr5e5_attempt1",
+          "submission": "Submitted task 59151: celeba-16ppu-jit_lr5e5 [QUEUED]\n",
+          "failure": "Native SIGSEGV during gate startup before valid numerical results"
+        }
+      ],
+      "retry_utc": "2026-10-24T13:03:34.796709+00:00"
+    },
+    {
+      "name": "unet_lr2e4",
+      "kind": "unet",
+      "lr": 0.0002,
+      "source": "results/rgb_round2/unet_ft_lr2e4/checkpoint.pt",
+      "out": "results/rgb_16ppu/unet_lr2e4",
+      "task_id": 59152,
+      "ppus": 16,
+      "nodes": 1,
+      "global_batch": 512,
+      "local_batch": 32,
+      "target_images": 5120000,
+      "command": "cd /dataset-cpfs5/vtm-foundation-pretrain/temp/zhousc6/celeba_diffusion_lab_20261024 && mkdir -p results/rgb_16ppu && export PYTHONPATH=\"$PWD/overlay\" TORCH_HOME=\"$PWD/cache/torch\" OMP_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4 MKL_NUM_THREADS=4 && timeout 7200 /usr/local/bin/python3 -u src/run_16ppu.py --kind unet --source results/rgb_round2/unet_ft_lr2e4/checkpoint.pt --out results/rgb_16ppu/unet_lr2e4 --lr 0.0002 > results/rgb_16ppu/unet_lr2e4.log 2>&1",
+      "submission": "Submitted task 59152: celeba-16ppu-unet_lr2e4 [QUEUED]\n"
+    },
+    {
+      "name": "jit_lr2e4",
+      "kind": "scaled",
+      "lr": 0.0002,
+      "source": "results/rgb_round2/jit_b128_lr2e4/checkpoint_20000/state.pt",
+      "out": "results/rgb_16ppu/jit_lr2e4",
+      "task_id": 59153,
+      "ppus": 16,
+      "nodes": 1,
+      "global_batch": 512,
+      "local_batch": 32,
+      "target_images": 5120000,
+      "command": "cd /dataset-cpfs5/vtm-foundation-pretrain/temp/zhousc6/celeba_diffusion_lab_20261024 && mkdir -p results/rgb_16ppu && export PYTHONPATH=\"$PWD/overlay\" TORCH_HOME=\"$PWD/cache/torch\" OMP_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4 MKL_NUM_THREADS=4 && timeout 7200 /usr/local/bin/python3 -u src/run_16ppu.py --kind scaled --source results/rgb_round2/jit_b128_lr2e4/checkpoint_20000/state.pt --out results/rgb_16ppu/jit_lr2e4 --lr 0.0002 > results/rgb_16ppu/jit_lr2e4.log 2>&1",
+      "submission": "Submitted task 59153: celeba-16ppu-jit_lr2e4 [QUEUED]\n"
+    }
+  ]
+}

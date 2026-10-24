@@ -1,0 +1,17 @@
+[
+  {
+    "original": "/Users/zsc/d/cstft_jit_arc2face/src/jit_audio/config.py",
+    "copy": "src/vendor_jit/config.py",
+    "sha256": "98338640e67132f5aae12def1eee80bf8b8e1148396beb39e043f2f3e1facc0a"
+  },
+  {
+    "original": "/Users/zsc/d/cstft_jit_arc2face/src/jit_audio/models/jit_stft.py",
+    "copy": "src/vendor_jit/models/jit_stft.py",
+    "sha256": "f4784d18563631e48450bed8951ca5126784321f47b18f04dc1098e48da36fc2"
+  },
+  {
+    "original": "/Users/zsc/d/cstft_jit_arc2face/src/jit_audio/flow/sampler.py",
+    "copy": "src/vendor_jit/flow/sampler.py",
+    "sha256": "af472269edd0fb0eed337d93134e692e7c939a110fbe9434927a322b0f0f6cbd"
+  }
+]

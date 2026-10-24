@@ -1,0 +1,139 @@
+{
+  "passed": true,
+  "kind": "scaled",
+  "world_size": 16,
+  "global_batch": 512,
+  "gradient_average_vs_full_batch_fp32": {
+    "relative_l2": 8.99439359480684e-08,
+    "max_abs": 1.3969838619232178e-09
+  },
+  "checks": {
+    "gradient": {
+      "relative_l2": 0.0002231265290298347,
+      "max_abs": 2.4437904357910156e-06
+    },
+    "parameters": {
+      "relative_l2": 5.179845233729109e-06,
+      "max_abs": 2.0116567611694336e-06
+    },
+    "ema": {
+      "relative_l2": 4.324462771255864e-07,
+      "max_abs": 2.384185791015625e-07
+    },
+    "slow_ema": {
+      "relative_l2": 6.4068843726919e-08,
+      "max_abs": 1.1920928955078125e-07
+    },
+    "step": {
+      "relative_l2": 0.0,
+      "max_abs": 0.0
+    },
+    "exp_avg": {
+      "relative_l2": 0.0004519375998888255,
+      "max_abs": 5.958136171102524e-07
+    },
+    "exp_avg_sq": {
+      "relative_l2": 1.2673690216965504e-06,
+      "max_abs": 4.656612873077393e-10
+    }
+  },
+  "rows": [
+    {
+      "step": 0,
+      "reference_loss": 0.09093146026134491,
+      "accelerated_loss": 0.09093254804611206,
+      "scale": 131072.0,
+      "skips": 0
+    },
+    {
+      "step": 1,
+      "reference_loss": 0.09095831960439682,
+      "accelerated_loss": 0.09095865488052368,
+      "scale": 131072.0,
+      "skips": 0
+    },
+    {
+      "step": 2,
+      "reference_loss": 0.08445100486278534,
+      "accelerated_loss": 0.08445237576961517,
+      "scale": 131072.0,
+      "skips": 0
+    },
+    {
+      "step": 3,
+      "reference_loss": 0.1080218181014061,
+      "accelerated_loss": 0.10802145302295685,
+      "scale": 131072.0,
+      "skips": 0
+    },
+    {
+      "step": 4,
+      "reference_loss": 0.09692162275314331,
+      "accelerated_loss": 0.09692128002643585,
+      "scale": 65536.0,
+      "skips": 1
+    },
+    {
+      "step": 5,
+      "reference_loss": 0.08596847951412201,
+      "accelerated_loss": 0.08596911281347275,
+      "scale": 65536.0,
+      "skips": 1
+    },
+    {
+      "step": 6,
+      "reference_loss": 0.08005976676940918,
+      "accelerated_loss": 0.08006014674901962,
+      "scale": 131072.0,
+      "skips": 1
+    },
+    {
+      "step": 7,
+      "reference_loss": 0.09490317106246948,
+      "accelerated_loss": 0.09490346163511276,
+      "scale": 131072.0,
+      "skips": 1
+    },
+    {
+      "step": 8,
+      "reference_loss": 0.0981462150812149,
+      "accelerated_loss": 0.0981471985578537,
+      "scale": 262144.0,
+      "skips": 1
+    },
+    {
+      "step": 9,
+      "reference_loss": 0.07840748876333237,
+      "accelerated_loss": 0.07840772718191147,
+      "scale": 262144.0,
+      "skips": 1
+    },
+    {
+      "step": 10,
+      "reference_loss": 0.09209214895963669,
+      "accelerated_loss": 0.09209227561950684,
+      "scale": 524288.0,
+      "skips": 1
+    },
+    {
+      "step": 11,
+      "reference_loss": 0.08458805084228516,
+      "accelerated_loss": 0.08458803594112396,
+      "scale": 524288.0,
+      "skips": 1
+    }
+  ],
+  "max_loss_relative": 1.6233161844094243e-05,
+  "replicas": {
+    "sha256_model_dual_ema_optimizer": "0812cc389c513d1a1236254d74382e5857a810324ab37d8be121b6bd4d813dad",
+    "replicas": 16,
+    "identical": true
+  },
+  "limits_set_before_run": {
+    "fp32_average_relative_l2": 2e-05,
+    "gradient_relative_l2": 0.005,
+    "parameters_and_emas_relative_l2": 0.0001,
+    "loss_relative": 0.005
+  },
+  "scope": "12 paired full-state updates; overflow injected on rank0 only at step4; scaler growth interval2; gradient average before global clip; optimizer and both EMA checked."
+}

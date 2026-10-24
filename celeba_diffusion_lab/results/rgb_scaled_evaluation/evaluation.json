@@ -1,0 +1,371 @@
+{
+  "channels": 3,
+  "rows": [
+    {
+      "name": "scaled_jit1250",
+      "step": 1250,
+      "training_image_draws": 160000,
+      "weights_sha256": "edb78f4bb9d593e955bb76558a7bc615ddfef9a59dea7492b7b2aa5f0c2803ab",
+      "seconds": 28.25718425299965,
+      "training": {
+        "config": {
+          "steps": 10000,
+          "global_batch": 128,
+          "lr": 0.0002,
+          "benchmark": false,
+          "out": "results/rgb_scaled_jit10k"
+        },
+        "world_size": 4,
+        "local_batch": 32,
+        "parameters": 32629107,
+        "model": {
+          "architecture": "JiTSTFT scaled RGB",
+          "model": {
+            "in_channels": 3,
+            "patch_size": [
+              4,
+              4
+            ],
+            "depth": 12,
+            "hidden_dim": 384,
+            "num_heads": 6,
+            "bottleneck_dim": 32,
+            "mlp_ratio": 4.0,
+            "ffn_multiple_of": 8,
+            "time_embed_scale": 1000.0,
+            "use_sincos_pos": true,
+            "use_rope": true,
+            "rope_base": 10000.0,
+            "num_classes": 0,
+            "class_dropout_prob": 0.1,
+            "attr_cond_dim": 0,
+            "attr_dropout_prob": 0.0,
+            "num_cond_tokens": 0,
+            "dropout": 0.0,
+            "output_conv_layers": 4,
+            "output_conv_hidden": 64,
+            "output_conv_kernel": 3
+          },
+          "shapes": {
+            "num_freqs": 64,
+            "num_frames": 64,
+            "freq_pad": 64,
+            "time_pad": 64,
+            "patch_freq": 4,
+            "patch_time": 4,
+            "grid_freq": 16,
+            "grid_time": 16,
+            "channels": 3
+          }
+        },
+        "channels": 3,
+        "torch": "2.9.0",
+        "curve": [
+          {
+            "step": 1250,
+            "training_image_draws": 160000,
+            "validation_ema": {
+              "mse": 0.10418099956586957
+            },
+            "elapsed_seconds": 84.33700984799987,
+            "successful_updates": 1250,
+            "skipped": 0
+          }
+        ],
+        "recipe": "Same RGB cache, patch4/conv4x64, direct-x/velocity loss, t=sigmoid(N(-.8,.8^2)), AdamW lr2e-4 wd1e-4, clip1, FP16 autocast.",
+        "changes": "Width192->384, depth9->12. Global batch32->128. Same learning rate; warmup and EMA horizon scaled by image count. Model capacity and batch effects are not isolated.",
+        "sampling": "Independent rank-specific random streams, uniform training draws with replacement and horizontal flip.",
+        "before": "name, memory.used [MiB], utilization.gpu [%], power.draw [W]\nPPU-ZW810E, 1233 MiB, 0 %, 134.10 W\nPPU-ZW810E, 1361 MiB, 100 %, 142.75 W\nPPU-ZW810E, 1213 MiB, 100 %, 141.30 W\nPPU-ZW810E, 1273 MiB, 100 %, 140.35 W\nPPU-ZW810E, 2 MiB, 0 %, 80.37 W\nPPU-ZW810E, 2 MiB, 0 %, 79.98 W\nPPU-ZW810E, 2 MiB, 0 %, 80.40 W\nPPU-ZW810E, 2 MiB, 0 %, 79.44 W\nPPU-ZW810E, 2 MiB, 0 %, 81.45 W\nPPU-ZW810E, 2 MiB, 0 %, 82.49 W\nPPU-ZW810E, 2 MiB, 0 %, 81.37 W\nPPU-ZW810E, 2 MiB, 0 %, 81.46 W\nPPU-ZW810E, 2 MiB, 0 %, 80.37 W\nPPU-ZW810E, 2 MiB, 0 %, 80.45 W\nPPU-ZW810E, 2 MiB, 0 %, 81.55 W\nPPU-ZW810E, 2 MiB, 0 %, 81.55 W",
+        "step": 1250,
+        "training_image_draws": 160000,
+        "validation_ema": {
+          "mse": 0.10418099956586957
+        },
+        "elapsed_seconds": 84.33700984799987,
+        "successful_updates": 1250,
+        "skipped": 0,
+        "status": "training",
+        "peak_allocated_mib": 3551.943359375
+      }
+    },
+    {
+      "name": "scaled_jit5000",
+      "step": 5000,
+      "training_image_draws": 640000,
+      "weights_sha256": "eab99e9b388654254a2b5ce51ff1e1baecfc8ebbcc7b9019b5ce685762514a0e",
+      "seconds": 28.172164178999083,
+      "training": {
+        "config": {
+          "steps": 10000,
+          "global_batch": 128,
+          "lr": 0.0002,
+          "benchmark": false,
+          "out": "results/rgb_scaled_jit10k"
+        },
+        "world_size": 4,
+        "local_batch": 32,
+        "parameters": 32629107,
+        "model": {
+          "architecture": "JiTSTFT scaled RGB",
+          "model": {
+            "in_channels": 3,
+            "patch_size": [
+              4,
+              4
+            ],
+            "depth": 12,
+            "hidden_dim": 384,
+            "num_heads": 6,
+            "bottleneck_dim": 32,
+            "mlp_ratio": 4.0,
+            "ffn_multiple_of": 8,
+            "time_embed_scale": 1000.0,
+            "use_sincos_pos": true,
+            "use_rope": true,
+            "rope_base": 10000.0,
+            "num_classes": 0,
+            "class_dropout_prob": 0.1,
+            "attr_cond_dim": 0,
+            "attr_dropout_prob": 0.0,
+            "num_cond_tokens": 0,
+            "dropout": 0.0,
+            "output_conv_layers": 4,
+            "output_conv_hidden": 64,
+            "output_conv_kernel": 3
+          },
+          "shapes": {
+            "num_freqs": 64,
+            "num_frames": 64,
+            "freq_pad": 64,
+            "time_pad": 64,
+            "patch_freq": 4,
+            "patch_time": 4,
+            "grid_freq": 16,
+            "grid_time": 16,
+            "channels": 3
+          }
+        },
+        "channels": 3,
+        "torch": "2.9.0",
+        "curve": [
+          {
+            "step": 1250,
+            "training_image_draws": 160000,
+            "validation_ema": {
+              "mse": 0.10418099956586957
+            },
+            "elapsed_seconds": 84.33700984799987,
+            "successful_updates": 1250,
+            "skipped": 0
+          },
+          {
+            "step": 2500,
+            "training_image_draws": 320000,
+            "validation_ema": {
+              "mse": 0.09765607258304954
+            },
+            "elapsed_seconds": 154.29570393999995,
+            "successful_updates": 2500,
+            "skipped": 0
+          },
+          {
+            "step": 3750,
+            "training_image_draws": 480000,
+            "validation_ema": {
+              "mse": 0.0947731719352305
+            },
+            "elapsed_seconds": 225.04342649700004,
+            "successful_updates": 3750,
+            "skipped": 0
+          },
+          {
+            "step": 5000,
+            "training_image_draws": 640000,
+            "validation_ema": {
+              "mse": 0.09309374215081334
+            },
+            "elapsed_seconds": 295.2797407679999,
+            "successful_updates": 5000,
+            "skipped": 0
+          }
+        ],
+        "recipe": "Same RGB cache, patch4/conv4x64, direct-x/velocity loss, t=sigmoid(N(-.8,.8^2)), AdamW lr2e-4 wd1e-4, clip1, FP16 autocast.",
+        "changes": "Width192->384, depth9->12. Global batch32->128. Same learning rate; warmup and EMA horizon scaled by image count. Model capacity and batch effects are not isolated.",
+        "sampling": "Independent rank-specific random streams, uniform training draws with replacement and horizontal flip.",
+        "before": "name, memory.used [MiB], utilization.gpu [%], power.draw [W]\nPPU-ZW810E, 1233 MiB, 0 %, 134.10 W\nPPU-ZW810E, 1361 MiB, 100 %, 142.75 W\nPPU-ZW810E, 1213 MiB, 100 %, 141.30 W\nPPU-ZW810E, 1273 MiB, 100 %, 140.35 W\nPPU-ZW810E, 2 MiB, 0 %, 80.37 W\nPPU-ZW810E, 2 MiB, 0 %, 79.98 W\nPPU-ZW810E, 2 MiB, 0 %, 80.40 W\nPPU-ZW810E, 2 MiB, 0 %, 79.44 W\nPPU-ZW810E, 2 MiB, 0 %, 81.45 W\nPPU-ZW810E, 2 MiB, 0 %, 82.49 W\nPPU-ZW810E, 2 MiB, 0 %, 81.37 W\nPPU-ZW810E, 2 MiB, 0 %, 81.46 W\nPPU-ZW810E, 2 MiB, 0 %, 80.37 W\nPPU-ZW810E, 2 MiB, 0 %, 80.45 W\nPPU-ZW810E, 2 MiB, 0 %, 81.55 W\nPPU-ZW810E, 2 MiB, 0 %, 81.55 W",
+        "step": 5000,
+        "training_image_draws": 640000,
+        "validation_ema": {
+          "mse": 0.09309374215081334
+        },
+        "elapsed_seconds": 295.2797407679999,
+        "successful_updates": 5000,
+        "skipped": 0,
+        "status": "training",
+        "peak_allocated_mib": 3588.193359375
+      }
+    },
+    {
+      "name": "scaled_jit10000",
+      "step": 10000,
+      "training_image_draws": 1280000,
+      "weights_sha256": "69bab215811cf25c99b325566e97c0fb16801457c268c55052d5c61a47ae29ca",
+      "seconds": 27.98011448699981,
+      "training": {
+        "config": {
+          "steps": 10000,
+          "global_batch": 128,
+          "lr": 0.0002,
+          "benchmark": false,
+          "out": "results/rgb_scaled_jit10k"
+        },
+        "world_size": 4,
+        "local_batch": 32,
+        "parameters": 32629107,
+        "model": {
+          "architecture": "JiTSTFT scaled RGB",
+          "model": {
+            "in_channels": 3,
+            "patch_size": [
+              4,
+              4
+            ],
+            "depth": 12,
+            "hidden_dim": 384,
+            "num_heads": 6,
+            "bottleneck_dim": 32,
+            "mlp_ratio": 4.0,
+            "ffn_multiple_of": 8,
+            "time_embed_scale": 1000.0,
+            "use_sincos_pos": true,
+            "use_rope": true,
+            "rope_base": 10000.0,
+            "num_classes": 0,
+            "class_dropout_prob": 0.1,
+            "attr_cond_dim": 0,
+            "attr_dropout_prob": 0.0,
+            "num_cond_tokens": 0,
+            "dropout": 0.0,
+            "output_conv_layers": 4,
+            "output_conv_hidden": 64,
+            "output_conv_kernel": 3
+          },
+          "shapes": {
+            "num_freqs": 64,
+            "num_frames": 64,
+            "freq_pad": 64,
+            "time_pad": 64,
+            "patch_freq": 4,
+            "patch_time": 4,
+            "grid_freq": 16,
+            "grid_time": 16,
+            "channels": 3
+          }
+        },
+        "channels": 3,
+        "torch": "2.9.0",
+        "curve": [
+          {
+            "step": 1250,
+            "training_image_draws": 160000,
+            "validation_ema": {
+              "mse": 0.10418099956586957
+            },
+            "elapsed_seconds": 84.33700984799987,
+            "successful_updates": 1250,
+            "skipped": 0
+          },
+          {
+            "step": 2500,
+            "training_image_draws": 320000,
+            "validation_ema": {
+              "mse": 0.09765607258304954
+            },
+            "elapsed_seconds": 154.29570393999995,
+            "successful_updates": 2500,
+            "skipped": 0
+          },
+          {
+            "step": 3750,
+            "training_image_draws": 480000,
+            "validation_ema": {
+              "mse": 0.0947731719352305
+            },
+            "elapsed_seconds": 225.04342649700004,
+            "successful_updates": 3750,
+            "skipped": 0
+          },
+          {
+            "step": 5000,
+            "training_image_draws": 640000,
+            "validation_ema": {
+              "mse": 0.09309374215081334
+            },
+            "elapsed_seconds": 295.2797407679999,
+            "successful_updates": 5000,
+            "skipped": 0
+          },
+          {
+            "step": 6250,
+            "training_image_draws": 800000,
+            "validation_ema": {
+              "mse": 0.09188373992219567
+            },
+            "elapsed_seconds": 366.454293891,
+            "successful_updates": 6250,
+            "skipped": 0
+          },
+          {
+            "step": 7500,
+            "training_image_draws": 960000,
+            "validation_ema": {
+              "mse": 0.09101093420758843
+            },
+            "elapsed_seconds": 435.83580255899994,
+            "successful_updates": 7500,
+            "skipped": 0
+          },
+          {
+            "step": 8750,
+            "training_image_draws": 1120000,
+            "validation_ema": {
+              "mse": 0.09043638687580824
+            },
+            "elapsed_seconds": 504.697981228,
+            "successful_updates": 8750,
+            "skipped": 0
+          },
+          {
+            "step": 10000,
+            "training_image_draws": 1280000,
+            "validation_ema": {
+              "mse": 0.08987704198807478
+            },
+            "elapsed_seconds": 573.9598545299999,
+            "successful_updates": 10000,
+            "skipped": 0
+          }
+        ],
+        "recipe": "Same RGB cache, patch4/conv4x64, direct-x/velocity loss, t=sigmoid(N(-.8,.8^2)), AdamW lr2e-4 wd1e-4, clip1, FP16 autocast.",
+        "changes": "Width192->384, depth9->12. Global batch32->128. Same learning rate; warmup and EMA horizon scaled by image count. Model capacity and batch effects are not isolated.",
+        "sampling": "Independent rank-specific random streams, uniform training draws with replacement and horizontal flip.",
+        "before": "name, memory.used [MiB], utilization.gpu [%], power.draw [W]\nPPU-ZW810E, 1233 MiB, 0 %, 134.10 W\nPPU-ZW810E, 1361 MiB, 100 %, 142.75 W\nPPU-ZW810E, 1213 MiB, 100 %, 141.30 W\nPPU-ZW810E, 1273 MiB, 100 %, 140.35 W\nPPU-ZW810E, 2 MiB, 0 %, 80.37 W\nPPU-ZW810E, 2 MiB, 0 %, 79.98 W\nPPU-ZW810E, 2 MiB, 0 %, 80.40 W\nPPU-ZW810E, 2 MiB, 0 %, 79.44 W\nPPU-ZW810E, 2 MiB, 0 %, 81.45 W\nPPU-ZW810E, 2 MiB, 0 %, 82.49 W\nPPU-ZW810E, 2 MiB, 0 %, 81.37 W\nPPU-ZW810E, 2 MiB, 0 %, 81.46 W\nPPU-ZW810E, 2 MiB, 0 %, 80.37 W\nPPU-ZW810E, 2 MiB, 0 %, 80.45 W\nPPU-ZW810E, 2 MiB, 0 %, 81.55 W\nPPU-ZW810E, 2 MiB, 0 %, 81.55 W",
+        "step": 10000,
+        "training_image_draws": 1280000,
+        "validation_ema": {
+          "mse": 0.08987704198807478
+        },
+        "elapsed_seconds": 573.9598545299999,
+        "successful_updates": 10000,
+        "skipped": 0,
+        "status": "complete",
+        "peak_allocated_mib": 3624.693359375
+      }
+    }
+  ],
+  "before": "name, memory.used [MiB], utilization.gpu [%], power.draw [W]\nPPU-ZW810E, 10 MiB, 0 %, 108.88 W\nPPU-ZW810E, 2 MiB, 0 %, 64.14 W",
+  "protocol": "512 original RGB samples per checkpoint, seeds881..912, batch16, Heun50/99NFE, first64 displayed; no selection or color correction.",
+  "comparison": "1250/5000 steps at global128 correspond to160k/640k image draws: small JiT5k/20k. Batch, warmup and EMA horizon differ; not a capacity-only ablation.",
+  "amp_graph_vs_fp32_eager_rmse": 0.0003203601809218526,
+  "status": "complete"
+}

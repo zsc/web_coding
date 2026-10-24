@@ -25,6 +25,13 @@ case "${1:-status}" in
   gray)
     ssh -S "$control" desk "tmux new-session -d -s celeba-gray 'cd $remote && $python src/train.py --grayscale --steps 5000 --batch 32 --out results/gray5k > results/gray5k.log 2>&1'"
     ;;
+  affine)
+    scp -o "ControlPath=$control" run_affine_experiment.sh "desk:$remote/"
+    ssh -S "$control" desk "tmux new-session -d -s celeba-affine 'bash $remote/run_affine_experiment.sh > $remote/results/affine_pipeline.log 2>&1'"
+    ;;
+  affine-status)
+    ssh -S "$control" desk "tail -n 2 $remote/results/time_affine5k.log; tail -n 2 $remote/results/global_affine5k.log 2>/dev/null; tail -n 2 $remote/results/affine_evaluate.log 2>/dev/null; nvidia-smi --query-gpu=name,memory.used,utilization.gpu --format=csv"
+    ;;
   gray-evaluate)
     ssh -S "$control" desk "cd $remote && $python src/evaluate_gray.py --samples 512 > results/gray_evaluate.log 2>&1"
     ;;
@@ -32,5 +39,5 @@ case "${1:-status}" in
     rsync -az --exclude='*.pt' --exclude='*.npy' -e "ssh -S $control" "desk:$remote/results/" results/
     scp -o "ControlPath=$control" "desk:$remote/data/manifest.json" "desk:$remote/data/gray_manifest.json" data/
     ;;
-  *) echo 'Usage: run_desk.sh {sync|status|train|resume [total_steps]|evaluate|gray|gray-evaluate|fetch}' >&2; exit 1 ;;
+  *) echo 'Usage: run_desk.sh {sync|status|train|resume [total_steps]|evaluate|gray|gray-evaluate|affine|affine-status|fetch}' >&2; exit 1 ;;
 esac

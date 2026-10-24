@@ -1,0 +1,27 @@
+{
+  "submitted_utc": "2026-10-24T12:44:40.095371+00:00",
+  "runs": [
+    {
+      "name": "unet_lr5e5_graph",
+      "lr": 5e-05,
+      "source": "results/rgb_round2/unet_ft_lr5e5",
+      "out": "results/rgb_accelerated80k/unet_lr5e5_graph",
+      "command": "cd /dataset-cpfs5/vtm-foundation-pretrain/temp/zhousc6/celeba_diffusion_lab_20261024 && mkdir -p results/rgb_accelerated80k && export PYTHONPATH=\"$PWD/overlay\" TORCH_HOME=\"$PWD/cache/torch\" OMP_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4 MKL_NUM_THREADS=4 && timeout 3600 /usr/local/bin/python3 -u src/run_accelerated_continuation.py --source results/rgb_round2/unet_ft_lr5e5 --out results/rgb_accelerated80k/unet_lr5e5_graph --lr 5e-05 > results/rgb_accelerated80k/unet_lr5e5_graph.log 2>&1",
+      "submission": "Submitted task 59140: celeba-fast80k-unet_lr5e5_graph [QUEUED]\n",
+      "ppus": 1,
+      "start": 60000,
+      "target": 80000
+    },
+    {
+      "name": "unet_lr2e4_graph",
+      "lr": 0.0002,
+      "source": "results/rgb_round2/unet_ft_lr2e4",
+      "out": "results/rgb_accelerated80k/unet_lr2e4_graph",
+      "command": "cd /dataset-cpfs5/vtm-foundation-pretrain/temp/zhousc6/celeba_diffusion_lab_20261024 && mkdir -p results/rgb_accelerated80k && export PYTHONPATH=\"$PWD/overlay\" TORCH_HOME=\"$PWD/cache/torch\" OMP_NUM_THREADS=4 OPENBLAS_NUM_THREADS=4 MKL_NUM_THREADS=4 && timeout 3600 /usr/local/bin/python3 -u src/run_accelerated_continuation.py --source results/rgb_round2/unet_ft_lr2e4 --out results/rgb_accelerated80k/unet_lr2e4_graph --lr 0.0002 > results/rgb_accelerated80k/unet_lr2e4_graph.log 2>&1",
+      "submission": "Submitted task 59141: celeba-fast80k-unet_lr2e4_graph [QUEUED]\n",
+      "ppus": 1,
+      "start": 60000,
+      "target": 80000
+    }
+  ]
+}

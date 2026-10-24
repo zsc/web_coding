@@ -1,0 +1,157 @@
+{
+  "recorded_utc": "2026-10-24T10:17:48.643303+00:00",
+  "python": "3.12.12 | packaged by Anaconda, Inc. | (main, Oct 21 2025, 20:16:04) [GCC 11.2.0]",
+  "platform": "Linux-5.15.0-185-generic-x86_64-with-glibc2.35",
+  "cuda": "12.8",
+  "cudnn": 91002,
+  "packages": {
+    "torch": "2.10.0",
+    "diffusers": "0.29.0",
+    "numpy": "2.4.2",
+    "pillow": "12.1.1",
+    "matplotlib": "3.10.8"
+  },
+  "gpu": "name, memory.used [MiB], utilization.gpu [%], power.draw [W]\nNVIDIA GeForce RTX 2080 SUPER, 3651 MiB, 99 %, 173.58 W",
+  "files": [
+    {
+      "path": "src/evaluate_affine.py",
+      "bytes": 5441,
+      "sha256": "645956d317afd9aef1c6c027bb66050beb3814fcc74b8a16b2157f28ea782825"
+    },
+    {
+      "path": "src/evaluate_gray.py",
+      "bytes": 8468,
+      "sha256": "8f85569a659582fd753c7f99c289747b045c24c4d7e55418de34bfb66b3f2c3c"
+    },
+    {
+      "path": "src/model_flow.py",
+      "bytes": 3708,
+      "sha256": "ecb303dff60db294e31f4b1c768c625fc45d3a8807a8d4cd60fc4f31bcbb07de"
+    },
+    {
+      "path": "src/train_flow.py",
+      "bytes": 10259,
+      "sha256": "f58da24469bab5d5c0320b5f0520882f73b90c95aea024c142e4d2d66c7e5db6"
+    },
+    {
+      "path": "src/perf_probe.py",
+      "bytes": 2054,
+      "sha256": "5e2930bba95a6583e8e93b08082295d73eb730248650dda33607b182ee72c463"
+    },
+    {
+      "path": "src/plot_gray.py",
+      "bytes": 2621,
+      "sha256": "35720e95c082c84fe4348a9446e525aa0f9960da5c952df3433eae8829992a7a"
+    },
+    {
+      "path": "src/model.py",
+      "bytes": 6296,
+      "sha256": "0fdd4847ac9896c94ca91aeb8215a900b3fab779f73aa5805e58bb3f6209787f"
+    },
+    {
+      "path": "src/plot_flow.py",
+      "bytes": 1582,
+      "sha256": "aff5d96bc0207b04325523badb1c1134aaca4a98036be24fb907e880f60c1ba8"
+    },
+    {
+      "path": "src/validate_affine.py",
+      "bytes": 2481,
+      "sha256": "d4aa3aa5384fbe2670352063c6eebe2cba20721a6e7be546f4b48223de208d3f"
+    },
+    {
+      "path": "src/validate.py",
+      "bytes": 1992,
+      "sha256": "dde8e86e7e742a6950f8b04ca1a3dfab247ba40fd109fa17bc4d1476805f2390"
+    },
+    {
+      "path": "src/prepare_gray.py",
+      "bytes": 960,
+      "sha256": "f19104e390adb120acb2c6a9515a3759360ccdb10a606042bd80483484ed1358"
+    },
+    {
+      "path": "src/evaluate.py",
+      "bytes": 6975,
+      "sha256": "e0eb622cd1cadd58ffe79648872fc6111abf9f03da2d0e5631be66a26f6d91d6"
+    },
+    {
+      "path": "src/prepare_data.py",
+      "bytes": 3673,
+      "sha256": "b250910f0e9848cc62bf1478bc014bf9fe6d408b97e51c460ac8f89daa469e3a"
+    },
+    {
+      "path": "src/evaluate_flow.py",
+      "bytes": 7832,
+      "sha256": "1b67fbe2061bae3ce912b56e121e9f0c194cf2807ede3d26af23a21c1d172802"
+    },
+    {
+      "path": "src/record_flow_environment.py",
+      "bytes": 1338,
+      "sha256": "6a7b127434399c4e3e837a6994251fdebed961968301e20d7713ed6bb4a0783f"
+    },
+    {
+      "path": "src/validate_flow.py",
+      "bytes": 3781,
+      "sha256": "f7795595763c4f2c9a909c2a72af4ac986701740ba4d529c7a693fdaf6e7672b"
+    },
+    {
+      "path": "src/diagnose_color.py",
+      "bytes": 5599,
+      "sha256": "94048ea6a3695858517abf8d60c9c5e9e75f5bc715a63d393e36c4b23008e028"
+    },
+    {
+      "path": "src/record_affine_environment.py",
+      "bytes": 1241,
+      "sha256": "ba46917674966d5cb39572b842d66fcdd8665ef4c061351372e033d151d00cd4"
+    },
+    {
+      "path": "src/plot_affine.py",
+      "bytes": 1813,
+      "sha256": "76059978bf3c75f69310f6f38b9aabf6dd7509efa2d5e9972f974d4bc6863867"
+    },
+    {
+      "path": "src/train.py",
+      "bytes": 9959,
+      "sha256": "0976359fc6b7396b7a4ee7effce2217bb5f9cbfba366fc508a5a837745f593dd"
+    },
+    {
+      "path": "run_affine_experiment.sh",
+      "bytes": 446,
+      "sha256": "7e8f5ab36c98ce7688a67786d30a693c283a719fd73013bd74a0c3c961b95335"
+    },
+    {
+      "path": "data/manifest.json",
+      "bytes": 706,
+      "sha256": "59f95b821d1c08a4c83f42bfc8aed35ceafed027efd9966803b8fdd43946cb0e"
+    },
+    {
+      "path": "data/gray_manifest.json",
+      "bytes": 272,
+      "sha256": "b007a92a1c834c1d73efc118a27bc9daeac5388f6890a209bf564d5210e1d5e7"
+    },
+    {
+      "path": "results/gray5k/checkpoint.pt",
+      "bytes": 101938385,
+      "sha256": "bdfbc014452203923d35f58ba8a5e23950a09978c175f9a77bbd6a967719cb1d"
+    },
+    {
+      "path": "results/time_affine5k/checkpoint.pt",
+      "bytes": 106092349,
+      "sha256": "43e1ca8dc87eba4b90a32171df4d8ee4b5921ffcdaa86c7c90dca5754886c29a"
+    },
+    {
+      "path": "results/global_affine5k/checkpoint.pt",
+      "bytes": 106517901,
+      "sha256": "65a3f4efe22f387e23d82d4bab200496e50915d7d661a6172c5b71fb2b369ae8"
+    },
+    {
+      "path": "results/affine_validation.json",
+      "bytes": 449,
+      "sha256": "6097ecbbd4c32e6164759297321dc2f882f5764d016bcff123260f02049c62a3"
+    },
+    {
+      "path": "results/affine_evaluation/distribution.json",
+      "bytes": 379563,
+      "sha256": "c98af1eae090657528afa00a60d7cd1d9edf02de1dec396597052276cdcac6db"
+    }
+  ]
+}

@@ -1,0 +1,149 @@
+{
+  "reference_root": "/Users/zsc/d/diffusion_demo2",
+  "scope": "48x48 sprites;29000 training/1000validation;clean-fid. Metrics not directly comparable to RGB64 official CelebA split in this project.",
+  "evidence": [
+    {
+      "source": "/Users/zsc/d/diffusion_demo2/runs/ppu_all/round1/b4096_lr2e4/quality/quality.json",
+      "sha256": "94c9130b0065359c5c36a74dd148b0da566170b20cc07c4ba26e67af5b812a03",
+      "data": {
+        "clean_fid": 121.76372658451106,
+        "kid_mean": 0.10763342061237369,
+        "kid_subset_std": 0.007774379110672312,
+        "kid_subsets": 100,
+        "kid_subset_size": 100,
+        "real_count": 1000,
+        "fake_count": 1024,
+        "fid_solver": "float64 symmetric PSD eigendecomposition",
+        "checkpoint": "/dataset-cpfs5/vtm-foundation-pretrain/temp/zhousc6/diffusion_demo2_20261024/round1/b4096_lr2e4/last.pt",
+        "seed": 3333,
+        "heun_steps": 50,
+        "elapsed_seconds": 69.67991738399905,
+        "world_size": 1,
+        "inception_sha256": "f58cb9b6ec323ed63459aa4fb441fe750cfe39fafad6da5cb504a16f19e958f4",
+        "note": "Small-sample paired comparison, not FID50k. KID subset SD is not a confidence interval."
+      }
+    },
+    {
+      "source": "/Users/zsc/d/diffusion_demo2/runs/ppu_all/round1/b4096_lr8e4/quality/quality.json",
+      "sha256": "82a316e9d31551126bdd5937fafa002f7c95d074dee115b1602b6c4beb10fc3c",
+      "data": {
+        "clean_fid": 82.75674261749381,
+        "kid_mean": 0.07414005374053032,
+        "kid_subset_std": 0.005173801914625535,
+        "kid_subsets": 100,
+        "kid_subset_size": 100,
+        "real_count": 1000,
+        "fake_count": 1024,
+        "fid_solver": "float64 symmetric PSD eigendecomposition",
+        "checkpoint": "/dataset-cpfs5/vtm-foundation-pretrain/temp/zhousc6/diffusion_demo2_20261024/round1/b4096_lr8e4/last.pt",
+        "seed": 3333,
+        "heun_steps": 50,
+        "elapsed_seconds": 33.9067111249999,
+        "world_size": 16,
+        "inception_sha256": "f58cb9b6ec323ed63459aa4fb441fe750cfe39fafad6da5cb504a16f19e958f4",
+        "note": "Small-sample paired comparison, not FID50k. KID subset SD is not a confidence interval."
+      }
+    },
+    {
+      "source": "/Users/zsc/d/diffusion_demo2/runs/ppu_all/round1/b8192_lr8e4/quality/quality.json",
+      "sha256": "380d67ad06eb4c964e0457fdfd95cf35e25d8e25290e577616af860b4aef3da6",
+      "data": {
+        "clean_fid": 102.49593292042832,
+        "kid_mean": 0.09444459982638889,
+        "kid_subset_std": 0.005838388857364371,
+        "kid_subsets": 100,
+        "kid_subset_size": 100,
+        "real_count": 1000,
+        "fake_count": 1024,
+        "fid_solver": "float64 symmetric PSD eigendecomposition",
+        "checkpoint": "/dataset-cpfs5/vtm-foundation-pretrain/temp/zhousc6/diffusion_demo2_20261024/round1/b8192_lr8e4/last.pt",
+        "seed": 3333,
+        "heun_steps": 50,
+        "elapsed_seconds": 34.12810733299989,
+        "world_size": 16,
+        "inception_sha256": "f58cb9b6ec323ed63459aa4fb441fe750cfe39fafad6da5cb504a16f19e958f4",
+        "note": "Small-sample paired comparison, not FID50k. KID subset SD is not a confidence interval."
+      }
+    },
+    {
+      "source": "/Users/zsc/d/diffusion_demo2/runs/ppu_all/round2/b1024_lr4e4/quality/quality.json",
+      "sha256": "a3296a68a02406b755b2b80aff501dc4ac861bd82227fcc4fa07da918822afb9",
+      "data": {
+        "clean_fid": 57.19031969789546,
+        "kid_mean": 0.04789557526436236,
+        "kid_subset_std": 0.004149368057004225,
+        "kid_subsets": 100,
+        "kid_subset_size": 100,
+        "real_count": 1000,
+        "fake_count": 1024,
+        "fid_solver": "float64 symmetric PSD eigendecomposition",
+        "checkpoint": "/dataset-cpfs5/vtm-foundation-pretrain/temp/zhousc6/diffusion_demo2_20261024/round2/b1024_lr4e4/last.pt",
+        "seed": 3333,
+        "heun_steps": 50,
+        "elapsed_seconds": 18.86752942299995,
+        "world_size": 16,
+        "inception_sha256": "f58cb9b6ec323ed63459aa4fb441fe750cfe39fafad6da5cb504a16f19e958f4",
+        "note": "Small-sample paired comparison, not FID50k. KID subset SD is not a confidence interval."
+      }
+    },
+    {
+      "source": "/Users/zsc/d/diffusion_demo2/runs/ppu_all/guidance_interval_small/g2.0_t.1-.8/quality.json",
+      "sha256": "2edd4d7668ea4378d74a602038eec379fc9718ddb1b8c1e24a3e57e83d80a3c8",
+      "data": {
+        "clean_fid": 43.979044958150695,
+        "kid_mean": 0.032120196002998765,
+        "kid_subset_std": 0.0036585884078458738,
+        "kid_subsets": 100,
+        "kid_subset_size": 100,
+        "real_count": 1000,
+        "fake_count": 1024,
+        "fid_solver": "float64 symmetric PSD eigendecomposition",
+        "checkpoint": "/dataset-cpfs5/vtm-foundation-pretrain/temp/zhousc6/diffusion_demo2_20261024/round2/b1024_lr4e4/ema_008192000.pt",
+        "seed": 3333,
+        "heun_steps": 50,
+        "guide_checkpoint": "/dataset-cpfs5/vtm-foundation-pretrain/temp/zhousc6/diffusion_demo2_20261024/round1/b1024_lr2e4/ema_002048000.pt",
+        "guidance": 2.0,
+        "guidance_interval": [
+          0.1,
+          0.8
+        ],
+        "elapsed_seconds": 21.77397434500017,
+        "world_size": 16,
+        "inception_sha256": "f58cb9b6ec323ed63459aa4fb441fe750cfe39fafad6da5cb504a16f19e958f4",
+        "note": "Small-sample paired comparison, not FID50k. KID subset SD is not a confidence interval."
+      }
+    },
+    {
+      "source": "/Users/zsc/d/diffusion_demo2/runs/ppu_all/guidance_same_run/g2.0_t0-1/quality.json",
+      "sha256": "66f35de0e1834bba3272e13ee48f157509404abf3efeb5579162137a8851adf3",
+      "data": {
+        "clean_fid": 40.30886809108097,
+        "kid_mean": 0.025284620127051745,
+        "kid_subset_std": 0.0035033176747462794,
+        "kid_subsets": 100,
+        "kid_subset_size": 100,
+        "real_count": 1000,
+        "fake_count": 1024,
+        "fid_solver": "float64 symmetric PSD eigendecomposition",
+        "checkpoint": "/dataset-cpfs5/vtm-foundation-pretrain/temp/zhousc6/diffusion_demo2_20261024/round2/b1024_lr4e4/ema_008192000.pt",
+        "seed": 3333,
+        "heun_steps": 50,
+        "guide_checkpoint": "/dataset-cpfs5/vtm-foundation-pretrain/temp/zhousc6/diffusion_demo2_20261024/round2/b1024_lr4e4/ema_002048000.pt",
+        "guidance": 2.0,
+        "guidance_interval": [
+          0.0,
+          1.0
+        ],
+        "elapsed_seconds": 22.822517299000083,
+        "world_size": 16,
+        "inception_sha256": "f58cb9b6ec323ed63459aa4fb441fe750cfe39fafad6da5cb504a16f19e958f4",
+        "note": "Small-sample paired comparison, not FID50k. KID subset SD is not a confidence interval."
+      }
+    }
+  ],
+  "implementation_reference": {
+    "path": "/Users/zsc/d/diffusion_demo2/sample_pixel.py",
+    "sha256": "211901aba20e4f6c1f4adab0887cabdb674f2870f218a8d314f74e7795dea799"
+  },
+  "selection_note": "User reports full-range strong guidance produces stripes despite lower FID;this project tests interval[.1,.8] only,with unselected grids."
+}

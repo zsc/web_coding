@@ -1,0 +1,139 @@
+{
+  "passed": true,
+  "kind": "unet",
+  "world_size": 16,
+  "global_batch": 512,
+  "gradient_average_vs_full_batch_fp32": {
+    "relative_l2": 2.866902240470621e-06,
+    "max_abs": 8.568167686462402e-08
+  },
+  "checks": {
+    "gradient": {
+      "relative_l2": 0.0,
+      "max_abs": 0.0
+    },
+    "parameters": {
+      "relative_l2": 0.0,
+      "max_abs": 0.0
+    },
+    "ema": {
+      "relative_l2": 0.0,
+      "max_abs": 0.0
+    },
+    "slow_ema": {
+      "relative_l2": 0.0,
+      "max_abs": 0.0
+    },
+    "step": {
+      "relative_l2": 0.0,
+      "max_abs": 0.0
+    },
+    "exp_avg": {
+      "relative_l2": 0.0,
+      "max_abs": 0.0
+    },
+    "exp_avg_sq": {
+      "relative_l2": 0.0,
+      "max_abs": 0.0
+    }
+  },
+  "rows": [
+    {
+      "step": 0,
+      "reference_loss": 0.09438707679510117,
+      "accelerated_loss": 0.09438707679510117,
+      "scale": 262144.0,
+      "skips": 0
+    },
+    {
+      "step": 1,
+      "reference_loss": 0.0917048305273056,
+      "accelerated_loss": 0.0917048305273056,
+      "scale": 262144.0,
+      "skips": 0
+    },
+    {
+      "step": 2,
+      "reference_loss": 0.08592536300420761,
+      "accelerated_loss": 0.08592536300420761,
+      "scale": 262144.0,
+      "skips": 0
+    },
+    {
+      "step": 3,
+      "reference_loss": 0.10821446776390076,
+      "accelerated_loss": 0.10821446776390076,
+      "scale": 262144.0,
+      "skips": 0
+    },
+    {
+      "step": 4,
+      "reference_loss": 0.09925417602062225,
+      "accelerated_loss": 0.09925417602062225,
+      "scale": 131072.0,
+      "skips": 1
+    },
+    {
+      "step": 5,
+      "reference_loss": 0.08569879829883575,
+      "accelerated_loss": 0.08569879829883575,
+      "scale": 131072.0,
+      "skips": 1
+    },
+    {
+      "step": 6,
+      "reference_loss": 0.08208047598600388,
+      "accelerated_loss": 0.08208047598600388,
+      "scale": 262144.0,
+      "skips": 1
+    },
+    {
+      "step": 7,
+      "reference_loss": 0.09654442965984344,
+      "accelerated_loss": 0.09654442965984344,
+      "scale": 262144.0,
+      "skips": 1
+    },
+    {
+      "step": 8,
+      "reference_loss": 0.09920775890350342,
+      "accelerated_loss": 0.09920775890350342,
+      "scale": 524288.0,
+      "skips": 1
+    },
+    {
+      "step": 9,
+      "reference_loss": 0.07934470474720001,
+      "accelerated_loss": 0.07934470474720001,
+      "scale": 524288.0,
+      "skips": 1
+    },
+    {
+      "step": 10,
+      "reference_loss": 0.0940951555967331,
+      "accelerated_loss": 0.0940951555967331,
+      "scale": 1048576.0,
+      "skips": 1
+    },
+    {
+      "step": 11,
+      "reference_loss": 0.08672749251127243,
+      "accelerated_loss": 0.08672749251127243,
+      "scale": 524288.0,
+      "skips": 2
+    }
+  ],
+  "max_loss_relative": 0.0,
+  "replicas": {
+    "sha256_model_dual_ema_optimizer": "51c174985f99c5500178deb6c8af1871b6014514cb7907416372927afe204d2a",
+    "replicas": 16,
+    "identical": true
+  },
+  "limits_set_before_run": {
+    "fp32_average_relative_l2": 2e-05,
+    "gradient_relative_l2": 0.005,
+    "parameters_and_emas_relative_l2": 0.0001,
+    "loss_relative": 0.005
+  },
+  "scope": "12 paired full-state updates; overflow injected on rank0 only at step4; scaler growth interval2; gradient average before global clip; optimizer and both EMA checked."
+}

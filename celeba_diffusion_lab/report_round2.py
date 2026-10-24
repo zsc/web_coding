@@ -1,0 +1,24 @@
+"""Completed historical training and interval-guidance evidence."""
+HTML = '''<section id="round2"><div class="num">HISTORICAL RESULTS / RGB / CONTROLLED FOLLOW-UPS</div>
+<h2>借鉴 diffusion_demo2：续训、EMA 与适度引导</h2>
+<p>已确认的收益是延长训练，以及 PPU / FP16 / CUDA Graph 带来的运行加速。首轮固定 lr=2e−4、相同曝光量下，仅扩大 JiT 未胜出。像素空间 flow、RGB、官方数据划分与缓存校验已在本实验中采用。</p>
+<p class="small">参考项目的 48×48、29k 训练 / 1k 验证集与 clean-fid 协议不同，不能把它的 FID / KID 与本报告横向排名。它提供的可迁移假设是学习率需随 batch 调整，以及用较弱检查点做适度引导；是否有效以本轮 RGB64 对照为准。</p>
+<div class="card"><h3>第二轮已完成的训练</h3><div class="scroll"><table><thead><tr><th>实验</th><th>PPU</th><th>目标</th><th>已保存步数</th><th>最新 EMA v-loss</th><th>状态</th></tr></thead><tbody id="round2TrainingRows"></tbody></table></div><p class="caption">四组 32.63M JiT 固定结构，比较 batch 128 / 512 × lr 2e−4 / 8e−4，均到 256 万张次；原 128 / 2e−4 从已有 10k 完整断点续训，其他从同种子初始化。两条 U-Net 分支都从相同 40k 断点出发，分别固定 lr 2e−4 / 5e−5，到 60k，同时维护 EMA 0.999 / 0.9999。40k 主基线保持独立。</p></div>
+<div class="card" style="margin-top:24px"><h3>第二轮检查点质量评估</h3><div class="scroll"><table><thead><tr><th>实验 / 检查点</th><th>图片张次</th><th>EMA</th><th>KID ×1,000 ↓</th></tr></thead><tbody id="round2QualityRows"></tbody></table></div><p class="caption">16 项检查点评估均已完成，使用同一套 512 张固定 RGB 采样和 KID；± 是子集标准差。小 JiT40k 与 U-Net40k 对齐 128 万张次。60k 常规 EMA：lr5e−5 为 15.01，对照 lr2e−4 为 15.73；更慢 EMA 分别为 15.43 / 18.04。两组 lr8e−4 的大 JiT 在最后检查点质量明显恶化；这轮不延续该高学习率配方。</p></div>
+<div class="card" style="margin-top:24px"><h3>区间 autoguidance · 较早 20k 权重对照</h3><p>20k 强模型与同架构 5k 弱模型，在 t∈[0.1,0.8] 内使用 x̂ = x̂强 + (s−1)(x̂强−x̂弱)。t=0 是噪声，t=1 是图像。比较 s=1.3 / 1.6 / 2.0；不以低 KID 单独选择结果，还要看完整网格的条纹和局部变形。实测 U-Net20k：s=1.6 的 KID 为 18.76，s=2.0 为 17.91；但 s=2.0 的若干样本出现明显局部色块和过强对比，先保留 1.3–1.6 作为候选，不将最低 KID 自动认定为最佳。</p>
+<div class="scroll"><table><thead><tr><th>模型 / 强度</th><th>区间</th><th>KID ×1,000 ↓</th><th>FP16 / FP32 RMSE</th></tr></thead><tbody id="guidanceRows"></tbody></table></div>
+<div class="cols" style="margin-top:20px"><div><label for="guideLeft">左侧样本</label><select id="guideLeft" aria-label="引导实验左侧" style="width:100%"></select><img id="guideLeftImage" class="gallery" style="margin-top:12px" alt="未筛选的引导实验左侧64张样本"></div><div><label for="guideRight">右侧样本</label><select id="guideRight" aria-label="引导实验右侧" style="width:100%"></select><img id="guideRightImage" class="gallery" style="margin-top:12px" alt="未筛选的引导实验右侧64张样本"></div></div>
+<p class="caption">本实现为兼容 CUDA Graph，每次都计算强、弱模型，区间外仅将引导权重置零；总计 198 次模型前向，基线为 99 次，不能视为免费提升。尚未用最新 512 万张次权重复测。检查 s=1 时整条采样轨迹逐位等于基线，区间外预测保持一致。</p></div>
+<p>后续候选：patch 2 与 patch 4 对照、更便宜的弱模型、先大后小的 batch 日程；当前尚未运行这些实验。更高分辨率数据可另开实验，本轮保持 64×64 以便判断训练配方。</p>
+<div class="linkrow small"><a href="results/round2_jobs.json">第二轮任务记录</a><a href="results/diffusion_demo2_evidence.json">参考项目证据与来源</a><a href="src/train_sweep.py">batch / LR 训练</a><a href="src/train_finetune.py">降 LR 与双 EMA</a><a href="src/evaluate_guidance.py">区间引导代码</a><a href="https://arxiv.org/abs/2406.02507">Autoguidance 原论文</a><a href="https://arxiv.org/abs/2404.07724">区间引导原论文</a></div></section>'''
+
+JS = r'''
+const r2=D.round2;
+$('round2TrainingRows').innerHTML=r2.runs.map(x=>{const t=x.training, ready=t.step>x.start;return `<tr><td>${x.label}</td><td>${x.ppus}</td><td>${x.target.toLocaleString()} 步</td><td>${t.step?t.step.toLocaleString():'等待检查点'}</td><td>${ready?fmt(t.curve.at(-1).validation_ema.mse,5):'—'}</td><td>${t.step>=x.target?'训练完成':ready?'训练中':'已提交 / 启动中'}</td></tr>`;}).join('');
+const r2q=r2.evals.flatMap(x=>x.rows||[]);
+$('round2QualityRows').innerHTML=r2q.map(x=>`<tr><td>${x.run} / ${x.step.toLocaleString()}</td><td>${(x.step*x.batch).toLocaleString()}</td><td>${x.weights_prefix==='slow_ema'?'0.9999':'常规'}</td><td>${fmt(x.kid_mean*1000,2)} ± ${fmt(x.subset_std*1000,2)}</td></tr>`).join('')||'<tr><td colspan="4">等待新训练检查点；评估任务已提交。</td></tr>';
+const gchoices=[{label:'U-Net20k · 无引导',path:'results/rgb_unet_continuation_evaluation/flow_unet20k_64.png',kid:uk.flow_unet20k,interval:'—'}, {label:'JiT20k · 无引导',path:'results/rgb_flow_evaluation/flow_jit20k_64.png',kid:smallK.flow_jit20k,interval:'—'}].filter(x=>x.kid);
+for(const g of r2.guidance)for(const x of g.rows||[])gchoices.push({label:`${g.kind==='unet'?'U-Net':'JiT'}20k · s=${x.scale}`,path:`results/rgb_guidance_${g.kind}/${x.name}_64.png`,kid:x,interval:'[0.1, 0.8]',rmse:x.amp_graph_vs_fp32_eager_rmse});
+$('guidanceRows').innerHTML=gchoices.map(x=>`<tr><td>${x.label}</td><td>${x.interval}</td><td>${fmt(x.kid.kid_mean*1000,2)} ± ${fmt(x.kid.subset_std*1000,2)}</td><td>${x.rmse?x.rmse.toExponential(2):'已验证基线'}</td></tr>`).join('');
+for(const side of ['Left','Right']){const sel=$('guide'+side);sel.innerHTML=gchoices.map((x,i)=>`<option value="${i}">${x.label}</option>`).join('');sel.value=side==='Left'?0:Math.max(0,gchoices.findIndex(x=>x.label==='U-Net20k · s=1.6'));function show(){$('guide'+side+'Image').src=gchoices[Number(sel.value)].path;}sel.addEventListener('change',show);if(gchoices.length)show();}
+'''

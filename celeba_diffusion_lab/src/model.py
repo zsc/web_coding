@@ -11,14 +11,50 @@ from PIL import Image
 from diffusers import UNet2DModel
 
 
-def new_model(channels=3):
-    return UNet2DModel(
+class GlobalAffineUNet(UNet2DModel):
+    """Image-derived conditioning enters every residual scale/shift via temb.
+
+    Identity class embedding is only an API transport for a continuous vector;
+    no labels or clean-image statistics are supplied to the model.
+    """
+    def __init__(self, **kwargs):
+        super().__init__(class_embed_type='identity', **kwargs)
+        channels=self.config.in_channels; dim=self.config.block_out_channels[0]*4
+        self.global_encoder=torch.nn.Sequential(
+            torch.nn.Conv2d(channels,16,3,padding=1),torch.nn.SiLU(),
+            torch.nn.Conv2d(16,32,3,stride=2,padding=1),torch.nn.SiLU())
+        self.global_project=torch.nn.Sequential(
+            torch.nn.Linear(32+2*channels,dim),torch.nn.SiLU(),torch.nn.Linear(dim,dim))
+        # A zero residual condition preserves the paired time-affine model at init.
+        torch.nn.init.zeros_(self.global_project[-1].weight)
+        torch.nn.init.zeros_(self.global_project[-1].bias)
+        self.register_to_config(global_mean_scale=64.,global_condition='raw mean/std + unnormalized conv pooled features')
+
+    def global_condition(self, sample):
+        raw=sample.float()
+        mean=raw.mean((2,3)); std=raw.var((2,3),correction=0).add(1e-6).sqrt()
+        pooled=self.global_encoder(sample).float().mean((2,3))
+        # At pure unit Gaussian noise, 64*mean has unit SD on a 64x64 image.
+        return self.global_project(torch.cat((64*mean,std,pooled),dim=1))
+
+    def forward(self, sample, timestep, return_dict=True):
+        return super().forward(sample,timestep,class_labels=self.global_condition(sample),return_dict=return_dict)
+
+
+def new_model(channels=3, variant='baseline'):
+    if variant not in ('baseline','time_affine','global_affine'):
+        raise ValueError(f'Unknown model variant: {variant}')
+    cls=GlobalAffineUNet if variant=='global_affine' else UNet2DModel
+    model=cls(
         sample_size=64, in_channels=channels, out_channels=channels, layers_per_block=2,
         block_out_channels=(32, 64, 128, 128),
         down_block_types=('DownBlock2D', 'DownBlock2D', 'AttnDownBlock2D', 'DownBlock2D'),
         up_block_types=('UpBlock2D', 'AttnUpBlock2D', 'UpBlock2D', 'UpBlock2D'),
         norm_num_groups=8, attention_head_dim=32,
+        resnet_time_scale_shift='default' if variant=='baseline' else 'scale_shift',
     )
+    model.register_to_config(variant=variant)
+    return model
 
 
 def alpha_bar(device='cuda'):

@@ -1,0 +1,23 @@
+{
+  "world_size": 4,
+  "global_batch": 32,
+  "local_batch": 8,
+  "median_ms": 54.65548038482666,
+  "values_ms": [
+    54.65548038482666,
+    54.77880239486694,
+    55.04206418991089,
+    54.10866141319275,
+    53.94890904426575
+  ],
+  "images_per_second": 585.485659895211,
+  "skips": 0,
+  "numerical": {
+    "gradient_relative_l2": 4.4819647882832214e-05,
+    "gradient_max_abs": 1.383945345878601e-06
+  },
+  "weights_sha256": "20d421d1a36c478e4ac78db49b539b3e9dd61b77804cbd4dc7db5999d710c0c5",
+  "inputs_sha256": "aa406a714f79a88ea346d76c5608c1fbed68c943000838b239ba96d93181df21",
+  "code_sha256": "d9b7159a297df503cedbe87e3375f63c6e6d3890251d72f6af8f66a9759abab2",
+  "scope": "Same resumed5k UNet state, resident RGB batch32, FP16, backward/allreduce/clip/AdamW/EMA;40 warmup then5x20 steps."
+}

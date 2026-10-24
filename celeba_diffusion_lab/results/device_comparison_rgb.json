@@ -1,0 +1,20 @@
+{
+  "training_speedup": 2.989138342563544,
+  "graph_sampling_speedup": 1.8000078973233902,
+  "eager_sampling_speedup": 1.2206934892164656,
+  "inputs_identical": true,
+  "weights_identical": true,
+  "benchmark_code_identical": true,
+  "cross_device_forward": {
+    "fp32": {
+      "rmse": 7.120664967218626e-05,
+      "max_abs": 0.0005043894052505493
+    },
+    "amp": {
+      "rmse": 0.00019305255287116238,
+      "max_abs": 0.001220703125
+    }
+  },
+  "scope": "1 accelerator, JiT 6.244M RGB, batch32; each 5 blocks x40 steps, after32 warmup; forward/backward/clip/AdamW/EMA, resident real inputs. Inference: batch5,Heun50/99NFE,7 repeats including CPU output copy.",
+  "limitation": "Actual device+host+vendor-runtime comparison: RTX torch2.10.0+cu128 vs PPU torch2.9.0;4 CPU threads each. RTX training paused during benchmark; unrelated desktop graphics process retained. PPU node shared with a different-card task. Not raw silicon FLOPS ratio."
+}

@@ -1,0 +1,144 @@
+{
+  "passed": true,
+  "kind": "unet",
+  "world_size": 16,
+  "global_batch": 512,
+  "gradient_average_vs_full_batch_fp32": {
+    "relative_l2": 9.260284360460075e-08,
+    "max_abs": 9.313225746154785e-10
+  },
+  "checks": {
+    "gradient": {
+      "relative_l2": 0.0,
+      "max_abs": 0.0
+    },
+    "parameters": {
+      "relative_l2": 0.0,
+      "max_abs": 0.0
+    },
+    "ema": {
+      "relative_l2": 0.0,
+      "max_abs": 0.0
+    },
+    "slow_ema": {
+      "relative_l2": 0.0,
+      "max_abs": 0.0
+    },
+    "step": {
+      "relative_l2": 0.0,
+      "max_abs": 0.0
+    },
+    "exp_avg": {
+      "relative_l2": 0.0,
+      "max_abs": 0.0
+    },
+    "exp_avg_sq": {
+      "relative_l2": 0.0,
+      "max_abs": 0.0
+    }
+  },
+  "rows": [
+    {
+      "step": 0,
+      "reference_loss": 0.0898541659116745,
+      "accelerated_loss": 0.0898541659116745,
+      "scale": 262144.0,
+      "skips": 0
+    },
+    {
+      "step": 1,
+      "reference_loss": 0.08967351913452148,
+      "accelerated_loss": 0.08967351913452148,
+      "scale": 262144.0,
+      "skips": 0
+    },
+    {
+      "step": 2,
+      "reference_loss": 0.083956778049469,
+      "accelerated_loss": 0.083956778049469,
+      "scale": 262144.0,
+      "skips": 0
+    },
+    {
+      "step": 3,
+      "reference_loss": 0.10584843158721924,
+      "accelerated_loss": 0.10584843158721924,
+      "scale": 262144.0,
+      "skips": 0
+    },
+    {
+      "step": 4,
+      "reference_loss": 0.09599912166595459,
+      "accelerated_loss": 0.09599912166595459,
+      "scale": 131072.0,
+      "skips": 1
+    },
+    {
+      "step": 5,
+      "reference_loss": 0.0838673859834671,
+      "accelerated_loss": 0.0838673859834671,
+      "scale": 131072.0,
+      "skips": 1
+    },
+    {
+      "step": 6,
+      "reference_loss": 0.07940970361232758,
+      "accelerated_loss": 0.07940970361232758,
+      "scale": 262144.0,
+      "skips": 1
+    },
+    {
+      "step": 7,
+      "reference_loss": 0.09481298923492432,
+      "accelerated_loss": 0.09481298923492432,
+      "scale": 262144.0,
+      "skips": 1
+    },
+    {
+      "step": 8,
+      "reference_loss": 0.09807300567626953,
+      "accelerated_loss": 0.09807300567626953,
+      "scale": 524288.0,
+      "skips": 1
+    },
+    {
+      "step": 9,
+      "reference_loss": 0.07837744057178497,
+      "accelerated_loss": 0.07837744057178497,
+      "scale": 524288.0,
+      "skips": 1
+    },
+    {
+      "step": 10,
+      "reference_loss": 0.09217032790184021,
+      "accelerated_loss": 0.09217032790184021,
+      "scale": 1048576.0,
+      "skips": 1
+    },
+    {
+      "step": 11,
+      "reference_loss": 0.08474646508693695,
+      "accelerated_loss": 0.08474646508693695,
+      "scale": 1048576.0,
+      "skips": 1
+    }
+  ],
+  "max_loss_relative": 0.0,
+  "replicas": {
+    "sha256_model_dual_ema_optimizer": "4dd50ebec8f9634da02c3bc1277869177bac40eb99c2c51e629862dc13ebb0cd",
+    "replicas": 16,
+    "identical": true
+  },
+  "reducer_vs_fp64_relative_l2": 7.337415601865588e-08,
+  "limits_set_before_run": {
+    "fp32_full_batch_relative_l2": 2e-05,
+    "fp32_full_batch_max_abs": 1e-06,
+    "reducer_vs_fp64_relative_l2": 1e-06,
+    "gradient_relative_l2": 0.005,
+    "parameters_and_emas_relative_l2": 0.0001,
+    "loss_relative": 0.005,
+    "optimizer_moments_relative_l2": 0.005
+  },
+  "gate_revision": "Initial low-LR UNet FP32 oracle failed at4.51e-5; next run failed at6.06e-4 despite added FP64 reducer check. Retain both failures. Fix oracle backend to deterministic, TF32 disabled; restore original2e-5 relative limit. Production AMP graph/eager tests restore original backend flags; optimizer/EMA thresholds unchanged.",
+  "scope": "12 paired full-state updates; overflow injected on rank0 only at step4; scaler growth interval2; gradient average before global clip; optimizer and both EMA checked."
+}

@@ -1,0 +1,73 @@
+{
+  "config": {
+    "steps": 10000,
+    "global_batch": 128,
+    "lr": 0.0002,
+    "benchmark": true,
+    "out": "results/scaled_bench_8ppu"
+  },
+  "world_size": 8,
+  "local_batch": 16,
+  "parameters": 32629107,
+  "model": {
+    "architecture": "JiTSTFT scaled RGB",
+    "model": {
+      "in_channels": 3,
+      "patch_size": [
+        4,
+        4
+      ],
+      "depth": 12,
+      "hidden_dim": 384,
+      "num_heads": 6,
+      "bottleneck_dim": 32,
+      "mlp_ratio": 4.0,
+      "ffn_multiple_of": 8,
+      "time_embed_scale": 1000.0,
+      "use_sincos_pos": true,
+      "use_rope": true,
+      "rope_base": 10000.0,
+      "num_classes": 0,
+      "class_dropout_prob": 0.1,
+      "attr_cond_dim": 0,
+      "attr_dropout_prob": 0.0,
+      "num_cond_tokens": 0,
+      "dropout": 0.0,
+      "output_conv_layers": 4,
+      "output_conv_hidden": 64,
+      "output_conv_kernel": 3
+    },
+    "shapes": {
+      "num_freqs": 64,
+      "num_frames": 64,
+      "freq_pad": 64,
+      "time_pad": 64,
+      "patch_freq": 4,
+      "patch_time": 4,
+      "grid_freq": 16,
+      "grid_time": 16,
+      "channels": 3
+    }
+  },
+  "channels": 3,
+  "torch": "2.9.0",
+  "curve": [],
+  "recipe": "Same RGB cache, patch4/conv4x64, direct-x/velocity loss, t=sigmoid(N(-.8,.8^2)), AdamW lr2e-4 wd1e-4, clip1, FP16 autocast.",
+  "changes": "Width192->384, depth9->12. Global batch32->128. Same learning rate; warmup and EMA horizon scaled by image count. Model capacity and batch effects are not isolated.",
+  "sampling": "Independent rank-specific random streams, uniform training draws with replacement and horizontal flip.",
+  "before": "name, memory.used [MiB], utilization.gpu [%], power.draw [W]\nPPU-ZW810E, 1405 MiB, 0 %, 136.58 W\nPPU-ZW810E, 1561 MiB, 100 %, 145.54 W\nPPU-ZW810E, 1589 MiB, 100 %, 144.15 W\nPPU-ZW810E, 1569 MiB, 100 %, 143.03 W\nPPU-ZW810E, 1569 MiB, 100 %, 146.70 W\nPPU-ZW810E, 1617 MiB, 100 %, 142.67 W\nPPU-ZW810E, 1617 MiB, 100 %, 149.20 W\nPPU-ZW810E, 1617 MiB, 100 %, 142.11 W\nPPU-ZW810E, 2 MiB, 0 %, 81.45 W\nPPU-ZW810E, 2 MiB, 0 %, 82.11 W\nPPU-ZW810E, 2 MiB, 0 %, 81.49 W\nPPU-ZW810E, 2 MiB, 0 %, 81.44 W\nPPU-ZW810E, 2 MiB, 0 %, 80.36 W\nPPU-ZW810E, 2 MiB, 0 %, 80.43 W\nPPU-ZW810E, 2 MiB, 0 %, 81.49 W\nPPU-ZW810E, 2 MiB, 0 %, 81.55 W",
+  "replicas_agree": true,
+  "measured_ms": [
+    58.16407799720764,
+    54.351598024368286,
+    53.28582525253296,
+    56.69072866439819,
+    55.42696714401245
+  ],
+  "median_ms": 55.42696714401245,
+  "images_per_second": 2309.3451905356023,
+  "successful_updates": 140,
+  "skipped": 0,
+  "peak_allocated_mib": 2192.2373046875,
+  "scope": "Actual RGB loading/augmentation + forward/backward/allreduce/AdamW/EMA; excludes validation and checkpoint writes."
+}

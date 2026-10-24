@@ -17,6 +17,7 @@ def main():
     p.add_argument('--resume',action='store_true'); p.add_argument('--out',default='results/run1')
     p.add_argument('--dc-weight',type=float,default=0.); p.add_argument('--dc-t-min',type=int,default=800)
     p.add_argument('--grayscale',action='store_true')
+    p.add_argument('--variant',choices=('baseline','time_affine','global_affine'),default='baseline')
     args=p.parse_args(); out=Path(args.out); out.mkdir(parents=True,exist_ok=True)
     torch.set_num_threads(4); torch.manual_seed(20261024); np_rng=np.random.default_rng(20261024)
     torch.backends.cudnn.benchmark=True
@@ -28,7 +29,7 @@ def main():
     vg=torch.Generator(device='cuda').manual_seed(2401)
     vt=torch.arange(512,device='cuda')*1000//512; vn=torch.randn(v.shape,device='cuda',generator=vg)
     ab=alpha_bar(); va=ab[vt,None,None,None]; vx=(va.sqrt()*v+(1-va).sqrt()*vn).to(memory_format=torch.channels_last)
-    model=new_model(channels=channels).cuda().to(memory_format=torch.channels_last)
+    model=new_model(channels=channels,variant=args.variant).cuda().to(memory_format=torch.channels_last)
     ema=copy.deepcopy(model).eval().requires_grad_(False)
     opt=torch.optim.AdamW(model.parameters(),lr=args.lr,weight_decay=1e-4,fused=True)
     scaler=torch.amp.GradScaler('cuda')
@@ -39,6 +40,8 @@ def main():
     if args.resume:
         c=torch.load(ckpt_path,map_location='cpu',weights_only=False)
         assert c['config']['batch']==args.batch and c['config']['lr']==args.lr
+        assert c['config'].get('variant','baseline')==args.variant
+        assert c['config'].get('grayscale',False)==args.grayscale
         model.load_state_dict(c['model']); ema.load_state_dict(c['ema']); opt.load_state_dict(c['optimizer'])
         scaler.load_state_dict(c['scaler']); first=c['step']; curve=c['curve']; elapsed_before=c['elapsed_seconds']
         train_seconds=c['train_seconds']; successful=c['successful']; skipped=c['skipped']

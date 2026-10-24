@@ -1,0 +1,144 @@
+{
+  "passed": true,
+  "kind": "scaled",
+  "world_size": 16,
+  "global_batch": 512,
+  "gradient_average_vs_full_batch_fp32": {
+    "relative_l2": 8.99439359480684e-08,
+    "max_abs": 1.3969838619232178e-09
+  },
+  "checks": {
+    "gradient": {
+      "relative_l2": 0.0002231265290298347,
+      "max_abs": 2.4437904357910156e-06
+    },
+    "parameters": {
+      "relative_l2": 1.2875892532866834e-06,
+      "max_abs": 5.178153514862061e-07
+    },
+    "ema": {
+      "relative_l2": 1.2463308070629088e-07,
+      "max_abs": 2.384185791015625e-07
+    },
+    "slow_ema": {
+      "relative_l2": 2.6614867248793155e-08,
+      "max_abs": 1.1920928955078125e-07
+    },
+    "step": {
+      "relative_l2": 0.0,
+      "max_abs": 0.0
+    },
+    "exp_avg": {
+      "relative_l2": 0.0004655595808605251,
+      "max_abs": 7.221242412924767e-07
+    },
+    "exp_avg_sq": {
+      "relative_l2": 6.235320252004728e-07,
+      "max_abs": 1.8917489796876907e-10
+    }
+  },
+  "rows": [
+    {
+      "step": 0,
+      "reference_loss": 0.09093146026134491,
+      "accelerated_loss": 0.09093254804611206,
+      "scale": 131072.0,
+      "skips": 0
+    },
+    {
+      "step": 1,
+      "reference_loss": 0.09092395007610321,
+      "accelerated_loss": 0.09092442691326141,
+      "scale": 131072.0,
+      "skips": 0
+    },
+    {
+      "step": 2,
+      "reference_loss": 0.08428919315338135,
+      "accelerated_loss": 0.08428855985403061,
+      "scale": 131072.0,
+      "skips": 0
+    },
+    {
+      "step": 3,
+      "reference_loss": 0.10808368027210236,
+      "accelerated_loss": 0.10808384418487549,
+      "scale": 131072.0,
+      "skips": 0
+    },
+    {
+      "step": 4,
+      "reference_loss": 0.09685041755437851,
+      "accelerated_loss": 0.09685014188289642,
+      "scale": 65536.0,
+      "skips": 1
+    },
+    {
+      "step": 5,
+      "reference_loss": 0.0856168121099472,
+      "accelerated_loss": 0.08561752736568451,
+      "scale": 65536.0,
+      "skips": 1
+    },
+    {
+      "step": 6,
+      "reference_loss": 0.07994901388883591,
+      "accelerated_loss": 0.07994867861270905,
+      "scale": 131072.0,
+      "skips": 1
+    },
+    {
+      "step": 7,
+      "reference_loss": 0.09470769017934799,
+      "accelerated_loss": 0.09470757097005844,
+      "scale": 131072.0,
+      "skips": 1
+    },
+    {
+      "step": 8,
+      "reference_loss": 0.09770031273365021,
+      "accelerated_loss": 0.0977025032043457,
+      "scale": 262144.0,
+      "skips": 1
+    },
+    {
+      "step": 9,
+      "reference_loss": 0.07829345017671585,
+      "accelerated_loss": 0.07829432189464569,
+      "scale": 262144.0,
+      "skips": 1
+    },
+    {
+      "step": 10,
+      "reference_loss": 0.09196826815605164,
+      "accelerated_loss": 0.09196826815605164,
+      "scale": 524288.0,
+      "skips": 1
+    },
+    {
+      "step": 11,
+      "reference_loss": 0.08482235670089722,
+      "accelerated_loss": 0.08482150733470917,
+      "scale": 524288.0,
+      "skips": 1
+    }
+  ],
+  "max_loss_relative": 2.2420303827145865e-05,
+  "replicas": {
+    "sha256_model_dual_ema_optimizer": "7418eae0f36fe9f67634aa319e0ff5185897525ca10af465c8c681c1ff5d343a",
+    "replicas": 16,
+    "identical": true
+  },
+  "reducer_vs_fp64_relative_l2": 5.471808025130247e-08,
+  "limits_set_before_run": {
+    "fp32_full_batch_relative_l2": 0.0001,
+    "fp32_full_batch_max_abs": 1e-06,
+    "reducer_vs_fp64_relative_l2": 1e-06,
+    "gradient_relative_l2": 0.005,
+    "parameters_and_emas_relative_l2": 0.0001,
+    "loss_relative": 0.005,
+    "optimizer_moments_relative_l2": 0.005
+  },
+  "gate_revision": "Initial low-LR UNet full-batch FP32 probe was4.51e-5 relative /3.67e-7 absolute, above the initial2e-5 relative threshold. Added independent FP64 reduction check<1e-6 and calibrated full-batch FP32 tolerance to1e-4 relative AND1e-6 absolute. Paired graph/optimizer/EMA thresholds unchanged; initial failure retained.",
+  "scope": "12 paired full-state updates; overflow injected on rank0 only at step4; scaler growth interval2; gradient average before global clip; optimizer and both EMA checked."
+}

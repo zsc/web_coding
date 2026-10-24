@@ -1,0 +1,256 @@
+{
+  "config": {
+    "steps": 10000,
+    "global_batch": 128,
+    "lr": 0.0002,
+    "benchmark": false,
+    "out": "results/rgb_scaled_jit10k"
+  },
+  "world_size": 4,
+  "local_batch": 32,
+  "parameters": 32629107,
+  "model": {
+    "architecture": "JiTSTFT scaled RGB",
+    "model": {
+      "in_channels": 3,
+      "patch_size": [
+        4,
+        4
+      ],
+      "depth": 12,
+      "hidden_dim": 384,
+      "num_heads": 6,
+      "bottleneck_dim": 32,
+      "mlp_ratio": 4.0,
+      "ffn_multiple_of": 8,
+      "time_embed_scale": 1000.0,
+      "use_sincos_pos": true,
+      "use_rope": true,
+      "rope_base": 10000.0,
+      "num_classes": 0,
+      "class_dropout_prob": 0.1,
+      "attr_cond_dim": 0,
+      "attr_dropout_prob": 0.0,
+      "num_cond_tokens": 0,
+      "dropout": 0.0,
+      "output_conv_layers": 4,
+      "output_conv_hidden": 64,
+      "output_conv_kernel": 3
+    },
+    "shapes": {
+      "num_freqs": 64,
+      "num_frames": 64,
+      "freq_pad": 64,
+      "time_pad": 64,
+      "patch_freq": 4,
+      "patch_time": 4,
+      "grid_freq": 16,
+      "grid_time": 16,
+      "channels": 3
+    }
+  },
+  "channels": 3,
+  "torch": "2.9.0",
+  "curve": [
+    {
+      "step": 1250,
+      "training_image_draws": 160000,
+      "validation_ema": {
+        "mse": 0.10418099956586957
+      },
+      "elapsed_seconds": 84.33700984799987,
+      "successful_updates": 1250,
+      "skipped": 0
+    },
+    {
+      "step": 2500,
+      "training_image_draws": 320000,
+      "validation_ema": {
+        "mse": 0.09765607258304954
+      },
+      "elapsed_seconds": 154.29570393999995,
+      "successful_updates": 2500,
+      "skipped": 0
+    },
+    {
+      "step": 3750,
+      "training_image_draws": 480000,
+      "validation_ema": {
+        "mse": 0.0947731719352305
+      },
+      "elapsed_seconds": 225.04342649700004,
+      "successful_updates": 3750,
+      "skipped": 0
+    },
+    {
+      "step": 5000,
+      "training_image_draws": 640000,
+      "validation_ema": {
+        "mse": 0.09309374215081334
+      },
+      "elapsed_seconds": 295.2797407679999,
+      "successful_updates": 5000,
+      "skipped": 0
+    },
+    {
+      "step": 6250,
+      "training_image_draws": 800000,
+      "validation_ema": {
+        "mse": 0.09188373992219567
+      },
+      "elapsed_seconds": 366.454293891,
+      "successful_updates": 6250,
+      "skipped": 0
+    },
+    {
+      "step": 7500,
+      "training_image_draws": 960000,
+      "validation_ema": {
+        "mse": 0.09101093420758843
+      },
+      "elapsed_seconds": 435.83580255899994,
+      "successful_updates": 7500,
+      "skipped": 0
+    },
+    {
+      "step": 8750,
+      "training_image_draws": 1120000,
+      "validation_ema": {
+        "mse": 0.09043638687580824
+      },
+      "elapsed_seconds": 504.697981228,
+      "successful_updates": 8750,
+      "skipped": 0
+    },
+    {
+      "step": 10000,
+      "training_image_draws": 1280000,
+      "validation_ema": {
+        "mse": 0.08987704198807478
+      },
+      "elapsed_seconds": 573.9598545299999,
+      "successful_updates": 10000,
+      "skipped": 0
+    }
+  ],
+  "recipe": "Same RGB cache, patch4/conv4x64, direct-x/velocity loss, t=sigmoid(N(-.8,.8^2)), AdamW lr2e-4 wd1e-4, clip1, FP16 autocast.",
+  "changes": "Width192->384, depth9->12. Global batch32->128. Same learning rate; warmup and EMA horizon scaled by image count. Model capacity and batch effects are not isolated.",
+  "sampling": "Independent rank-specific random streams, uniform training draws with replacement and horizontal flip.",
+  "before": "name, memory.used [MiB], utilization.gpu [%], power.draw [W]\nPPU-ZW810E, 1233 MiB, 0 %, 134.10 W\nPPU-ZW810E, 1361 MiB, 100 %, 142.75 W\nPPU-ZW810E, 1213 MiB, 100 %, 141.30 W\nPPU-ZW810E, 1273 MiB, 100 %, 140.35 W\nPPU-ZW810E, 2 MiB, 0 %, 80.37 W\nPPU-ZW810E, 2 MiB, 0 %, 79.98 W\nPPU-ZW810E, 2 MiB, 0 %, 80.40 W\nPPU-ZW810E, 2 MiB, 0 %, 79.44 W\nPPU-ZW810E, 2 MiB, 0 %, 81.45 W\nPPU-ZW810E, 2 MiB, 0 %, 82.49 W\nPPU-ZW810E, 2 MiB, 0 %, 81.37 W\nPPU-ZW810E, 2 MiB, 0 %, 81.46 W\nPPU-ZW810E, 2 MiB, 0 %, 80.37 W\nPPU-ZW810E, 2 MiB, 0 %, 80.45 W\nPPU-ZW810E, 2 MiB, 0 %, 81.55 W\nPPU-ZW810E, 2 MiB, 0 %, 81.55 W",
+  "step": 10000,
+  "training_image_draws": 1280000,
+  "validation_ema": {
+    "mse": 0.08987704198807478
+  },
+  "elapsed_seconds": 573.9598545299999,
+  "successful_updates": 10000,
+  "skipped": 0,
+  "status": "complete",
+  "peak_allocated_mib": 3624.693359375,
+  "replicas_agree": true,
+  "measured_ms": [
+    82.67101287841797,
+    56.25062942504883,
+    53.68762493133545,
+    54.14909839630127,
+    53.20645332336426,
+    53.56374263763428,
+    53.81434917449951,
+    54.97732639312744,
+    54.88839626312256,
+    53.45571041107178,
+    53.70634078979492,
+    53.38731288909912,
+    55.89395523071289,
+    54.82729911804199,
+    57.47701644897461,
+    54.80746269226074,
+    55.1255989074707,
+    53.23952674865723,
+    53.02018165588379,
+    54.029855728149414,
+    55.132269859313965,
+    52.69329071044922,
+    52.5246000289917,
+    52.6658821105957,
+    53.45862865447998,
+    54.83729839324951,
+    55.38330078125,
+    55.15241622924805,
+    55.088443756103516,
+    55.25256156921387,
+    54.88642692565918,
+    54.96753692626953,
+    54.06181335449219,
+    54.81905460357666,
+    54.95053291320801,
+    55.50809383392334,
+    54.24952983856201,
+    54.045042991638184,
+    54.58435535430908,
+    54.99231815338135,
+    55.061306953430176,
+    55.24111747741699,
+    54.92155075073242,
+    54.73721504211426,
+    55.24355411529541,
+    54.637818336486816,
+    54.75083351135254,
+    52.71365165710449,
+    53.004302978515625,
+    52.70869731903076,
+    55.375733375549316,
+    54.24088478088379,
+    54.349398612976074,
+    56.17532253265381,
+    54.43692207336426,
+    55.44473171234131,
+    55.67303657531738,
+    55.626912117004395,
+    55.5323600769043,
+    55.96057415008545,
+    55.13329029083252,
+    54.17003631591797,
+    54.92297649383545,
+    54.446072578430176,
+    54.48750972747803,
+    53.228912353515625,
+    53.88582706451416,
+    53.41044902801514,
+    54.68789100646973,
+    53.5152530670166,
+    53.45219135284424,
+    53.36771488189697,
+    53.53687286376953,
+    53.03049564361572,
+    53.33789348602295,
+    54.13344383239746,
+    53.33888530731201,
+    53.36141109466553,
+    53.02830219268799,
+    53.30843448638916,
+    53.28455448150635,
+    53.6324405670166,
+    53.17614555358887,
+    53.28010082244873,
+    53.41534614562988,
+    53.306732177734375,
+    53.29002857208252,
+    53.443288803100586,
+    53.40984344482422,
+    53.638057708740234,
+    53.42844009399414,
+    53.462419509887695,
+    53.81204128265381,
+    53.23169231414795,
+    53.478713035583496,
+    53.36038589477539,
+    53.43639373779297,
+    53.809170722961426,
+    53.499741554260254,
+    54.113125801086426
+  ],
+  "median_ms": 54.053428173065186,
+  "images_per_second": 2368.0274189118386,
+  "scope": "Actual RGB loading/augmentation + forward/backward/allreduce/AdamW/EMA; excludes validation and checkpoint writes."
+}

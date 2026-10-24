@@ -1,0 +1,105 @@
+{
+  "image_budget_per_run": 2560000,
+  "runs": [
+    {
+      "name": "jit_b128_lr2e4",
+      "batch": 128,
+      "lr": 0.0002,
+      "steps": 20000,
+      "ppus": 4,
+      "resume": "results/rgb_scaled_jit10k/checkpoint_10000",
+      "submission": "Submitted task 59105: celeba-r2-jit_b128_lr2e4 [QUEUED]"
+    },
+    {
+      "name": "jit_b128_lr8e4",
+      "batch": 128,
+      "lr": 0.0008,
+      "steps": 20000,
+      "ppus": 4,
+      "resume": null,
+      "submission": "Submitted task 59106: celeba-r2-jit_b128_lr8e4 [QUEUED]"
+    },
+    {
+      "name": "jit_b512_lr2e4",
+      "batch": 512,
+      "lr": 0.0002,
+      "steps": 5000,
+      "ppus": 4,
+      "resume": null,
+      "submission": "Submitted task 59107: celeba-r2-jit_b512_lr2e4 [QUEUED]"
+    },
+    {
+      "name": "jit_b512_lr8e4",
+      "batch": 512,
+      "lr": 0.0008,
+      "steps": 5000,
+      "ppus": 4,
+      "resume": null,
+      "submission": "Submitted task 59110: celeba-r2-jit_b512_lr8e4 [QUEUED]"
+    },
+    {
+      "name": "unet_ft_lr2e4",
+      "batch": 32,
+      "finetune_lr": 0.0002,
+      "start_steps": 40000,
+      "steps": 60000,
+      "ppus": 1,
+      "ema_decays": [
+        0.999,
+        0.9999
+      ],
+      "submission": "Submitted task 59112: celeba-r2-unet_ft_lr2e4 [QUEUED]"
+    },
+    {
+      "name": "unet_ft_lr5e5",
+      "batch": 32,
+      "finetune_lr": 5e-05,
+      "start_steps": 40000,
+      "steps": 60000,
+      "ppus": 1,
+      "ema_decays": [
+        0.999,
+        0.9999
+      ],
+      "submission": "Submitted task 59113: celeba-r2-unet_ft_lr5e5 [QUEUED]"
+    }
+  ],
+  "guidance": [
+    {
+      "kind": "unet",
+      "submission": "Submitted task 59114: celeba-rgb-guidance-unet [QUEUED]"
+    },
+    {
+      "kind": "jit",
+      "submission": "Submitted task 59115: celeba-rgb-guidance-jit [QUEUED]"
+    }
+  ],
+  "evaluations": [
+    {
+      "shard": 0,
+      "submission": "Submitted task 59116: celeba-r2-eval-0 [QUEUED]"
+    },
+    {
+      "shard": 1,
+      "submission": "Submitted task 59117: celeba-r2-eval-1 [QUEUED]"
+    }
+  ],
+  "small_jit40k": {
+    "task_id": 59111,
+    "ppus": 1,
+    "start": 20000,
+    "target": 40000,
+    "batch": 32
+  },
+  "guidance_result_summary": {
+    "unet20k_baseline": 23.47608036829848,
+    "unet20k_s1_6": 18.76478421775368,
+    "unet20k_s2": 17.90660733509223,
+    "jit20k_baseline": 40.0067134,
+    "jit20k_s2": 28.049371625619166,
+    "visual_note": "Inspected all first64 grids;UNet s2 introduces conspicuous color patches/strong contrast in several samples. Keep1.3-1.6 as candidates;no universal best strength declared.",
+    "cost": "198 model forwards versus99 baseline;CPU-to-GPU same seed protocol;selection on one fixed sample set,not independent validation."
+  },
+  "latest_task_states": "results/round2_live_tasks.json",
+  "stream_check40k": "results/rgb_40k_stream_check.json"
+}

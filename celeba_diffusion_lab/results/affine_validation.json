@@ -1,0 +1,18 @@
+{
+  "shared_initial_weights_equal": true,
+  "initial_output_max_error": 0.0,
+  "training_losses": [
+    1.2071130275726318,
+    0.9398064613342285,
+    0.7444818019866943
+  ],
+  "condition_input_sensitivity": 0.001968327909708023,
+  "global_encoder_gradient_nonzero": true,
+  "save_load_max_error": 0.0,
+  "fp32_graph_vs_eager_max_error": 0.0,
+  "parameters": {
+    "baseline": 6337345,
+    "time_affine": 6597153,
+    "global_affine": 6622945
+  }
+}

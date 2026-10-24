@@ -1,0 +1,75 @@
+{
+  "date": "2026-10-24",
+  "dataset": "CelebA64 official splits, original RGB, train162770/valid19867/test19962;test unused",
+  "cluster": {
+    "job": "bifrost-2026101312015311-zhousc6",
+    "available_topology": "4 nodes x16 PPU-ZW810E",
+    "used_training": "1 node x4 PPU",
+    "cross_node_tested": false
+  },
+  "tasks": {
+    "scaling": 59085,
+    "large_training": 59087,
+    "small_rgb_training": 62013,
+    "small_rgb_evaluation": 62015,
+    "large_rgb_evaluation": 62017,
+    "unet_continuation": 62018,
+    "unet_global32_scaling": 59100,
+    "unet_continuation_evaluation": 62019
+  },
+  "task_states": "Original five RGB tasks,59100,62018 and62019 SUCCEEDED;new round2 tasks listed separately and still running.",
+  "models": {
+    "small_jit": 6243891,
+    "large_jit": 32629107,
+    "unet_flow": 6624899
+  },
+  "data_hashes": {
+    "train": {
+      "count": 162770,
+      "sha256": "8ab8f7934272871686400b5d109760c7b27970859015f6e86af4f374b08f1af7",
+      "seconds_total": 42.48626075685024
+    },
+    "valid": {
+      "count": 19867,
+      "sha256": "03becc79ecc632efd762fd04f6f94d26fea4d29e05c8d146ac25456abf8ac9f9",
+      "seconds_total": 52.76181235164404
+    }
+  },
+  "code_hashes": {
+    "src/model_scaled.py": "dfe9d9c082cb0a30f5c697924bf0bb582f32419a18bfbc6b7fd48e0990a37f01",
+    "src/train_scaled.py": "ea0eee1689b5f54caeed049cfabed8257fd9c1ef6b42e1145b052ebeb25bccd2",
+    "src/model_flow.py": "2134e70416efcc512e0a2efdd5f1032d8ca758ff029e3b0949b8e16d547ed7b0",
+    "src/benchmark_device.py": "39411cb636fdec9a83b3778b0e76e73b96f96dab39f896d877dfb686526d53bb",
+    "src/train_flow.py": "50b5b592638d82ad5e1733dac21985843b69577f604b4e59d879ac3a8a060088",
+    "src/model.py": "0fdd4847ac9896c94ca91aeb8215a900b3fab779f73aa5805e58bb3f6209787f",
+    "src/bench_unet_ddp.py": "d9b7159a297df503cedbe87e3375f63c6e6d3890251d72f6af8f66a9759abab2",
+    "src/evaluate_unet_continuation.py": "093bc5146451692eeb2b4aa3dbd8d9b98584fc33b48b13e11bea715a5812ff34"
+  },
+  "remote_project": "/dataset-cpfs5/vtm-foundation-pretrain/temp/zhousc6/celeba_diffusion_lab_20261024",
+  "source_and_weights": "results/rgb_flow_environment.json",
+  "scope": "RGB only. Grayscale training stopped and archived. Full checkpoints remain on shared remote storage; local report contains JSON/PNG/SVG and benchmark data.",
+  "unet_continuation": {
+    "target_steps": 40000,
+    "batch": 32,
+    "training_image_draws": 1280000,
+    "ppus": 1,
+    "resume_step": 5000,
+    "resume_checkpoint_sha256": "20d421d1a36c478e4ac78db49b539b3e9dd61b77804cbd4dc7db5999d710c0c5",
+    "saved_evaluation_steps": [
+      20000,
+      40000
+    ],
+    "original_output_preserved": true,
+    "recipe_changed": false,
+    "data_mode": "RGB",
+    "code_matches_prior_experiment": true,
+    "status": "complete",
+    "final_kid_x1000": 19.082450132405057,
+    "final_validation_mse": 0.08863095939159393,
+    "elapsed_seconds": 1985.6002227000008,
+    "successful_updates": 39987,
+    "skipped": 13,
+    "evaluation": "results/rgb_unet_continuation_evaluation/evaluation.json"
+  },
+  "round2_jobs": "results/round2_jobs.json"
+}

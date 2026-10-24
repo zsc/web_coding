@@ -1,0 +1,46 @@
+{
+  "reviewed_local_files": [
+    {
+      "path": "/Users/zsc/d/cstft_jit/src/jit_audio/models/jit_stft.py",
+      "sha256": "f881ff1d6b148aad6da4dc31b75a4be1091b2b0e1ebd3d6a2dff48a9f2be8ed2"
+    },
+    {
+      "path": "/Users/zsc/d/cstft_jit/docs/execplans/jit_celeba.md",
+      "sha256": "21c18c34427c272e08af7d21e483ebb9c2e6600c56ae538316d79ecda207f507"
+    },
+    {
+      "path": "/Users/zsc/d/cstft_jit/configs/jit_celeba_base.yaml",
+      "sha256": "f49d63051051ee1e933d88639ada4ee218a5f5c865f031d3430d62a91407a657"
+    },
+    {
+      "path": "/Users/zsc/d/cstft_jit_arc2face/src/jit_audio/models/jit_stft.py",
+      "sha256": "f4784d18563631e48450bed8951ca5126784321f47b18f04dc1098e48da36fc2"
+    },
+    {
+      "path": "/Users/zsc/d/cstft_jit_arc2face/src/jit_audio/flow/objective.py",
+      "sha256": "69d8615a055952e1fe933b170e08f5180bda78e577f5e7cde5c4b3e24b32e48f"
+    },
+    {
+      "path": "/Users/zsc/d/cstft_jit_arc2face/src/jit_audio/flow/sampler.py",
+      "sha256": "af472269edd0fb0eed337d93134e692e7c939a110fbe9434927a322b0f0f6cbd"
+    },
+    {
+      "path": "/Users/zsc/d/cstft_jit_arc2face/src/jit_audio/audio/image_stats.py",
+      "sha256": "5dd3848254d8482b510f7ca307a6124750cba752cf31c8be50d88d54ad55a9f4"
+    },
+    {
+      "path": "/Users/zsc/d/cstft_jit_arc2face/configs/jit_arcface_96_depth16.yaml",
+      "sha256": "2ed69103aa5f7f3d6e0d213a202c59b6d1a2cad94796719156bb29d249067209"
+    }
+  ],
+  "findings": [
+    "Both implementations use RMSNorm and adaLN shift/scale/gates; unconditional configurations supply time conditioning, not a dedicated raw noisy-image global statistics encoder.",
+    "cstft_jit RPCAHead optionally FiLM-modulates GroupNorm outputs; that feature is separate from the main CelebA/Arc2Face configurations.",
+    "JiT predicts clean x directly, trains velocity-space MSE with linear flow z=t*x+(1-t)*noise, logit-normal t and Heun/Euler sampling. It is not merely a transformer replacement for epsilon DDPM.",
+    "ImageStats applies dataset-level per-channel mean/std with inverse transform; it does not discard per-image brightness or contrast.",
+    "CelebA execplan records a strong early output-conv effect that largely shrinks at 30000 updates. Patch8 had higher final validation loss than patch4. These are repository-recorded results, not rerun here.",
+    "Reference CelebA: 130.4M parameters, 30000*1024=30.72M image draws. Current baseline: 6.337M, 5000*32=160000 draws. Exposure differs by 192x, so prior visual quality cannot isolate architecture.",
+    "Applied here: scale/shift in U-Net residual blocks; added noisy-image global statistics plus pooled features as a zero-initialized residual condition. Kept epsilon loss and sampler fixed to isolate conditioning."
+  ],
+  "next_separate_ablation": "Keep U-Net and compare clean-x flow training with matching preprocessing/budget; compare a small patch4 JiT afterward. Not executed in this affine study."
+}

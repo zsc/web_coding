@@ -1,0 +1,292 @@
+{
+  "runs": [
+    {
+      "run": "unet_lr5e5",
+      "task_id": 59156,
+      "updates": 6250,
+      "success": 6247,
+      "skip": 3,
+      "median_images_per_second": 12657.694489808928,
+      "training_elapsed_seconds": 280.92772491100004,
+      "pipeline_seconds": 354.098102,
+      "replicas": {
+        "sha256_model_dual_ema_optimizer": "c4a48af8471e291e5761495042c4fd9b83cb1460fa03fc8ce657a90e5424ad6b",
+        "replicas": 16,
+        "identical": true
+      },
+      "rows": [
+        {
+          "name": "unet_lr5e5_1250_ema",
+          "step": 1250,
+          "training_image_draws": 2560000,
+          "weights_prefix": "ema",
+          "kid_mean": 0.013750003295608436,
+          "subset_std": 0.0018081347046981057,
+          "validation_mse": 0.08746063709259033,
+          "amp_graph_vs_fp32_eager_rmse": 0.0004192548803985119,
+          "distributed_vs_serial_probe_max_abs": 0.0
+        },
+        {
+          "name": "unet_lr5e5_1250_slow_ema",
+          "step": 1250,
+          "training_image_draws": 2560000,
+          "weights_prefix": "slow_ema",
+          "kid_mean": 0.014003030716935462,
+          "subset_std": 0.0018606806735886273,
+          "validation_mse": 0.0874917539767921,
+          "amp_graph_vs_fp32_eager_rmse": 0.0007823953055776656,
+          "distributed_vs_serial_probe_max_abs": null
+        },
+        {
+          "name": "unet_lr5e5_3750_ema",
+          "step": 3750,
+          "training_image_draws": 3840000,
+          "weights_prefix": "ema",
+          "kid_mean": 0.013938562829022488,
+          "subset_std": 0.0017453051975619318,
+          "validation_mse": 0.0872981958091259,
+          "amp_graph_vs_fp32_eager_rmse": 0.000544491340406239,
+          "distributed_vs_serial_probe_max_abs": null
+        },
+        {
+          "name": "unet_lr5e5_3750_slow_ema",
+          "step": 3750,
+          "training_image_draws": 3840000,
+          "weights_prefix": "slow_ema",
+          "kid_mean": 0.01370913558548536,
+          "subset_std": 0.0017946328370481053,
+          "validation_mse": 0.08726874180138111,
+          "amp_graph_vs_fp32_eager_rmse": 0.0005581466830335557,
+          "distributed_vs_serial_probe_max_abs": null
+        },
+        {
+          "name": "unet_lr5e5_6250_ema",
+          "step": 6250,
+          "training_image_draws": 5120000,
+          "weights_prefix": "ema",
+          "kid_mean": 0.014402087412040512,
+          "subset_std": 0.0018395850121209957,
+          "validation_mse": 0.08702503982931376,
+          "amp_graph_vs_fp32_eager_rmse": 0.0005052683991380036,
+          "distributed_vs_serial_probe_max_abs": null
+        },
+        {
+          "name": "unet_lr5e5_6250_slow_ema",
+          "step": 6250,
+          "training_image_draws": 5120000,
+          "weights_prefix": "slow_ema",
+          "kid_mean": 0.013618439929182219,
+          "subset_std": 0.0017715630037713234,
+          "validation_mse": 0.08704885700717568,
+          "amp_graph_vs_fp32_eager_rmse": 0.00046433007810264826,
+          "distributed_vs_serial_probe_max_abs": null
+        }
+      ]
+    },
+    {
+      "run": "jit_lr5e5",
+      "task_id": 59155,
+      "updates": 5000,
+      "success": 5000,
+      "skip": 0,
+      "median_images_per_second": 10725.621129319861,
+      "training_elapsed_seconds": 279.9274926480002,
+      "pipeline_seconds": 380.935559,
+      "replicas": {
+        "sha256_model_dual_ema_optimizer": "8b90a4c37c9e7dc17d753d5d9165c0db39701c92f7138282fd013bf54dfadd7e",
+        "replicas": 16,
+        "identical": true
+      },
+      "rows": [
+        {
+          "name": "jit_lr5e5_2500_ema",
+          "step": 2500,
+          "training_image_draws": 3840000,
+          "weights_prefix": "ema",
+          "kid_mean": 0.020551432821108728,
+          "subset_std": 0.0022624713419395893,
+          "validation_mse": 0.08702689316123724,
+          "amp_graph_vs_fp32_eager_rmse": 0.0003483248583506793,
+          "distributed_vs_serial_probe_max_abs": 0.0
+        },
+        {
+          "name": "jit_lr5e5_2500_slow_ema",
+          "step": 2500,
+          "training_image_draws": 3840000,
+          "weights_prefix": "slow_ema",
+          "kid_mean": 0.02087592648794585,
+          "subset_std": 0.002252200356817653,
+          "validation_mse": 0.08707534801214933,
+          "amp_graph_vs_fp32_eager_rmse": 0.00031362337176688015,
+          "distributed_vs_serial_probe_max_abs": null
+        },
+        {
+          "name": "jit_lr5e5_5000_ema",
+          "step": 5000,
+          "training_image_draws": 5120000,
+          "weights_prefix": "ema",
+          "kid_mean": 0.020876088715383975,
+          "subset_std": 0.0024176860589698143,
+          "validation_mse": 0.08668046584352851,
+          "amp_graph_vs_fp32_eager_rmse": 0.00034483199124224484,
+          "distributed_vs_serial_probe_max_abs": null
+        },
+        {
+          "name": "jit_lr5e5_5000_slow_ema",
+          "step": 5000,
+          "training_image_draws": 5120000,
+          "weights_prefix": "slow_ema",
+          "kid_mean": 0.020412568207214578,
+          "subset_std": 0.002332418432347154,
+          "validation_mse": 0.08671024674549699,
+          "amp_graph_vs_fp32_eager_rmse": 0.00033668515970930457,
+          "distributed_vs_serial_probe_max_abs": null
+        }
+      ]
+    },
+    {
+      "run": "unet_lr2e4",
+      "task_id": 59152,
+      "updates": 6250,
+      "success": 6247,
+      "skip": 3,
+      "median_images_per_second": 12478.662584414022,
+      "training_elapsed_seconds": 326.0185577580005,
+      "pipeline_seconds": 399.84216,
+      "replicas": {
+        "sha256_model_dual_ema_optimizer": "c2e2d48a473abe3b5c9fff49202086290c84a91a09b1c2e99a1b22a255cad904",
+        "replicas": 16,
+        "identical": true
+      },
+      "rows": [
+        {
+          "name": "unet_lr2e4_1250_ema",
+          "step": 1250,
+          "training_image_draws": 2560000,
+          "weights_prefix": "ema",
+          "kid_mean": 0.013194695353213728,
+          "subset_std": 0.0017029281884113558,
+          "validation_mse": 0.0873338058590889,
+          "amp_graph_vs_fp32_eager_rmse": 0.000395178678445518,
+          "distributed_vs_serial_probe_max_abs": 0.0
+        },
+        {
+          "name": "unet_lr2e4_1250_slow_ema",
+          "step": 1250,
+          "training_image_draws": 2560000,
+          "weights_prefix": "slow_ema",
+          "kid_mean": 0.01371424282333292,
+          "subset_std": 0.0018357655478293386,
+          "validation_mse": 0.08739668177440763,
+          "amp_graph_vs_fp32_eager_rmse": 0.0006471960805356503,
+          "distributed_vs_serial_probe_max_abs": null
+        },
+        {
+          "name": "unet_lr2e4_3750_ema",
+          "step": 3750,
+          "training_image_draws": 3840000,
+          "weights_prefix": "ema",
+          "kid_mean": 0.013863593219068706,
+          "subset_std": 0.0017309227202611454,
+          "validation_mse": 0.08688917197287083,
+          "amp_graph_vs_fp32_eager_rmse": 0.0005412215832620859,
+          "distributed_vs_serial_probe_max_abs": null
+        },
+        {
+          "name": "unet_lr2e4_3750_slow_ema",
+          "step": 3750,
+          "training_image_draws": 3840000,
+          "weights_prefix": "slow_ema",
+          "kid_mean": 0.013172317971168725,
+          "subset_std": 0.0017464561528175283,
+          "validation_mse": 0.08685562619939446,
+          "amp_graph_vs_fp32_eager_rmse": 0.000454711786005646,
+          "distributed_vs_serial_probe_max_abs": null
+        },
+        {
+          "name": "unet_lr2e4_6250_ema",
+          "step": 6250,
+          "training_image_draws": 5120000,
+          "weights_prefix": "ema",
+          "kid_mean": 0.013652769512050513,
+          "subset_std": 0.0018818255323939453,
+          "validation_mse": 0.08651008922606707,
+          "amp_graph_vs_fp32_eager_rmse": 0.0006115211872383952,
+          "distributed_vs_serial_probe_max_abs": null
+        },
+        {
+          "name": "unet_lr2e4_6250_slow_ema",
+          "step": 6250,
+          "training_image_draws": 5120000,
+          "weights_prefix": "slow_ema",
+          "kid_mean": 0.013015499929069918,
+          "subset_std": 0.0018404622220750096,
+          "validation_mse": 0.08645630860701203,
+          "amp_graph_vs_fp32_eager_rmse": 0.000535323575604707,
+          "distributed_vs_serial_probe_max_abs": null
+        }
+      ]
+    },
+    {
+      "run": "jit_lr2e4",
+      "task_id": 59153,
+      "updates": 5000,
+      "success": 4999,
+      "skip": 1,
+      "median_images_per_second": 10736.830935347836,
+      "training_elapsed_seconds": 264.0665539040001,
+      "pipeline_seconds": 351.135734,
+      "replicas": {
+        "sha256_model_dual_ema_optimizer": "c2c232b2ea284b66df45772d2e9cc231a06527e194dc03daf2af9e1ce15bda52",
+        "replicas": 16,
+        "identical": true
+      },
+      "rows": [
+        {
+          "name": "jit_lr2e4_2500_ema",
+          "step": 2500,
+          "training_image_draws": 3840000,
+          "weights_prefix": "ema",
+          "kid_mean": 0.02146565050259216,
+          "subset_std": 0.002367641416590543,
+          "validation_mse": 0.08673477591946721,
+          "amp_graph_vs_fp32_eager_rmse": 0.0004177271912340075,
+          "distributed_vs_serial_probe_max_abs": 0.0
+        },
+        {
+          "name": "jit_lr2e4_2500_slow_ema",
+          "step": 2500,
+          "training_image_draws": 3840000,
+          "weights_prefix": "slow_ema",
+          "kid_mean": 0.021666342657208047,
+          "subset_std": 0.0022870133788976668,
+          "validation_mse": 0.08672377793118358,
+          "amp_graph_vs_fp32_eager_rmse": 0.00038011386641301215,
+          "distributed_vs_serial_probe_max_abs": null
+        },
+        {
+          "name": "jit_lr2e4_5000_ema",
+          "step": 5000,
+          "training_image_draws": 5120000,
+          "weights_prefix": "ema",
+          "kid_mean": 0.02153198170846048,
+          "subset_std": 0.0024738649278953206,
+          "validation_mse": 0.08619965426623821,
+          "amp_graph_vs_fp32_eager_rmse": 0.00047963601537048817,
+          "distributed_vs_serial_probe_max_abs": null
+        },
+        {
+          "name": "jit_lr2e4_5000_slow_ema",
+          "step": 5000,
+          "training_image_draws": 5120000,
+          "weights_prefix": "slow_ema",
+          "kid_mean": 0.02115547431945105,
+          "subset_std": 0.002378226849394814,
+          "validation_mse": 0.08614449296146631,
+          "amp_graph_vs_fp32_eager_rmse": 0.0003493614203762263,
+          "distributed_vs_serial_probe_max_abs": null
+        }
+      ]
+    }
+  ]
+}
