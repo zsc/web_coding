@@ -1,0 +1,2 @@
+name, memory.free [MiB], utilization.gpu [%]
+NVIDIA GeForce RTX 2080 SUPER, 5873 MiB, 44 %

@@ -1,0 +1,8 @@
+{
+  "fp32_loss": 0.05787651613354683,
+  "amp_loss": 0.05788702890276909,
+  "gradient_relative_l2": 0.009914254769682884,
+  "gradient_threshold": 0.1,
+  "loss_relative_threshold": 0.02,
+  "passed": true
+}

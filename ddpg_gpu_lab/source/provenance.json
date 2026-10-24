@@ -1,0 +1,7 @@
+{
+  "url": "https://github.com/zsc/zsc.github.io/blob/master/widgets/ddpg_invpendulum.html",
+  "git_blob_sha": "6409582ccaf159a822a422bec7f8fe2ed9fda144",
+  "snapshot_sha256": "147f06c8098744bf1bf8b5a304b1ce8fba2067a111cc880f37dbd7bbad8422b0",
+  "retrieved_date": "2026-10-24",
+  "extraction": "Math & NN Helpers through end of InvertedPendulumEnv; render method retained but never invoked"
+}

@@ -1,0 +1,27 @@
+{
+  "passed": true,
+  "initial": {
+    "time": "5.36",
+    "speed": "1.41×",
+    "browser": "25.6×",
+    "accuracy": "98.36%",
+    "width": 1440,
+    "viewport": 1440
+  },
+  "mobile": {
+    "width": 390,
+    "viewport": 390
+  },
+  "errors": [],
+  "external_requests": [],
+  "verified": [
+    "offline file:// load",
+    "desktop/mobile layout",
+    "12 random samples",
+    "wrong-only filter",
+    "sample selection",
+    "10-epoch/time-axis curve",
+    "timing mode",
+    "valid/invalid command settings"
+  ]
+}

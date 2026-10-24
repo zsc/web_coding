@@ -1,0 +1,20 @@
+{
+  "ddpm_graph_vs_eager_seeded_200_max_abs": 2.771615982055664e-06,
+  "ddpm_graph_t0_max_abs": 4.76837158203125e-07,
+  "alpha_bar_terminal": 0.132182776927948,
+  "threshold": 0.0002,
+  "gallery_initial_seeds": [
+    881,
+    882,
+    883,
+    884,
+    885
+  ],
+  "gallery_noise_seeds": [
+    117,
+    118,
+    119,
+    120,
+    121
+  ]
+}

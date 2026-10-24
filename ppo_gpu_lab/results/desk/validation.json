@@ -1,0 +1,16 @@
+{
+  "torch.float64": {
+    "state_max_abs": 2.4424906541753444e-15,
+    "reward_max_abs": 2.220446049250313e-16,
+    "done_equal": true
+  },
+  "torch.float32": {
+    "state_max_abs": 9.5367431640625e-07,
+    "reward_max_abs": 1.1920928955078125e-07,
+    "done_equal": true
+  },
+  "forward_actor_max_abs": 1.3891587907766123e-08,
+  "legacy_one_update_weight_max_abs": 2.9645692234403498e-08,
+  "gae_returns_max_abs": 0.0,
+  "all_passed": true
+}

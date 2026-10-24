@@ -1,0 +1,139 @@
+{
+  "hardware": {
+    "host": "zsc-X570-UD",
+    "platform": "Linux-5.15.0-185-generic-x86_64-with-glibc2.35",
+    "torch": "2.10.0+cu128",
+    "cuda": "12.8",
+    "gpu": "NVIDIA GeForce RTX 2080 SUPER",
+    "cpu_threads": 1
+  },
+  "checks": [
+    {
+      "name": "actor vs original JS",
+      "max_abs_error": 4.440892098500626e-16,
+      "atol": 1e-10,
+      "rtol": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "critic vs original JS",
+      "max_abs_error": 2.220446049250313e-16,
+      "atol": 1e-10,
+      "rtol": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "dQ/da vs original JS",
+      "max_abs_error": 4.163336342344337e-17,
+      "atol": 1e-10,
+      "rtol": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "physics vs original JS",
+      "max_abs_error": 5.551115123125783e-17,
+      "atol": 1e-10,
+      "rtol": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "reward vs original JS",
+      "max_abs_error": 0.0,
+      "atol": 1e-10,
+      "rtol": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "terminal vs original JS",
+      "max_abs_error": 0.0,
+      "atol": 1e-10,
+      "rtol": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "serial losses vs original JS",
+      "max_abs_error": 1.7763568394002505e-15,
+      "atol": 1e-10,
+      "rtol": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "serial actor weights vs original JS",
+      "max_abs_error": 0.0,
+      "atol": 1e-10,
+      "rtol": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "serial critic weights vs original JS",
+      "max_abs_error": 1.1102230246251565e-16,
+      "atol": 1e-10,
+      "rtol": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "serial target_actor weights vs original JS",
+      "max_abs_error": 1.1102230246251565e-16,
+      "atol": 1e-10,
+      "rtol": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "serial target_critic weights vs original JS",
+      "max_abs_error": 1.1102230246251565e-16,
+      "atol": 1e-10,
+      "rtol": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "critic analytic gradients vs autograd",
+      "max_abs_error": 0.0,
+      "atol": 1e-10,
+      "rtol": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "actor analytic gradients vs autograd",
+      "max_abs_error": 6.217248937900877e-15,
+      "atol": 1e-10,
+      "rtol": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "batch=1 preserves serial SGD",
+      "max_abs_error": 0.0,
+      "atol": 1e-10,
+      "rtol": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "replay wraparound + nonterminal time-limit reset",
+      "passed": true
+    },
+    {
+      "name": "manual Adam vs torch.optim.Adam, 5 updates",
+      "max_abs_error": 5.551115123125783e-17,
+      "atol": 1e-10,
+      "rtol": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "compiled CUDA Graph vs eager, 10 updates",
+      "max_abs_error": 9.313225746154785e-10,
+      "atol": 3e-05,
+      "rtol": 0.0003,
+      "passed": true
+    },
+    {
+      "name": "compiled Adam CUDA Graph vs eager, 10 updates",
+      "max_abs_error": 1.7881393432617188e-07,
+      "atol": 3e-05,
+      "rtol": 0.0003,
+      "passed": true
+    },
+    {
+      "name": "full graph advances replay, physics and random state",
+      "passed": true
+    }
+  ]
+}

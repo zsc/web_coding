@@ -1,0 +1,14 @@
+    "passed": true,
+    "atol": 3e-05,
+    "rtol": 0.0003
+  },
+  {
+    "name": "full packed graph actor vs eager",
+    "max_abs_error": 5.960464477539063e-08,
+    "passed": true,
+    "atol": 3e-05,
+    "rtol": 0.0003
+  }
+]
+W1024 15:59:50.055000 546185 site-packages/torch/_inductor/utils.py:1679] [0/0] Not enough SMs to use max_autotune_gemm mode
+95 %, 2824 MiB

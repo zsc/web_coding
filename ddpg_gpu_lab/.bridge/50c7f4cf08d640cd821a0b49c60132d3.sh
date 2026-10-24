@@ -1,0 +1,3 @@
+#!/bin/sh
+ssh -o BatchMode=yes -o ConnectTimeout=15 desk 'cd /home/zsc/ddpg_gpu_lab_20261024/ddpg_gpu_lab && /home/zsc/miniconda3/envs/py312/bin/python validate_multiseed.py --cuda > results/validate_multiseed.log 2>&1 && /home/zsc/miniconda3/envs/py312/bin/python multiseed.py --seeds 100 --updates 100000 --eval-every 25000 --episode-limit 2000 --out results/seeds100_ddpg_long > results/seeds100_ddpg_long.log 2>&1' > /Users/zsc/Downloads/web_coding/ddpg_gpu_lab/.bridge/50c7f4cf08d640cd821a0b49c60132d3.log 2>&1
+echo $? > /Users/zsc/Downloads/web_coding/ddpg_gpu_lab/.bridge/50c7f4cf08d640cd821a0b49c60132d3.exit

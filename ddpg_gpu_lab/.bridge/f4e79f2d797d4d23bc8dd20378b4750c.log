@@ -1,0 +1,4 @@
+{"steps":14000,"seconds":61.942551527,"mean_length":153.296875,"success200":0.15625,"mean_return":128.24938487020168}
+{"steps":16000,"seconds":71.00164912800001,"mean_length":195.484375,"success200":0.65625,"mean_return":174.32308580803232}
+{"steps":18000,"seconds":80.177642197,"mean_length":188.859375,"success200":0.40625,"mean_return":165.24990500615772}
+{"updates": 10000, "transitions": 321024, "train_seconds": 3.4191312559414655, "wall_seconds": 9.721259257989004, "loss": [0.05094865337014198, -23.13497543334961], "mean_length": 98.03125, "success200": 0.0, "mean_return": 49.856327056884766, "horizon": 200}

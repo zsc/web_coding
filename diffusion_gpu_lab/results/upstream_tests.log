@@ -1,0 +1,14 @@
+
+Testing DownBlock and UpBlock skip connection concatenation...
+DownBlock and UpBlock skip connection test passed.
+.
+Testing U-Net final layer channel consistency with ch_mults[0] != 1...
+U-Net final layer channel test successful.
+.
+Testing U-Net full pass with specific channel configuration...
+U-Net full pass test successful with configured channels.
+.
+----------------------------------------------------------------------
+Ran 3 tests in 0.606s
+
+OK

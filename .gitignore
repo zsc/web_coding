@@ -1,0 +1,8 @@
+*.npz
+*.npy
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.tar.gz
+mnist_gpu_lab/data/*_stitched.png

@@ -1,0 +1,7 @@
+{
+  "url": "https://github.com/zsc/zsc.github.io/blob/0c253b32e07d973ba321916b9e19beb520e999b1/widgets/mnist/train.html",
+  "revision": "0c253b32e07d973ba321916b9e19beb520e999b1",
+  "git_blob_sha": "fe8ed19f66f2fdc590edc1df334c924066f8f9db",
+  "sha256": "4e396d8f570c127e4b41549937e89122fedb6260fbbff658095a2c955dcafd23",
+  "scope": "CNN training from train.html; diffusion, HMC, KMeans and ViT are outside this request."
+}

@@ -1,0 +1,5 @@
+{"event": "prepared", "setup_s": 1.200365555123426}
+{"iteration": 1, "seconds": 0.4609793049748987, "sps": 4442.715709572944, "wall_s": 0.4610268340911716, "samples": 2048, "metrics": [-0.10627791285514832, 203.18247985839844, 0.8457619547843933, 0.013102924451231956]}
+{"saved": "cpu_matched", "median_sps": 4527.3931544786865, "peak_allocated_mib": 0}
+timestamp, name, memory.used [MiB], utilization.gpu [%]
+2026/10/24 15:48:06.896, NVIDIA GeForce RTX 2080 SUPER, 2218 MiB, 52 %

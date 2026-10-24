@@ -1,0 +1,30 @@
+{
+  "mode": "original_node_learn",
+  "config": {
+    "STATE_DIM": 4,
+    "ACTION_DIM": 1,
+    "HIDDEN_DIM1": 32,
+    "HIDDEN_DIM2": 16,
+    "ACTION_BOUND": 10,
+    "LR_ACTOR": 0.0001,
+    "LR_CRITIC": 0.001,
+    "GAMMA": 0.99,
+    "TAU": 0.005,
+    "BUFFER_SIZE": 50000,
+    "BATCH_SIZE": 64,
+    "NOISE_STDDEV": 0.2
+  },
+  "node": "v24.13.1",
+  "host": "zsc-X570-UD",
+  "cpu": "AMD Ryzen 9 3900X 12-Core Processor",
+  "rounds_ms": [
+    4.865691406666667,
+    4.587085256666666,
+    4.477136416666667,
+    4.503506223333334,
+    4.769209186666667
+  ],
+  "median_ms": 4.587085256666666,
+  "updates_per_round": 300,
+  "scope": "learn includes replay sample, 64 serial critic SGD updates, actor update and Polyak; no DOM"
+}

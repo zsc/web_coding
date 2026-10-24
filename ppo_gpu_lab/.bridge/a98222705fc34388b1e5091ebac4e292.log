@@ -1,0 +1,3 @@
+pid, process_name, used_gpu_memory [MiB]
+96486, R:\GenshinImpact.exe, 1608 MiB
+543495, ./desk_benchmark, 1124 MiB

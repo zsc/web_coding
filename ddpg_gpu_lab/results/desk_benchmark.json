@@ -1,0 +1,138 @@
+{
+  "hardware": {
+    "host": "zsc-X570-UD",
+    "platform": "Linux-5.15.0-185-generic-x86_64-with-glibc2.35",
+    "torch": "2.10.0+cu128",
+    "cuda": "12.8",
+    "gpu": "NVIDIA GeForce RTX 2080 SUPER",
+    "cpu_threads": 1
+  },
+  "rows": [
+    {
+      "device": "cpu",
+      "compile": false,
+      "graph": false,
+      "envs": 1,
+      "batch": 64,
+      "rounds_ms": [
+        1.8983140467510868,
+        1.849936806441595,
+        1.8628431332763284,
+        1.9494031897435586,
+        1.8488518835511059
+      ],
+      "median_ms": 1.8628431332763284,
+      "transitions_per_second": 536.8138530490335,
+      "updates_per_second": 536.8138530490335,
+      "setup_seconds": 0.011999238980934024,
+      "scope": "full collect + replay write/sample + minibatch Adam update + Polyak",
+      "optimizer": "adam",
+      "finite": true
+    },
+    {
+      "device": "cuda",
+      "compile": false,
+      "graph": false,
+      "envs": 1,
+      "batch": 64,
+      "rounds_ms": [
+        4.336143203545362,
+        4.1253228501106305,
+        4.373106276616454,
+        4.201527920085937,
+        4.464813163115953
+      ],
+      "median_ms": 4.336143203545362,
+      "transitions_per_second": 230.61968967776934,
+      "updates_per_second": 230.61968967776934,
+      "setup_seconds": 0.07695035997312516,
+      "scope": "full collect + replay write/sample + minibatch Adam update + Polyak",
+      "optimizer": "adam",
+      "finite": true
+    },
+    {
+      "device": "cuda",
+      "compile": false,
+      "graph": true,
+      "envs": 1,
+      "batch": 64,
+      "rounds_ms": [
+        1.098123633225138,
+        1.1375608035208036,
+        1.0971793097754319,
+        1.1496226598198216,
+        1.1334642267320305
+      ],
+      "median_ms": 1.1334642267320305,
+      "transitions_per_second": 882.2510463194498,
+      "updates_per_second": 882.2510463194498,
+      "setup_seconds": 0.05031397507991642,
+      "scope": "full collect + replay write/sample + minibatch Adam update + Polyak",
+      "optimizer": "adam",
+      "finite": true
+    },
+    {
+      "device": "cuda",
+      "compile": true,
+      "graph": true,
+      "envs": 1,
+      "batch": 64,
+      "rounds_ms": [
+        0.3751480800565332,
+        0.3514071631555756,
+        0.3260823735035956,
+        0.3245922166388482,
+        0.32698387978598475
+      ],
+      "median_ms": 0.32698387978598475,
+      "transitions_per_second": 3058.254739207673,
+      "updates_per_second": 3058.254739207673,
+      "setup_seconds": 17.46947133098729,
+      "scope": "full collect + replay write/sample + minibatch Adam update + Polyak",
+      "optimizer": "adam",
+      "finite": true
+    },
+    {
+      "device": "cuda",
+      "compile": true,
+      "graph": true,
+      "envs": 32,
+      "batch": 256,
+      "rounds_ms": [
+        0.4104838997591287,
+        0.37513979671833414,
+        0.36816302648124594,
+        0.3835388067333649,
+        0.3770879632793367
+      ],
+      "median_ms": 0.3770879632793367,
+      "transitions_per_second": 84860.83650539452,
+      "updates_per_second": 2651.9011407935786,
+      "setup_seconds": 20.097401731996797,
+      "scope": "full collect + replay write/sample + minibatch Adam update + Polyak",
+      "optimizer": "adam",
+      "finite": true
+    },
+    {
+      "device": "cuda",
+      "compile": true,
+      "graph": true,
+      "envs": 256,
+      "batch": 1024,
+      "rounds_ms": [
+        0.4110076631574581,
+        0.4237932269461453,
+        0.41953260311856866,
+        0.41576852672733366,
+        0.42319629341363907
+      ],
+      "median_ms": 0.41953260311856866,
+      "transitions_per_second": 610202.8736194528,
+      "updates_per_second": 2383.6049750759876,
+      "setup_seconds": 0.02618446701671928,
+      "scope": "full collect + replay write/sample + minibatch Adam update + Polyak",
+      "optimizer": "adam",
+      "finite": true
+    }
+  ]
+}

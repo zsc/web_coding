@@ -1,0 +1,21 @@
+{
+  "report_sha256": "82eeb9aa4dbad00097ae19852f98d21a2e647d1813ab78c14ca55efb3ad50b76",
+  "run_names": [
+    "cpu",
+    "cuda_eager",
+    "cuda_graph",
+    "cuda_graph_amp",
+    "default_subset",
+    "graph_10epochs",
+    "cuda_eager_r1",
+    "cuda_graph_r1",
+    "default_subset_r1",
+    "cuda_eager_r2",
+    "cuda_graph_r2",
+    "default_subset_r2"
+  ],
+  "errors": 164,
+  "test_count": 10000,
+  "offline": true,
+  "report_bytes": 3055190
+}

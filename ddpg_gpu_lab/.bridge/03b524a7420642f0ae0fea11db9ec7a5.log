@@ -1,0 +1,13 @@
+  File "/home/zsc/ddpg_gpu_lab_20261024/ddpg_gpu_lab/validate_multiseed.py", line 38, in <module>
+    check('packed compiled graph vs eager 10 updates',torch.cat([t.flatten() for t in a.actor+a.critic]),torch.cat([t.flatten() for t in ref.actor+ref.critic]),3e-5,3e-4)
+  File "/home/zsc/ddpg_gpu_lab_20261024/ddpg_gpu_lab/validate_multiseed.py", line 9, in check
+    torch.testing.assert_close(x,y,atol=atol,rtol=rtol);checks.append({'name':name,'max_abs_error':float((x-y).abs().max()),'passed':True,'atol':atol,'rtol':rtol})
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zsc/miniconda3/envs/py312/lib/python3.12/site-packages/torch/testing/_comparison.py", line 1600, in assert_close
+    raise error_metas[0].to_error(msg)
+AssertionError: Tensor-likes are not close!
+
+Mismatched elements: 3 / 4326 (0.1%)
+Greatest absolute difference: 0.00012123584747314453 at index (1793,) (up to 3e-05 allowed)
+Greatest relative difference: 0.006684587802737951 at index (1670,) (up to 0.0003 allowed)
+39 %, 1754 MiB

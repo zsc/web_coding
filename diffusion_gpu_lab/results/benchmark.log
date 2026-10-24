@@ -1,0 +1,52 @@
+VALIDATION {"q_sample_max_abs": 0.0, "ddpm_200_same_noise_max_abs": 9.745359420776367e-06, "ddpm_200_same_noise_rmse": 8.572779961468768e-07, "ddim_graph_vs_eager_max_abs": 2.246350049972534e-06, "graph_seed_replay_max_abs": 2.7120113372802734e-06, "graph_fresh_noise_rmse": 0.6932759881019592, "amp_200_same_noise_max_abs": 0.01519051194190979, "amp_200_same_noise_rmse": 0.0009264323743991554, "fp32_tolerance": 0.0002, "passed": true}
+WARM original_serial5
+WARM batch5_fp32
+WARM graph_fp32
+WARM graph_amp
+WARM ddim50_amp
+WARM ddim20_amp
+BENCH 0 batch5_fp32 535.002
+BENCH 0 ddim50_amp 48.769
+BENCH 0 ddim20_amp 20.911
+BENCH 0 graph_amp 199.966
+BENCH 0 original_serial5 2536.03
+BENCH 0 graph_fp32 207.107
+BENCH 1 ddim20_amp 20.768
+BENCH 1 ddim50_amp 52.137
+BENCH 1 batch5_fp32 455.213
+BENCH 1 original_serial5 2467.857
+BENCH 1 graph_fp32 206.319
+BENCH 1 graph_amp 200.857
+BENCH 2 graph_fp32 207.87
+BENCH 2 original_serial5 2529.959
+BENCH 2 graph_amp 246.777
+BENCH 2 batch5_fp32 508.598
+BENCH 2 ddim20_amp 25.43
+BENCH 2 ddim50_amp 62.41
+BENCH 3 ddim50_amp 53.214
+BENCH 3 batch5_fp32 473.235
+BENCH 3 ddim20_amp 41.628
+BENCH 3 graph_amp 411.782
+BENCH 3 graph_fp32 423.587
+BENCH 3 original_serial5 2604.64
+BENCH 4 original_serial5 2655.454
+BENCH 4 ddim20_amp 59.9
+BENCH 4 batch5_fp32 580.917
+BENCH 4 graph_amp 576.259
+BENCH 4 ddim50_amp 148.272
+BENCH 4 graph_fp32 605.84
+BENCH 5 ddim20_amp 60.756
+BENCH 5 ddim50_amp 147.783
+BENCH 5 graph_amp 585.109
+BENCH 5 graph_fp32 535.249
+BENCH 5 original_serial5 2732.347
+BENCH 5 batch5_fp32 599.483
+BENCH 6 ddim50_amp 144.295
+BENCH 6 batch5_fp32 597.344
+BENCH 6 graph_fp32 612.65
+BENCH 6 graph_amp 439.104
+BENCH 6 original_serial5 2719.816
+BENCH 6 ddim20_amp 47.971
+TRAIN_BENCH {"name": "original_fp32", "median_ms": 36.579208250623196, "p10_ms": 36.187497487990186, "p90_ms": 47.48897072975524, "min_ms": 36.1325025500264, "max_ms": 50.31290684710257, "samples_ms": [50.31290684710257, 43.25306655373424, 36.1325025500264, 36.26998989493586, 36.579208250623196], "batch": 64, "peak_allocated_mib": 375.6787109375}
+TRAIN_BENCH {"name": "gpu_resident_fp32", "median_ms": 58.68767429492436, "p10_ms": 54.6465732390061, "p90_ms": 59.530643192119896, "min_ms": 52.8011318994686, "max_ms": 60.01621885225177, "samples_ms": [58.68767429492436, 58.80227970192209, 60.01621885225177, 57.414735248312354, 52.8011318994686], "batch": 64, "peak_allocated_mib": 437.26416015625}
+TRAIN_BENCH {"name": "amp_channels_last", "median_ms": 19.812946050660685, "p10_ms": 18.198980810120702, "p90_ms": 19.987446509767324, "min_ms": 17.176610347814858, "max_ms": 20.076270250137895, "samples_ms": [19.732536503579468, 20.076270250137895, 17.176610347814858, 19.854210899211466, 19.812946050660685], "batch": 64, "peak_allocated_mib": 287.1884765625}

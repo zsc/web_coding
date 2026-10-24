@@ -1,0 +1,3 @@
+#!/bin/sh
+ssh -o BatchMode=yes -o ConnectTimeout=15 desk 'hostname; nvidia-smi --query-gpu=name,memory.total,memory.used,utilization.gpu --format=csv; /home/zsc/miniconda3/envs/py312/bin/python -c "import torch; print(torch.__version__, torch.cuda.is_available())"; /home/zsc/miniconda3/envs/oellm/bin/python -c "import torch; print(torch.__version__, torch.cuda.is_available())"; ls /usr/local/cuda/bin/nvcc; /home/zsc/.nvm/versions/node/v24.13.1/bin/node --version' > /Users/zsc/Downloads/web_coding/ppo_gpu_lab/.bridge/e116c528a30b47648b845728ca7774d3.log 2>&1
+echo $? > /Users/zsc/Downloads/web_coding/ppo_gpu_lab/.bridge/e116c528a30b47648b845728ca7774d3.exit

@@ -1,0 +1,114 @@
+{
+  "hardware": {
+    "host": "zscdeMacBook-Air.local",
+    "platform": "macOS-26.6-arm64-arm-64bit",
+    "torch": "2.8.0",
+    "cuda": null,
+    "gpu": null,
+    "cpu_threads": 1
+  },
+  "checks": [
+    {
+      "name": "actor vs original JS",
+      "max_abs_error": 2.220446049250313e-16,
+      "atol": 1e-10,
+      "rtol": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "critic vs original JS",
+      "max_abs_error": 4.440892098500626e-16,
+      "atol": 1e-10,
+      "rtol": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "dQ/da vs original JS",
+      "max_abs_error": 4.163336342344337e-17,
+      "atol": 1e-10,
+      "rtol": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "physics vs original JS",
+      "max_abs_error": 5.551115123125783e-17,
+      "atol": 1e-10,
+      "rtol": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "reward vs original JS",
+      "max_abs_error": 0.0,
+      "atol": 1e-10,
+      "rtol": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "terminal vs original JS",
+      "max_abs_error": 0.0,
+      "atol": 1e-10,
+      "rtol": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "serial losses vs original JS",
+      "max_abs_error": 1.7763568394002505e-15,
+      "atol": 1e-10,
+      "rtol": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "serial actor weights vs original JS",
+      "max_abs_error": 0.0,
+      "atol": 1e-10,
+      "rtol": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "serial critic weights vs original JS",
+      "max_abs_error": 2.7755575615628914e-17,
+      "atol": 1e-10,
+      "rtol": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "serial target_actor weights vs original JS",
+      "max_abs_error": 1.1102230246251565e-16,
+      "atol": 1e-10,
+      "rtol": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "serial target_critic weights vs original JS",
+      "max_abs_error": 1.1102230246251565e-16,
+      "atol": 1e-10,
+      "rtol": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "critic analytic gradients vs autograd",
+      "max_abs_error": 0.0,
+      "atol": 1e-10,
+      "rtol": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "actor analytic gradients vs autograd",
+      "max_abs_error": 1.865174681370263e-14,
+      "atol": 1e-10,
+      "rtol": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "batch=1 preserves serial SGD",
+      "max_abs_error": 0.0,
+      "atol": 1e-10,
+      "rtol": 1e-09,
+      "passed": true
+    },
+    {
+      "name": "replay wraparound + nonterminal time-limit reset",
+      "passed": true
+    }
+  ]
+}

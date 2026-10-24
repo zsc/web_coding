@@ -1,0 +1,106 @@
+{
+  "environment": {
+    "platform": "Linux-5.15.0-185-generic-x86_64-with-glibc2.35",
+    "python": "3.12.12",
+    "torch": "2.10.0+cu128",
+    "cuda": "12.8",
+    "cudnn": 91002,
+    "gpu": "NVIDIA GeForce RTX 2080 SUPER",
+    "cpu": "AMD Ryzen 9 3900X 12-Core Processor",
+    "cpu_threads": 4,
+    "nvidia_smi": "Sat Oct 24 15:48:34 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 580.178.04             Driver Version: 580.178.04     CUDA Version: 13.0     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA GeForce RTX 2080 ...    Off |   00000000:08:00.0 Off |                  N/A |\n| 49%   48C    P2            112W /  250W |    3118MiB /   8192MiB |     99%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|    0   N/A  N/A            1593      G   /usr/lib/xorg/Xorg                        9MiB |\n|    0   N/A  N/A            1792      G   /usr/bin/gnome-shell                      3MiB |\n|    0   N/A  N/A           96486    C+G   R:\\GenshinImpact.exe                   1608MiB |\n|    0   N/A  N/A          540050      C   python3                                 116MiB |\n|    0   N/A  N/A          540623      C   ...iconda3/envs/py312/bin/python        474MiB |\n|    0   N/A  N/A          540878      C   ...iconda3/envs/py312/bin/python        232MiB |\n|    0   N/A  N/A          541244      C   ...iconda3/envs/py312/bin/python        178MiB |\n|    0   N/A  N/A          541356      C   ...iconda3/envs/py312/bin/python        364MiB |\n+-----------------------------------------------------------------------------------------+\n",
+    "time_utc": "2026-10-24T07:48:34Z"
+  },
+  "config": {
+    "action": "train",
+    "data": "data",
+    "output": "results/cuda_eager_r1",
+    "mode": "cuda_eager",
+    "modes": "cpu,cuda_eager,cuda_fused,cuda_graph,cuda_graph_cl,cuda_graph_amp",
+    "filters": [
+      8,
+      16,
+      32
+    ],
+    "dense": 64,
+    "kernel": 3,
+    "pool": 2,
+    "batch": 128,
+    "lr": 0.001,
+    "epochs": 5,
+    "seed": 42,
+    "train_n": 60000,
+    "test_n": 10000,
+    "threads": 4,
+    "steps": 80,
+    "repeats": 5
+  },
+  "load_seconds": 0.5230174990138039,
+  "graph_setup_seconds": 0.0,
+  "parameter_count": 25034,
+  "epochs": [
+    {
+      "epoch": 1,
+      "train_accuracy": 0.8788666666666667,
+      "train_loss": 0.40448626302083335,
+      "test_accuracy": 0.9605,
+      "test_loss": 0.1264767822265625,
+      "train_seconds": 2.6394048059592023,
+      "test_seconds": 0.37758502596989274,
+      "samples": 60000,
+      "cumulative_seconds": 3.040038398001343
+    },
+    {
+      "epoch": 2,
+      "train_accuracy": 0.9711333333333333,
+      "train_loss": 0.09293600260416666,
+      "test_accuracy": 0.9792,
+      "test_loss": 0.06560745239257812,
+      "train_seconds": 1.0957500949734822,
+      "test_seconds": 0.027887269970960915,
+      "samples": 60000,
+      "cumulative_seconds": 4.201805579010397
+    },
+    {
+      "epoch": 3,
+      "train_accuracy": 0.9798,
+      "train_loss": 0.06587834065755209,
+      "test_accuracy": 0.9835,
+      "test_loss": 0.05329720458984375,
+      "train_seconds": 1.1533977380022407,
+      "test_seconds": 0.027966278023086488,
+      "samples": 60000,
+      "cumulative_seconds": 5.425172991934232
+    },
+    {
+      "epoch": 4,
+      "train_accuracy": 0.98365,
+      "train_loss": 0.05233332112630208,
+      "test_accuracy": 0.9816,
+      "test_loss": 0.06054254150390625,
+      "train_seconds": 1.4329988090321422,
+      "test_seconds": 0.03675070800818503,
+      "samples": 60000,
+      "cumulative_seconds": 6.952703263959847
+    },
+    {
+      "epoch": 5,
+      "train_accuracy": 0.9859,
+      "train_loss": 0.045427107747395834,
+      "test_accuracy": 0.9843,
+      "test_loss": 0.05261826171875,
+      "train_seconds": 1.3419133659917861,
+      "test_seconds": 0.036812967038713396,
+      "samples": 60000,
+      "cumulative_seconds": 8.39075740694534
+    }
+  ],
+  "run_seconds": 8.391175239928998,
+  "train_seconds": 7.6634648139588535,
+  "train_and_test_seconds": 8.170467062969692,
+  "pipeline_seconds_before_export": 9.796319125918671,
+  "peak_allocated_mib": 444.54296875,
+  "peak_reserved_mib": 488.0,
+  "export_max_probability_error": 0.0,
+  "export_prediction_agreement": 1.0
+}

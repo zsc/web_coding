@@ -1,0 +1,42 @@
+{
+  "revision": "0c253b32e07d973ba321916b9e19beb520e999b1",
+  "files": {
+    "mnist_test_stitched.png": {
+      "sha256": "17ba5805bea887567ceab39f304a40ef7bff9cb8c3b61070930d64da2eeeeef5",
+      "bytes": 1674498
+    },
+    "mnist_train_labels.js": {
+      "sha256": "1931dbfdaf941c27f71ba4b8cd02791c19bc12db0097196b39cfc7e2fb6e25b7",
+      "bytes": 181266
+    },
+    "mnist_test_labels.js": {
+      "sha256": "b15309140262db7179944bf927621bc7ba72aea2415d76ced7b7650dbaa5ee13",
+      "bytes": 30264
+    },
+    "mnist_train_stitched.png": {
+      "sha256": "3e67264817acad5155b3ddf906058148d8bf4a11890e515ead99d64db5996175",
+      "bytes": 10059869
+    }
+  },
+  "splits": {
+    "train": {
+      "count": 60000,
+      "width": 6860,
+      "height": 6860,
+      "mode": "L",
+      "columns": 245,
+      "empty_tiles": 25,
+      "roundtrip_exact": true
+    },
+    "test": {
+      "count": 10000,
+      "width": 2800,
+      "height": 2800,
+      "mode": "L",
+      "columns": 100,
+      "empty_tiles": 0,
+      "roundtrip_exact": true
+    }
+  },
+  "prepare_seconds": 6.126326791010797
+}

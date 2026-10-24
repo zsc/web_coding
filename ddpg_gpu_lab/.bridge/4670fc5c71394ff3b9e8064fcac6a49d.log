@@ -1,0 +1,22 @@
+W1024 15:42:25.727000 536274 site-packages/torch/_inductor/utils.py:1679] [0/0] Not enough SMs to use max_autotune_gemm mode
+{"device": "cuda", "compile": true, "graph": true, "compile_scope": "full_loop", "envs": 1, "batch": 64, "rounds_ms": [0.3337380919838324, 0.3233821310568601, 0.20075525308493525, 0.2543823169544339, 0.32451541908085346], "median_ms": 0.3233821310568601, "updates_per_second": 3092.3168102450613, "transitions_per_second": 3092.3168102450613, "setup_seconds": 22.332709677051753, "scope": "full collect + replay write/sample + minibatch Adam update + Polyak", "finite": true, "updates_per_round": 1000}
+{"device": "cuda", "compile": true, "graph": true, "compile_scope": "full_loop", "envs": 32, "batch": 256, "rounds_ms": [0.23991190595552325, 0.19872259709518403, 0.20059724291786551, 0.19945509603712708, 0.20034387393388897], "median_ms": 0.20034387393388897, "updates_per_second": 4991.417907442419, "transitions_per_second": 159725.3730381574, "setup_seconds": 28.341252089012414, "scope": "full collect + replay write/sample + minibatch Adam update + Polyak", "finite": true, "updates_per_round": 1000}
+{"device": "cuda", "compile": true, "graph": true, "compile_scope": "full_loop", "envs": 256, "batch": 1024, "rounds_ms": [0.22518017201218754, 0.22948403796181083, 0.22741566505283117, 0.2275859060464427, 0.2289173030294478], "median_ms": 0.2275859060464427, "updates_per_second": 4393.945202370895, "transitions_per_second": 1124849.971806949, "setup_seconds": 0.01563795399852097, "scope": "full collect + replay write/sample + minibatch Adam update + Polyak", "finite": true, "updates_per_round": 1000}
+  },
+  {
+    "name": "full graph advances replay, physics and random state",
+    "passed": true
+  }
+]
+results/train_gpu_seed1.log
+{"updates": 16000, "transitions": 513024, "train_seconds": 5.6863295211223885, "wall_seconds": 32.99976846401114, "loss": [0.004586970433592796, -19.78240966796875], "mean_length": 124.359375, "success200": 0.0, "mean_return": 86.3635482788086, "horizon": 200}
+{"updates": 18000, "transitions": 577024, "train_seconds": 6.441521002096124, "wall_seconds": 33.91809918906074, "loss": [0.00413382425904274, -22.776058197021484], "mean_length": 150.703125, "success200": 0.0, "mean_return": 114.17058563232422, "horizon": 200}
+{"updates": 20000, "transitions": 641024, "train_seconds": 7.179107406060211, "wall_seconds": 34.83044075896032, "loss": [0.018607303500175476, -27.04244613647461], "mean_length": 200.0, "success200": 1.0, "mean_return": 182.8184814453125, "horizon": 200}
+results/train_gpu_seed2.log
+{"updates": 16000, "transitions": 513024, "train_seconds": 3.216280775843188, "wall_seconds": 14.822677574004047, "loss": [9.438616752624512, -55.080406188964844], "mean_length": 200.0, "success200": 1.0, "mean_return": 177.1240234375, "horizon": 200}
+{"updates": 18000, "transitions": 577024, "train_seconds": 3.616304970928468, "wall_seconds": 15.384913523099385, "loss": [0.7457373142242432, -57.166961669921875], "mean_length": 147.765625, "success200": 0.0, "mean_return": 108.04768371582031, "horizon": 200}
+{"updates": 20000, "transitions": 641024, "train_seconds": 4.017530224984512, "wall_seconds": 15.947667676024139, "loss": [0.1897905319929123, -53.771488189697266], "mean_length": 165.078125, "success200": 0.0, "mean_return": 128.3747100830078, "horizon": 200}
+results/train_gpu_seed3.log
+{"updates": 16000, "transitions": 513024, "train_seconds": 3.2290608099428937, "wall_seconds": 10.993923485977575, "loss": [0.0098510030657053, -54.6944580078125], "mean_length": 200.0, "success200": 1.0, "mean_return": 195.92422485351562, "horizon": 200}
+{"updates": 18000, "transitions": 577024, "train_seconds": 3.6326917898841202, "wall_seconds": 11.561440396006219, "loss": [0.5765939950942993, -54.22339630126953], "mean_length": 133.984375, "success200": 0.0, "mean_return": 101.05467224121094, "horizon": 200}
+{"updates": 20000, "transitions": 641024, "train_seconds": 4.064247911912389, "wall_seconds": 12.166485421010293, "loss": [4.581343650817871, -64.80228424072266], "mean_length": 199.921875, "success200": 0.921875, "mean_return": 172.2392578125, "horizon": 200}

@@ -1,0 +1,3 @@
+rep 0 full CPU(single)=3190.07 cached CPU(all)=3328.17 GPU(all)=24.9084 ms
+rep 1 full CPU(single)=3280 cached CPU(all)=3430.52 GPU(all)=24.9649 ms
+rep 2 full CPU(single)=3292.52 cached CPU(all)=3444.47 GPU(all)=29.6906 ms

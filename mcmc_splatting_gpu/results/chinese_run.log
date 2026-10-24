@@ -1,0 +1,3 @@
+fit: 8 chains x 100000 steps, 15233.6 ms, best final MSE=301.238; wrote results/zhou_100000.{pgm,json}
+fit: 8 chains x 500000 steps, 77257.9 ms, best final MSE=95.8914; wrote results/zhou_500000.{pgm,json}
+DONE

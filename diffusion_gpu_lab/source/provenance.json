@@ -1,0 +1,18 @@
+{
+  "revision": "0cca856e24d3d7de793d8d6ed0dc1e90db18174a",
+  "url": "https://github.com/zsc/zsc.github.io/tree/0cca856e24d3d7de793d8d6ed0dc1e90db18174a/widgets/diffusion_demo",
+  "files": {
+    "model_unet.py": {
+      "git_blob": "ad5f771d5070f006b93b5f51b2829dcd44f2d655",
+      "sha256": "71e51c6d8eee3050194ae6189e0999a29872b1aa2d3d4c12811820ac3b3fede0"
+    },
+    "test_unet.py": {
+      "git_blob": "b421b0c7a2d3ab0eed5c601fac606a5c636be09f",
+      "sha256": "4d8457a06bddce1447d64080e667de094e449de0f946edc925a0a39ef25589e8"
+    },
+    "app.py": {
+      "git_blob": "f05dd8c03aaddf1e637cd0126cdf0c8eeaa0a9a7",
+      "sha256": "13a9462ea69f1b32003a3b46b454bcc5c3e95254816edc6b730c0270ca5bfb38"
+    }
+  }
+}

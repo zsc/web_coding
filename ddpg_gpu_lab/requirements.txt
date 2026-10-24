@@ -1,0 +1,2 @@
+# desk was tested with PyTorch 2.10.0+cu128, Python 3.12.
+torch>=2.6

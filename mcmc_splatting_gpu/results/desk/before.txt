@@ -1,0 +1,2 @@
+name, driver_version, memory.total [MiB], memory.free [MiB], utilization.gpu [%]
+NVIDIA GeForce RTX 2080 SUPER, 580.178.04, 8192 MiB, 6157 MiB, 39 %

@@ -1,0 +1,8 @@
+{
+  "max_loss_abs": 5.960464477539063e-08,
+  "max_weight_abs_after_10_adam_steps": 9.782612323760986e-06,
+  "steps": 10,
+  "setup_seconds": 1.167019726941362,
+  "threshold": 0.0002,
+  "passed": true
+}

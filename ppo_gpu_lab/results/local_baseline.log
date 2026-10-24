@@ -1,0 +1,41 @@
+{
+  "host": "zscdeMacBook-Air.local",
+  "node": "v26.12.1",
+  "original_error": "Non-finite gradients: Mat.map callback receives (value,column,rowArray), not (value,row,column)",
+  "config": {
+    "steps": 2048,
+    "epochs": 10,
+    "minibatch": 64,
+    "hidden": 16
+  },
+  "runs": [
+    {
+      "rollout_ms": 29.547624999999982,
+      "update_ms": 923.896875,
+      "total_ms": 953.4445000000001,
+      "actor_loss": -0.001837450299953361,
+      "critic_loss": 471.0776508658153
+    },
+    {
+      "rollout_ms": 24.855708999999933,
+      "update_ms": 867.8049170000002,
+      "total_ms": 892.6606260000001,
+      "actor_loss": -0.0015495653318280474,
+      "critic_loss": 274.5239130765725
+    },
+    {
+      "rollout_ms": 25.673416999999972,
+      "update_ms": 848.1345830000002,
+      "total_ms": 873.8080000000002,
+      "actor_loss": 0.00006752640222788802,
+      "critic_loss": 227.1222438006414
+    },
+    {
+      "rollout_ms": 24.50054100000034,
+      "update_ms": 849.3081659999998,
+      "total_ms": 873.8087070000001,
+      "actor_loss": -0.008020213478239249,
+      "critic_loss": 191.16761452918132
+    }
+  ]
+}

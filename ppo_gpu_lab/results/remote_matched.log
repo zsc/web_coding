@@ -1,0 +1,20 @@
+{
+  "torch.float64": {
+    "state_max_abs": 2.4424906541753444e-15,
+    "reward_max_abs": 2.220446049250313e-16,
+    "done_equal": true
+  },
+  "torch.float32": {
+    "state_max_abs": 9.5367431640625e-07,
+    "reward_max_abs": 1.1920928955078125e-07,
+    "done_equal": true
+  },
+  "forward_actor_max_abs": 1.3891587907766123e-08,
+  "legacy_one_update_weight_max_abs": 2.9645692234403498e-08,
+  "gae_returns_max_abs": 0.0,
+  "all_passed": true
+}
+W1024 15:40:46.427000 534178 site-packages/torch/_inductor/utils.py:1679] [2/0] Not enough SMs to use max_autotune_gemm mode
+{"event": "prepared", "setup_s": 14.996285722008906}
+{"iteration": 1, "seconds": 0.24363517202436924, "sps": 8406.011262590411, "wall_s": 0.24365585204213858, "samples": 2048, "metrics": [0.1255580186843872, 237.2270965576172, 0.8010276556015015, 0.005461758468300104]}
+{"saved": "graph_matched", "median_sps": 7643.797424582305, "peak_allocated_mib": 34.654296875}

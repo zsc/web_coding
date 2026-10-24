@@ -1,0 +1,40 @@
+/opt/nvidia/nsight-compute/2024.1.1/target/linux-desktop-glibc_2_19_0-ppc64le/ncu
+/opt/nvidia/nsight-compute/2024.1.1/target/linux-desktop-t210-a64/ncu
+/opt/nvidia/nsight-compute/2024.1.1/target/linux-desktop-glibc_2_11_3-x64/ncu
+/opt/nvidia/nsight-compute/2024.1.1/ncu
+/usr/local/cuda-12.4/bin/ncu
+bin2c
+compute-sanitizer
+crt
+cudafe++
+cuda-gdb
+cuda-gdb-minimal
+cuda-gdb-python3.10-tui
+cuda-gdb-python3.11-tui
+cuda-gdb-python3.12-tui
+cuda-gdb-python3.8-tui
+cuda-gdb-python3.9-tui
+cuda-gdbserver
+cu++filt
+cuobjdump
+fatbinary
+nvcc
+__nvcc_device_query
+nvcc.profile
+nvdisasm
+nvlink
+nvprof
+nvprune
+ptxas
+nsight-compute
+nsight-systems
+List of valid properties to query for the switch "--query-gpu":
+
+"timestamp"
+The timestamp of when the query was made in format "YYYY/MM/DD HH:MM:SS.msec".
+
+"driver_version"
+The version of the installed NVIDIA display driver. This is an alphanumeric string.
+
+Section about vgpu_driver_capability properties
+Retrieves information about driver level caps.

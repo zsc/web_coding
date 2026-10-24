@@ -1,0 +1,12 @@
+{
+  "q_sample_max_abs": 0.0,
+  "ddpm_200_same_noise_max_abs": 9.745359420776367e-06,
+  "ddpm_200_same_noise_rmse": 8.572779961468768e-07,
+  "ddim_graph_vs_eager_max_abs": 2.246350049972534e-06,
+  "graph_seed_replay_max_abs": 2.7120113372802734e-06,
+  "graph_fresh_noise_rmse": 0.6932759881019592,
+  "amp_200_same_noise_max_abs": 0.01519051194190979,
+  "amp_200_same_noise_rmse": 0.0009264323743991554,
+  "fp32_tolerance": 0.0002,
+  "passed": true
+}

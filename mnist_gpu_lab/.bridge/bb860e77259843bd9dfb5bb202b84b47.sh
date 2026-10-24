@@ -1,0 +1,3 @@
+#!/bin/sh
+ssh -o BatchMode=yes -o ConnectTimeout=15 desk 'cd /home/zsc/mnist_gpu_lab_20261024 && mkdir -p results/exploration && mv results/eager_fp32 results/graph_fp32 results/graph_amp results/exploration/ && for mode in cuda_eager cuda_graph cuda_graph_amp cpu; do /home/zsc/miniconda3/envs/py312/bin/python src/train.py train --mode "$mode" --output "results/$mode" || exit; done; /home/zsc/miniconda3/envs/py312/bin/python src/train.py train --mode cuda_graph --train-n 6000 --test-n 1000 --output results/default_subset' > /Users/zsc/Downloads/web_coding/mnist_gpu_lab/.bridge/bb860e77259843bd9dfb5bb202b84b47.log 2>&1
+echo $? > /Users/zsc/Downloads/web_coding/mnist_gpu_lab/.bridge/bb860e77259843bd9dfb5bb202b84b47.exit

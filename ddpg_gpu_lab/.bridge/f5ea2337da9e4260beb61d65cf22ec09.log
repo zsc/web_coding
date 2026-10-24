@@ -1,0 +1,3 @@
+W1024 15:59:50.055000 546185 site-packages/torch/_inductor/utils.py:1679] [0/0] Not enough SMs to use max_autotune_gemm mode
+{"event": "ready", "setup_seconds": 52.4469680970069, "hardware": {"host": "zsc-X570-UD", "platform": "Linux-5.15.0-185-generic-x86_64-with-glibc2.35", "torch": "2.10.0+cu128", "cuda": "12.8", "gpu": "NVIDIA GeForce RTX 2080 SUPER", "cpu_threads": 1}, "seeds": 100}
+546185 /home/zsc/miniconda3/envs/py312/bin/python multiseed.py --seeds 100 --updates 100000 --eval-every 25000 --episode-limit 2000 --out results/seeds100_ddpg_long

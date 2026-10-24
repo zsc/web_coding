@@ -1,0 +1,2 @@
+fit: 32 chains x 100000 steps, 2807.38 ms, best final MSE=610.204; wrote results/fit.{pgm,json}
+DONE

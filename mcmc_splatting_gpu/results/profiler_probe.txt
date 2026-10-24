@@ -1,0 +1,3 @@
+zsh:1: no matches found: /usr/local/cuda/nsight-compute*/ncu
+name, clocks.current.sm [MHz], clocks.max.sm [MHz], utilization.gpu [%], utilization.memory [%], memory.used [MiB], power.draw [W]
+NVIDIA GeForce RTX 2080 SUPER, 1920 MHz, 2130 MHz, 34 %, 10 %, 2514 MiB, 61.91 W

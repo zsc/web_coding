@@ -1,0 +1,78 @@
+{
+  "hardware": {
+    "host": "zsc-X570-UD",
+    "platform": "Linux-5.15.0-185-generic-x86_64-with-glibc2.35",
+    "torch": "2.10.0+cu128",
+    "cuda": "12.8",
+    "gpu": "NVIDIA GeForce RTX 2080 SUPER",
+    "cpu_threads": 1
+  },
+  "rows": [
+    {
+      "device": "cuda",
+      "compile": true,
+      "graph": true,
+      "compile_scope": "full_loop",
+      "envs": 1,
+      "batch": 64,
+      "rounds_ms": [
+        0.3337380919838324,
+        0.3233821310568601,
+        0.20075525308493525,
+        0.2543823169544339,
+        0.32451541908085346
+      ],
+      "median_ms": 0.3233821310568601,
+      "updates_per_second": 3092.3168102450613,
+      "transitions_per_second": 3092.3168102450613,
+      "setup_seconds": 22.332709677051753,
+      "scope": "full collect + replay write/sample + minibatch Adam update + Polyak",
+      "finite": true,
+      "updates_per_round": 1000
+    },
+    {
+      "device": "cuda",
+      "compile": true,
+      "graph": true,
+      "compile_scope": "full_loop",
+      "envs": 32,
+      "batch": 256,
+      "rounds_ms": [
+        0.23991190595552325,
+        0.19872259709518403,
+        0.20059724291786551,
+        0.19945509603712708,
+        0.20034387393388897
+      ],
+      "median_ms": 0.20034387393388897,
+      "updates_per_second": 4991.417907442419,
+      "transitions_per_second": 159725.3730381574,
+      "setup_seconds": 28.341252089012414,
+      "scope": "full collect + replay write/sample + minibatch Adam update + Polyak",
+      "finite": true,
+      "updates_per_round": 1000
+    },
+    {
+      "device": "cuda",
+      "compile": true,
+      "graph": true,
+      "compile_scope": "full_loop",
+      "envs": 256,
+      "batch": 1024,
+      "rounds_ms": [
+        0.22518017201218754,
+        0.22948403796181083,
+        0.22741566505283117,
+        0.2275859060464427,
+        0.2289173030294478
+      ],
+      "median_ms": 0.2275859060464427,
+      "updates_per_second": 4393.945202370895,
+      "transitions_per_second": 1124849.971806949,
+      "setup_seconds": 0.01563795399852097,
+      "scope": "full collect + replay write/sample + minibatch Adam update + Polyak",
+      "finite": true,
+      "updates_per_round": 1000
+    }
+  ]
+}

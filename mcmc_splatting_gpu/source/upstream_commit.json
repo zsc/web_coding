@@ -1,0 +1,60 @@
+{
+  "sha": "fc6bb82012b587666a3508372f5f8417fabc24cd",
+  "node_id": "C_kwDOOdozG9oAKGZjNmJiODIwMTJiNTg3NjY2YTM1MDgzNzJmNWY4NDE3ZmFiYzI0Y2Q",
+  "commit": {
+    "author": {
+      "name": "Shuchang Zhou",
+      "email": "zsc@wuluedeMacBook-Air.local",
+      "date": "2025-06-25T22:48:44Z"
+    },
+    "committer": {
+      "name": "Shuchang Zhou",
+      "email": "zsc@wuluedeMacBook-Air.local",
+      "date": "2025-06-25T22:48:44Z"
+    },
+    "message": "add celeba-hq description labels",
+    "tree": {
+      "sha": "56c714e006ebe7a239881a13b8c7dd0f4d749d50",
+      "url": "https://api.github.com/repos/zsc/widgets/git/trees/56c714e006ebe7a239881a13b8c7dd0f4d749d50"
+    },
+    "url": "https://api.github.com/repos/zsc/widgets/git/commits/fc6bb82012b587666a3508372f5f8417fabc24cd",
+    "comment_count": 0,
+    "verification": {
+      "verified": false,
+      "reason": "unsigned",
+      "signature": null,
+      "payload": null,
+      "verified_at": null
+    }
+  },
+  "url": "https://api.github.com/repos/zsc/widgets/commits/fc6bb82012b587666a3508372f5f8417fabc24cd",
+  "html_url": "https://github.com/zsc/widgets/commit/fc6bb82012b587666a3508372f5f8417fabc24cd",
+  "comments_url": "https://api.github.com/repos/zsc/widgets/commits/fc6bb82012b587666a3508372f5f8417fabc24cd/comments",
+  "author": null,
+  "committer": null,
+  "parents": [
+    {
+      "sha": "d0f6e6e4ea50cf863bd3a2090858e355105f8477",
+      "url": "https://api.github.com/repos/zsc/widgets/commits/d0f6e6e4ea50cf863bd3a2090858e355105f8477",
+      "html_url": "https://github.com/zsc/widgets/commit/d0f6e6e4ea50cf863bd3a2090858e355105f8477"
+    }
+  ],
+  "stats": {
+    "total": 30000,
+    "additions": 30000,
+    "deletions": 0
+  },
+  "files": [
+    {
+      "sha": "7f010920707a2d6154b43d81bc2e08778ed9d985",
+      "filename": "celeba-hq/face_descriptions.txt",
+      "status": "added",
+      "additions": 30000,
+      "deletions": 0,
+      "changes": 30000,
+      "blob_url": "https://github.com/zsc/widgets/blob/fc6bb82012b587666a3508372f5f8417fabc24cd/celeba-hq%2Fface_descriptions.txt",
+      "raw_url": "https://github.com/zsc/widgets/raw/fc6bb82012b587666a3508372f5f8417fabc24cd/celeba-hq%2Fface_descriptions.txt",
+      "contents_url": "https://api.github.com/repos/zsc/widgets/contents/celeba-hq%2Fface_descriptions.txt?ref=fc6bb82012b587666a3508372f5f8417fabc24cd"
+    }
+  ]
+}

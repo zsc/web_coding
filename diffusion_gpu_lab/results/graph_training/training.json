@@ -1,0 +1,167 @@
+{
+  "config": {
+    "epochs": 20,
+    "seed": 20261024,
+    "out": "results/graph_training",
+    "mode": "graph"
+  },
+  "train_images": 5000,
+  "validation_images": 512,
+  "batch": 64,
+  "timesteps": 200,
+  "learning_rate": 0.0001,
+  "precision": "FP32 CUDA Graph",
+  "graph_setup_seconds": 0.5010098509956151,
+  "parameters": 660129,
+  "initial_validation_mse": 1.0303858445615184,
+  "curve": [
+    {
+      "epoch": 1,
+      "step": 78,
+      "loss": 0.36523568630218506,
+      "validation_noise_mse": 0.20173521674409203,
+      "seconds": 1.5276152479927987
+    },
+    {
+      "epoch": 2,
+      "step": 156,
+      "loss": 0.17618721723556519,
+      "validation_noise_mse": 0.14945741818875682,
+      "seconds": 3.1024321150034666
+    },
+    {
+      "epoch": 3,
+      "step": 234,
+      "loss": 0.14047016203403473,
+      "validation_noise_mse": 0.12402721935388994,
+      "seconds": 4.689370773965493
+    },
+    {
+      "epoch": 4,
+      "step": 312,
+      "loss": 0.11413541436195374,
+      "validation_noise_mse": 0.10874390602111816,
+      "seconds": 6.270348751917481
+    },
+    {
+      "epoch": 5,
+      "step": 390,
+      "loss": 0.10666888952255249,
+      "validation_noise_mse": 0.09940678489451506,
+      "seconds": 7.828602528898045
+    },
+    {
+      "epoch": 6,
+      "step": 468,
+      "loss": 0.09854240715503693,
+      "validation_noise_mse": 0.09396810434302505,
+      "seconds": 9.433115616906434
+    },
+    {
+      "epoch": 7,
+      "step": 546,
+      "loss": 0.09267120063304901,
+      "validation_noise_mse": 0.08942600780603838,
+      "seconds": 11.039564287988469
+    },
+    {
+      "epoch": 8,
+      "step": 624,
+      "loss": 0.08741052448749542,
+      "validation_noise_mse": 0.08538291831405795,
+      "seconds": 12.623508033924736
+    },
+    {
+      "epoch": 9,
+      "step": 702,
+      "loss": 0.08537556976079941,
+      "validation_noise_mse": 0.08201196850562582,
+      "seconds": 14.199780873954296
+    },
+    {
+      "epoch": 10,
+      "step": 780,
+      "loss": 0.08097811788320541,
+      "validation_noise_mse": 0.07961967648292075,
+      "seconds": 15.78232608595863
+    },
+    {
+      "epoch": 11,
+      "step": 858,
+      "loss": 0.08105996996164322,
+      "validation_noise_mse": 0.07739639038942298,
+      "seconds": 17.388392911991104
+    },
+    {
+      "epoch": 12,
+      "step": 936,
+      "loss": 0.07833664864301682,
+      "validation_noise_mse": 0.07512696847623708,
+      "seconds": 18.969311687978916
+    },
+    {
+      "epoch": 13,
+      "step": 1014,
+      "loss": 0.07549969106912613,
+      "validation_noise_mse": 0.07308476737567357,
+      "seconds": 20.556333584012464
+    },
+    {
+      "epoch": 14,
+      "step": 1092,
+      "loss": 0.07398989051580429,
+      "validation_noise_mse": 0.07217639563034992,
+      "seconds": 22.131382733001374
+    },
+    {
+      "epoch": 15,
+      "step": 1170,
+      "loss": 0.0725613534450531,
+      "validation_noise_mse": 0.06987915294510978,
+      "seconds": 23.733101608930156
+    },
+    {
+      "epoch": 16,
+      "step": 1248,
+      "loss": 0.06966916471719742,
+      "validation_noise_mse": 0.06859878982816424,
+      "seconds": 25.347384154913016
+    },
+    {
+      "epoch": 17,
+      "step": 1326,
+      "loss": 0.06805820763111115,
+      "validation_noise_mse": 0.06804737266229123,
+      "seconds": 26.933873000903986
+    },
+    {
+      "epoch": 18,
+      "step": 1404,
+      "loss": 0.06951625645160675,
+      "validation_noise_mse": 0.06680108272299475,
+      "seconds": 28.51161098096054
+    },
+    {
+      "epoch": 19,
+      "step": 1482,
+      "loss": 0.06708864122629166,
+      "validation_noise_mse": 0.06582115681803956,
+      "seconds": 30.097350513911806
+    },
+    {
+      "epoch": 20,
+      "step": 1560,
+      "loss": 0.06428662687540054,
+      "validation_noise_mse": 0.06510825607241416,
+      "seconds": 31.690622270922177
+    }
+  ],
+  "peak_allocated_mib": 185.74560546875,
+  "peak_reserved_mib": 702.0,
+  "torch": "2.10.0+cu128",
+  "cuda": "12.8",
+  "cudnn": 91002,
+  "gpu": "NVIDIA GeForce RTX 2080 SUPER",
+  "host": "zsc-X570-UD",
+  "gpu_status": "Sat Oct 24 15:54:34 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 580.178.04             Driver Version: 580.178.04     CUDA Version: 13.0     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA GeForce RTX 2080 ...    Off |   00000000:08:00.0 Off |                  N/A |\n| 48%   57C    P2            153W /  250W |    2760MiB /   8192MiB |     92%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|    0   N/A  N/A            1593      G   /usr/lib/xorg/Xorg                        9MiB |\n|    0   N/A  N/A            1792      G   /usr/bin/gnome-shell                      3MiB |\n|    0   N/A  N/A           96486    C+G   R:\\GenshinImpact.exe                   1608MiB |\n|    0   N/A  N/A          542602      C   python3                                 116MiB |\n|    0   N/A  N/A          542850      C   ...iconda3/envs/py312/bin/python        890MiB |\n+-----------------------------------------------------------------------------------------+\n"
+}

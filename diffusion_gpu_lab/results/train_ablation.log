@@ -1,0 +1,30 @@
+/home/zsc/miniconda3/envs/py312/lib/python3.12/site-packages/torch/autograd/graph.py:865: UserWarning: The AccumulateGrad node's stream does not match the stream of the node that produced the incoming gradient. This may incur unnecessary synchronization and break CUDA graph capture if the AccumulateGrad node's stream is the default stream. This mismatch is caused by an AccumulateGrad node created prior to the current iteration being kept alive. This can happen if the autograd graph is still being kept alive by tensors such as the loss, or if you are using DDP, which will stash a reference to the node. To resolve the mismatch, delete all references to the autograd graph or ensure that DDP initialization is performed under the same stream as subsequent forwards. If the mismatch is intentional, you can use torch.autograd.graph.set_warn_on_accumulate_grad_stream_mismatch(False) to suppress this warning. (Triggered internally at /pytorch/torch/csrc/autograd/input_buffer.cpp:240.)
+  return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+0 gpu_resident_fp32 26.564261101884767
+0 graph_fp32 18.382385245058686
+0 amp_channels_last 18.04235544987023
+0 original_fp32 24.91870954982005
+1 original_fp32 22.016980755142868
+1 gpu_resident_fp32 27.214730449486524
+1 graph_fp32 18.530131597071886
+1 amp_channels_last 15.34200279857032
+2 gpu_resident_fp32 27.093235799111426
+2 original_fp32 24.47706494713202
+2 graph_fp32 18.31794694880955
+2 amp_channels_last 17.78589584864676
+3 graph_fp32 18.246425251709297
+3 gpu_resident_fp32 25.924404402030632
+3 original_fp32 24.865566653897986
+3 amp_channels_last 21.416379552101716
+4 graph_fp32 18.60113280126825
+4 original_fp32 20.969365251949057
+4 amp_channels_last 15.373166499193758
+4 gpu_resident_fp32 26.450416049920022
+5 amp_channels_last 20.599105150904506
+5 original_fp32 22.894508350873366
+5 graph_fp32 18.467414053156972
+5 gpu_resident_fp32 27.003350801533088
+6 amp_channels_last 19.978616753360257
+6 gpu_resident_fp32 26.513194653671235
+6 original_fp32 22.47102185501717
+6 graph_fp32 18.73415379668586

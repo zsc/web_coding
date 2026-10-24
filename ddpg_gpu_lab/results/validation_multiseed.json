@@ -1,0 +1,104 @@
+[
+  {
+    "name": "seed 1 actor vs separate learner",
+    "max_abs_error": 0.0,
+    "passed": true,
+    "atol": 1e-10,
+    "rtol": 1e-09
+  },
+  {
+    "name": "seed 1 critic vs separate learner",
+    "max_abs_error": 0.0,
+    "passed": true,
+    "atol": 1e-10,
+    "rtol": 1e-09
+  },
+  {
+    "name": "seed 1 target_actor vs separate learner",
+    "max_abs_error": 0.0,
+    "passed": true,
+    "atol": 1e-10,
+    "rtol": 1e-09
+  },
+  {
+    "name": "seed 1 target_critic vs separate learner",
+    "max_abs_error": 0.0,
+    "passed": true,
+    "atol": 1e-10,
+    "rtol": 1e-09
+  },
+  {
+    "name": "seed 2 actor vs separate learner",
+    "max_abs_error": 0.0,
+    "passed": true,
+    "atol": 1e-10,
+    "rtol": 1e-09
+  },
+  {
+    "name": "seed 2 critic vs separate learner",
+    "max_abs_error": 0.0,
+    "passed": true,
+    "atol": 1e-10,
+    "rtol": 1e-09
+  },
+  {
+    "name": "seed 2 target_actor vs separate learner",
+    "max_abs_error": 0.0,
+    "passed": true,
+    "atol": 1e-10,
+    "rtol": 1e-09
+  },
+  {
+    "name": "seed 2 target_critic vs separate learner",
+    "max_abs_error": 0.0,
+    "passed": true,
+    "atol": 1e-10,
+    "rtol": 1e-09
+  },
+  {
+    "name": "seed 3 actor vs separate learner",
+    "max_abs_error": 0.0,
+    "passed": true,
+    "atol": 1e-10,
+    "rtol": 1e-09
+  },
+  {
+    "name": "seed 3 critic vs separate learner",
+    "max_abs_error": 0.0,
+    "passed": true,
+    "atol": 1e-10,
+    "rtol": 1e-09
+  },
+  {
+    "name": "seed 3 target_actor vs separate learner",
+    "max_abs_error": 0.0,
+    "passed": true,
+    "atol": 1e-10,
+    "rtol": 1e-09
+  },
+  {
+    "name": "seed 3 target_critic vs separate learner",
+    "max_abs_error": 0.0,
+    "passed": true,
+    "atol": 1e-10,
+    "rtol": 1e-09
+  },
+  {
+    "name": "random stream pack/order invariance",
+    "max_abs_error": 0.0,
+    "passed": true,
+    "atol": 1e-10,
+    "rtol": 1e-09
+  },
+  {
+    "name": "replay does not mix seeds",
+    "max_abs_error": 0.0,
+    "passed": true,
+    "atol": 1e-10,
+    "rtol": 1e-09
+  },
+  {
+    "name": "time limit remains nonterminal",
+    "passed": true
+  }
+]

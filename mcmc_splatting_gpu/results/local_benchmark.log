@@ -1,0 +1,125 @@
+correctness passed 4
+{ W: 100, H: 50, N: 25, name: 'reference', repeat: 0, ms: 2987.5455 }
+{
+  W: 100,
+  H: 50,
+  N: 25,
+  name: 'cached',
+  repeat: 0,
+  ms: 46.85179199999948
+}
+{
+  W: 100,
+  H: 50,
+  N: 25,
+  name: 'cached',
+  repeat: 1,
+  ms: 48.01558399999976
+}
+{
+  W: 100,
+  H: 50,
+  N: 25,
+  name: 'reference',
+  repeat: 1,
+  ms: 3052.1655420000006
+}
+{ W: 100, H: 50, N: 25, name: 'reference', repeat: 2, ms: 2969.411167 }
+{
+  W: 100,
+  H: 50,
+  N: 25,
+  name: 'cached',
+  repeat: 2,
+  ms: 47.36474999999882
+}
+{
+  W: 160,
+  H: 80,
+  N: 64,
+  name: 'reference',
+  repeat: 0,
+  ms: 6207.381875000001
+}
+{
+  W: 160,
+  H: 80,
+  N: 64,
+  name: 'cached',
+  repeat: 0,
+  ms: 40.11712500000067
+}
+{
+  W: 160,
+  H: 80,
+  N: 64,
+  name: 'cached',
+  repeat: 1,
+  ms: 40.0367499999993
+}
+{
+  W: 160,
+  H: 80,
+  N: 64,
+  name: 'reference',
+  repeat: 1,
+  ms: 6165.550041999999
+}
+{ W: 160, H: 80, N: 64, name: 'reference', repeat: 2, ms: 6282.548959 }
+{
+  W: 160,
+  H: 80,
+  N: 64,
+  name: 'cached',
+  repeat: 2,
+  ms: 42.52533300000141
+}
+{
+  W: 256,
+  H: 128,
+  N: 128,
+  name: 'reference',
+  repeat: 0,
+  ms: 9370.786542000002
+}
+{
+  W: 256,
+  H: 128,
+  N: 128,
+  name: 'cached',
+  repeat: 0,
+  ms: 31.04204100000061
+}
+{
+  W: 256,
+  H: 128,
+  N: 128,
+  name: 'cached',
+  repeat: 1,
+  ms: 31.144790999998804
+}
+{
+  W: 256,
+  H: 128,
+  N: 128,
+  name: 'reference',
+  repeat: 1,
+  ms: 9407.706207999996
+}
+{
+  W: 256,
+  H: 128,
+  N: 128,
+  name: 'reference',
+  repeat: 2,
+  ms: 9706.900457999996
+}
+{
+  W: 256,
+  H: 128,
+  N: 128,
+  name: 'cached',
+  repeat: 2,
+  ms: 30.976333999999042
+}
+saved local_benchmark.json

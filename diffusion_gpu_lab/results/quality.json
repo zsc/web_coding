@@ -1,0 +1,8 @@
+{
+  "heldout_epsilon_mse": {
+    "fp32": 0.06496685135121248,
+    "amp": 0.06498210649101102
+  },
+  "images": 512,
+  "note": "No FID or generative distribution equivalence claim. DDIM uses the same checkpoint but changes the reverse process."
+}

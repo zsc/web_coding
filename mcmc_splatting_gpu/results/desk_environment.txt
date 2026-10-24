@@ -1,0 +1,25 @@
+NVIDIA GeForce RTX 2080 SUPER, 7.5, 6157 MiB, 39 %
+nvcc: NVIDIA (R) Cuda compiler driver
+Copyright (c) 2005-2025 NVIDIA Corporation
+Built on Fri_Feb_21_20:23:50_PST_2025
+Cuda compilation tools, release 12.8, V12.8.93
+Build cuda_12.8.r12.8/compiler.35583870_0
+g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0
+Architecture:                            x86_64
+CPU op-mode(s):                          32-bit, 64-bit
+Address sizes:                           43 bits physical, 48 bits virtual
+Byte Order:                              Little Endian
+CPU(s):                                  24
+On-line CPU(s) list:                     0-23
+Vendor ID:                               AuthenticAMD
+Model name:                              AMD Ryzen 9 3900X 12-Core Processor
+CPU family:                              23
+Model:                                   113
+Thread(s) per core:                      2
+Core(s) per socket:                      12
+Socket(s):                               1
+Stepping:                                0
+Frequency boost:                         enabled
+CPU max MHz:                             3800.0000
+CPU min MHz:                             2200.0000
+BogoMIPS:                                7585.94

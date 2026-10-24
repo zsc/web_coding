@@ -1,0 +1,10 @@
+const fs = require('fs');
+const path = require('path');
+const root = path.resolve(__dirname, '..');
+const html = fs.readFileSync(path.join(root, 'source/original.html'), 'utf8');
+const source = html.slice(html.indexOf('// --- MATH UTILITIES ---'), html.indexOf('// --- MAIN SCRIPT ---'));
+const exportsLine = '\nmodule.exports = {Mat, NeuralNetwork, AdamOptimizer, DoubleInvertedPendulumEnv, PPOAgent, Memory};\n';
+fs.writeFileSync(path.join(__dirname, 'original_core.cjs'), source + exportsLine);
+const fixed = source.replace('map: (A, func) => A.map(row => row.map(func)),', 'map: (A, func) => A.map((row, r) => row.map((val, c) => func(val, r, c))),');
+if (fixed === source) throw new Error('Source map signature changed');
+fs.writeFileSync(path.join(__dirname, 'repaired_core.cjs'), fixed + exportsLine);

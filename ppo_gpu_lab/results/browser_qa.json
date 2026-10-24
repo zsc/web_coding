@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-24",
+  "checks": {
+    "http_200": true,
+    "all_local_links_exist": true,
+    "javascript_parse": true,
+    "browser_console_errors": 0,
+    "benchmark_tab_switch": true,
+    "trajectory_select_physical": true,
+    "pause_play": true,
+    "slider_10_seconds": true,
+    "desktop_scroll_width_equals_viewport": true
+  },
+  "browser": "Codex in-app browser",
+  "viewport_width": 1280
+}

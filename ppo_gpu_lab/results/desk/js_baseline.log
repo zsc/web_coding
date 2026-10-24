@@ -1,0 +1,41 @@
+{
+  "host": "zsc-X570-UD",
+  "node": "v24.13.1",
+  "original_error": "Non-finite gradients: Mat.map callback receives (value,column,rowArray), not (value,row,column)",
+  "config": {
+    "steps": 2048,
+    "epochs": 10,
+    "minibatch": 64,
+    "hidden": 16
+  },
+  "runs": [
+    {
+      "rollout_ms": 71.932309,
+      "update_ms": 2300.1101909999998,
+      "total_ms": 2372.0424999999996,
+      "actor_loss": -0.0018374502999533569,
+      "critic_loss": 471.0776508658153
+    },
+    {
+      "rollout_ms": 66.64378299999998,
+      "update_ms": 2146.770123,
+      "total_ms": 2213.4139059999998,
+      "actor_loss": -0.0015495653318281575,
+      "critic_loss": 274.5239130765725
+    },
+    {
+      "rollout_ms": 63.472304999999324,
+      "update_ms": 2133.030871,
+      "total_ms": 2196.5031759999993,
+      "actor_loss": 0.00006752640222797138,
+      "critic_loss": 227.12224380064117
+    },
+    {
+      "rollout_ms": 62.80077100000017,
+      "update_ms": 2123.1580460000005,
+      "total_ms": 2185.9588170000006,
+      "actor_loss": -0.008020213478239776,
+      "critic_loss": 191.16761452918126
+    }
+  ]
+}

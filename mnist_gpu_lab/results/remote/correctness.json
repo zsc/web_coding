@@ -1,0 +1,10 @@
+{
+  "warmup_restore_max_abs": 0.0,
+  "cpu_gpu_logits_max_abs": 1.1920928955078125e-07,
+  "eager_graph_weights_max_abs": 4.991888999938965e-07,
+  "eager_graph_adam_max_abs": 1.6763806343078613e-08,
+  "eager_graph_metrics_max_abs": 0.0,
+  "steps": 5,
+  "includes_tail_and_replay": true,
+  "passed": true
+}

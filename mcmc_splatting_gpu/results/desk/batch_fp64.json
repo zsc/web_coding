@@ -1,0 +1,12 @@
+{
+"gpu":"NVIDIA GeForce RTX 2080 SUPER","sm_count":48,"dtype":"fp64",
+"W":100,"H":50,"N":25,"chains":32,"steps":1200,"repeats":3,"T":50,"chunk_steps":256,
+"workspace_bytes":34603912,"free_vram_bytes_before":6209863680,"setup_ms":3.632082,
+"verification":{"steps":500,"decision_mismatch":0,"loss_mismatch":0,"cpu_mismatch":0,"max_mse_error":0,"final_chain_mismatch":0,"canonical_fp64_decision_mismatch":0,"canonical_fp64_loss_mismatch":0,"canonical_fp64_max_mse_error":0},
+"cpu_full_single_ms_samples":[5164.582114,5018.865554,5060.845684],
+"cpu_cached_all_ms_samples":[3274.191287,3314.33855,3289.39577],
+"gpu_all_ms_samples":[171.7505951,154.0388794,163.041275],
+"gpu_wall_ms_samples":[171.832941,155.361335,163.116359],
+"cpu_full_single_ms":5060.845684,"cpu_cached_all_ms":3289.39577,"gpu_all_ms":163.041275,"gpu_wall_ms":163.116359,
+"gpu_total_steps_s":235523.1827,"gpu_vs_cpu_cached_same_work":20.17523335,"chain0_loss":9463.3126,"chain0_accepted":1009
+}

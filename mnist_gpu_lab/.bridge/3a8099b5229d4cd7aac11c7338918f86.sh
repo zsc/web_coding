@@ -1,0 +1,3 @@
+#!/bin/sh
+ssh -o BatchMode=yes -o ConnectTimeout=15 desk 'cd /home/zsc/mnist_gpu_lab_20261024 && for i in 1 2; do for mode in cuda_eager cuda_graph; do /home/zsc/miniconda3/envs/py312/bin/python src/train.py train --mode "$mode" --output "results/${mode}_r${i}" || exit; done; /home/zsc/miniconda3/envs/py312/bin/python src/train.py train --mode cuda_graph --train-n 6000 --test-n 1000 --output "results/default_subset_r${i}" || exit; done; nvidia-smi > results/gpu_after.txt' > /Users/zsc/Downloads/web_coding/mnist_gpu_lab/.bridge/3a8099b5229d4cd7aac11c7338918f86.log 2>&1
+echo $? > /Users/zsc/Downloads/web_coding/mnist_gpu_lab/.bridge/3a8099b5229d4cd7aac11c7338918f86.exit

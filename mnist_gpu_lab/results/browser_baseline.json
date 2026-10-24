@@ -1,0 +1,76 @@
+{
+  "environment": {
+    "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+    "tfjs": "4.22.0",
+    "backend": "webgl",
+    "renderer": "ANGLE (Apple, ANGLE Metal Renderer: Apple M5, Unspecified Version)"
+  },
+  "runs": [
+    {
+      "seconds": 27.573799999952318,
+      "train_accuracy": [
+        0.3894999921321869,
+        0.7964999675750732,
+        0.887499988079071,
+        0.9183333516120911,
+        0.9298333525657654
+      ],
+      "test_accuracy": [
+        0.593000054359436,
+        0.8280000686645508,
+        0.8920000195503235,
+        0.9020000696182251,
+        0.9100000262260437
+      ]
+    },
+    {
+      "seconds": 8.54,
+      "train_accuracy": [
+        0.4729999899864197,
+        0.8234999775886536,
+        0.8980000019073486,
+        0.9253333210945129,
+        0.9451666474342346
+      ],
+      "test_accuracy": [
+        0.706000030040741,
+        0.8630000352859497,
+        0.893000066280365,
+        0.9260000586509705,
+        0.937000036239624
+      ]
+    },
+    {
+      "seconds": 8.496799999952316,
+      "train_accuracy": [
+        0.5205000042915344,
+        0.8266666531562805,
+        0.9071666598320007,
+        0.9301666617393494,
+        0.9491666555404663
+      ],
+      "test_accuracy": [
+        0.7090000510215759,
+        0.8450000286102295,
+        0.9070000648498535,
+        0.9190000295639038,
+        0.9310000538825989
+      ]
+    }
+  ],
+  "config": {
+    "train_n": 6000,
+    "test_n": 1000,
+    "epochs": 5,
+    "batch": 128,
+    "filters": [
+      8,
+      16,
+      32
+    ],
+    "dense": 64,
+    "lr": 0.001
+  },
+  "note": "Original trainModel; only asset URLs localized and TF.js pinned to 4.22.0. Run 1 includes first-use shader compilation; runs 2–3 reuse browser kernels. New random model initialization each run.",
+  "load_seconds": 1.384
+}

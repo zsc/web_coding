@@ -1,0 +1,11 @@
+{"steps":2000,"seconds":9.742884824999999,"mean_length":75.671875,"success200":0,"mean_return":56.35346895823898}
+{"steps":4000,"seconds":18.747215239000003,"mean_length":83.984375,"success200":0,"mean_return":64.45376657663071}
+{"steps":6000,"seconds":27.561721602000002,"mean_length":101.875,"success200":0,"mean_return":80.26999699892971}
+{"steps":8000,"seconds":36.177425025999995,"mean_length":109.28125,"success200":0,"mean_return":86.74470340597651}
+{"steps":10000,"seconds":44.634376022,"mean_length":119.28125,"success200":0.03125,"mean_return":96.39776477388831}
+{"steps":12000,"seconds":53.189582457,"mean_length":103.546875,"success200":0,"mean_return":79.46252045179337}
+{"steps":14000,"seconds":61.942551527,"mean_length":153.296875,"success200":0.15625,"mean_return":128.24938487020168}
+{"steps":16000,"seconds":71.00164912800001,"mean_length":195.484375,"success200":0.65625,"mean_return":174.32308580803232}
+{"steps":18000,"seconds":80.177642197,"mean_length":188.859375,"success200":0.40625,"mean_return":165.24990500615772}
+{"steps":20000,"seconds":89.333209919,"mean_length":200,"success200":1,"mean_return":190.74061927734948}
+{"mode":"train","path":"results/train_original_seed1.json","seconds":89.333435677,"evaluation":{"mean_length":200,"success200":1,"mean_return":190.74061927734948}}
