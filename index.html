@@ -664,8 +664,8 @@
         <p class="hero-copy">
           最新一轮：100 个 TD3 种子通过长时压力测试；WebGPU 让 MCMC 与 PPO 训练进入浏览器；
           CelebA 四组 RGB 任务全部完成，U-Net 的 KID 明显低于 JiT。每项同时保留关键结果、
-          原始记录与不能混用的测量边界。下方专题区继续收录采样速度、精度工作台、初版对照、
-          实时实验与灰度归档，避免把补充实验埋在长报告里。
+          原始记录与不能混用的测量边界。下方专题区只补主卡片未列出的精度工作台、ROI、
+          原版基线与灰度归档，避免重复入口和把补充实验埋在长报告里。
         </p>
         <div class="hero-meta" aria-label="实验环境">
           <span>RTX 2080 SUPER / 8 GiB</span>
@@ -846,21 +846,13 @@
     <section class="extensions" id="deep-dives" aria-labelledby="deep-dives-title">
       <div class="section-head">
         <div>
-          <p class="eyebrow">Supplementary experiments · 09 pages</p>
+          <p class="eyebrow">Supplementary experiments · 05 pages</p>
           <h2 id="deep-dives-title">专题实验与交互页</h2>
         </div>
-        <p>与主报告共用原始记录，但各自保留基线、计时和交互边界；不把不同任务的数字强行相乘。</p>
+        <p>只收录主卡片尚未列出的入口；与主报告共用原始记录，但各自保留基线、计时和交互边界。</p>
       </div>
 
       <div class="extension-grid">
-        <article class="extension-card">
-          <p class="kicker">Diffusion / Speed</p>
-          <h3><a href="./diffusion_gpu_lab/report_speed.html">保留 200 步，把采样和训练提交开销拆开。</a></h3>
-          <p class="extension-copy">五图合批与 CUDA Graph 保持原 DDPM 过程；DDIM 20／50 步单独标成改变采样过程的质量折中。</p>
-          <div class="extension-result"><b>101 → 21.4 ms</b><span>100 步 → 20 步 · 5 图</span></div>
-          <div class="extension-links"><a href="./diffusion_gpu_lab/report_speed.html">SPEED REPORT →</a></div>
-        </article>
-
         <article class="extension-card">
           <p class="kicker">MCMC / Precision lab</p>
           <h3><a href="./mcmc_splatting_gpu/webgpu_lab.html">同一目标，在浏览器里比较三种精度。</a></h3>
@@ -883,30 +875,6 @@
           <p class="extension-copy">仅固定上游版本与资源地址；网络结构和训练回调不变，用于解释浏览器与 desk 的跨框架对比。</p>
           <div class="extension-result"><b>TF.js 4.22</b><span>Chrome / WebGL 原版</span></div>
           <div class="extension-links"><a href="./mnist_gpu_lab/original_local.html">ORIGINAL PAGE →</a></div>
-        </article>
-
-        <article class="extension-card">
-          <p class="kicker">PPO / WebGPU training</p>
-          <h3><a href="./ppo_gpu_lab/webgpu.html">在浏览器里训练，松手就能测试。</a></h3>
-          <p class="extension-copy">采样、物理仿真、GAE、反向传播和 Adam 全部在 WGSL；训练可在 Worker 中暂停、继续和导出。</p>
-          <div class="extension-result"><b>99.1%</b><span>±10° 新测试集恢复</span></div>
-          <div class="extension-links"><a href="./ppo_gpu_lab/webgpu.html">TRAIN IN BROWSER →</a><a href="./ppo_gpu_lab/report.html#webgpu-results">MEASUREMENTS →</a></div>
-        </article>
-
-        <article class="extension-card">
-          <p class="kicker">PPO / Live playground</p>
-          <h3><a href="./ppo_gpu_lab/play.html">拽一下，看策略实时找回平衡。</a></h3>
-          <p class="extension-copy">页面载入固定 seed 71 模型；拖拽和冲量可以复现强扰动边界，但尚未训练从完全倒下姿态起摆。</p>
-          <div class="extension-result"><b>LIVE</b><span>WebGPU 双倒立摆</span></div>
-          <div class="extension-links"><a href="./ppo_gpu_lab/play.html">PLAYGROUND →</a></div>
-        </article>
-
-        <article class="extension-card">
-          <p class="kicker">PPO / V1 archive</p>
-          <h3><a href="./ppo_gpu_lab/report_v1.html">首版 CUDA Graph + fused Adam 基线。</a></h3>
-          <p class="extension-copy">保留与 V2 对照的完整训练吞吐、数值检查和策略测试，方便复查每一步加速究竟来自哪里。</p>
-          <div class="extension-result"><b>2.10×</b><span>V2 相对 V1 GPU Graph</span></div>
-          <div class="extension-links"><a href="./ppo_gpu_lab/report_v1.html">V1 REPORT →</a></div>
         </article>
 
         <article class="extension-card">
