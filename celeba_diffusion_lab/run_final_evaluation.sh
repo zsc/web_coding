@@ -11,5 +11,6 @@ t=json.loads(Path('results/gray5k/training.json').read_text())
 assert t['status']=='complete' and t['step']==5000 and t['config']['grayscale']
 PY
 "$python" src/evaluate_gray.py --samples 512 > results/gray_evaluate.log 2>&1
+"$python" src/plot_gray.py
 "$python" src/evaluate.py --kid > results/evaluate.log 2>&1
 printf 'All evaluations completed.\n'
