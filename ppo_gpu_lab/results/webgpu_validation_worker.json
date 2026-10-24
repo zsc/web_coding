@@ -1,0 +1,51 @@
+{
+  "passed": true,
+  "checks": {
+    "gradientMaxAbs": 3.3527612686157227e-7,
+    "gradientRelativeL2": 9.539150622489522e-7,
+    "adam1MaxAbs": 2.9802322387695312e-8,
+    "adam20MaxAbs": 3.2782554626464844e-7,
+    "physicsMaxAbs": 0.000002294320983753373,
+    "gaeReturnsMaxAbs": 0.000004473257607884307,
+    "normalizedAdvantagesMaxAbs": 0.0000011725968156461875,
+    "rolloutValueContinuityMaxAbs": 0
+  },
+  "thresholds": {
+    "gradientMaxAbs": 0.00002,
+    "gradientRelativeL2": 0.0001,
+    "adam1MaxAbs": 0.00002,
+    "adam20MaxAbs": 0.0001,
+    "physicsMaxAbs": 0.00001,
+    "gaeReturnsMaxAbs": 0.00002,
+    "normalizedAdvantagesMaxAbs": 0.00002,
+    "rolloutValueContinuityMaxAbs": 0.000001
+  },
+  "rolloutTransitions": 15788,
+  "observedImpulses": 5,
+  "reference": "PyTorch 2.10 CPU FP32 autograd; ppo_v2.objective",
+  "samples": 2048,
+  "gaeSamples": 16384,
+  "device": {
+    "vendor": "apple",
+    "architecture": "metal-3",
+    "device": "",
+    "description": "",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36",
+    "worker": true,
+    "timestampQuery": true,
+    "allocatedBytes": 3990448,
+    "setupMs": 6.1000001430511475,
+    "config": {
+      "n": 256,
+      "horizon": 64,
+      "minibatch": 2048,
+      "epochs": 10,
+      "seed": 71,
+      "force": 40,
+      "robust": true,
+      "timestamp": true,
+      "entropy": 0.01
+    }
+  },
+  "note": "FP32 approximate agreement; not bitwise identity. Physics checked against independent scalar Float64 LDLT. Includes true termination, time truncation, stochastic impulses and rollout-block continuity."
+}

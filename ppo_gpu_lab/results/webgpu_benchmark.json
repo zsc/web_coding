@@ -1,0 +1,244 @@
+{
+  "device": {
+    "vendor": "apple",
+    "architecture": "metal-3",
+    "device": "",
+    "description": "",
+    "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/155.0.0.0 Safari/537.36",
+    "worker": true,
+    "timestampQuery": true,
+    "allocatedBytes": 3990448,
+    "setupMs": 3.1000001430511475,
+    "config": {
+      "n": 256,
+      "horizon": 64,
+      "minibatch": 2048,
+      "epochs": 10,
+      "seed": 917,
+      "force": 10,
+      "robust": false,
+      "timestamp": true
+    }
+  },
+  "workload": "Physical original task, force 10N, threshold 12deg, reward original, no disturbances; 256x64 / minibatch 2048 / 10 epochs / FP32 / 819 parameters",
+  "warmup": 5,
+  "repeats": 30,
+  "medianWallMs": 9.100000023841858,
+  "p10WallMs": 8.700000047683716,
+  "p90WallMs": 9.599999904632568,
+  "medianGpuMs": 4.816896,
+  "sps": 1800439.5557224369,
+  "records": [
+    {
+      "iteration": 6,
+      "samples": 98304,
+      "wallMs": 8.899999856948853,
+      "gpuMs": 4.784128,
+      "sps": 1840898.905993562
+    },
+    {
+      "iteration": 7,
+      "samples": 114688,
+      "wallMs": 9.299999952316284,
+      "gpuMs": 4.784128,
+      "sps": 1761720.439140363
+    },
+    {
+      "iteration": 8,
+      "samples": 131072,
+      "wallMs": 8.799999952316284,
+      "gpuMs": 4.718592,
+      "sps": 1861818.1919066375
+    },
+    {
+      "iteration": 9,
+      "samples": 147456,
+      "wallMs": 8.700000047683716,
+      "gpuMs": 4.718592,
+      "sps": 1883218.3804828909
+    },
+    {
+      "iteration": 10,
+      "samples": 163840,
+      "wallMs": 8.900000095367432,
+      "gpuMs": 4.784128,
+      "sps": 1840898.85667845
+    },
+    {
+      "iteration": 11,
+      "samples": 180224,
+      "wallMs": 8.700000047683716,
+      "gpuMs": 4.784128,
+      "sps": 1883218.3804828909
+    },
+    {
+      "iteration": 12,
+      "samples": 196608,
+      "wallMs": 8.900000095367432,
+      "gpuMs": 4.784128,
+      "sps": 1840898.85667845
+    },
+    {
+      "iteration": 13,
+      "samples": 212992,
+      "wallMs": 8.900000095367432,
+      "gpuMs": 4.784128,
+      "sps": 1840898.85667845
+    },
+    {
+      "iteration": 14,
+      "samples": 229376,
+      "wallMs": 9.099999904632568,
+      "gpuMs": 4.980736,
+      "sps": 1800439.5793080549
+    },
+    {
+      "iteration": 15,
+      "samples": 245760,
+      "wallMs": 9,
+      "gpuMs": 4.784128,
+      "sps": 1820444.4444444445
+    },
+    {
+      "iteration": 16,
+      "samples": 262144,
+      "wallMs": 9.599999904632568,
+      "gpuMs": 5.24288,
+      "sps": 1706666.6836208769
+    },
+    {
+      "iteration": 17,
+      "samples": 278528,
+      "wallMs": 9.200000047683716,
+      "gpuMs": 4.784128,
+      "sps": 1780869.555987122
+    },
+    {
+      "iteration": 18,
+      "samples": 294912,
+      "wallMs": 9,
+      "gpuMs": 4.784128,
+      "sps": 1820444.4444444445
+    },
+    {
+      "iteration": 19,
+      "samples": 311296,
+      "wallMs": 8.899999856948853,
+      "gpuMs": 4.784128,
+      "sps": 1840898.905993562
+    },
+    {
+      "iteration": 20,
+      "samples": 327680,
+      "wallMs": 8.700000047683716,
+      "gpuMs": 4.718592,
+      "sps": 1883218.3804828909
+    },
+    {
+      "iteration": 21,
+      "samples": 344064,
+      "wallMs": 9,
+      "gpuMs": 4.849664,
+      "sps": 1820444.4444444445
+    },
+    {
+      "iteration": 22,
+      "samples": 360448,
+      "wallMs": 8.899999856948853,
+      "gpuMs": 4.784128,
+      "sps": 1840898.905993562
+    },
+    {
+      "iteration": 23,
+      "samples": 376832,
+      "wallMs": 9.200000047683716,
+      "gpuMs": 4.980736,
+      "sps": 1780869.555987122
+    },
+    {
+      "iteration": 24,
+      "samples": 393216,
+      "wallMs": 8.899999856948853,
+      "gpuMs": 4.849664,
+      "sps": 1840898.905993562
+    },
+    {
+      "iteration": 25,
+      "samples": 409600,
+      "wallMs": 9.799999952316284,
+      "gpuMs": 5.308416,
+      "sps": 1671836.742828509
+    },
+    {
+      "iteration": 26,
+      "samples": 425984,
+      "wallMs": 9.200000047683716,
+      "gpuMs": 4.784128,
+      "sps": 1780869.555987122
+    },
+    {
+      "iteration": 27,
+      "samples": 442368,
+      "wallMs": 9.700000047683716,
+      "gpuMs": 5.505024,
+      "sps": 1689072.1566452333
+    },
+    {
+      "iteration": 28,
+      "samples": 458752,
+      "wallMs": 9.299999952316284,
+      "gpuMs": 4.849664,
+      "sps": 1761720.439140363
+    },
+    {
+      "iteration": 29,
+      "samples": 475136,
+      "wallMs": 9.299999952316284,
+      "gpuMs": 5.111808,
+      "sps": 1761720.439140363
+    },
+    {
+      "iteration": 30,
+      "samples": 491520,
+      "wallMs": 9.100000143051147,
+      "gpuMs": 4.9152,
+      "sps": 1800439.5321368196
+    },
+    {
+      "iteration": 31,
+      "samples": 507904,
+      "wallMs": 9.200000047683716,
+      "gpuMs": 5.111808,
+      "sps": 1780869.555987122
+    },
+    {
+      "iteration": 32,
+      "samples": 524288,
+      "wallMs": 9.300000190734863,
+      "gpuMs": 5.24288,
+      "sps": 1761720.3939761831
+    },
+    {
+      "iteration": 33,
+      "samples": 540672,
+      "wallMs": 9.5,
+      "gpuMs": 5.111808,
+      "sps": 1724631.5789473685
+    },
+    {
+      "iteration": 34,
+      "samples": 557056,
+      "wallMs": 10.099999904632568,
+      "gpuMs": 5.701632,
+      "sps": 1622178.2331389082
+    },
+    {
+      "iteration": 35,
+      "samples": 573440,
+      "wallMs": 9.100000143051147,
+      "gpuMs": 5.046272,
+      "sps": 1800439.5321368196
+    }
+  ],
+  "timingBoundary": "Wall includes Fisher-Yates, buffer uploads, encoding, submission and GPU completion. Excludes query map, metrics, evaluation, compilation, UI. GPU timestamp spans all training kernels."
+}

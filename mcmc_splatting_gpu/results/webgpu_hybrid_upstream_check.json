@@ -1,0 +1,7 @@
+{
+  "method": "Original upstream renderGaussiansToImageData and calculateLoss extracted verbatim",
+  "upstream_mse": 1.3348876953125,
+  "browser_validator_mse": 1.3348876953125,
+  "different_pixels": 0,
+  "pass": true
+}

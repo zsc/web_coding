@@ -18,6 +18,6 @@ for key,file in [('pilot','td3_pilot.json'),('symmetric_pilot','td3_symmetry_pil
   r=json.loads(p.read_text());data[key]={k:v for k,v in r.items() if k not in ['actors','history','final','heldout']}
   if 'heldout' in r:data[key]['passed']=sum(x['survived']==x['episodes'] for x in r['heldout'])
 style=re.search(r'<style>(.*?)</style>',(root/'report.template.html').read_text(),re.S).group(1)
-source=(root/'robust.template.html').read_text().replace('__STYLE__',style).replace('__DATA__',json.dumps(data,ensure_ascii=False).replace('</','<\\/'))
+source=(root/'robust.template.html').read_text().replace('__STYLE__',style).replace('__DATA__',json.dumps(data,ensure_ascii=False).replace('</','<\\/')).replace('<a href="results/seeds100_td3.json">seeds100_td3.json</a>','<span>seeds100_td3.json（仅本地保留）</span>')
 (root/'report.html').write_text(source)
 print(root/'report.html')

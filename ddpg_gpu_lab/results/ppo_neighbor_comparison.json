@@ -1,0 +1,64 @@
+{
+  "scope": "Read-only snapshot: different double-pendulum physics, 3 seeds, 1000-step acceptance; not a matched algorithm benchmark.",
+  "rows": [
+    {
+      "config": {
+        "mode": "v2",
+        "envs": 256,
+        "horizon": 64,
+        "minibatch": 2048,
+        "epochs": 10,
+        "iterations": 300,
+        "seed": 11,
+        "physical": true,
+        "evaluate": true,
+        "out": "v2_physical_seed11"
+      },
+      "setup_seconds": 3.122887220000848,
+      "measured_training_seconds": 5.123673984780908,
+      "source": "ppo_gpu_lab/results/desk/v2_physical_seed11.json",
+      "evaluation_horizon": 1000,
+      "heldout_episodes": 128
+    },
+    {
+      "config": {
+        "mode": "v2",
+        "envs": 256,
+        "horizon": 64,
+        "minibatch": 2048,
+        "epochs": 10,
+        "iterations": 300,
+        "seed": 23,
+        "physical": true,
+        "evaluate": true,
+        "out": "v2_physical_seed23"
+      },
+      "setup_seconds": 3.4270160020096228,
+      "measured_training_seconds": 6.197326699853875,
+      "source": "ppo_gpu_lab/results/desk/v2_physical_seed23.json",
+      "evaluation_horizon": 1000,
+      "heldout_episodes": 128
+    },
+    {
+      "config": {
+        "mode": "v2",
+        "envs": 256,
+        "horizon": 64,
+        "minibatch": 2048,
+        "epochs": 10,
+        "iterations": 300,
+        "seed": 7,
+        "physical": true,
+        "evaluate": true,
+        "out": "v2_physical_seed7"
+      },
+      "setup_seconds": 9.851106711896136,
+      "measured_training_seconds": 5.3464288611430675,
+      "source": "ppo_gpu_lab/results/desk/v2_physical_seed7.json",
+      "evaluation_horizon": 1000,
+      "heldout_episodes": 128
+    }
+  ],
+  "interactive_default": "LQR 40 N, not the PPO 10 N model",
+  "source_readme": "../ppo_gpu_lab/README.txt"
+}

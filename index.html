@@ -604,15 +604,15 @@
           <img src="./ddpg_gpu_lab/results/report_cover.png" alt="" loading="eager">
         </a>
         <div class="lab-copy">
-          <p class="kicker">DDPG · Reinforcement learning</p>
-          <h3><a href="./ddpg_gpu_lab/report.html">倒立摆，在 GPU 上快起来。</a></h3>
-          <p class="lab-description">保留小网络与原始物理模型，把采集、回放、Adam 更新和 Polyak 软更新压进 CUDA Graph。</p>
-          <div class="tags"><span>DDPG</span><span>CUDA Graph</span><span>3 seeds</span></div>
+          <p class="kicker">TD3 · 100 independent seeds</p>
+          <h3><a href="./ddpg_gpu_lab/report.html">一百次独立训练，全部通过压力测试。</a></h3>
+          <p class="lab-description">固定 seeds 1–100，用 logit 奇对称 TD3、镜像增强与冻结通过策略跑完整验收；失败尝试和调试预算单独保留。</p>
+          <div class="tags"><span>TD3</span><span>100 seeds</span><span>logit symmetry</span></div>
         </div>
         <dl class="metrics">
-          <div class="metric"><dd>13.4×</dd><dt>同配置执行路径加速</dt></div>
-          <div class="metric"><dd>0.323 ms</dd><dt>1 env / B64 更新步时</dt></div>
-          <div class="metric"><dd>159.7k</dd><dt>32 env 每秒采样</dt></div>
+          <div class="metric"><dd>100/100</dd><dt>压力集全部通过</dt></div>
+          <div class="metric"><dd>291.5 s</dd><dt>纯训练墙钟时间</dt></div>
+          <div class="metric"><dd>21.5×</dd><dt>100 模型批更新加速</dt></div>
         </dl>
         <div class="actions">
           <a href="./ddpg_gpu_lab/report.html">REPORT →</a>
@@ -644,23 +644,23 @@
 
       <li class="lab">
         <span class="lab-index">03</span>
-        <a class="thumb center" href="./mcmc_splatting_gpu/report.html" aria-label="打开 MCMC Splatting 报告">
-          <img src="./mcmc_splatting_gpu/assets/zhou_final.png" alt="" loading="lazy">
+        <a class="thumb center" href="./mcmc_splatting_gpu/report.html#webgpu-results" aria-label="打开 MCMC WebGPU 实测">
+          <img src="./mcmc_splatting_gpu/assets/zhou_webgpu.png" alt="" loading="lazy">
         </a>
         <div class="lab-copy">
           <p class="kicker">MCMC + Adam · Splatting</p>
-          <h3><a href="./mcmc_splatting_gpu/report.html">1.340 MSE，完整进程 8.13 秒。</a></h3>
-          <p class="lab-description">6σ 支持区内做局部 MCMC，再用并行 Adam 细化；附浏览器交互实验与 WebGPU FP16 精度实验室。</p>
-          <div class="tags"><span>ROI 6σ</span><span>1,600 Gaussians</span><span>WebGPU</span></div>
+          <h3><a href="./mcmc_splatting_gpu/report.html#webgpu-results">网页 GPU 3.97 秒，纯 Adam 再降到 1.310 MSE。</a></h3>
+          <p class="lab-description">ROI MCMC 与并行 Adam 已移植到 WebGPU；同目标、同初始化做纯 Adam 消融，并保留 CUDA/desk 对照。</p>
+          <div class="tags"><span>WebGPU</span><span>1,600 Gaussians</span><span>optimizer ablation</span></div>
         </div>
         <dl class="metrics">
-          <div class="metric"><dd>1.340</dd><dt>全图取整 MSE</dt></div>
-          <div class="metric"><dd>8.13 s</dd><dt>完整进程中位数</dt></div>
-          <div class="metric"><dd>46.86 dB</dd><dt>峰值信噪比</dt></div>
+          <div class="metric"><dd>3.97 s</dd><dt>网页首次运行中位数</dt></div>
+          <div class="metric"><dd>1.335</dd><dt>网页全图验证 MSE</dt></div>
+          <div class="metric"><dd>1.310</dd><dt>纯 Adam 消融 MSE</dt></div>
         </dl>
         <div class="actions">
           <a href="./mcmc_splatting_gpu/report.html">REPORT →</a>
-          <a href="./mcmc_splatting_gpu/webgpu_lab.html">WEBGPU →</a>
+          <a href="./mcmc_splatting_gpu/report.html#webgpu-results">WEBGPU →</a>
         </div>
       </li>
 
@@ -689,21 +689,22 @@
       <li class="lab">
         <span class="lab-index">05</span>
         <a class="thumb center" href="./ppo_gpu_lab/report.html" aria-label="打开 PPO 报告">
-          <img src="./ppo_gpu_lab/results/interactive_preview.png" alt="" loading="lazy">
+          <img src="./ppo_gpu_lab/results/webgpu_training_preview.png" alt="" loading="lazy">
         </a>
         <div class="lab-copy">
           <p class="kicker">PPO · GPU + live lab</p>
-          <h3><a href="./ppo_gpu_lab/report.html">同样的 PPO，再快 2.1 倍。</a></h3>
-          <p class="lab-description">V2 重整 rollout、critic 批评估与融合 Adam；另附可直接拖拽双倒立摆的浏览器实时实验。</p>
-          <div class="tags"><span>PPO</span><span>Live lab</span><span>3 seeds</span></div>
+          <h3><a href="./ppo_gpu_lab/report.html">CUDA 快 2.1 倍，WebGPU 学会抗扰动。</a></h3>
+          <p class="lab-description">V2 重整 rollout 与 critic 批评估；新增 WGSL PPO 训练工作台，可在浏览器直接训练并拖拽验证。</p>
+          <div class="tags"><span>PPO</span><span>WebGPU</span><span>live training</span></div>
         </div>
         <dl class="metrics">
           <div class="metric"><dd>2.10×</dd><dt>V1 → V2 训练加速</dt></div>
-          <div class="metric"><dd>962k</dd><dt>环境步 / 秒</dt></div>
-          <div class="metric"><dd>35.8→17.0</dd><dt>ms / iteration</dt></div>
+          <div class="metric"><dd>99.1%</dd><dt>±10° 静止释放成功</dt></div>
+          <div class="metric"><dd>3.81 MiB</dd><dt>WebGPU buffer</dt></div>
         </dl>
         <div class="actions">
           <a href="./ppo_gpu_lab/report.html">V2 →</a>
+          <a href="./ppo_gpu_lab/webgpu.html">WEBGPU →</a>
           <a href="./ppo_gpu_lab/play.html">PLAY →</a>
           <a href="./ppo_gpu_lab/report_v1.html">V1 →</a>
         </div>
@@ -712,18 +713,18 @@
       <li class="lab">
         <span class="lab-index">06</span>
         <a class="thumb" href="./celeba_diffusion_lab/report.html" aria-label="打开 CelebA 报告">
-          <img src="./celeba_diffusion_lab/results/run1/ema_step1000.png" alt="" loading="lazy">
+          <img src="./celeba_diffusion_lab/results/gray_evaluation/gray5k_eta0_64.png" alt="" loading="lazy">
         </a>
         <div class="lab-copy">
-          <p class="kicker">CelebA · 64 × 64 RGB diffusion</p>
-          <h3><a href="./celeba_diffusion_lab/report.html">从数字，到人脸。</a></h3>
-          <p class="lab-description">从随机权重训练四级 U-Net，沿用 EMA、DDIM 与固定噪声对照；当前为单种子、小预算先导实验。</p>
-          <div class="tags"><span>U-Net</span><span>EMA + DDIM</span><span>AMP + Graph</span></div>
+          <p class="kicker">CelebA · grayscale diffusion</p>
+          <h3><a href="./celeba_diffusion_lab/report.html">灰度训练 5,000 步，分布仍未对齐。</a></h3>
+          <p class="lab-description">同一 U-Net 改训单通道灰度，与 RGB 后转灰对照；亮度 Wasserstein 距离仍远高于真实-真实基线，保留为负结果。</p>
+          <div class="tags"><span>U-Net</span><span>grayscale</span><span>negative result</span></div>
         </div>
         <dl class="metrics">
-          <div class="metric"><dd>6.34M</dd><dt>生成器参数</dt></div>
-          <div class="metric"><dd>162,770</dd><dt>官方训练图像</dt></div>
-          <div class="metric"><dd>64×64</dd><dt>RGB 输出尺寸</dt></div>
+          <div class="metric"><dd>41.52</dd><dt>灰度亮度 W1</dt></div>
+          <div class="metric"><dd>1.16–3.59</dd><dt>真实-真实 W1 基线</dt></div>
+          <div class="metric"><dd>5,000</dd><dt>灰度训练步数</dt></div>
         </dl>
         <div class="actions">
           <a href="./celeba_diffusion_lab/report.html">REPORT →</a>

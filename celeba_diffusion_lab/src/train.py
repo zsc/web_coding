@@ -15,22 +15,27 @@ def main():
     p=argparse.ArgumentParser(); p.add_argument('--steps',type=int,default=10000)
     p.add_argument('--batch',type=int,default=64); p.add_argument('--lr',type=float,default=2e-4)
     p.add_argument('--resume',action='store_true'); p.add_argument('--out',default='results/run1')
+    p.add_argument('--dc-weight',type=float,default=0.); p.add_argument('--dc-t-min',type=int,default=800)
+    p.add_argument('--grayscale',action='store_true')
     args=p.parse_args(); out=Path(args.out); out.mkdir(parents=True,exist_ok=True)
     torch.set_num_threads(4); torch.manual_seed(20261024); np_rng=np.random.default_rng(20261024)
     torch.backends.cudnn.benchmark=True
-    data=np.load('data/train.npy',mmap_mode='r')
+    suffix='_gray' if args.grayscale else ''
+    data=np.load('data/train'+suffix+'.npy',mmap_mode='r'); channels=data.shape[-1]
     # Fixed evenly distributed validation indices, never from the training partition.
-    valid=np.load('data/valid.npy',mmap_mode='r'); vi=np.linspace(0,len(valid)-1,512,dtype=np.int64)
+    valid=np.load('data/valid'+suffix+'.npy',mmap_mode='r'); vi=np.linspace(0,len(valid)-1,512,dtype=np.int64)
     v=torch.from_numpy(np.array(valid[vi])).cuda().permute(0,3,1,2).float()/127.5-1
     vg=torch.Generator(device='cuda').manual_seed(2401)
     vt=torch.arange(512,device='cuda')*1000//512; vn=torch.randn(v.shape,device='cuda',generator=vg)
     ab=alpha_bar(); va=ab[vt,None,None,None]; vx=(va.sqrt()*v+(1-va).sqrt()*vn).to(memory_format=torch.channels_last)
-    model=new_model().cuda().to(memory_format=torch.channels_last)
+    model=new_model(channels=channels).cuda().to(memory_format=torch.channels_last)
     ema=copy.deepcopy(model).eval().requires_grad_(False)
     opt=torch.optim.AdamW(model.parameters(),lr=args.lr,weight_decay=1e-4,fused=True)
     scaler=torch.amp.GradScaler('cuda')
     curve=[]; elapsed_before=0.; first=0; train_seconds=0.; successful=0; skipped=0
     ckpt_path=out/'checkpoint.pt'
+    if ckpt_path.exists() and not args.resume:
+        raise FileExistsError('Existing checkpoint: use --resume or a new --out directory')
     if args.resume:
         c=torch.load(ckpt_path,map_location='cpu',weights_only=False)
         assert c['config']['batch']==args.batch and c['config']['lr']==args.lr
@@ -38,9 +43,14 @@ def main():
         scaler.load_state_dict(c['scaler']); first=c['step']; curve=c['curve']; elapsed_before=c['elapsed_seconds']
         train_seconds=c['train_seconds']; successful=c['successful']; skipped=c['skipped']
         np_rng.bit_generator.state=c['numpy_rng']; torch.set_rng_state(c['cpu_rng']); torch.cuda.set_rng_state(c['cuda_rng'])
+        if args.steps<=first:
+            print(json.dumps({'event':'already_complete','step':first})); return
     metadata={'config':vars(args),'parameters':sum(p.numel() for p in model.parameters()),'seed':20261024,
-              'data_manifest':json.loads(Path('data/manifest.json').read_text()),'torch':torch.__version__,
+              'data_manifest':json.loads(Path('data/manifest.json').read_text()),
+              'gray_manifest':json.loads(Path('data/gray_manifest.json').read_text()) if args.grayscale else None,
+              'torch':torch.__version__,
               'model':dict(model.config),'schedule':'linear beta 0.0001..0.02, T=1000, epsilon MSE',
+              'loss':'epsilon MSE + dc_weight * mean(1[t>=dc_t_min] * mean_channel(spatial_mean(epsilon_error)^2))',
               'terminal_alpha_bar':ab[-1].item(),'ema':'min(0.999, (1+successful_updates)/(10+successful_updates))',
               'augmentation':'independent random horizontal flip, p=0.5',
               'sampling':'uniform training examples with replacement; no validation/test training',
@@ -58,8 +68,8 @@ def main():
         metadata['initial_validation']=evaluate(model)
     else:
         prior=json.loads((out/'training.json').read_text()); metadata['initial_validation']=prior['initial_validation']
-    model.train(); host=torch.empty(args.batch,64,64,3,dtype=torch.uint8,pin_memory=True)
-    started=time.perf_counter(); last_tick=started; bucket=[]; torch.cuda.reset_peak_memory_stats()
+    model.train(); host=torch.empty(args.batch,64,64,channels,dtype=torch.uint8,pin_memory=True)
+    started=time.perf_counter(); bucket=[]; base_bucket=[]; torch.cuda.reset_peak_memory_stats()
     params=list(model.parameters()); ema_params=list(ema.parameters())
     print(json.dumps({'event':'start','step':first,'target':args.steps,'config':vars(args),'gpu':gpu_status()}),flush=True)
     for step in range(first+1,args.steps+1):
@@ -75,7 +85,14 @@ def main():
         for group in opt.param_groups: group['lr']=lr
         opt.zero_grad(set_to_none=True)
         with torch.autocast('cuda',dtype=torch.float16):
-            loss=F.mse_loss(model(xt,t,return_dict=False)[0],noise)
+            pred=model(xt,t,return_dict=False)[0]
+            base_loss=F.mse_loss(pred,noise)
+            if args.dc_weight:
+                error=pred.float()-noise
+                dc=error.mean((2,3)).square().mean(1)
+                loss=base_loss+args.dc_weight*(dc*(t>=args.dc_t_min)).mean()
+            else:
+                loss=base_loss
         scaler.scale(loss).backward(); scaler.unscale_(opt)
         norm=torch.nn.utils.clip_grad_norm_(params,1.)
         old_scale=scaler.get_scale(); scaler.step(opt); scaler.update()
@@ -85,7 +102,7 @@ def main():
             successful+=1; decay=min(.999,(1+successful)/(10+successful))
             with torch.no_grad():
                 torch._foreach_mul_(ema_params,decay); torch._foreach_add_(ema_params,params,alpha=1-decay)
-        bucket.append(loss.detach()); train_seconds+=time.perf_counter()-tick
+        bucket.append(loss.detach()); base_bucket.append(base_loss.detach()); train_seconds+=time.perf_counter()-tick
         if step%100==0:
             torch.cuda.synchronize()
             print(json.dumps({'step':step,'loss':torch.stack(bucket).mean().item(),
@@ -94,9 +111,10 @@ def main():
         if step%1000==0 or step==args.steps:
             torch.cuda.synchronize(); raw=evaluate(model); avg=evaluate(ema); model.train()
             row={'step':step,'train_loss':torch.stack(bucket).mean().item(),
+                 'train_epsilon_mse':torch.stack(base_bucket).mean().item(),
                  'validation_raw':raw,'validation_ema':avg,'elapsed_seconds':elapsed_before+time.perf_counter()-started,
                  'successful_updates':successful,'skipped':skipped}
-            curve.append(row); bucket=[]
+            curve.append(row); bucket=[]; base_bucket=[]
             # Sampling must not perturb the resumed training random stream.
             cpu_rng=torch.get_rng_state(); cuda_rng=torch.cuda.get_rng_state()
             if step%2000==0 or step==1000 or step==args.steps:

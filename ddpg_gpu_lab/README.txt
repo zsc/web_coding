@@ -108,3 +108,21 @@ source/original.html 为完整快照，extract.py 原样提取计算类到 core_
   单独列出训练主循环、初始化/编译、进程总耗时、长时评估和开发调试实验。
   完整训练进程计时包含Python/PyTorch导入，但不包含先运行的数值测试。
   共享GPU与编译缓存会影响速度，原始五轮数据和运行日志均保留。
+
+失败尝试追踪
+  results/seeds100_td3_posttanh_attempt01.json：先tanh再做奇对称，90k checkpoint通过93/100。
+  seeds 3,10,33,59,65共同饱和：logit约-10，动作恒0，梯度消失；中止进一步空转。
+  source/multiseed_posttanh.py保留该版本；最终版在logit层做对称化，并增加大共同偏置回归测试。
+  results/td3_logit_pilot.json：修复后独立16 seed调参组，50k时验证与留出均撑满100k步。
+  verify_policies.py与verify_original.cjs根据symmetry_mode区分两种导出策略，旧权重不会被静默误解释。
+
+最终实测
+  固定100 seeds全部通过64初态验证 + 64初态留出 + 256新初态压力集，每条100000步。
+  原JS环境四个边界初态10000步复核：100/100。
+  纯训练291.48797秒；setup54.67153秒；完整训练进程456.91秒。
+  压力复测加载/编译11.12236秒，执行30.00427秒；原JS复核9.63902秒，均单独计量。
+  达标停止更新分布：10k:14,20k:33,30k:31,40k:13,50k:5,60k:2,70k:1,80k:1。
+  稳定口径为持续不越界；部分策略有偏移或振荡，不保证全部回到中心。
+  同算法100模型学习更新交错微基准：72.23393 -> 3.35738 ms，21.515x。
+  python benchmark_td3_paired.py 复现该五轮对照；不含环境/replay采样。
+  ppo_neighbor_comparison.json记录邻目录PPO实测，非同任务同验收算法排名。

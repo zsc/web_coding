@@ -1,0 +1,56 @@
+{
+  "scope": "Interleaved TD3 logit-symmetric learned updates only; fixed minibatch and starting weights; excludes environment/replay sampling; 100 sweeps per round",
+  "order": [
+    [
+      "sequential",
+      "packed"
+    ],
+    [
+      "packed",
+      "sequential"
+    ],
+    [
+      "sequential",
+      "packed"
+    ],
+    [
+      "packed",
+      "sequential"
+    ],
+    [
+      "sequential",
+      "packed"
+    ]
+  ],
+  "rows": [
+    {
+      "mode": "sequential",
+      "seeds": 100,
+      "batch": 128,
+      "rounds_ms_per_sweep": [
+        72.3347543401178,
+        72.1944735199213,
+        72.18752695946023,
+        72.23393211024813,
+        72.35642908024602
+      ],
+      "median_ms_per_sweep": 72.23393211024813,
+      "setup_seconds": 15.068523188005202
+    },
+    {
+      "mode": "packed",
+      "seeds": 100,
+      "batch": 128,
+      "rounds_ms_per_sweep": [
+        3.3726436109282076,
+        3.336138129234314,
+        3.323807939887047,
+        3.3573767403140664,
+        3.393298409646377
+      ],
+      "median_ms_per_sweep": 3.3573767403140664,
+      "setup_seconds": 13.731859204010107
+    }
+  ],
+  "speedup": 21.51499152385591
+}

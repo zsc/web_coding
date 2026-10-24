@@ -14,8 +14,7 @@ fit['image']=list(pgm[header:])
 cpu_rows=''.join('<tr><td>{W} × {H}<small>{N} 高斯 · {iterations:,} 步</small></td><td>{reference_ms:.1f} ms</td><td>{cached_ms:.1f} ms</td><td class="green">{speedup:.1f}×</td><td>{cache_MiB:.2f} MiB</td></tr>'.format(**c) for c in local['cases'])
 gpu_rows=''.join('<tr><td>{dtype} · {chains} 链</td><td>{cpu_cached_all_ms:.1f} ms</td><td>{gpu_all_ms:.1f} ms</td><td class="green">{gpu_vs_cpu_cached_same_work:.2f}×</td><td>{gpu_total_steps_s:,.0f}</td></tr>'.format(**g) for g in gpu.values())
 core=(ROOT/'src/core.mjs').read_text().replace('export ','')
-worker=core+'\n'+re.sub(r'^import .*?;\n', '', (ROOT/'src/playground_worker.mjs').read_text(), count=1)
-playground='const PLAYGROUND_WORKER_SOURCE='+json.dumps(worker,ensure_ascii=False).replace('<',r'\u003c')+';\n'+(ROOT/'src/playground.mjs').read_text()
+playground=(ROOT/'src/hybrid_webgpu.mjs').read_text().replace('export ','')+'\nconst HYBRID_TARGET='+(ROOT/'assets/zhou_target.json').read_text()+';\n'+(ROOT/'src/hybrid_playground.mjs').read_text()
 data=json.dumps(dict(local=local,quality=quality,gpu=gpu,fit=fit),separators=(',',':')).replace('<',r'\u003c')
 page=r'''<!DOCTYPE html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -96,14 +95,7 @@ Host launches 256-step chunks; no per-step readback.</pre><p class="note">一条
 <div class="panel"><h3>MFU：统计口径与实测状态</h3><div id="mfu-text">{{mfu_html}}</div><p class="note" style="margin-top:15px">nvidia-smi 的 GPU Util 是采样期内的忙碌比例，不是峰值 FLOPS 利用率，还包含其他进程。这个内核含 exp、除法、整数 SSE、同步，不能用“原始全量重算 FLOPs”作优化后的 MFU 分子；省掉的计算不算已执行 FLOPs。</p></div></div>
 <div class="notice">下一步：大图可以研究单链跨多个 block + CUDA Graph；大量小图 / 独立初始化适合更多链。ROI 裁剪、快速 exp、Adam、FP32 边界回退和多核 CPU 均需要单独做精度 / 性能消融，当前未声称实现。</div></section>
 
-<section class="section" id="playground"><div class="section-head"><div><div class="index">05 / TRY IT LOCALLY · CPU BACKEND</div><h2>这份报告里，也能直接跑。</h2></div><p>完全离线、无上传的 JS 缓存核心。改文字或载入图片，下载当前拟合与参数；目标可以导出为 CUDA 支持的 PGM。</p></div>
-<div class="panel live"><div class="controls"><label>目标文字<input id="demo-text" value="MCMC" maxlength="20"></label><label>高斯数量 · 上限 10,000<input type="number" id="demo-N" min="1" max="10000" step="1" value="100" list="gaussian-presets" required></label><datalist id="gaussian-presets"><option value="25"><option value="100"><option value="800"><option value="1600"><option value="3200"><option value="5000"><option value="10000"></datalist>
-<label>迭代数 · 上限 10,000,000<input type="number" id="demo-steps" min="1" max="10000000" step="1" value="50000" list="iteration-presets" required></label><datalist id="iteration-presets"><option value="10000"><option value="100000"><option value="500000"><option value="1000000"><option value="5000000"><option value="10000000"></datalist><p class="note" id="demo-budget" style="margin-top:10px"></p>
-<label>温度<select id="demo-mode"><option value="annealed">降温 50 → 0.05</option><option value="fixed">固定 50 · 原设置</option></select></label><label>或载入图片<input type="file" id="demo-file" accept="image/*"></label>
-<button class="primary" id="demo-start">初始化并运行</button><button class="secondary" id="demo-stop" disabled>停止</button><button class="secondary" id="demo-export" disabled>下载当前图像与参数</button><button class="secondary" id="target-export">下载目标 PGM</button></div>
-<div><div class="live-pair"><div><p>TARGET / 100 × 50</p><canvas id="live-target" width="100" height="50"></canvas></div><div><p>INCREMENTAL FIT / JS CPU</p><canvas id="live-image" width="100" height="50"></canvas></div></div>
-<div class="live-stats"><span>迭代<b id="live-iter">0</b></span><span>MSE<b id="live-loss">—</b></span><span>接受率<b id="live-accept">—</b></span><span>计算耗时<b id="live-time">—</b></span></div>
-<p id="live-status">准备就绪。默认目标与基准位图相同。</p><p class="note">seed 固定为 42 / 101。初始化、迭代与缓存重建均在后台 Worker 中执行；每约 100 ms 更新进度。计算时间不含初始化、消息传输和调度等待。每 5,000 步重建缓存。图片缩放到 100 × 50 并转灰度；修改文字后使用浏览器字体，所以不与原基准位图直接比较。</p><p class="note" style="margin-top:15px">下载的是点击时的当前状态；点击“初始化并运行”会重新开始。本区不连接 desk，不调用 WebGPU。</p></div></div></section>
+{{hybrid_html}}
 
 <section class="section" id="reproduce"><div class="section-head"><div><div class="index">06 / REPRODUCE & INSPECT</div><h2>所有结果，都留有来路。</h2></div><p>本地：mcmc_splatting_gpu<br>desk：~/mcmc_splatting_gpu_20261024</p></div>
 <div class="two"><div class="panel"><h3>本地基准与报告</h3><pre class="code">cd /Users/zsc/Downloads/web_coding/mcmc_splatting_gpu
@@ -152,7 +144,7 @@ replace={
 'cpu_gain':f"{local['cases'][0]['speedup']:.1f}",'gpu64_gain':f"{gpu['batch_fp64']['gpu_vs_cpu_cached_same_work']:.1f}",'gpu32_gain':f"{gpu['batch_fp32']['gpu_vs_cpu_cached_same_work']:.1f}",
 'fixed_loss':f"{quality['runs'][0]['loss']:.1f}",'quality_loss':f"{quality['runs'][2]['loss']:.1f}",'annealed_loss':f"{quality['runs'][1]['loss']:.1f}",'quality_sec':f"{quality['runs'][2]['ms_including_checkpoints']/1000:.2f}",'fit_loss':f"{fit['loss']:.1f}",'fit_sec':f"{fit['gpu_ms']/1000:.2f}",
 'fit_drift':f"{fit['max_final_rerender_mse_drift']:.4f}",'single64_gain':f"{gpu['single_fp64']['gpu_vs_cpu_cached_same_work']:.2f}",'fp32_mismatches':str(gpu['single_fp32']['verification']['canonical_fp64_loss_mismatch']),'fp32_error':f"{gpu['single_fp32']['verification']['canonical_fp64_max_mse_error']:.4f}",'fp32_final_mismatches':str(gpu['batch_fp32']['verification']['final_chain_mismatch']),
-'fit_memory':f"{fit['workspace_bytes']/1048576:.1f}",'source_url':'https://github.com/zsc/widgets/blob/'+prov['commit']+'/mcmc_splatting.html','commit_short':prov['commit'][:12],'sha256':prov['sha256'],'cpu_rows':cpu_rows,'gpu_rows':gpu_rows,'mfu_html':mfu_html,'core':core,'data':data,'playground':playground}
+'fit_memory':f"{fit['workspace_bytes']/1048576:.1f}",'source_url':'https://github.com/zsc/widgets/blob/'+prov['commit']+'/mcmc_splatting.html','commit_short':prov['commit'][:12],'sha256':prov['sha256'],'cpu_rows':cpu_rows,'gpu_rows':gpu_rows,'mfu_html':mfu_html,'core':core,'data':data,'playground':playground,'hybrid_html':(ROOT/'src/hybrid_playground.html').read_text()}
 for k,v in replace.items():page=page.replace('{{'+k+'}}',v)
 assert not re.search(r'\{\{[a-z_]+\}\}',page)
 (ROOT/'report.html').write_text(page)

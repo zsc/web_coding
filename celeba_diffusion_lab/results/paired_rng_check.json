@@ -1,0 +1,9 @@
+{
+  "numpy_rng_equal": true,
+  "cpu_rng_equal": true,
+  "cuda_rng_equal": true,
+  "control_successful_extra": 2000,
+  "weighted_successful_extra": 1992,
+  "control_skipped": 0,
+  "weighted_skipped": 8
+}

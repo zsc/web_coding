@@ -6,13 +6,14 @@
   let state=[0,0,3*M.RAD,0,3*M.RAD,0],time=0,force=0,auto=true,mode='lqr',limit=40;
   let running=!matchMedia('(prefers-reduced-motion: reduce)').matches,failed=false,drag=null;
   let stableSteps=0,recoveryStart=0,recoveredAt=null,accumulator=0,last=null,trace=[];
+  let trained=null;
   const PX=130,BASE=400,CENTER=500;
   const initial=()=>[0,0,0,0,0,0];
   function geometry(){const x=CENTER+state[0]*PX,p0={x,y:BASE},p1={x:x+Math.sin(state[2])*PX,y:BASE-Math.cos(state[2])*PX};return[p0,p1,{x:p1.x+Math.sin(state[4])*PX,y:p1.y-Math.cos(state[4])*PX}];}
   function restartRecovery(){stableSteps=0;recoveryStart=time;recoveredAt=null;}
   function setState(s){state=s;time=0;force=0;failed=false;trace=[];accumulator=0;restartRecovery();render();}
   function applyPreset(){if(drag)return;const a=+el('liveAngle').value*M.RAD;setState([0,0,a,0,a,0]);}
-  function control(){return !auto?0:mode==='lqr'?M.lqr(data.lqr.K,state,limit):M.policy(data.policy,state);}
+  function control(){return !auto?0:mode==='lqr'?M.lqr(data.lqr.K,state,limit):mode==='trained'?M.policy(trained.policy,state)*trained.force/10:M.policy(data.policy,state);}
   function tick(){
     force=control();state=M.step(state,force,limit);time+=M.DT;
     if(M.fallen(state)){failed=true;force=0;return;}
@@ -38,8 +39,8 @@
     el('liveStatus').dataset.kind=kind;
     el('liveModeTag').textContent=`${auto?(mode==='lqr'?'LQR':'PPO'):'无控制'} · ±${limit} N`;
     el('livePause').textContent=running?'暂停':'继续';el('liveAuto').textContent=auto?'自动 · 开':'自动 · 关';el('liveAuto').setAttribute('aria-pressed',String(auto));
-    el('livePower').disabled=mode==='ppo';
-    el('liveControllerNote').textContent=mode==='ppo'?'使用 GPU 已训练权重，力上限固定 10 N。只训练过竖直附近的小扰动，较大拖拽可能失败。':limit===40?'根据当前姿态实时计算推力。40 N 是交互增强设置，不属于原 PPO 基准。':'原任务的 10 N 力上限。较大倾斜可能因电机饱和而无法恢复。';
+    el('livePower').disabled=mode==='ppo'||mode==='trained';
+    el('liveControllerNote').textContent=mode==='trained'?`${trained.label}。神经网络直接输出小车推力，上限 ${trained.force} N。`:mode==='ppo'?'使用 GPU 已训练权重，力上限固定 10 N。只训练过竖直附近的小扰动，较大拖拽可能失败。':limit===40?'根据当前姿态实时计算推力。40 N 是交互增强设置，不属于原 PPO 基准。':'原任务的 10 N 力上限。较大倾斜可能因电机饱和而无法恢复。';
     el('liveHint').textContent=drag?'松手后从静止释放 · 按住期间暂停物理':failed?'这次超出了恢复范围，点「重置」再试一次':!running?'已暂停 · 可以调整姿态，点击「继续」运行':'拖动圆形关节或小车 · 空格暂停 / R 重置';
     el('liveClock').textContent=time.toFixed(2)+' s';
     el('liveTheta1').textContent=(state[2]/M.RAD).toFixed(1)+'°';el('liveTheta2').textContent=(state[4]/M.RAD).toFixed(1)+'°';el('liveX').textContent=state[0].toFixed(2)+' m';el('liveForce').textContent=force.toFixed(1)+' N';
@@ -94,7 +95,7 @@
   el('livePause').addEventListener('click',pause);el('liveReset').addEventListener('click',()=>setState(initial()));
   el('pushLeft').addEventListener('click',()=>push(-1));el('pushRight').addEventListener('click',()=>push(1));
   el('liveAuto').addEventListener('click',()=>{auto=!auto;force=0;restartRecovery();render();});
-  el('liveController').addEventListener('change',e=>{mode=e.target.value;if(mode==='ppo'){limit=10;el('livePower').value='10';}force=0;restartRecovery();render();});
+  el('liveController').addEventListener('change',e=>{mode=e.target.value;if(mode==='ppo'){limit=10;el('livePower').value='10';}else if(mode==='trained'){limit=trained.force;el('livePower').value=String(limit);}force=0;restartRecovery();render();});
   el('livePower').addEventListener('change',e=>{limit=+e.target.value;force=0;restartRecovery();render();});
   el('liveAngle').addEventListener('input',e=>el('liveAngleValue').textContent=e.target.value+'°');el('liveApply').addEventListener('click',applyPreset);
   document.addEventListener('visibilitychange',()=>{last=null;accumulator=0;});
@@ -102,6 +103,14 @@
   el('liveEvidenceRows').innerHTML=data.evaluation.grid.map(row=>`<tr><td>±${row.degrees}°</td>${names.map(k=>`<td>${row[k].success} / 8</td>`).join('')}</tr>`).join('');
   const random=data.evaluation.random.lqr40;
   el('liveEvidenceNote').textContent=`另外使用独立 LCG seed 20261024 采样 512 组初始状态：两角各在 ±10° 内，位置 ±0.25 m，速度为零。LQR 40 N 成功 ${random.success} / ${random.total}。这些是该模拟器的实测结果。`;
+  function useTrainedPolicy(p){
+    if(!p?.policy||![10,40].includes(p.force))return;
+    const values=Object.values(p.policy).flat(2);if(values.length!==418||values.some(x=>!Number.isFinite(x)))return;
+    trained=p;let option=el('liveController').querySelector('option[value="trained"]');if(!option){option=document.createElement('option');option.value='trained';el('liveController').appendChild(option);}option.textContent=p.label||'WebGPU PPO';
+    mode='trained';auto=true;limit=p.force;el('liveController').value='trained';el('livePower').value=String(limit);running=true;setState(initial());
+  }
+  window.addEventListener('ppo-policy',e=>useTrainedPolicy(e.detail));
+  if(data.trained)useTrainedPolicy(data.trained);
   function frame(ts){if(last===null)last=ts;const elapsed=Math.min(.1,(ts-last)/1000);last=ts;
     if(running&&!failed&&!drag&&!document.hidden){accumulator+=elapsed;while(accumulator+1e-10>=M.DT){tick();accumulator-=M.DT;if(failed)break;}}else accumulator=0;
     render();requestAnimationFrame(frame);

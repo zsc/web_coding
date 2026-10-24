@@ -27,7 +27,8 @@ def main():
     torch.set_num_threads(4); torch.backends.cudnn.benchmark=True
     c,models=load_models(args.checkpoint); before=gpu_status()
     configs=[('ema100','ema',100,0.),('ema50','ema',50,0.),('ema20','ema',20,0.),
-             ('ema100_eta1','ema',100,1.),('ema50_eta1','ema',50,1.),('raw100','model',100,0.)]
+             ('ema100_eta1','ema',100,1.),('ema50_eta1','ema',50,1.),('raw100','model',100,0.),
+             ('ema1000_eta1','ema',1000,1.)]
     galleries=[]
     for name,key,steps,eta in configs:
         sampler=Sampler(models[key],batch=16,steps=steps,eta=eta)
@@ -37,10 +38,12 @@ def main():
         torch.save(ims,out/(name+'_64.pt')); galleries.append(name)
         print(json.dumps({'gallery':name}),flush=True); del sampler; gc.collect(); torch.cuda.empty_cache()
     # Hot five-image latency. Randomly interleave methods to reduce drift from the shared GPU.
-    benchmark_configs=[('eager_fp32_50',50,False,False),('graph_fp32_50',50,True,False),
-                       ('graph_amp_50',50,True,True),('graph_amp_20',20,True,True),('graph_amp_100',100,True,True)]
-    samplers={name:Sampler(models['ema'],batch=5,steps=steps,graph=graph,amp=amp)
-              for name,steps,graph,amp in benchmark_configs}
+    benchmark_configs=[('eager_fp32_50',50,False,False,0.),('graph_fp32_50',50,True,False,0.),
+                       ('graph_amp_50',50,True,True,0.),('graph_amp_20',20,True,True,0.),('graph_amp_100',100,True,True,0.),
+                       ('graph_amp_50_eta1',50,True,True,1.),('graph_amp_100_eta1',100,True,True,1.),
+                       ('eager_fp32_1000_eta1',1000,False,False,1.)]
+    samplers={name:Sampler(models['ema'],batch=5,steps=steps,graph=graph,amp=amp,eta=eta)
+              for name,steps,graph,amp,eta in benchmark_configs}
     for s in samplers.values(): s.run(91)
     exact=samplers['graph_fp32_50'].run(91); reference=samplers['eager_fp32_50'].run(91)
     maxerr=(exact-reference).abs().max().item(); assert maxerr<3e-4,maxerr
@@ -52,8 +55,8 @@ def main():
         for name in names:
             torch.cuda.synchronize(); start=time.perf_counter(); png_bytes(samplers[name].run(881+rep)); torch.cuda.synchronize()
             values[name].append((time.perf_counter()-start)*1000); order.append(name)
-    timings=[{'name':name,'steps':steps,'graph':graph,'amp':amp,'setup_seconds':samplers[name].setup_seconds,**stats(values[name])}
-             for name,steps,graph,amp in benchmark_configs]
+    timings=[{'name':name,'steps':steps,'graph':graph,'amp':amp,'eta':eta,'setup_seconds':samplers[name].setup_seconds,**stats(values[name])}
+             for name,steps,graph,amp,eta in benchmark_configs]
     result={'step':c['step'],'checkpoint':args.checkpoint,'galleries':galleries,'sample_seeds':[881,882,883,884],
             'timings':timings,'timing_order':order,'timing_note':'7 randomly interleaved hot runs per method, batch=5, including GPU-to-CPU and PNG encoding; excludes model load and graph capture. Shared GPU.',
             'graph_vs_eager_max_abs_fp32':maxerr,'amp_vs_fp32_trajectory_rmse':amp_rmse,
@@ -79,7 +82,7 @@ def run_kid(model,out,step):
     real=features(torch.from_numpy(np.array(valid[indices])).permute(0,3,1,2).float()/255)
     np.save(out/'validation_inception_features.npy',real)
     rows=[]
-    for name,steps,eta in [('ema100',100,0.),('ema50',50,0.),('ema100_eta1',100,1.)]:
+    for name,steps,eta in [('ema100',100,0.),('ema50',50,0.),('ema100_eta1',100,1.),('ema50_eta1',50,1.)]:
         start=time.perf_counter(); sampler=Sampler(model,batch=16,steps=steps,eta=eta)
         generated=[]
         for j in range(64):

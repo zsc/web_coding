@@ -1,0 +1,40 @@
+{
+  "C": 1,
+  "H": 128,
+  "N": 10000,
+  "W": 320,
+  "accepted": 295602,
+  "adam": 1,
+  "adam_done": 0,
+  "adapter": {
+    "architecture": "metal-3",
+    "vendor": "apple"
+  },
+  "at": "2026-10-24T08:48:29.951Z",
+  "cache_stride": 0,
+  "cached_loss": 2463.5442626953127,
+  "cancelled": true,
+  "cold_pipeline": false,
+  "compile_ms": 0,
+  "features": {
+    "half": true,
+    "subgroups": true,
+    "timestamp": true
+  },
+  "fit_wall_ms": 4722.899999856949,
+  "fp16_steps": 0,
+  "gpu_ms": 4043.7678080000182,
+  "loss": 2463.608935546875,
+  "mcmc": 10000000,
+  "mcmc_done": 301824,
+  "mode": "fp32",
+  "polish": 1000,
+  "psnr": 14.215085902541816,
+  "render_mae": 0.0016845703125,
+  "render_max_error": 1,
+  "target": "周舒畅",
+  "total_ms": 6930.600000143051,
+  "validation_ms": 2198.7999999523163,
+  "winner": 0,
+  "workspace_bytes": 1997380
+}

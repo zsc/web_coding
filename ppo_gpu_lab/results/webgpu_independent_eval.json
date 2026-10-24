@@ -1,0 +1,555 @@
+{
+  "note": "Fresh post-freeze audit seed 271828, 1024 episodes per condition, never used to select checkpoints. Independent from WGSL arithmetic, same intended physical equations; not a third-party physics engine.",
+  "options": {
+    "seed": 271828,
+    "count": 1024
+  },
+  "original10N": {
+    "engine": "Independent JavaScript Float64 physics and deterministic mean action",
+    "criterion": "10 s, no |angle|>60 deg or |x|>2.4m; final continuous 1 s: |angles|<2deg, |angular speeds|<0.15 rad/s, |cart speed|<0.15m/s",
+    "force": 10,
+    "angle2": {
+      "count": 1024,
+      "seed": 271828,
+      "degrees": 2,
+      "kicks": false,
+      "success": 1024,
+      "successRate": 1,
+      "survived": 1024,
+      "survivalRate": 1,
+      "meanLength": 500,
+      "meanReturn": 498.1476043770012,
+      "maxForce": 10
+    },
+    "angle5": {
+      "count": 1024,
+      "seed": 271828,
+      "degrees": 5,
+      "kicks": false,
+      "success": 846,
+      "successRate": 0.826171875,
+      "survived": 860,
+      "survivalRate": 0.83984375,
+      "meanLength": 425.6318359375,
+      "meanReturn": 401.8321636000711,
+      "maxForce": 10
+    },
+    "angle10": {
+      "count": 1024,
+      "seed": 271828,
+      "degrees": 10,
+      "kicks": false,
+      "success": 323,
+      "successRate": 0.3154296875,
+      "survived": 397,
+      "survivalRate": 0.3876953125,
+      "meanLength": 212.1884765625,
+      "meanReturn": 127.99595592462806,
+      "maxForce": 10
+    },
+    "pushes": {
+      "count": 1024,
+      "seed": 271828,
+      "degrees": 2,
+      "kicks": true,
+      "success": 216,
+      "successRate": 0.2109375,
+      "survived": 1024,
+      "survivalRate": 1,
+      "meanLength": 500,
+      "meanReturn": 490.0935794284076,
+      "maxForce": 10
+    }
+  },
+  "initial40N": {
+    "engine": "Independent JavaScript Float64 physics and deterministic mean action",
+    "criterion": "10 s, no |angle|>60 deg or |x|>2.4m; final continuous 1 s: |angles|<2deg, |angular speeds|<0.15 rad/s, |cart speed|<0.15m/s",
+    "force": 40,
+    "angle2": {
+      "count": 1024,
+      "seed": 271828,
+      "degrees": 2,
+      "kicks": false,
+      "success": 0,
+      "successRate": 0,
+      "survived": 1024,
+      "survivalRate": 1,
+      "meanLength": 500,
+      "meanReturn": 487.08507556519527,
+      "maxForce": 40
+    },
+    "angle5": {
+      "count": 1024,
+      "seed": 271828,
+      "degrees": 5,
+      "kicks": false,
+      "success": 0,
+      "successRate": 0,
+      "survived": 1024,
+      "survivalRate": 1,
+      "meanLength": 500,
+      "meanReturn": 486.23571305935803,
+      "maxForce": 40
+    },
+    "angle10": {
+      "count": 1024,
+      "seed": 271828,
+      "degrees": 10,
+      "kicks": false,
+      "success": 0,
+      "successRate": 0,
+      "survived": 822,
+      "survivalRate": 0.802734375,
+      "meanLength": 406.2529296875,
+      "meanReturn": 365.87690834445493,
+      "maxForce": 40
+    },
+    "pushes": {
+      "count": 1024,
+      "seed": 271828,
+      "degrees": 2,
+      "kicks": true,
+      "success": 0,
+      "successRate": 0,
+      "survived": 1024,
+      "survivalRate": 1,
+      "meanLength": 500,
+      "meanReturn": 478.8827436832756,
+      "maxForce": 40
+    }
+  },
+  "runs": [
+    {
+      "trainingSeed": 71,
+      "checkpoint": 950,
+      "totalIterations": 1200,
+      "result": {
+        "engine": "Independent JavaScript Float64 physics and deterministic mean action",
+        "criterion": "10 s, no |angle|>60 deg or |x|>2.4m; final continuous 1 s: |angles|<2deg, |angular speeds|<0.15 rad/s, |cart speed|<0.15m/s",
+        "force": 40,
+        "angle2": {
+          "count": 1024,
+          "seed": 271828,
+          "degrees": 2,
+          "kicks": false,
+          "success": 1024,
+          "successRate": 1,
+          "survived": 1024,
+          "survivalRate": 1,
+          "meanLength": 500,
+          "meanReturn": 499.6928037566254,
+          "maxForce": 40
+        },
+        "angle5": {
+          "count": 1024,
+          "seed": 271828,
+          "degrees": 5,
+          "kicks": false,
+          "success": 1024,
+          "successRate": 1,
+          "survived": 1024,
+          "survivalRate": 1,
+          "meanLength": 500,
+          "meanReturn": 499.1985961533784,
+          "maxForce": 40
+        },
+        "angle10": {
+          "count": 1024,
+          "seed": 271828,
+          "degrees": 10,
+          "kicks": false,
+          "success": 1015,
+          "successRate": 0.9912109375,
+          "survived": 1015,
+          "survivalRate": 0.9912109375,
+          "meanLength": 495.88671875,
+          "meanReturn": 491.79609887288666,
+          "maxForce": 40
+        },
+        "pushes": {
+          "count": 1024,
+          "seed": 271828,
+          "degrees": 2,
+          "kicks": true,
+          "success": 1024,
+          "successRate": 1,
+          "survived": 1024,
+          "survivalRate": 1,
+          "meanLength": 500,
+          "meanReturn": 495.129346607593,
+          "maxForce": 40
+        }
+      },
+      "interactionExamples": {
+        "both8": {
+          "success": true,
+          "fell": false,
+          "steps": 500,
+          "state": [
+            -0.017125130877408388,
+            -0.0007958110794172744,
+            0.00005037166648280689,
+            0.00006454756746534608,
+            0.00004321356243774943,
+            0.00007076532868402068
+          ],
+          "recoverySeconds": 3.52,
+          "maxAngle": 0.19914531017817172,
+          "maxX": 0.5786652042956041
+        },
+        "lower8": {
+          "success": true,
+          "fell": false,
+          "steps": 500,
+          "state": [
+            -0.017533582016432788,
+            0.00009117966174326079,
+            0.000018062144158115245,
+            -0.00003772675387321909,
+            0.00001883842780747713,
+            -0.00003624067012480201
+          ],
+          "recoverySeconds": 2.7,
+          "maxAngle": 0.11801120112335095,
+          "maxX": 0.2145568210264839
+        },
+        "upper8": {
+          "success": true,
+          "fell": false,
+          "steps": 500,
+          "state": [
+            -0.017340299414262884,
+            -0.0005242899349665951,
+            0.000057951406446932197,
+            0.000011006712689470615,
+            0.00005319000050274525,
+            0.000017387521811306775
+          ],
+          "recoverySeconds": 3.52,
+          "maxAngle": 0.16103430610593028,
+          "maxX": 0.4107913141280906
+        },
+        "cart04": {
+          "success": true,
+          "fell": false,
+          "steps": 500,
+          "state": [
+            -0.017535289842496443,
+            -0.000132252187021729,
+            0.00004647380787226041,
+            -0.000037764025233324713,
+            0.00004521413433522525,
+            -0.000033216011936954506
+          ],
+          "recoverySeconds": 2.86,
+          "maxAngle": 0.03358710331161374,
+          "maxX": 0.43194235500336353
+        },
+        "push035": {
+          "success": true,
+          "fell": false,
+          "steps": 500,
+          "state": [
+            -0.01752247968024603,
+            -0.00010609430153757805,
+            0.000040703454215584856,
+            -0.000034649231472801884,
+            0.00003968663922249149,
+            -0.000030685158242871804
+          ],
+          "recoverySeconds": 3.14,
+          "maxAngle": 0.051561589497572946,
+          "maxX": 0.30144658483014697
+        }
+      }
+    },
+    {
+      "trainingSeed": 79,
+      "checkpoint": 1100,
+      "totalIterations": 1200,
+      "result": {
+        "engine": "Independent JavaScript Float64 physics and deterministic mean action",
+        "criterion": "10 s, no |angle|>60 deg or |x|>2.4m; final continuous 1 s: |angles|<2deg, |angular speeds|<0.15 rad/s, |cart speed|<0.15m/s",
+        "force": 40,
+        "angle2": {
+          "count": 1024,
+          "seed": 271828,
+          "degrees": 2,
+          "kicks": false,
+          "success": 1024,
+          "successRate": 1,
+          "survived": 1024,
+          "survivalRate": 1,
+          "meanLength": 500,
+          "meanReturn": 498.5816184258801,
+          "maxForce": 40
+        },
+        "angle5": {
+          "count": 1024,
+          "seed": 271828,
+          "degrees": 5,
+          "kicks": false,
+          "success": 1024,
+          "successRate": 1,
+          "survived": 1024,
+          "survivalRate": 1,
+          "meanLength": 500,
+          "meanReturn": 498.1786780928012,
+          "maxForce": 40
+        },
+        "angle10": {
+          "count": 1024,
+          "seed": 271828,
+          "degrees": 10,
+          "kicks": false,
+          "success": 1008,
+          "successRate": 0.984375,
+          "survived": 1008,
+          "survivalRate": 0.984375,
+          "meanLength": 492.59375,
+          "meanReturn": 486.986160581913,
+          "maxForce": 40
+        },
+        "pushes": {
+          "count": 1024,
+          "seed": 271828,
+          "degrees": 2,
+          "kicks": true,
+          "success": 1024,
+          "successRate": 1,
+          "survived": 1024,
+          "survivalRate": 1,
+          "meanLength": 500,
+          "meanReturn": 494.66294813231735,
+          "maxForce": 40
+        }
+      },
+      "interactionExamples": {
+        "both8": {
+          "success": true,
+          "fell": false,
+          "steps": 500,
+          "state": [
+            -0.16626400437207617,
+            -0.000385851058991728,
+            -0.00009837239458398983,
+            0.00016303098488165617,
+            -0.00010266456726437667,
+            0.000162279031984243
+          ],
+          "recoverySeconds": 3.98,
+          "maxAngle": 0.23338339589498425,
+          "maxX": 0.4166716799958863
+        },
+        "lower8": {
+          "success": true,
+          "fell": false,
+          "steps": 500,
+          "state": [
+            -0.16673400303123967,
+            -0.0006158790366640666,
+            -0.000010118388426239022,
+            0.00007529688427326258,
+            -0.00001358336035162111,
+            0.00007701832978605904
+          ],
+          "recoverySeconds": 3.02,
+          "maxAngle": 0.11801120112335095,
+          "maxX": 0.20993737029293022
+        },
+        "upper8": {
+          "success": true,
+          "fell": false,
+          "steps": 500,
+          "state": [
+            -0.16623807455639075,
+            -0.00024588137204555646,
+            -0.00012043303985809217,
+            0.0001765845909126107,
+            -0.00012449923514967765,
+            0.00017495691060798302
+          ],
+          "recoverySeconds": 4.0600000000000005,
+          "maxAngle": 0.17047020008708724,
+          "maxX": 0.3265141582546776
+        },
+        "cart04": {
+          "success": true,
+          "fell": false,
+          "steps": 500,
+          "state": [
+            -0.16632990732403216,
+            -0.0005031948317987114,
+            -0.00007450438268596926,
+            0.0001449038774398629,
+            -0.0000788621469705042,
+            0.00014499296480517806
+          ],
+          "recoverySeconds": 3.84,
+          "maxAngle": 0.027790342117884226,
+          "maxX": 0.42810856642074846
+        },
+        "push035": {
+          "success": true,
+          "fell": false,
+          "steps": 500,
+          "state": [
+            -0.16636281133971592,
+            -0.00047483826921641673,
+            -0.00007433114724042511,
+            0.000141805419964897,
+            -0.00007853612114594455,
+            0.00014180942736614403
+          ],
+          "recoverySeconds": 3.74,
+          "maxAngle": 0.05303418852017616,
+          "maxX": 0.2793272397808787
+        }
+      }
+    },
+    {
+      "trainingSeed": 83,
+      "checkpoint": 950,
+      "totalIterations": 1200,
+      "result": {
+        "engine": "Independent JavaScript Float64 physics and deterministic mean action",
+        "criterion": "10 s, no |angle|>60 deg or |x|>2.4m; final continuous 1 s: |angles|<2deg, |angular speeds|<0.15 rad/s, |cart speed|<0.15m/s",
+        "force": 40,
+        "angle2": {
+          "count": 1024,
+          "seed": 271828,
+          "degrees": 2,
+          "kicks": false,
+          "success": 1024,
+          "successRate": 1,
+          "survived": 1024,
+          "survivalRate": 1,
+          "meanLength": 500,
+          "meanReturn": 499.66465612489094,
+          "maxForce": 40
+        },
+        "angle5": {
+          "count": 1024,
+          "seed": 271828,
+          "degrees": 5,
+          "kicks": false,
+          "success": 1024,
+          "successRate": 1,
+          "survived": 1024,
+          "survivalRate": 1,
+          "meanLength": 500,
+          "meanReturn": 499.1663707133613,
+          "maxForce": 40
+        },
+        "angle10": {
+          "count": 1024,
+          "seed": 271828,
+          "degrees": 10,
+          "kicks": false,
+          "success": 1006,
+          "successRate": 0.982421875,
+          "survived": 1006,
+          "survivalRate": 0.982421875,
+          "meanLength": 491.6572265625,
+          "meanReturn": 486.5501201441091,
+          "maxForce": 40
+        },
+        "pushes": {
+          "count": 1024,
+          "seed": 271828,
+          "degrees": 2,
+          "kicks": true,
+          "success": 1024,
+          "successRate": 1,
+          "survived": 1024,
+          "survivalRate": 1,
+          "meanLength": 500,
+          "meanReturn": 495.1985324297497,
+          "maxForce": 40
+        }
+      },
+      "interactionExamples": {
+        "both8": {
+          "success": true,
+          "fell": false,
+          "steps": 500,
+          "state": [
+            -0.024559215443130906,
+            0.0015935775449958769,
+            -0.000008833476864200662,
+            -0.00023507813204600323,
+            0.0000018402241139803266,
+            -0.00023223474211690322
+          ],
+          "recoverySeconds": 3.96,
+          "maxAngle": 0.20549186765554062,
+          "maxX": 0.5320125760693161
+        },
+        "lower8": {
+          "success": true,
+          "fell": false,
+          "steps": 500,
+          "state": [
+            -0.023989680217543916,
+            0.0007336113733658325,
+            -0.000024642879501879378,
+            -0.00008733152499723271,
+            -0.000019257978607356563,
+            -0.0000879644197923615
+          ],
+          "recoverySeconds": 3.02,
+          "maxAngle": 0.11801120112335095,
+          "maxX": 0.21465439811130632
+        },
+        "upper8": {
+          "success": true,
+          "fell": false,
+          "steps": 500,
+          "state": [
+            -0.024483733099201193,
+            0.00126560820432661,
+            0.000009280778796583178,
+            -0.0002032516235406917,
+            0.000017386421980791766,
+            -0.0001994599915331012
+          ],
+          "recoverySeconds": 3.84,
+          "maxAngle": 0.17407162314746438,
+          "maxX": 0.3534585056167954
+        },
+        "cart04": {
+          "success": true,
+          "fell": false,
+          "steps": 500,
+          "state": [
+            -0.023864111179314276,
+            0.0010557262743363727,
+            -0.00007646394547133895,
+            -0.0000840137040968273,
+            -0.00006778262460738205,
+            -0.00008877707778364307
+          ],
+          "recoverySeconds": 3.38,
+          "maxAngle": 0.037789084980542675,
+          "maxX": 0.4364104502574873
+        },
+        "push035": {
+          "success": true,
+          "fell": false,
+          "steps": 500,
+          "state": [
+            -0.024159586632282362,
+            0.0010194637231463214,
+            -0.000022692037272342702,
+            -0.00013308969038312662,
+            -0.000015473228253792826,
+            -0.00013287949444983687
+          ],
+          "recoverySeconds": 3.5,
+          "maxAngle": 0.05668502763992045,
+          "maxX": 0.2871465887530913
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+<section class="section" id="playground"><div class="section-head"><div><div class="index">05 / LIVE WEBGPU · ROI + ADAM</div><h2>这份报告里，也能直接跑。</h2></div><p>默认使用与 desk 完全相同的“周舒畅”320 × 128 目标位图。从笔画加权随机初始化开始，在本机 GPU 完成拟合；没有加载 desk 的已训练参数。</p></div>
+<div class="panel live"><div class="controls">
+<label>目标文字<input id="demo-text" value="周舒畅" maxlength="20"></label>
+<label>高斯数量 · 上限 10,000<input type="number" id="demo-N" min="1" max="10000" step="1" value="1600" required></label>
+<label>独立链<select id="demo-chains"><option>1</option><option>2</option><option>4</option><option selected>8</option><option>16</option></select></label>
+<label>ROI MCMC 步数 · 上限 10,000,000<input type="number" id="demo-steps" min="0" max="10000000" step="1" value="10000" required></label>
+<label>Adam 步数 · 上限 10,000,000<input type="number" id="demo-adam" min="0" max="10000000" step="1" value="8000" required></label>
+<label>计算精度<select id="demo-precision"><option value="fp32" selected>FP32 · 默认</option><option value="fp16">FP16 exp + FP32 收尾</option><option value="fp16-cache">FP16 ROI 缓存 + FP32 收尾</option></select></label>
+<label>或载入图片<input type="file" id="demo-file" accept="image/*"></label>
+<button class="primary" id="demo-start">初始化并运行 WebGPU</button><button class="secondary" id="demo-stop" disabled>停止并保留结果</button>
+<button class="secondary" id="demo-benchmark">当前配置 · 三种精度各跑 3 次</button>
+<button class="secondary" id="demo-ablation">消融：纯 Adam / 同步数 / 同耗时</button>
+<button class="secondary" id="demo-export" disabled>下载图像与运行数据</button><button class="secondary" id="target-export">下载目标 PGM</button>
+</div><div>
+<p class="note" id="hybrid-device">首次运行时检测 WebGPU 并编译管线。</p>
+<div class="live-pair" style="margin-top:16px"><div><p>TARGET / 320 × 128</p><canvas id="live-target" width="320" height="128" style="aspect-ratio:2.5"></canvas></div><div><p>LIVE WEBGPU / ROI + ADAM</p><canvas id="live-image" width="320" height="128" style="aspect-ratio:2.5"></canvas></div></div>
+<div class="live-stats"><span>阶段与进度<b id="live-iter" style="font-size:15px">准备就绪</b></span><span id="live-loss-label">MSE<b id="live-loss">—</b></span><span>GPU 时间<b id="live-gpu">—</b></span><span>总耗时<b id="live-time">—</b></span><span>工作区<b id="live-memory">—</b></span></div>
+<p id="live-status">点击运行。从随机初始化开始，不使用预拟合参数。</p>
+<p class="note">ROI MCMC → 稀疏渲染 → 并行 Adam。FP16 模式在局部 exp / 幅度乘法使用半精度；缓存模式另外复用 ROI 指数值，参数、梯度和 Adam 状态保留 FP32，最后 1,000 步用 FP32 收尾。累加采用 1/1024 灰度的 u32 定点，避免浮点原子加法依赖。最终 MSE 由后台 Float64 全图、无截断重渲染计算。</p>
+<p class="note" style="margin-top:14px">总耗时从点击运行开始，包含首次管线编译、初始化、GPU 计算、回传和 Float64 验证；重复运行复用管线并单独标记。GPU 时间来自 timestamp-query。运行期间可停止；没有 WebGPU 时会明确提示。通过 <a href="http://127.0.0.1:8766/report.html#playground">localhost</a> 打开兼容性更好。</p>
+<details><summary>本页运行证据 / JSON</summary><pre class="code" id="hybrid-evidence" style="max-height:300px;overflow:auto">尚未运行</pre></details>
+<details><summary>最终参数与验证图像</summary><pre class="code" id="hybrid-result" style="max-height:200px;overflow:auto">尚未运行</pre></details>
+<p class="note" id="ablation-status">消融固定FP32：先预热与耗时校准，再交错运行三组各3次。每次均重新初始化，同耗时组按校准增加或减少Adam步数；不通过等待凑齐时间。默认约1分钟。</p>
+<details><summary>消融全部记录 / JSON</summary><pre class="code" id="ablation-result" style="max-height:200px;overflow:auto">尚未运行</pre></details>
+</div></div></section>

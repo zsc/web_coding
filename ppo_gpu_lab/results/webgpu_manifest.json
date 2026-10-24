@@ -1,0 +1,24 @@
+{
+  "capturedAt": "2026-10-24T17:20:03.715279+08:00",
+  "localHardware": "Apple M5, 10 GPU cores, Metal 4 (system_profiler)",
+  "browser": "Chrome 155 / IAB, adapter apple / metal-3",
+  "sha256": {
+    "src/webgpu_ppo.mjs": "7c9a704c0f9c2fc36c9850c27f9ccf50040bd08a867b04f1cd328f6d3e4c749b",
+    "src/webgpu_worker.mjs": "41e42dd26567e390df61f95a5fbe58eee0ac72aee0e4c8f1d3c88d5bc877b131",
+    "src/webgpu_validate.mjs": "3014793547cd2f989d2454580c057a7c81d523807e186e4e692d9e8e57c94838",
+    "src/webgpu_eval.mjs": "d4271350667cb4cf3555bd18100ae540ed6b9d0583275525d86d1005ff9f7658",
+    "src/webgpu_ui.js": "ca2b8218186f1f9d7d697f6ba59ff7ab7784c88eb6aa7f5d4e2de8647871893b",
+    "src/live_model.js": "59242c7b046e392bd2b0bbca9409a646f39f9faa37b1f89baa9cb98ad306117a",
+    "results/webgpu_fixture.json": "9228bc6b49369da40ed2242c2730df37bdffa258393d5200e229ba5cc5ce684a",
+    "results/webgpu_benchmark.json": "177f4e7c69de0ce452ebe3301006601f2a819c1739535a93bfe80766f23093eb",
+    "results/webgpu_validation_worker.json": "7c64999bbdba1948543d65f2f4790f8238c4b7c77b79f12919b13fb373316d6e",
+    "results/webgpu_independent_eval.json": "a48ada40ddd42844d52344a5aeaed4010a1e3c78549a417974c89b1acfc9caf0",
+    "results/webgpu_train_seed71.json": "3c072a06047301bb09379be7046329c0ea4a510f3fa5cabfbe509d494ebf807a",
+    "results/webgpu_train_seed79.json": "9ea96b2c378009ed58dea036be687c1100bc41ddb516c920471b831e14eb4f88",
+    "results/webgpu_train_seed83.json": "4d1ef38c5ca01da48ca1e813a7dfdc90abde75e6d82aff52f85b22b7320e8476",
+    "webgpu.html": "788655ea848d402143107e5d36ae28909978a6d2e58d062e81093157b91f9ec7",
+    "report.html": "342cf3e7c717e9cbe37b5037b7065c1c88764240458ba01c1e012e62aafc86a6",
+    "src/webgpu_report.py": "ed07fd6fb1ea5cee65e0b9e813768db88cb537850d04aabc6940cad346c09766",
+    "results/webgpu_browser_qa.json": "076341589116825df7bf0c95be7b25a7e46926224725f6a87f35750be13c9f4d"
+  }
+}

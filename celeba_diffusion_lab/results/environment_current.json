@@ -1,0 +1,16 @@
+{
+  "torch": "2.10.0+cu128",
+  "cuda": "12.8",
+  "python": "Python 3.12.12",
+  "source_sha256": {
+    "src/diagnose_color.py": "94048ea6a3695858517abf8d60c9c5e9e75f5bc715a63d393e36c4b23008e028",
+    "src/evaluate.py": "e0eb622cd1cadd58ffe79648872fc6111abf9f03da2d0e5631be66a26f6d91d6",
+    "src/evaluate_gray.py": "8f85569a659582fd753c7f99c289747b045c24c4d7e55418de34bfb66b3f2c3c",
+    "src/model.py": "d5df1a1f50a98d12af34d75417d7e82f7b74760ff6b74b909a0af222ebaec719",
+    "src/perf_probe.py": "5e2930bba95a6583e8e93b08082295d73eb730248650dda33607b182ee72c463",
+    "src/prepare_data.py": "b250910f0e9848cc62bf1478bc014bf9fe6d408b97e51c460ac8f89daa469e3a",
+    "src/prepare_gray.py": "f19104e390adb120acb2c6a9515a3759360ccdb10a606042bd80483484ed1358",
+    "src/train.py": "f93764951b2aa5c7c479781c333459087e789803fe0a03407d1f2e9e8d3b8c36",
+    "src/validate.py": "dde8e86e7e742a6950f8b04ca1a3dfab247ba40fd109fa17bc4d1476805f2390"
+  }
+}

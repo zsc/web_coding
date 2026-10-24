@@ -55,6 +55,10 @@ page=page.replace('本地：mcmc_splatting_gpu<br>desk：','本地：mcmc_splatt
 page=page.replace('python3 src/build_report.py\nopen report.html','python3 src/summarize_final.py\npython3 src/finalize_report.py\nopen report.html')
 page=page.replace('报告中的网页运行后端：CPU JavaScript','主报告旧试跑：CPU / 独立实验室：WebGPU')
 page=page.replace('<script type="module">','<script>document.getElementById("compare-slider").addEventListener("input",e=>document.getElementById("compare-overlay").style.clipPath="inset(0 "+(100-Number(e.target.value))+"% 0 0)");</script><script type="module">',1)
+from hybrid_report import update_hybrid_report
+page=update_hybrid_report(page,root)
+from ablation_report import update_ablation_report
+page=update_ablation_report(page,root)
 (root/'report.html').write_text(page)
 print('Final report:',len(page.encode()),'bytes')
 

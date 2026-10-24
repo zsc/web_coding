@@ -4,11 +4,15 @@
     "passed": true
   },
   {
+    "name": "large common output bias cannot saturate the antisymmetric actor",
+    "passed": true
+  },
+  {
     "name": "symmetric TD3 4 CUDA graph updates vs eager incl mirrored minibatch",
     "passed": true,
-    "max_abs_error": 4.629051545634866e-06,
-    "atol": 1e-05,
+    "max_abs_error": 1.7881393432617188e-07,
+    "atol": 3e-06,
     "rtol": 3e-05,
-    "max_action_error": 5.364418029785156e-07
+    "max_action_error": 6.556510925292969e-07
   }
 ]

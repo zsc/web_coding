@@ -28,7 +28,15 @@ ddpg_gpu_lab/results/td3_pilot.log
 ddpg_gpu_lab/results/td3_symmetry_pilot.json
 ddpg_gpu_lab/results/td3_symmetry_pilot.log
 ddpg_gpu_lab/results/*pilot*.json
+ddpg_gpu_lab/results/td3_logit_pilot.log
+ddpg_gpu_lab/results/seeds100_td3.json
 diffusion_gpu_lab/results/**/after.txt
 mcmc_splatting_gpu/results/report_check_*.mjs
 mcmc_splatting_gpu/results/desk/*.pgm
 mcmc_splatting_gpu/results/playground_worker_check.json
+mcmc_splatting_gpu/results/*.truncated.txt
+mcmc_splatting_gpu/results/webgpu_hybrid_cold_*.json
+mcmc_splatting_gpu/results/webgpu_ablation_pilot_*.json
+ppo_gpu_lab/results/*.partial.txt
+ppo_gpu_lab/results/summary.json
+ppo_gpu_lab/results/webgpu_train_seed*.json

@@ -60,3 +60,54 @@ Validation:
 Original project lineage:
   https://github.com/zsc/zsc.github.io/tree/0cca856e24d3d7de793d8d6ed0dc1e90db18174a/widgets/diffusion_demo
   The original algorithm extraction and MNIST optimization remain in ../diffusion_gpu_lab.
+
+Grayscale distribution experiment:
+  src/prepare_gray.py creates actual N x 64 x 64 x 1 uint8 caches using
+  round(0.299 R + 0.587 G + 0.114 B), after the identical RGB crop/resize.
+  src/train.py --grayscale --steps 5000 --batch 32 --out results/gray5k
+  trains a fresh one-channel network with the same hidden layers and schedule.
+  src/evaluate_gray.py --samples 512 compares actual gray-trained generation
+  with RGB-trained 5000-step generation converted to gray for measurement.
+  The latter is explicitly a separate comparator, not grayscale training.
+  Every model is sampled with 100-step DDIM eta=0 and eta=1, fixed seeds
+  881..912, batch 16. All 512 samples enter the statistics; the first 64 appear
+  in each gallery. No image selection or brightness/color correction is used.
+
+  Statistics use displayed uint8 values, 0..255: per-image spatial mean,
+  per-image pixel SD, empirical CDFs, one-dimensional Wasserstein distances,
+  and fraction outside real-image brightness percentiles 5..95.
+  Reference: 2048 fixed evenly spaced validation images. A separate validation
+  pool supplies 200 real-vs-real calibrations of 512 images; their 5..95 percentiles
+  describe finite-sample variation, not a confidence interval for model quality.
+  High-noise probes compare learned epsilon spatial-mean errors with a simple
+  copy-noisy-mean baseline; they do not establish which network layer is causal.
+  Distribution matching here does not mean Gaussianity or full-distribution equality.
+  Gray training and RGB training have different channel counts and noise draws;
+  their raw epsilon validation losses are not used as a direct quality ranking.
+
+  ./run_desk.sh gray                 # Fresh run only; existing checkpoint rejects
+  ./run_desk.sh gray-evaluate        # After gray 5000 steps complete
+  # On desk, after gray evaluation:
+  /home/zsc/miniconda3/envs/py312/bin/python src/plot_gray.py
+  ./run_desk.sh fetch
+  python3 build_report.py
+  run_final_evaluation.sh is the sequential desk pipeline used for this report.
+
+Color-loss control (separate from grayscale):
+  run_color_ablation.sh forks the complete RGB 10000-step checkpoint twice.
+  Both attempt 2000 further steps, with identical restored random streams.
+  Control: epsilon MSE. Weighted: epsilon MSE + 256 * mean over batch of
+  1[t>=800] * mean_channel(spatial_mean(epsilon_error)^2).
+  Control makes 2000 successful updates; weighted makes 1992, skipping 8 for AMP
+  overflow. The final NumPy/CPU/CUDA RNG states agree; see paired_rng_check.json.
+  This weighted experiment failed to correct color drift and is retained as a
+  negative result. It must not be presented as an improved model.
+
+Measured grayscale outcome (this training seed and 5000-step budget):
+  Real reference mean / across-image brightness SD / mean image contrast:
+    112.61 / 35.50 / 61.15.
+  Gray-trained eta=0: 130.40 / 76.13 / 47.95; brightness W1 41.52.
+  Gray-trained eta=1: 127.07 / 60.88 / 50.46; brightness W1 26.64.
+  Real-vs-real brightness W1 5..95 percentile range: 1.16..3.59.
+  Gray training completed 5000 successful steps, zero AMP skips, 546.75 s.
+  This is a failed distribution match, not an improved generator.

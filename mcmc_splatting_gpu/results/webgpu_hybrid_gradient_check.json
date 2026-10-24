@@ -1,0 +1,18 @@
+{
+  "method": "GPU one Adam step vs independent Float64 central finite differences of the full smooth image objective",
+  "gaussians": 32,
+  "parameters_checked": 191,
+  "near_zero_gradient_threshold": 0.00001,
+  "near_zero_not_compared": [
+    {
+      "gaussian": 22,
+      "parameter": 1,
+      "gradient": 1.500893713433649e-7,
+      "observed_delta": 0
+    }
+  ],
+  "near_zero_reason": "Adam first step normalizes by gradient magnitude; numerical noise near zero makes the finite-difference update ill-conditioned, especially with ROI truncation and fixed-point rendering.",
+  "maximum_absolute_parameter_error": 0.000006103515630684342,
+  "tolerance": 0.00003,
+  "failures": []
+}

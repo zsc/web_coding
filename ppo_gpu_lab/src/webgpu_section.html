@@ -1,0 +1,22 @@
+<section class="train-lab" aria-labelledby="trainTitle">
+ <span class="train-eyebrow">WEBGPU / ON-DEVICE LEARNING</span><h1 id="trainTitle">让它在你的浏览器里，<br>学会接住扰动。</h1><p class="train-intro">完整 PPO 训练在本机 GPU 上运行。暂停后可以继续；训练完成，直接拖动下面的摆杆测试新策略。</p>
+ <p id="trainSaved" class="train-saved" hidden></p>
+ <div class="train-device"><span id="gpuDevice">等待连接本机 GPU</span><span id="trainStatus" role="status">未初始化</span></div>
+ <div class="train-grid"><div class="train-settings">
+  <label for="trainTask">训练任务</label><select id="trainTask"><option value="robust">抗扰动 · 40 N / ±10° 课程</option><option value="classic">原任务 · 10 N / 小角度平衡</option></select>
+  <div class="train-fields"><div><label for="trainSeed">训练种子</label><input id="trainSeed" type="number" min="1" max="999999" value="71"></div><div><label for="trainBudget">训练轮数</label><input id="trainBudget" type="number" min="50" max="5000" step="50" value="1200"></div></div>
+  <button id="trainInit">连接 GPU / 新建训练</button><button id="trainStart" disabled>开始训练</button><button id="trainPause" disabled>暂停训练</button>
+  <p class="train-small">从之前的 CUDA PPO seed 7 权重继续训练；没有 LQR 教师或辅助控制。切换到 40 N 后，训练前基线也按同一力上限重新评估。</p>
+ </div><div class="train-progress-panel">
+  <div class="train-progress-head"><strong id="trainIteration">0 / 1200 轮</strong><span id="trainSamples">0 个环境步</span></div><progress id="trainProgress" max="1200" value="0"></progress>
+  <div class="train-stats"><div><span>完整训练吞吐</span><strong id="trainSps">—</strong></div><div><span>累计训练时间</span><strong id="trainTime">—</strong></div><div><span>验证恢复率</span><strong id="trainSuccess">—</strong></div></div>
+  <svg id="trainChart" viewBox="0 0 680 180" role="img" aria-label="验证恢复成功率随训练轮数变化"></svg><p class="train-small" id="trainProgressNote">每 50 轮用固定的 128 组 ±10° 姿态评估一次。完成后另用 512 组未参与选择的状态测试。</p>
+  <div class="train-buttons"><button id="trainUse" disabled>用当前策略拖拽测试 ↓</button><button id="trainExport" disabled>导出策略与结果</button></div>
+ </div></div>
+ <div id="trainError" role="alert" hidden></div>
+ <details class="train-details"><summary>抗扰动训练具体改变了什么？</summary><p>先保留近竖直状态，再逐渐扩大初始角度：前 200 轮从 ±2° 增至 ±10°。每次重置有 60% 概率采用宽范围，同时加入位置 ±0.25 m、初始速度与角速度；运动中以每步 0.3% 概率给小车一个随机速度冲击，幅度逐渐增至 ±0.35 m/s。</p><p>抗扰动模式使用 40 N 电机、60° 终止角和更强的角度惩罚；原任务模式保持 10 N、12° 终止角及原奖励。两者都保留网络、FP32、256×64 采样、minibatch 2048、10 epochs、PPO clip 0.2、γ 0.99、λ 0.95。两种任务的恢复率不能混为同一指标。</p><p>训练完成会选取固定验证集上恢复率最高的快照；同分时按回报选择。曲线显示当前快照，最终 512 组测试不参与选择。失败会如实显示；从倒下位置起摆不在当前任务内。</p></details>
+ <div class="train-checks"><div><h3>正确性与速度，现场可复测</h3><p class="train-small">校验和基准使用独立训练实例，不修改当前策略。速度基准固定采用原任务，5 轮预热、30 轮计时。</p></div><div class="train-buttons"><button id="trainValidate" disabled>运行数值校验</button><button id="trainBench" disabled>测量训练速度</button></div></div>
+ <pre id="trainDiagnostics">尚未运行本次校验 / 基准。</pre>
+ <div id="trainOutcome" class="train-outcome" hidden></div>
+ <details class="train-details"><summary>查看 / 导出原始 JSON</summary><textarea id="trainRaw" aria-label="训练结果 JSON" readonly></textarea></details>
+</section>

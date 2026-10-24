@@ -1,0 +1,6 @@
+{
+  "source": "same train/valid/test RGB uint8 caches",
+  "transform": "one channel: round(0.299 R + 0.587 G + 0.114 B), applied after identical 64x64 preprocessing",
+  "range": "uint8 0..255; normalized to [-1,1] for diffusion training",
+  "seconds": 12.700937732006423
+}

@@ -1,0 +1,53 @@
+[{'name': 'TD3 4 updates vs independent autograd Adam reference, 2 seeds', 'passed': True}, {'name': 'all frozen learner weights remain unchanged', 'passed': True}]
+{'name': 'CUDA compiled graph vs eager TD3, 4 updates including actor delay', 'passed': True, 'max_abs_error': 1.7881393432617188e-07}
+actor 5.960464477539063e-08
+actor 5.122274160385132e-09
+actor 2.9802322387695312e-08
+actor 4.6566128730773926e-09
+actor 2.9802322387695312e-08
+actor 0.0
+critic 1.1920928955078125e-07
+critic 6.007030606269836e-08
+critic 8.940696716308594e-08
+critic 5.3085386753082275e-08
+critic 5.960464477539063e-08
+critic 5.3085386753082275e-08
+critic2 1.7881393432617188e-07
+critic2 5.468609742820263e-08
+critic2 8.940696716308594e-08
+critic2 5.3085386753082275e-08
+critic2 5.960464477539063e-08
+critic2 5.2386894822120667e-08
+target_actor 5.960464477539063e-08
+target_actor 4.656612873077393e-10
+target_actor 1.4901161193847656e-08
+target_actor 2.3283064365386963e-10
+target_actor 1.4901161193847656e-08
+target_actor 0.0
+target_critic 2.9802322387695312e-08
+target_critic 9.313225746154785e-10
+target_critic 1.4901161193847656e-08
+target_critic 9.313225746154785e-10
+target_critic 1.4901161193847656e-08
+target_critic 4.656612873077393e-10
+target_critic2 2.9802322387695312e-08
+target_critic2 9.313225746154785e-10
+target_critic2 1.4901161193847656e-08
+target_critic2 9.313225746154785e-10
+target_critic2 3.725290298461914e-09
+target_critic2 5.820766091346741e-10
+[{'name': 'odd actor gradient vs autograd; exact physics/reward mirror symmetry', 'passed': True}, {'name': 'large common output bias cannot saturate the antisymmetric actor', 'passed': True}, {'name': 'symmetric TD3 4 CUDA graph updates vs eager incl mirrored minibatch', 'passed': True, 'max_abs_error': 1.7881393432617188e-07, 'atol': 3e-06, 'rtol': 3e-05, 'max_action_error': 6.556510925292969e-07}]
+W1024 16:38:07.857000 568741 site-packages/torch/_inductor/utils.py:1679] [0/0] Not enough SMs to use max_autotune_gemm mode
+{"event": "ready", "setup_seconds": 54.671533201937564, "hardware": {"host": "zsc-X570-UD", "platform": "Linux-5.15.0-185-generic-x86_64-with-glibc2.35", "torch": "2.10.0+cu128", "cuda": "12.8", "gpu": "NVIDIA GeForce RTX 2080 SUPER", "cpu_threads": 1}, "seeds": 100}
+{"updates": 10000, "execution": "staged", "train_seconds": 40.47100772999693, "block_seconds": 40.47100772999693, "eval_seconds": 12.407143502961844, "passed": 14, "seeds": 100, "worst_steps": 177}
+{"updates": 20000, "execution": "staged", "train_seconds": 78.25575429503806, "block_seconds": 37.78474656504113, "eval_seconds": 10.794177075964399, "passed": 47, "seeds": 100, "worst_steps": 295}
+{"updates": 30000, "execution": "staged", "train_seconds": 113.81782300304621, "block_seconds": 35.562068708008155, "eval_seconds": 10.754575505969115, "passed": 78, "seeds": 100, "worst_steps": 253}
+{"updates": 40000, "execution": "staged", "train_seconds": 149.38549856108148, "block_seconds": 35.56767555803526, "eval_seconds": 10.792126134037971, "passed": 91, "seeds": 100, "worst_steps": 411}
+{"updates": 50000, "execution": "staged", "train_seconds": 185.2008500940865, "block_seconds": 35.815351533005014, "eval_seconds": 10.88810027600266, "passed": 96, "seeds": 100, "worst_steps": 562}
+{"updates": 60000, "execution": "staged", "train_seconds": 220.31929625710472, "block_seconds": 35.118446163018234, "eval_seconds": 10.873639294994064, "passed": 98, "seeds": 100, "worst_steps": 691}
+{"updates": 70000, "execution": "staged", "train_seconds": 255.91196560009848, "block_seconds": 35.59266934299376, "eval_seconds": 10.786204900941812, "passed": 99, "seeds": 100, "worst_steps": 1232}
+{"updates": 80000, "execution": "staged", "train_seconds": 291.48796657403, "block_seconds": 35.576000973931514, "eval_seconds": 10.7857195220422, "passed": 100, "seeds": 100, "worst_steps": 100000}
+{"event": "complete", "passed": 100, "seeds": 100, "train_seconds": 291.48796657403, "wall_seconds": 453.03132832294796}
+W1024 16:45:44.745000 570556 site-packages/torch/_inductor/utils.py:1679] [0/0] Not enough SMs to use max_autotune_gemm mode
+{"config": {"summary": "results/seeds100_td3.json", "horizon": 100000, "episodes": 256, "split": 997, "out": "results/verification_td3.json"}, "setup_seconds": 11.12235674902331, "eval_seconds": 30.004273017984815, "passed": 100, "seeds": 100}
+{"source":"results/seeds100_td3.json","backend":"Original unmodified JavaScript environment + FP64 actor inference","horizon":10000,"initial_states":[[0,0,-0.01,-0.01],[0,0,-0.01,0.01],[0,0,0.01,-0.01],[0,0,0.01,0.01]],"passed":100,"seeds":100,"seconds":9.639017124}

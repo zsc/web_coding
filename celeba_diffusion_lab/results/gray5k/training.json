@@ -1,0 +1,324 @@
+{
+  "config": {
+    "steps": 5000,
+    "batch": 32,
+    "lr": 0.0002,
+    "resume": false,
+    "out": "results/gray5k",
+    "dc_weight": 0.0,
+    "dc_t_min": 800,
+    "grayscale": true
+  },
+  "parameters": 6337345,
+  "seed": 20261024,
+  "data_manifest": {
+    "archive": "data/Dataset.zip",
+    "archive_sha256": "9464985fa6cfc84d0fe6b87a6e4f07a275c8bd3dfc8abd713218765de7d62306",
+    "archive_md5": "bd87976d046a333c8dff44d51cbdd9f9",
+    "partition_md5": "d32c9cbf5e040fd4025c592c306e6668",
+    "counts": {
+      "train": 162770,
+      "valid": 19867,
+      "test": 19962
+    },
+    "preprocessing": "RGB, original 178x218 -> center crop 178x178 at (0,20) -> Lanczos 64x64; stored uint8 NHWC",
+    "filename_coverage": "all 202599 official filenames, no missing or extra JPGs",
+    "source": "https://huggingface.co/datasets/student/celebA/tree/2d31e6555722815c74ea7c845b07c1063dd705e9",
+    "official_archive_md5": "00d2c5bc6d35e252742224ab0c1e8fcb",
+    "seconds": 40.93028159090318
+  },
+  "gray_manifest": {
+    "source": "same train/valid/test RGB uint8 caches",
+    "transform": "one channel: round(0.299 R + 0.587 G + 0.114 B), applied after identical 64x64 preprocessing",
+    "range": "uint8 0..255; normalized to [-1,1] for diffusion training",
+    "seconds": 12.700937732006423
+  },
+  "torch": "2.10.0+cu128",
+  "model": {
+    "sample_size": 64,
+    "in_channels": 1,
+    "out_channels": 1,
+    "center_input_sample": false,
+    "time_embedding_type": "positional",
+    "freq_shift": 0,
+    "flip_sin_to_cos": true,
+    "down_block_types": [
+      "DownBlock2D",
+      "DownBlock2D",
+      "AttnDownBlock2D",
+      "DownBlock2D"
+    ],
+    "up_block_types": [
+      "UpBlock2D",
+      "AttnUpBlock2D",
+      "UpBlock2D",
+      "UpBlock2D"
+    ],
+    "block_out_channels": [
+      32,
+      64,
+      128,
+      128
+    ],
+    "layers_per_block": 2,
+    "mid_block_scale_factor": 1,
+    "downsample_padding": 1,
+    "downsample_type": "conv",
+    "upsample_type": "conv",
+    "dropout": 0.0,
+    "act_fn": "silu",
+    "attention_head_dim": 32,
+    "norm_num_groups": 8,
+    "attn_norm_num_groups": null,
+    "norm_eps": 1e-05,
+    "resnet_time_scale_shift": "default",
+    "add_attention": true,
+    "class_embed_type": null,
+    "num_class_embeds": null,
+    "num_train_timesteps": null,
+    "_use_default_values": [
+      "attn_norm_num_groups",
+      "resnet_time_scale_shift",
+      "freq_shift",
+      "downsample_type",
+      "add_attention",
+      "downsample_padding",
+      "dropout",
+      "time_embedding_type",
+      "center_input_sample",
+      "norm_eps",
+      "class_embed_type",
+      "flip_sin_to_cos",
+      "num_train_timesteps",
+      "act_fn",
+      "upsample_type",
+      "num_class_embeds",
+      "mid_block_scale_factor"
+    ]
+  },
+  "schedule": "linear beta 0.0001..0.02, T=1000, epsilon MSE",
+  "loss": "epsilon MSE + dc_weight * mean(1[t>=dc_t_min] * mean_channel(spatial_mean(epsilon_error)^2))",
+  "terminal_alpha_bar": 4.035829260828905e-05,
+  "ema": "min(0.999, (1+successful_updates)/(10+successful_updates))",
+  "augmentation": "independent random horizontal flip, p=0.5",
+  "sampling": "uniform training examples with replacement; no validation/test training",
+  "validation": "512 fixed evenly spaced validation examples; fixed Gaussian noise; stratified t=0..998; FP32 evaluation",
+  "before": "name, memory.used [MiB], utilization.gpu [%], power.draw [W]\nNVIDIA GeForce RTX 2080 SUPER, 1787 MiB, 38 %, 61.18 W",
+  "curve": [
+    {
+      "step": 1000,
+      "train_loss": 0.1152699813246727,
+      "train_epsilon_mse": 0.1152699813246727,
+      "validation_raw": {
+        "mse": 0.04389972239732742,
+        "bins": [
+          0.2740399241447449,
+          0.07312734425067902,
+          0.036753617227077484,
+          0.022605087608098984,
+          0.01299239881336689,
+          0.0072835697792470455,
+          0.0034370769280940294,
+          0.0019834788981825113,
+          0.0015268092975020409,
+          0.0014533534413203597
+        ]
+      },
+      "validation_ema": {
+        "mse": 0.042679570615291595,
+        "bins": [
+          0.269859254360199,
+          0.06985702365636826,
+          0.03488604724407196,
+          0.021549561992287636,
+          0.01191126648336649,
+          0.006731931120157242,
+          0.0033258330076932907,
+          0.001976178027689457,
+          0.0015168145764619112,
+          0.0014321849448606372
+        ]
+      },
+      "elapsed_seconds": 114.26771589298733,
+      "successful_updates": 1000,
+      "skipped": 0
+    },
+    {
+      "step": 2000,
+      "train_loss": 0.03879716619849205,
+      "train_epsilon_mse": 0.03879716619849205,
+      "validation_raw": {
+        "mse": 0.039274364709854126,
+        "bins": [
+          0.24780574440956116,
+          0.06486672908067703,
+          0.03271635249257088,
+          0.0202364269644022,
+          0.011173929087817669,
+          0.006197120528668165,
+          0.002839359687641263,
+          0.0015120897442102432,
+          0.0010306346230208874,
+          0.0009249571594409645
+        ]
+      },
+      "validation_ema": {
+        "mse": 0.03845071420073509,
+        "bins": [
+          0.24443627893924713,
+          0.06315583735704422,
+          0.03173747658729553,
+          0.019708262756466866,
+          0.010778965428471565,
+          0.005873842164874077,
+          0.0025576255284249783,
+          0.0012830958003178239,
+          0.0008439067751169205,
+          0.0007317069103009999
+        ]
+      },
+      "elapsed_seconds": 222.82191670394968,
+      "successful_updates": 2000,
+      "skipped": 0
+    },
+    {
+      "step": 3000,
+      "train_loss": 0.037311043590307236,
+      "train_epsilon_mse": 0.037311043590307236,
+      "validation_raw": {
+        "mse": 0.03790704533457756,
+        "bins": [
+          0.23999223113059998,
+          0.06265154480934143,
+          0.03152232989668846,
+          0.01973072811961174,
+          0.010738050565123558,
+          0.005869212094694376,
+          0.0024734940379858017,
+          0.0012587159872055054,
+          0.0008054982754401863,
+          0.0006944118067622185
+        ]
+      },
+      "validation_ema": {
+        "mse": 0.03697725385427475,
+        "bins": [
+          0.23576666414737701,
+          0.06064530089497566,
+          0.030416805297136307,
+          0.019100461155176163,
+          0.010379543527960777,
+          0.005581460427492857,
+          0.0023353062570095062,
+          0.0010848060483112931,
+          0.0006511802785098553,
+          0.000528794655110687
+        ]
+      },
+      "elapsed_seconds": 330.5505706599215,
+      "successful_updates": 3000,
+      "skipped": 0
+    },
+    {
+      "step": 4000,
+      "train_loss": 0.03569042310118675,
+      "train_epsilon_mse": 0.03569042310118675,
+      "validation_raw": {
+        "mse": 0.036633290350437164,
+        "bins": [
+          0.2323053926229477,
+          0.060251761227846146,
+          0.03062157705426216,
+          0.01908787153661251,
+          0.01044915709644556,
+          0.005730787757784128,
+          0.0023872226011008024,
+          0.0010966414120048285,
+          0.0006496828282251954,
+          0.000522065325640142
+        ]
+      },
+      "validation_ema": {
+        "mse": 0.03606439381837845,
+        "bins": [
+          0.23027223348617554,
+          0.05900261551141739,
+          0.029685089364647865,
+          0.018705880269408226,
+          0.010162401013076305,
+          0.005446600262075663,
+          0.002209856640547514,
+          0.0009790289914235473,
+          0.0005505616427399218,
+          0.00042204128112643957
+        ]
+      },
+      "elapsed_seconds": 436.19663046998903,
+      "successful_updates": 4000,
+      "skipped": 0
+    },
+    {
+      "step": 5000,
+      "train_loss": 0.03451387211680412,
+      "train_epsilon_mse": 0.03451387211680412,
+      "validation_raw": {
+        "mse": 0.036546822637319565,
+        "bins": [
+          0.23099598288536072,
+          0.059921566396951675,
+          0.03040509857237339,
+          0.019211217761039734,
+          0.010632305406033993,
+          0.005978225730359554,
+          0.0025252399500459433,
+          0.001214967225678265,
+          0.0007566401036456227,
+          0.0006136460579000413
+        ]
+      },
+      "validation_ema": {
+        "mse": 0.0355018749833107,
+        "bins": [
+          0.22693616151809692,
+          0.0579870380461216,
+          0.02917506918311119,
+          0.01845557428896427,
+          0.010016982443630695,
+          0.005357276648283005,
+          0.002161015523597598,
+          0.0009168070973828435,
+          0.0004908338887616992,
+          0.00035947063588537276
+        ]
+      },
+      "elapsed_seconds": 544.5503981539514,
+      "successful_updates": 5000,
+      "skipped": 0
+    }
+  ],
+  "initial_validation": {
+    "mse": 1.2294896841049194,
+    "bins": [
+      1.112404465675354,
+      1.1555736064910889,
+      1.226814866065979,
+      1.2281934022903442,
+      1.258117914199829,
+      1.258223056793213,
+      1.2592949867248535,
+      1.2706830501556396,
+      1.2698466777801514,
+      1.2574777603149414
+    ]
+  },
+  "step": 5000,
+  "elapsed_seconds": 546.7500859079883,
+  "train_seconds": 526.730717298924,
+  "peak_allocated_mib": 1990.41162109375,
+  "peak_reserved_mib": 2342.0,
+  "successful_updates": 5000,
+  "skipped": 0,
+  "status": "complete",
+  "current_gpu": "name, memory.used [MiB], utilization.gpu [%], power.draw [W]\nNVIDIA GeForce RTX 2080 SUPER, 2167 MiB, 62 %, 88.45 W",
+  "training_image_draws": 160000
+}

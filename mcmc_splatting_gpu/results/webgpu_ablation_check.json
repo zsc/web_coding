@@ -1,0 +1,37 @@
+{
+  "checks": [
+    {
+      "group": "hybrid",
+      "upstream_mse": 1.3348876953125,
+      "browser_mse": 1.3348876953125,
+      "differing_pixels": 0,
+      "passed": true
+    },
+    {
+      "group": "adam_equal_steps",
+      "upstream_mse": 1.3356689453125,
+      "browser_mse": 1.3356689453125,
+      "differing_pixels": 0,
+      "passed": true
+    },
+    {
+      "group": "adam_equal_time",
+      "upstream_mse": 1.3099853515625,
+      "browser_mse": 1.3099853515625,
+      "differing_pixels": 0,
+      "passed": true
+    }
+  ],
+  "initial_parameters_sha256": "06d51b2a220215ba999a2cf1deaf0ac89b3439559e320dfc4fa5508762ddc6b3",
+  "initial_chain_seeds": [
+    42,
+    1051,
+    2060,
+    3069,
+    4078,
+    5087,
+    6096,
+    7105
+  ],
+  "passed": true
+}

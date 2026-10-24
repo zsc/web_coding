@@ -1,0 +1,34 @@
+{
+  "scope": "TD3 symmetric learned updates only; same fixed minibatch and starting weights; no environment/replay sampling; five 100-sweep rounds",
+  "rows": [
+    {
+      "mode": "sequential",
+      "seeds": 100,
+      "batch": 128,
+      "rounds_ms_per_sweep": [
+        88.33273789961822,
+        92.3262651998084,
+        80.50421527004801,
+        72.25409887963906,
+        72.24116884055547
+      ],
+      "median_ms_per_sweep": 80.50421527004801,
+      "setup_seconds": 47.22482311807107
+    },
+    {
+      "mode": "packed",
+      "seeds": 100,
+      "batch": 128,
+      "rounds_ms_per_sweep": [
+        3.329691499238834,
+        3.34526824997738,
+        3.3516316406894475,
+        3.387923309346661,
+        3.3558187796734273
+      ],
+      "median_ms_per_sweep": 3.3516316406894475,
+      "setup_seconds": 53.68868386303075
+    }
+  ],
+  "speedup": 24.019410215821893
+}
